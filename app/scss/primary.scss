@@ -1,0 +1,82 @@
+// imports
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:400,900,800,700);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css);
+
+// primary color scheme
+
+$red-orange: #EE6352;
+$green: #57A773;
+$blue: #08B2E3;
+$flash-white: #EFE9F4;
+$grey-blue: #484D6D;
+
+// common typography
+
+p, h1, li, h2, h3, h4, h5, td, label {
+  font-family: 'Work Sans', sans-serif;
+  color: $grey-blue;
+}
+
+p {
+  font-size: 1.4em;
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 2.8em !important;
+  color: $flash-white !important;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+a:link {
+  color: #484D6D;
+  text-decoration: none;
+}
+
+// common styles
+
+body {
+  background-color: $flash-white;
+  height: 100vh;
+  margin-top: 0;
+}
+
+.btn-primary {
+  background-color: #EE6352 !important;
+  border: none;
+  font-size: 1.2em;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.btn-primary:hover {
+  background-color: #ea442e !important;
+}
+
+.btn-success {
+  background-color: #57A773 !important;
+  font-family: 'Work Sans', sans-serif;
+  margin-bottom: 10px;
+}
+
+.btn-success:hover {
+  background-color: #46865d !important;
+}
+
+
+.btn-info {
+  background-color: #08B2E3 !important;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.btn-info:hover {
+  background-color: #079cc5 !important;
+}
+
+@import 'nav';
+@import 'home';
+@import 'footer';
+@import 'internalPageCommon'
