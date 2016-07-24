@@ -1,0 +1,44 @@
+/* NAV STUFF */
+
+nav {
+  background-color: transparent !important;
+  border-bottom: 0 !important;
+}
+
+.navbar-brand img {
+  height: auto !important;
+  width: 280px !important;
+}
+
+nav ul li {
+  font-size: 1.6em;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #EFE9F4 !important;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+.navbar {
+  border: 0;
+}
+
+
+@media (max-width: 768px) {
+  nav ul li {
+    text-align: center;
+    font-weight: bolder;
+  }
+
+  .navbar-brand img {
+    width: 180px !important;
+  }
+
+  .brand-logo {
+    padding: 5px 15px;
+  }
+
+}

@@ -1,0 +1,65 @@
+
+.jumbotron {
+  text-align: center;
+  height: 700px;
+}
+
+.jumbotron {
+  background-image: url('../images/jumbotron.jpg');
+  background-size: cover;
+  background-position: center;
+  padding-top: 0;
+  margin-top: 0;
+
+}
+
+.jt-container {
+  width: 100%;
+  height: 50%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,ffffff+100&1+0,0+100 */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+
+}
+
+.jumbotron h1 {
+  padding-top: 200px;
+  margin-bottom: 50px;
+}
+
+.jumbotron a:link {
+  color: #EFE9F4;
+}
+
+#promotionTable {
+  text-align: center;
+}
+
+#promotionTable span {
+  font-size: 8em;
+  color: #EE6352;
+}
+
+#promotionTable p {
+}
+
+
+@media (max-width: 768px) {
+
+.jumbotron {
+  height: 380px;
+}
+
+.jumbotron h1 {
+  padding-top: 50px;
+  margin-bottom: 50px;
+  font-size: 1.8em !important;
+}
+
+.jumbotron .btn-primary {
+  font-size: 1em;
+}
+
+}
