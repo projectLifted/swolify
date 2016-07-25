@@ -9,7 +9,7 @@ module.exports = app => {
     app.get( '/api/auth/facebook/callback',
     	passport.authenticate( 'facebook', {
     		successRedirect: '/sign-up',
-    		failureRedirect: '/new-goal'
+    		failureRedirect: '/'
     }));
 
     app.get('/api/auth/facebook/logout', function(req, res){

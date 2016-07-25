@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const User = mongoose.Schema({
   facebookId: {type: String, required: true},
   loginPhoto: {type: String},
+  displayName: {type: String},
   firstName: {type: String, trim: true},
   lastName: {type: String, trim: true},
   email: {type: String, trim: true},
