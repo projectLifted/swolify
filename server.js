@@ -50,7 +50,7 @@ passport.use(new FacebookStrategy({
 
     User.findOne({facebookId: profile.id}, (err, user) => {
       if (!user) {
-        new User({facebookId: profile.id, loginPhoto: profile.photos[0].value, email: profile.emails[0].value }).save( ( err, user ) => {
+        new User({facebookId: profile.id, loginPhoto: profile.photos[0].value, email: profile.emails[0].value, displayName: profile.displayName }).save( ( err, user ) => {
           return done(err, user);
         })
       }
