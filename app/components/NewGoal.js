@@ -18,7 +18,6 @@ export default class NewGoal extends React.Component {
     this.state = {
       startDate: moment()
     }
-
   }
 
     handleDate(field, event) {
