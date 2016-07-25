@@ -1,4 +1,6 @@
 const express = require('express')
+const path = require('path')
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -16,13 +18,16 @@ mongoose.connection.once('open', () => {
   console.log(`Connected to mongo at ${mongoUri}`);
 });
 
-
 masterRoutes(app);
 
 app.listen(port, () => console.log(`Express is listening on port ${port}`));
 
 app.use(bodyParser.json());
 app.use(express.static(`${__dirname}/dist`));
+
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+})
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -34,6 +39,7 @@ passport.use(new FacebookStrategy({
 }, (accessToken, refreshToken, profile, done) => {
 
     console.log(profile);
+    return done();
     // User.findOne({facebookId: profile.id}, (err, user) => {
     //   if (!user) {
     //     new User({}).save( ( err, user ) => {

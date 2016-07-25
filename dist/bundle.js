@@ -75,7 +75,7 @@
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _NewGoal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/NewGoal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _NewGoal = __webpack_require__(/*! ./components/NewGoal */ 482);
 	
 	var _NewGoal2 = _interopRequireDefault(_NewGoal);
 	
@@ -46585,7 +46585,323 @@
 	exports.default = Footer;
 
 /***/ },
-/* 482 */,
+/* 482 */
+/*!***********************************!*\
+  !*** ./app/components/NewGoal.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 34);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 169);
+	
+	var _Navigation = __webpack_require__(/*! ./Navigation */ 257);
+	
+	var _Navigation2 = _interopRequireDefault(_Navigation);
+	
+	var _Footer = __webpack_require__(/*! ./Footer */ 481);
+	
+	var _Footer2 = _interopRequireDefault(_Footer);
+	
+	var _GoalsWidget = __webpack_require__(/*! ./sidebar/GoalsWidget */ 483);
+	
+	var _GoalsWidget2 = _interopRequireDefault(_GoalsWidget);
+	
+	var _moment = __webpack_require__(/*! moment */ 484);
+	
+	var _moment2 = _interopRequireDefault(_moment);
+	
+	var _reactDatepicker = __webpack_require__(/*! react-datepicker */ 588);
+	
+	var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
+	
+	__webpack_require__(/*! ../scss/primary.scss */ 473);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NewGoal = function (_React$Component) {
+	    _inherits(NewGoal, _React$Component);
+	
+	    function NewGoal(props) {
+	        _classCallCheck(this, NewGoal);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NewGoal).call(this, props));
+	
+	        _this.state = {
+	
+	            startDate: (0, _moment2.default)()
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(NewGoal, [{
+	        key: 'handleDate',
+	        value: function handleDate(field, event) {
+	            this.setState(_defineProperty({}, field, event));
+	        }
+	    }, {
+	        key: 'handleChange',
+	        value: function handleChange(field, event) {
+	            this.setState(_defineProperty({}, field, event.target.value));
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'article',
+	                null,
+	                _react2.default.createElement(
+	                    'header',
+	                    { id: 'new-goal-header' },
+	                    _react2.default.createElement(_Navigation2.default, null)
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'page-title-bar' },
+	                    _react2.default.createElement(
+	                        'h1',
+	                        null,
+	                        'New Goal'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'container main-content' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'container' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-md-8' },
+	                                _react2.default.createElement(
+	                                    'form',
+	                                    { id: 'new-goal-form' },
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'row' },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-10 extra-height' },
+	                                            _react2.default.createElement(
+	                                                'label',
+	                                                { className: 'block-label' },
+	                                                'Select your goal type:'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'label',
+	                                                { className: 'radio' },
+	                                                _react2.default.createElement('input', { type: 'radio', name: 'goalOptions', id: 'weightGoal', value: 'weightlifting', defaultChecked: true }),
+	                                                ' Weightlifting Goal'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'label',
+	                                                { className: 'radio' },
+	                                                _react2.default.createElement('input', { type: 'radio', name: 'goalOptions', id: 'cardioGoal', value: 'cardio' }),
+	                                                ' Cardio Goal'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'label',
+	                                                { className: 'radio' },
+	                                                _react2.default.createElement('input', { type: 'radio', name: 'goalOptions', id: 'healthGoal', value: 'bodyWeight' }),
+	                                                ' Body Weight Goal'
+	                                            )
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'row' },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-10' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'form-group' },
+	                                                _react2.default.createElement(
+	                                                    'label',
+	                                                    { 'for': 'goalName' },
+	                                                    'Name Your Goal (example: ',
+	                                                    _react2.default.createElement(
+	                                                        'i',
+	                                                        null,
+	                                                        '"Bench Press"'
+	                                                    ),
+	                                                    ')'
+	                                                ),
+	                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'goalName', placeholder: '' })
+	                                            )
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'row' },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-3' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'form-group' },
+	                                                _react2.default.createElement(
+	                                                    'label',
+	                                                    { 'for': 'repGoal' },
+	                                                    'Rep Goal'
+	                                                ),
+	                                                _react2.default.createElement('input', { type: 'number', className: 'form-control', id: 'repGoal', placeholder: '' })
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-3' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'form-group' },
+	                                                _react2.default.createElement(
+	                                                    'label',
+	                                                    { 'for': 'weightGoal' },
+	                                                    'Weight Goal'
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'div',
+	                                                    { className: 'input-group' },
+	                                                    _react2.default.createElement('input', { type: 'number', className: 'form-control', id: 'weightGoal', placeholder: '' }),
+	                                                    _react2.default.createElement(
+	                                                        'div',
+	                                                        { className: 'input-group-addon' },
+	                                                        'Lbs'
+	                                                    )
+	                                                )
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-3' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'form-group' },
+	                                                _react2.default.createElement(
+	                                                    'label',
+	                                                    { 'for': 'weightGoal' },
+	                                                    'Time'
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'div',
+	                                                    { className: 'input-group' },
+	                                                    _react2.default.createElement('input', { type: 'number', className: 'form-control', id: 'weightGoal', placeholder: '' }),
+	                                                    _react2.default.createElement(
+	                                                        'div',
+	                                                        { className: 'input-group-addon' },
+	                                                        'Minutes'
+	                                                    )
+	                                                )
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-3' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'form-group' },
+	                                                _react2.default.createElement(
+	                                                    'label',
+	                                                    { 'for': 'weightGoal' },
+	                                                    'Distance'
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'div',
+	                                                    { className: 'input-group' },
+	                                                    _react2.default.createElement('input', { type: 'number', className: 'form-control', id: 'weightGoal', placeholder: '' }),
+	                                                    _react2.default.createElement(
+	                                                        'div',
+	                                                        { className: 'input-group-addon' },
+	                                                        'Miles'
+	                                                    )
+	                                                )
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-4' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'form-group' },
+	                                                _react2.default.createElement(
+	                                                    'label',
+	                                                    { 'for': 'goalDate' },
+	                                                    'Goal Completion Date'
+	                                                ),
+	                                                _react2.default.createElement(_reactDatepicker2.default, { className: 'form-control date-picker',
+	                                                    selected: this.state.startDate,
+	                                                    onChange: this.handleDate.bind(this, "startDate") })
+	                                            )
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'center',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'button',
+	                                            { type: 'submit', className: 'btn btn-primary form-submit' },
+	                                            _react2.default.createElement('i', { className: 'fa fa-plus-square', 'aria-hidden': 'true' }),
+	                                            ' Add Goal'
+	                                        )
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-md-4', id: 'side-bar' },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { type: 'button', className: 'btn btn-success' },
+	                                    _react2.default.createElement('i', { className: 'fa fa-tachometer', 'aria-hidden': 'true' }),
+	                                    ' View Dashboard'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { type: 'button', className: 'btn btn-info' },
+	                                    _react2.default.createElement('i', { className: 'fa fa-plus-circle', 'aria-hidden': 'true' }),
+	                                    ' Post Workout'
+	                                ),
+	                                _react2.default.createElement(_GoalsWidget2.default, null)
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(_Footer2.default, null)
+	            );
+	        }
+	    }]);
+	
+	    return NewGoal;
+	}(_react2.default.Component);
+	
+	exports.default = NewGoal;
+
+/***/ },
 /* 483 */
 /*!***********************************************!*\
   !*** ./app/components/sidebar/GoalsWidget.js ***!

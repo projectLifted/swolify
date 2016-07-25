@@ -87,9 +87,6 @@ export default class NewGoal extends React.Component {
 
                       <div className="row">
 
-                        {this.state.pokemon.length
-                          ?
-
                           <div className="col-md-3">
                               <div className="form-group">
 
