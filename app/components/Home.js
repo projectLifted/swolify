@@ -19,7 +19,7 @@ export default class Home extends React.Component {
           <Navigation />
 
         <h1>Track your gains. Compete.</h1>
-        <p><a className="btn btn-primary btn-lg" href="#" role="button"><i className="fa fa-facebook-official" aria-hidden={true}></i>
+        <p><a className="btn btn-primary btn-lg" href="/api/auth/facebook" role="button"><i className="fa fa-facebook-official" aria-hidden={true}></i>
       &nbsp;Get Started</a></p>
       </div>
     </div>
@@ -52,7 +52,7 @@ export default class Home extends React.Component {
             </div>
           </div>
           <Footer />
-          
+
     </article>
     );
   }

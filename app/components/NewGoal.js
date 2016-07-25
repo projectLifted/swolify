@@ -16,6 +16,7 @@ export default class NewGoal extends React.Component {
     super(props);
 
     this.state = {
+
       startDate: moment()
     }
   }
@@ -61,14 +62,14 @@ export default class NewGoal extends React.Component {
                       <label className="block-label">Select your goal type:</label>
 
                       <label className="radio">
-                        <input type="radio" name="goalOptions" id="weightGoal" value="weightlifting" /> Weightlifting Goal
+                        <input type="radio" name="goalOptions" id="weightGoal" value="weightlifting" defaultChecked/> Weightlifting Goal
 
                       </label>
                       <label className="radio">
                         <input type="radio" name="goalOptions" id="cardioGoal" value="cardio" /> Cardio Goal
                       </label>
                       <label className="radio">
-                        <input type="radio" name="goalOptions" id="healthGoal" value="personalhealth" /> Personal Health Goal
+                        <input type="radio" name="goalOptions" id="healthGoal" value="bodyWeight" /> Body Weight Goal
                       </label>
                     </div>
 
@@ -86,8 +87,12 @@ export default class NewGoal extends React.Component {
 
                       <div className="row">
 
+                        {this.state.pokemon.length
+                          ?
+
                           <div className="col-md-3">
                               <div className="form-group">
+
 
                                   <label for="repGoal">Rep Goal</label>
                                   <input type="number" className="form-control" id="repGoal" placeholder="" />
@@ -105,6 +110,31 @@ export default class NewGoal extends React.Component {
                               </div>
 
                           </div>
+
+
+                          <div className="col-md-3">
+                              <div className="form-group">
+                                  <label for="weightGoal">Time</label>
+                                  <div className="input-group">
+                                      <input type="number" className="form-control" id="weightGoal" placeholder="" />
+                                      <div className="input-group-addon">Minutes</div>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                          <div className="col-md-3">
+                              <div className="form-group">
+                                  <label for="weightGoal">Distance</label>
+                                  <div className="input-group">
+                                      <input type="number" className="form-control" id="weightGoal" placeholder="" />
+                                      <div className="input-group-addon">Miles</div>
+                                  </div>
+                              </div>
+
+                          </div>
+
+
 
                           <div className="col-md-4">
                               <div className="form-group">
