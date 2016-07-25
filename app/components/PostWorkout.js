@@ -46,13 +46,9 @@ export default class PostWorkout extends React.Component {
       </div>
 
       <div className="container main-content">
-
-
           <div className="container">
               <div className="row">
-
                   <div className="col-md-8">
-
                   <form id="new-goal-form">
 
                     <div className="row">
@@ -115,28 +111,17 @@ export default class PostWorkout extends React.Component {
                                   </div>
                           </div>
                       </div>
-
                           <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
                       </form>
-
-
                   </div>
-
                   <div className="col-md-4" id="side-bar">
-
                       <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
-
                       <button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Goal</button>
-
                       <GoalsWidget />
-
                   </div>
-
               </div>
           </div>
-
       </div>
-
     <Footer />
     </article>
 
