@@ -4,11 +4,11 @@ const loginCtrl = require('./loginCtrl');
 
 module.exports = app => {
 
-		app.get('/api/auth/facebook', passport.authenticate('facebook'));
+		app.get('/api/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email', 'user_location'] }));
 
-    app.get( '/api/auth/callback',
+    app.get( '/api/auth/facebook/callback',
     	passport.authenticate( 'facebook', {
-    		successRedirect: '/',
+    		successRedirect: '/api/loggedin',
     		failureRedirect: '/'
     }));
 
@@ -16,6 +16,10 @@ module.exports = app => {
       req.logout();
       res.redirect('/');
   });
+
+		app.get('/api/loggedin', function(req, res){
+			res.redirect('/');
+		})
 
     app.get('/api/auth/facebook/isauthed', loginCtrl.loggedIn);
 }
