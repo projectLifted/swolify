@@ -133,11 +133,14 @@ form .btn-primary {
 
 img {
   max-width: 100%;
-  width: 100%;
 }
 
 form img {
   margin: 20px;
+}
+
+form label {
+  margin-top: 15px;
 }
 
 @media (min-width: 1600px) {
@@ -171,6 +174,10 @@ form img {
   header {
     background-position: center;
     height: 200px;
+  }
+
+  img {
+    max-width: 80%;
   }
 
 }

@@ -87,8 +87,22 @@ export default class Signup extends React.Component {
 
                         </div>
 
-                    <div className="row">
-                      <div className="col-md-12 extra-height">
+                      <div className="row">
+                        <div className="col-md-4">
+
+                        <label className="block-label">Select your gender:</label>
+
+                        <label className="radio">
+                          <input type="radio" name="gender" id="man" value="man" /> Man
+
+                        </label>
+                        <label className="radio">
+                          <input type="radio" name="gender" id="woman" value="woman" /> Woman
+                        </label>
+
+                    </div>
+
+                      <div className="col-md-8">
 
                       <label className="block-label">Select your body type:</label>
 
@@ -103,25 +117,11 @@ export default class Signup extends React.Component {
                         <input type="radio" name="bodyType" id="endomorph" value="endomorph" /> Endomorph
                       </label>
 
-                      <center><img src={bodyTypes} /></center>
                     </div>
 
-                    <div className="col-md-12 extra-height">
-
-                    <label className="block-label">Select your gender:</label>
-
-                    <label className="radio">
-                      <input type="radio" name="gender" id="man" value="man" /> Man
-
-                    </label>
-                    <label className="radio">
-                      <input type="radio" name="gender" id="woman" value="woman" /> Woman
-                    </label>
+                    <center><img src={bodyTypes} /></center>
 
                   </div>
-
-
-                    </div>
 
 
                       <div className="row">
