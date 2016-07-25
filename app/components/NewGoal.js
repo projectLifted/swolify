@@ -4,10 +4,9 @@ import {Link, browserHistory} from "react-router";
 
 import Navigation from './Navigation';
 import Footer from './Footer';
-import GoalsWidget from './sidebar/GoalsWidget'
-
-import moment from 'moment';
-import DatePicker from 'react-datepicker';
+import GoalsWidget from './sidebar/GoalsWidget';
+import LiftingForm from './subcomponents/LiftingForm';
+import CardioForm from './subcomponents/CardioForm';
 
 import '../scss/primary.scss';
 
@@ -16,21 +15,12 @@ export default class NewGoal extends React.Component {
     super(props);
 
     this.state = {
-
-      startDate: moment()
+      radioOption: "weightLifting",
     }
   }
-
-    handleDate(field, event) {
-      this.setState({
-        [field]: event
-      })
-    }
-
-    handleChange(field, event) {
-      this.setState({
-        [field]: event.target.value
-      });
+  
+    handleRadioChange(field, event) {
+      this.setState({radioOption: field})
     }
 
   render() {
@@ -61,92 +51,50 @@ export default class NewGoal extends React.Component {
 
                       <label className="block-label">Select your goal type:</label>
 
+                    {/* Start radio options */}
+
                       <label className="radio">
-                        <input type="radio" name="goalOptions" id="weightGoal" value="weightlifting" defaultChecked/> Weightlifting Goal
+                        <input type="radio" name="goalOptions" id="weightGoal" value={this.state.liftingRadio} defaultChecked onClick={this.handleRadioChange.bind(this, "weightLifting")}/> Weightlifting Goal
 
                       </label>
                       <label className="radio">
-                        <input type="radio" name="goalOptions" id="cardioGoal" value="cardio" /> Cardio Goal
+                        <input type="radio" name="goalOptions" id="cardioGoal" value={this.state.cardioRadio} onClick={this.handleRadioChange.bind(this, "cardio")} /> Cardio Goal
                       </label>
                       <label className="radio">
-                        <input type="radio" name="goalOptions" id="healthGoal" value="bodyWeight" /> Body Weight Goal
+                        <input type="radio" name="goalOptions" id="healthGoal" value={this.state.bodyWeightRadio} onClick={this.handleRadioChange.bind(this, "bodyWeight")} /> Body Weight Goal
                       </label>
+
+                      {/* End radio options */}
+
                     </div>
-
-                    </div>
-
-                    <div className="row">
-                          <div className="col-md-10">
-                        <div className="form-group">
-                            <label for="goalName">Name Your Goal (example: <i>"Bench Press"</i>)</label>
-                            <input type="text" className="form-control" id="goalName" placeholder="" />
-                        </div>
-                      </div>
 
                     </div>
 
                       <div className="row">
 
-                        {this.state.pokemon.length
-                          ?
 
-                          <div className="col-md-3">
-                              <div className="form-group">
-
-
-                                  <label for="repGoal">Rep Goal</label>
-                                  <input type="number" className="form-control" id="repGoal" placeholder="" />
-                              </div>
-
-                          </div>
-
-                          <div className="col-md-3">
-                              <div className="form-group">
-                                  <label for="weightGoal">Weight Goal</label>
-                                  <div className="input-group">
-                                      <input type="number" className="form-control" id="weightGoal" placeholder="" />
-                                      <div className="input-group-addon">Lbs</div>
-                                  </div>
-                              </div>
-
+                          <div>
+                            {
+                              this.state.radioOption === "weightLifting"
+                                ?
+                              <LiftingForm
+                                  goalName={this.props.goalName}
+                                  onChange={this.props.handleChange}
+                              />
+                                :
+                              (
+                                this.state.radioOption === "cardio"
+                                  ?
+                                <CardioForm/>
+                                :
+                                <p>Body weight Form</p>
+                              )
+                            }
                           </div>
 
 
-                          <div className="col-md-3">
-                              <div className="form-group">
-                                  <label for="weightGoal">Time</label>
-                                  <div className="input-group">
-                                      <input type="number" className="form-control" id="weightGoal" placeholder="" />
-                                      <div className="input-group-addon">Minutes</div>
-                                  </div>
-                              </div>
-
-                          </div>
-
-                          <div className="col-md-3">
-                              <div className="form-group">
-                                  <label for="weightGoal">Distance</label>
-                                  <div className="input-group">
-                                      <input type="number" className="form-control" id="weightGoal" placeholder="" />
-                                      <div className="input-group-addon">Miles</div>
-                                  </div>
-                              </div>
-
-                          </div>
-
-
-
-                          <div className="col-md-4">
-                              <div className="form-group">
-                                  <label for="goalDate">Goal Completion Date</label>
-                                    <DatePicker className="form-control date-picker"
-                                         selected={this.state.startDate}
-                                         onChange={this.handleDate.bind(this, "startDate")}  />
-                                  </div>
-                          </div>
                       </div>
 
-                          <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
                       </form>
 
 
