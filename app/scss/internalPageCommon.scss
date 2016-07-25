@@ -1,7 +1,25 @@
+// Individual page headers
 
+#new-goal-header {
+  background-image: url('../images/newgoalbgd.jpg');
+}
+
+#signup-header {
+  background-image: url('../images/newgoalbgd.jpg');
+}
+
+// Internal page styles
 .main-content {
   margin-top: 20px;
   min-height: 600px
+}
+
+.react-datepicker__day--selected, .react-datepicker__day--in-range {
+    background-color: $red-orange !important;
+}
+
+.react-datepicker__header {
+    background-color: $flash-white !important;
 }
 
 #side-bar button {
@@ -12,9 +30,12 @@
 
 header {
   height: 300px;
-  background-image: url('../images/internalpagebgd.jpg');
   background-size: cover;
   margin-bottom: 0;
+}
+
+header .container {
+  width: 100%;
 }
 
 .page-title-bar {
@@ -33,6 +54,11 @@ header {
   text-align: center;
 }
 
+.date-picker-label {
+  display: block;
+  margin-right:20px;
+}
+
 header h1 {
   text-align: center;
   margin-top: 150px;
@@ -45,6 +71,11 @@ header h1 {
  -webkit-box-shadow: none;
   box-shadow: none;
   border: 1px solid #484D6D;
+
+}
+
+.panel table {
+  margin: 5px;
 }
 
 .panel-heading {
@@ -58,9 +89,9 @@ header h1 {
   font-size: 1.4em;
 }
 
-#new-goal-form button {
+form .btn-primary {
   margin-top: 30px;
-  font-size: 1.6em;
+  font-size: 1.8em;
 }
 
 .input-group-addon {
@@ -88,13 +119,34 @@ header h1 {
   padding: 5px;
 }
 
+.react-datepicker__input-container {
+  width: 100%;
+  display: table;
+}
+
+.form-inline {
+  .react-datepicker__input-container {
+    width: auto;
+    display: inline;
+  }
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+}
+
+form img {
+  margin: 20px;
+}
+
 @media (min-width: 1600px) {
   header {
     height: 400px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
   .radio {
     margin-left: 10%;
@@ -103,7 +155,15 @@ header h1 {
     display: block;
   }
 
-  #addGoal {
+  input.form-control.react-datepicker {
+
+  }
+
+  label {
+    display: block;
+  }
+
+  .form-submit {
     width: 100%;
     margin-bottom: 40px;
   }

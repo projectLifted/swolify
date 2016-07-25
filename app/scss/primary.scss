@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:400,900,800,700);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css);
+@import '../../node_modules/react-datepicker/dist/react-datepicker.css';
 
 // primary color scheme
 
@@ -13,7 +14,7 @@ $grey-blue: #484D6D;
 
 // common typography
 
-p, h1, li, h2, h3, h4, h5, td, label {
+p, h1, li, h2, h3, h4, h5, td, label, input {
   font-family: 'Work Sans', sans-serif;
   color: $grey-blue;
 }
