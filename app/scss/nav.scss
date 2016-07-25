@@ -10,6 +10,10 @@ nav {
   width: 280px !important;
 }
 
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: white;
+}
+
 nav ul li {
   margin-right: 20px;
   font-size: 1.6em;

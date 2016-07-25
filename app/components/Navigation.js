@@ -22,12 +22,12 @@ export default class Navigation extends React.Component {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#">About</NavItem>
+          <NavItem eventKey={1} href="http://google.com">About</NavItem>
           <NavItem eventKey={2} href="#">Login</NavItem>
+          <NavItem eventKey={4} href="#">Dashboard</NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-
     );
   }
 }
