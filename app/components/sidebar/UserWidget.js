@@ -9,8 +9,7 @@ export default class UserSidebar extends React.Component {
   render() {
     return (
 
-      <div> /div>
-
+      <div className="panel panel-default" id="user-widget">
 
     );
   }
