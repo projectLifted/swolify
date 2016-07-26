@@ -72,6 +72,27 @@ export default class NewGoal extends React.Component {
 
                       <div className="row">
 
+<<<<<<< HEAD
+=======
+                          <div className="col-md-3">
+                              <div className="form-group">
+
+
+                                  <label for="repGoal">Rep Goal</label>
+                                  <input type="number" className="form-control" id="repGoal" placeholder="" />
+                              </div>
+
+                          </div>
+
+                          <div className="col-md-3">
+                              <div className="form-group">
+                                  <label for="weightGoal">Weight Goal</label>
+                                  <div className="input-group">
+                                      <input type="number" className="form-control" id="weightGoal" placeholder="" />
+                                      <div className="input-group-addon">Lbs</div>
+                                  </div>
+                              </div>
+>>>>>>> ea90cd03c043b9c1d1524ba2149d72546e0dcf18
 
                           <div>
                             {
