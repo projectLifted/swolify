@@ -17,6 +17,14 @@
 
 }
 
+.jumbotron a:link {
+  color: $flash-white;
+}
+
+.jumbotron a:visited {
+  color: $flash-white;
+}
+
 .jt-container {
   width: 100%;
   height: 50%;
@@ -31,10 +39,6 @@
 .jumbotron h1 {
   padding-top: 150px;
   margin-bottom: 50px;
-}
-
-.jumbotron a:link {
-  color: #EFE9F4;
 }
 
 #promotionTable {

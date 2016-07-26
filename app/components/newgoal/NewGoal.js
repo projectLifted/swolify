@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from "react-router";
 
-import Navigation from './Navigation';
-import Footer from './Footer';
-import GoalsWidget from './sidebar/GoalsWidget';
-import LiftingForm from './subcomponents/LiftingForm';
-import CardioForm from './subcomponents/CardioForm';
-import UserWidget from './sidebar/UserWidget';
+import Navigation from '../Navigation';
+import Footer from '../Footer';
+import GoalsWidget from '../sidebar/GoalsWidget';
+import LiftingForm from './LiftingForm';
+import CardioForm from './CardioForm';
+import UserWidget from '../sidebar/UserWidget';
 
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 
-import '../scss/primary.scss';
+import '../../scss/primary.scss';
 
 export default class NewGoal extends React.Component {
   constructor(props) {
