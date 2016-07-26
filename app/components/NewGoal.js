@@ -8,6 +8,9 @@ import GoalsWidget from './sidebar/GoalsWidget';
 import LiftingForm from './subcomponents/LiftingForm';
 import CardioForm from './subcomponents/CardioForm';
 
+import moment from 'moment';
+import DatePicker from 'react-datepicker';
+
 import '../scss/primary.scss';
 
 export default class NewGoal extends React.Component {
@@ -15,12 +18,30 @@ export default class NewGoal extends React.Component {
     super(props);
 
     this.state = {
+      startDate: moment(),
       radioOption: "weightLifting",
+      goalName: this.props.goalName
     }
   }
-  
+
+    handleDate(field, event) {
+      this.setState({
+        [field]: event
+      })
+    }
+
+    handleChange(field, event) {
+      this.setState({
+        [field]: event.target.value
+      });
+    }
+
     handleRadioChange(field, event) {
       this.setState({radioOption: field})
+    }
+
+    createGoal() {
+      console.log(this.state.goalName)
     }
 
   render() {
@@ -72,27 +93,6 @@ export default class NewGoal extends React.Component {
 
                       <div className="row">
 
-<<<<<<< HEAD
-=======
-                          <div className="col-md-3">
-                              <div className="form-group">
-
-
-                                  <label for="repGoal">Rep Goal</label>
-                                  <input type="number" className="form-control" id="repGoal" placeholder="" />
-                              </div>
-
-                          </div>
-
-                          <div className="col-md-3">
-                              <div className="form-group">
-                                  <label for="weightGoal">Weight Goal</label>
-                                  <div className="input-group">
-                                      <input type="number" className="form-control" id="weightGoal" placeholder="" />
-                                      <div className="input-group-addon">Lbs</div>
-                                  </div>
-                              </div>
->>>>>>> ea90cd03c043b9c1d1524ba2149d72546e0dcf18
 
                           <div>
                             {
@@ -100,7 +100,6 @@ export default class NewGoal extends React.Component {
                                 ?
                               <LiftingForm
                                   goalName={this.props.goalName}
-                                  onChange={this.props.handleChange}
                               />
                                 :
                               (
@@ -113,8 +112,17 @@ export default class NewGoal extends React.Component {
                             }
                           </div>
 
-
+                          <div className="col-md-4">
+                              <div className="form-group">
+                                  <label for="goalDate">Goal Completion Date</label>
+                                    <DatePicker className="form-control date-picker"
+                                         selected={this.state.startDate}
+                                         onChange={this.handleDate.bind(this, "startDate")}  />
+                                  </div>
+                          </div>
                       </div>
+
+                          <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true" onClick={this.createGoal}></i> Add Goal</button></center>
 
                       </form>
 
