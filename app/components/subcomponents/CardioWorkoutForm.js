@@ -35,8 +35,8 @@ export default class CardioWorkoutForm extends React.Component {
       workoutDate: this.state.workoutDate,
       workoutDistance: this.state.workoutDistance,
       workoutTime: workoutTime,
-      percentMileTimeChange: /* Dependent on a formula that depends on the dashboard data */
-    })
+    //  percentMileTimeChange: /* Dependent on a formula that depends on the dashboard data */
+    });
   }
 
   render() {
