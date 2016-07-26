@@ -5,9 +5,18 @@ nav {
   border-bottom: 0 !important;
 }
 
+.navbar-brand {
+  padding: 10px !important;
+}
+
 .navbar-brand img {
   height: auto !important;
   width: 280px !important;
+}
+
+.navbar-right {
+  height: auto !important;
+  line-height: 1;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover {
@@ -17,6 +26,7 @@ nav {
 nav ul li {
   margin-right: 20px;
   font-size: 1.6em;
+  margin-top: 10px;
 }
 
 .navbar-inverse .navbar-nav>li>a {
@@ -25,17 +35,20 @@ nav ul li {
 
 .navbar {
   border: 0;
+  margin-bottom: 0;
 }
 
 
 @media (max-width: 768px) {
   nav ul li {
     text-align: center;
-    font-weight: bolder;
   }
 
   .navbar-brand img {
     width: 180px !important;
+  }
+
+  .navbar-brand {
   }
 
   .brand-logo {
