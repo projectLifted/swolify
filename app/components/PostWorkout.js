@@ -9,6 +9,7 @@ import GoalsWidget from './sidebar/GoalsWidget'
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 
+import LiftWorkoutForm from './subcomponents/LiftWorkoutForm';
 import '../scss/primary.scss';
 
 export default class PostWorkout extends React.Component {
@@ -54,7 +55,7 @@ export default class PostWorkout extends React.Component {
                     <div className="row">
                       <div className="col-md-10 extra-height">
 
-                      <label className="block-label">Select your goal type:</label>
+                      {/*<label className="block-label">Select your goal type:</label>
 
                       <label className="radio">
                         <input type="radio" name="goalOptions" id="weightGoal" value="weightlifting" /> Weightlifting Goal
@@ -65,53 +66,16 @@ export default class PostWorkout extends React.Component {
                       </label>
                       <label className="radio">
                         <input type="radio" name="goalOptions" id="healthGoal" value="personalhealth" /> Personal Health Goal
-                      </label>
-                    </div>
-
+                      </label>*/}
+                      </div>
                     </div>
 
                     <div className="row">
-                          <div className="col-md-10">
-                        <div className="form-group">
-                            <label for="goalName">Name Your Goal (example: <i>"Bench Press"</i>)</label>
-                            <input type="text" className="form-control" id="goalName" placeholder="" />
-                        </div>
-                      </div>
+
+                      <LiftWorkoutForm/>
 
                     </div>
 
-                      <div className="row">
-
-                          <div className="col-md-3">
-                              <div className="form-group">
-
-                                  <label for="repGoal">Rep Goal</label>
-                                  <input type="number" className="form-control" id="repGoal" placeholder="" />
-                              </div>
-
-                          </div>
-
-                          <div className="col-md-3">
-                              <div className="form-group">
-                                  <label for="weightGoal">Weight Goal</label>
-                                  <div className="input-group">
-                                      <input type="number" className="form-control" id="weightGoal" placeholder="" />
-                                      <div className="input-group-addon">Lbs</div>
-                                  </div>
-                              </div>
-
-                          </div>
-
-                          <div className="col-md-4">
-                              <div className="form-group">
-                                  <label for="goalDate">Goal Completion Date</label>
-                                    <DatePicker className="form-control date-picker"
-                                         selected={this.state.startDate}
-                                         onChange={this.handleDate.bind(this, "startDate")}  />
-                                  </div>
-                          </div>
-                      </div>
-                          <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
                       </form>
                   </div>
                   <div className="col-md-4" id="side-bar">

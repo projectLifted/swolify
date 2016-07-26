@@ -8,8 +8,8 @@ import GoalsWidget from './sidebar/GoalsWidget';
 import LiftingForm from './subcomponents/LiftingForm';
 import CardioForm from './subcomponents/CardioForm';
 
-import moment from 'moment';
-import DatePicker from 'react-datepicker';
+// import moment from 'moment';
+// import DatePicker from 'react-datepicker';
 
 import '../scss/primary.scss';
 
@@ -18,9 +18,7 @@ export default class NewGoal extends React.Component {
     super(props);
 
     this.state = {
-      startDate: moment(),
-      radioOption: "weightLifting",
-      goalName: this.props.goalName
+      radioOption: "weightLifting"
     }
   }
 
@@ -98,9 +96,7 @@ export default class NewGoal extends React.Component {
                             {
                               this.state.radioOption === "weightLifting"
                                 ?
-                              <LiftingForm
-                                  goalName={this.props.goalName}
-                              />
+                              <LiftingForm/>
                                 :
                               (
                                 this.state.radioOption === "cardio"
@@ -112,17 +108,7 @@ export default class NewGoal extends React.Component {
                             }
                           </div>
 
-                          <div className="col-md-4">
-                              <div className="form-group">
-                                  <label for="goalDate">Goal Completion Date</label>
-                                    <DatePicker className="form-control date-picker"
-                                         selected={this.state.startDate}
-                                         onChange={this.handleDate.bind(this, "startDate")}  />
-                                  </div>
-                          </div>
                       </div>
-
-                          <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true" onClick={this.createGoal}></i> Add Goal</button></center>
 
                       </form>
 
