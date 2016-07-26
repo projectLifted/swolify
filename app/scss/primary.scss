@@ -10,7 +10,9 @@ $red-orange: #EE6352;
 $green: #57A773;
 $blue: #08B2E3;
 $flash-white: #EFE9F4;
+$slightly-purple: #dacde5;
 $grey-blue: #484D6D;
+$grey-blue-light: #858aad;
 
 // common typography
 
@@ -34,9 +36,26 @@ h2 {
 }
 
 a:link {
-  color: #484D6D;
+  color: $grey-blue;
   text-decoration: none;
 }
+
+a:visited {
+  color: $grey-blue;
+  text-decoration: none;
+}
+
+
+a:hover {
+  color: $grey-blue-light;
+  text-decoration: none;
+}
+
+a:active {
+  color: $grey-blue-light;
+  text-decoration: none;
+}
+
 
 // common styles
 
@@ -50,6 +69,12 @@ body {
 * {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
+
+
+.btn-default {
+    font-size: 1.2em;
+    font-family: 'Work Sans', sans-serif;
+  }
 
 .btn-primary {
   background-color: #EE6352 !important;
@@ -87,3 +112,4 @@ body {
 @import 'footer';
 @import 'internalPageCommon';
 @import 'dashboard';
+@import 'userWidget';
