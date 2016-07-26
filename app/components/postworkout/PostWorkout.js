@@ -1,17 +1,18 @@
 import React from 'react';
 import {Link, browserHistory} from "react-router";
 
-import Navigation from './Navigation';
-import Footer from './Footer';
-import GoalsWidget from './sidebar/GoalsWidget';
+import Navigation from '../Navigation';
+import Footer from '../Footer';
+import GoalsWidget from '../sidebar/GoalsWidget';
+import UserWidget from '../sidebar/UserWidget';
 
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 
-import LiftWorkoutForm from './subcomponents/LiftWorkoutForm';
-import CardioWorkoutForm from './subcomponents/CardioWorkoutForm';
+import LiftWorkoutForm from './LiftWorkoutForm';
+import CardioWorkoutForm from './CardioWorkoutForm';
 
-import '../scss/primary.scss';
+import '../../scss/primary.scss';
 
 export default class PostWorkout extends React.Component {
   constructor(props) {
@@ -81,7 +82,7 @@ export default class PostWorkout extends React.Component {
 
                       <UserWidget />
                       <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
-                      <button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Goal</button>
+                      <button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true" id="post-goal"></i> Post Goal</button>
                       <GoalsWidget />
                   </div>
               </div>
