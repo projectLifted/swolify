@@ -45,6 +45,7 @@
     "react-bootstrap": "^0.30.0-rc.2",
     "react-datepicker": "^0.28.2",
     "react-dom": "15.0.2",
+    "react-filepicker": "^0.8.0",
     "react-redux": "4.4.5",
     "react-router": "2.4.0",
     "react-router-redux": "4.0.4",

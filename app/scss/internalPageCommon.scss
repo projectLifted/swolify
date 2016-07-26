@@ -147,6 +147,15 @@ form label {
   margin-top: 15px;
 }
 
+.btn-filepicker {
+  display: block !important;
+}
+
+.filepickerPhoto {
+  border: 2px solid $grey-blue;
+  max-width: 30%;
+}
+
 @media (min-width: 1600px) {
   header {
     height: 400px;
@@ -160,6 +169,10 @@ form label {
     width: 100%;
     padding: 5px;
     display: block;
+  }
+
+  .filepickerPhoto {
+    max-width: 80%;
   }
 
   input.form-control.react-datepicker {
