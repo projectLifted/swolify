@@ -1,4 +1,6 @@
 const express = require('express')
+const path = require('path')
+const sessions = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -7,6 +9,10 @@ const keys = require('./keys');
 const masterRoutes = require('./server/masterRoutes');
 const User = require('./server/user/User');
 const port = 8080;
+const cors = require('cors');
+const corsOptions = {
+  origin: 'http://localhost:8080'
+}
 
 const app = express();
 const mongoUri = `mongodb://${keys.mongoUser}:${keys.mongoPass}@ds027165.mlab.com:27165/swolify`;
@@ -17,34 +23,42 @@ mongoose.connection.once('open', () => {
 });
 
 
-masterRoutes(app);
-
 app.listen(port, () => console.log(`Express is listening on port ${port}`));
-
-app.use(bodyParser.json());
 app.use(express.static(`${__dirname}/dist`));
 
+app.use(bodyParser.json());
+app.use(sessions({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+masterRoutes(app);
+
+
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+})
+
+
+app.use(cors(corsOptions));
 
 passport.use(new FacebookStrategy({
   clientID: keys.fbClientID,
   clientSecret: keys.fbClientSecret,
   callbackURL: keys.fbCallbackURL,
+  profileFields: ['displayName', 'photos', 'email']
 }, (accessToken, refreshToken, profile, done) => {
 
-    console.log(profile);
-    // User.findOne({facebookId: profile.id}, (err, user) => {
-    //   if (!user) {
-    //     new User({}).save( ( err, user ) => {
-    //       return done(err, user);
-    //     })
-    //   }
-    //   else {
-    //
-    //     return done(err, user);
-    //   }
-    // });
+    User.findOne({facebookId: profile.id}, (err, user) => {
+      if (!user) {
+        new User({facebookId: profile.id, loginPhoto: profile.photos[0].value, email: profile.emails[0].value, displayName: profile.displayName }).save( ( err, user ) => {
+          return done(err, user);
+        })
+      }
+      else {
+
+        return done(err, user);
+      }
+    });
   }
 ));
 
