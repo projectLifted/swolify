@@ -2,20 +2,21 @@ import React from 'react';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import { postWorkout } from '../../services/workoutService';
 
 export default class CardioWorkoutForm extends React.Component {
   constructor(props) {
     super(props);
 
-  }
+    this.state = {
+      workoutDate: moment(),
+      workoutDistance: 0,
+      workoutMinutes: 0,
+      workoutSeconds: 0,
+      percentMileTimeChange: 0
+    }
 
-  this.state = {
-    workoutDate: moment(),
-    workoutDistance: 0,
-    workoutTime: 0,
-    percentMileTimeChange: 0
   }
-
   handleChange(field, event) {
     this.setState({[field]: event.target.value});
   }
@@ -27,7 +28,15 @@ export default class CardioWorkoutForm extends React.Component {
   }
 
   submitWorkout() {
+    let timeDecimalVal = (this.state.workoutSeconds / 60);
+    let workoutTime = parseFloat((this.state.workoutMinutes + this.state.workoutSeconds).toFixed(2));
 
+    postWorkout({
+      workoutDate: this.state.workoutDate,
+      workoutDistance: this.state.workoutDistance,
+      workoutTime: workoutTime,
+      percentMileTimeChange: /* Dependent on a formula that depends on the dashboard data */
+    })
   }
 
   render() {
@@ -35,52 +44,70 @@ export default class CardioWorkoutForm extends React.Component {
       <div>
 
         <div className="col-md-10">
-        <h2>Bench Press</h2> {/* Will eventually become this.props.workoutName */}
+        <h2>Jogging</h2> {/* Will eventually become this.props.workoutName */}
           <label>Performance:</label>
       </div>
 
       <div className="col-md-3">
         <div className="form-group">
-          <label for="repGoal">Reps</label>
+          <label for="repGoal">Minutes</label>
           <input
             type="number"
             className="form-control"
             id="repGoal"
             placeholder=""
             required
-            value={this.workoutReps}
-            onChange={this.handleChange.bind(this, this.state.workoutReps)}
+            value={this.workoutTime}
+            onChange={this.handleChange.bind(this, this.state.workoutTime)}
+          />
+        </div>
+      </div>
+      <div className="col-md-3">
+        <div className="form-group">
+          <label for="repGoal">Seconds</label>
+          <input
+            type="number"
+            className="form-control"
+            id="repGoal"
+            placeholder=""
+            required
+            min={0}
+            max={59}
+            value={this.workoutTime}
+            onChange={this.handleChange.bind(this, this.state.workoutTime)}
           />
         </div>
       </div>
 
       <div className="col-md-3">
           <div className="form-group">
-              <label for="weightGoal">Weights</label>
+              <label for="weightGoal">Distance</label>
               <div className="input-group">
                   <input
                     type="number"
-                    min={0} step={5}
+                    min={0}
+                    step="any"
                     className="form-control"
                     id="weightGoal"
                     placeholder=""
                     required
-                    value={this.weightGoal}
-                    onChange={this.handleChange.bind(this, this.state.weightGoal)}
+                    value={this.workoutDistance}
+                    onChange={this.handleChange.bind(this, this.state.workoutDistance)}
                   />
-                  <div className="input-group-addon">Lbs</div>
+                <div className="input-group-addon">Miles</div>
               </div>
           </div>
 
       </div>
 
-      <div className="col-md-4">
+      <div className="col-md-3">
           <div className="form-group">
               <label for="goalDate">Workout Date</label>
                 <DatePicker
                    className="form-control date-picker"
                    selected={this.state.workoutDate}
-                   onChange={this.handleDate.bind(this, "performanceDate")}
+                   value={this.workoutDate}
+                   onChange={this.handleDate.bind(this, this.state.workoutDate)}
                 />
               </div>
       </div>

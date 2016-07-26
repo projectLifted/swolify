@@ -2,7 +2,7 @@ import React from 'react';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import { postWorkout } from '../../workoutService';
+import { postWorkout } from '../../services/workoutService';
 
 export default class LiftWorkoutForm extends React.Component {
   constructor(props) {
