@@ -46504,32 +46504,6 @@
 	                        null,
 	                        'Body weight Form'
 	                      )
-	                    ),
-	                    _react2.default.createElement(
-	                      'div',
-	                      { className: 'col-md-4' },
-	                      _react2.default.createElement(
-	                        'div',
-	                        { className: 'form-group' },
-	                        _react2.default.createElement(
-	                          'label',
-	                          { 'for': 'goalDate' },
-	                          'Goal Completion Date'
-	                        ),
-	                        _react2.default.createElement(_reactDatepicker2.default, { className: 'form-control date-picker',
-	                          selected: this.state.startDate,
-	                          onChange: this.handleDate.bind(this, "startDate") })
-	                      )
-	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    'center',
-	                    null,
-	                    _react2.default.createElement(
-	                      'button',
-	                      { type: 'submit', className: 'btn btn-primary form-submit' },
-	                      _react2.default.createElement('i', { className: 'fa fa-plus-square', 'aria-hidden': 'true', onClick: this.createGoal }),
-	                      ' Add Goal'
 	                    )
 	                  )
 	                )

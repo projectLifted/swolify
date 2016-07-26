@@ -112,17 +112,7 @@ export default class NewGoal extends React.Component {
                             }
                           </div>
 
-                          <div className="col-md-4">
-                              <div className="form-group">
-                                  <label for="goalDate">Goal Completion Date</label>
-                                    <DatePicker className="form-control date-picker"
-                                         selected={this.state.startDate}
-                                         onChange={this.handleDate.bind(this, "startDate")}  />
-                                  </div>
-                          </div>
                       </div>
-
-                          <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true" onClick={this.createGoal}></i> Add Goal</button></center>
 
                       </form>
 
