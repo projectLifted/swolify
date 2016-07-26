@@ -7,6 +7,7 @@ import Footer from './Footer';
 import GoalsWidget from './sidebar/GoalsWidget';
 import LiftingForm from './subcomponents/LiftingForm';
 import CardioForm from './subcomponents/CardioForm';
+import UserWidget from './sidebar/UserWidget.js';
 
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
@@ -130,6 +131,8 @@ export default class NewGoal extends React.Component {
                   </div>
 
                   <div className="col-md-4" id="side-bar">
+
+                    <UserWidget />
 
                       <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
 
