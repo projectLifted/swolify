@@ -9,6 +9,8 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 
 import LiftWorkoutForm from './subcomponents/LiftWorkoutForm';
+import CardioWorkoutForm from './subcomponents/CardioWorkoutForm';
+
 import '../scss/primary.scss';
 
 export default class PostWorkout extends React.Component {
@@ -69,7 +71,7 @@ export default class PostWorkout extends React.Component {
 
                     <div className="row">
 
-                      <LiftWorkoutForm/>
+                      <CardioWorkoutForm/>
 
                     </div>
 

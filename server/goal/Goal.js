@@ -10,7 +10,7 @@ const Goal = mongoose.Schema({
   goalDistance: {type: Number},
   goalTime: {type: Number},
   workouts: [
-    {workoutDate: Date, workoutReps: Number, workoutWeight: Number, workoutDistance: Number, workoutTime: Number, percentRepChange: Number, percentWeightChange: Number}
+    {workoutDate: Date, workoutReps: Number, workoutWeight: Number, workoutDistance: Number, workoutTime: Number, percentRepChange: Number, percentWeightChange: Number, percentMileTimeChange: Number}
   ]
 });
 

@@ -2,13 +2,18 @@ import React from 'react';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import { postWorkout } from '../../services/workoutService';
 
 export default class LiftWorkoutForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      endDate: moment(),
+      workoutDate: moment(),
+      workoutReps: 0,
+      workoutWeight: 0,
+      percentRepChange: 0,  // Must be calculated based on previous workouts
+      percentWeightChange: 0  // Must be calculated based on previous workouts
     }
   }
 
@@ -20,6 +25,12 @@ export default class LiftWorkoutForm extends React.Component {
     this.setState({
       [field]: event
     });
+  }
+
+  submitWorkout() {
+    postWorkout({
+
+    })
   }
 
   render() {
@@ -40,6 +51,8 @@ export default class LiftWorkoutForm extends React.Component {
               id="repGoal"
               placeholder=""
               required
+              value={this.workoutReps}
+              onChange={this.handleChange.bind(this, this.state.workoutReps)}
             />
           </div>
         </div>
@@ -55,8 +68,8 @@ export default class LiftWorkoutForm extends React.Component {
                       id="weightGoal"
                       placeholder=""
                       required
-                      value={this.weightGoal}
-                      onChange={this.handleChange.bind(this, this.state.weightGoal)}
+                      value={this.workoutWeight}
+                      onChange={this.handleChange.bind(this, this.state.workoutWeight)}
                     />
                     <div className="input-group-addon">Lbs</div>
                 </div>
@@ -69,8 +82,8 @@ export default class LiftWorkoutForm extends React.Component {
                 <label for="goalDate">Workout Date</label>
                   <DatePicker
                      className="form-control date-picker"
-                     selected={this.state.endDate}
-                     onChange={this.handleDate.bind(this, "performanceDate")}
+                     selected={this.state.workoutDate}
+                     onChange={this.handleDate.bind(this, this.state.workoutDate)}
                   />
                 </div>
         </div>
@@ -78,6 +91,7 @@ export default class LiftWorkoutForm extends React.Component {
           <center>
                 <button
                   type="submit"
+                  onClick={this.submitWorkout}
                   className="btn btn-primary form-submit">
                   <i className="fa fa-plus-square" aria-hidden="true"></i> Post Workout
                 </button>

@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import '../../scss/primary.scss';
+import { postGoal } from '../../services/goalService';
 
 export default class LiftingForm extends React.Component {
   constructor(props) {
@@ -13,13 +14,13 @@ export default class LiftingForm extends React.Component {
       goalName: "",
       repGoal: 0,
       weightGoal: 0,
-      startDate: moment(),
+      endDate: moment(),
     }
   }
 
   handleChange(field, event) {
     this.setState({[field]: event.target.value});
-    console.log(event.target.value)
+    console.log(event.target.value);
   }
 
   handleDate(field, event) {
@@ -29,7 +30,15 @@ export default class LiftingForm extends React.Component {
   }
 
   createGoal() {
-    console.log(this.state.goalName, this.state.repGoal, this.state.weightGoal)
+    postGoal({
+      goalType: "Weightlifting",
+      goalName: this.state.goalName,
+      goalStartDate: moment(),
+      goalEndDate: this.state.endDate,
+      goalReps: this.state.repGoal,
+      goalWeight: this.state.weightGoal,
+      workouts: []
+    })
   }
 
   render() {
@@ -38,7 +47,15 @@ export default class LiftingForm extends React.Component {
         <div className="col-md-10">
           <div className="form-group">
             <label for="goalName">Name Your Goal (example: <i>"Bench Press"</i>)</label>
-            <input type="text" className="form-control" id="goalName" placeholder="" required value={this.goalName} onChange={this.handleChange.bind(this, this.state.goalName)}/>
+            <input
+              type="text"
+              className="form-control"
+              id="goalName"
+              placeholder=""
+              required
+              value={this.goalName}
+              onChange={this.handleChange.bind(this, this.state.goalName)}
+            />
         </div>
 
 
@@ -57,7 +74,17 @@ export default class LiftingForm extends React.Component {
             <div className="form-group">
                 <label for="weightGoal">Weight Goal</label>
                 <div className="input-group">
-                    <input type="number" min={0} step={5} className="form-control" id="weightGoal" placeholder="" required value={this.weightGoal}/>
+                    <input
+                      type="number"
+                      min={0}
+                      step={5}
+                      className="form-control"
+                      id="weightGoal"
+                      placeholder=""
+                      required
+                      value={this.weightGoal}
+                    />
+
                     <div className="input-group-addon">Lbs</div>
                 </div>
             </div>
@@ -68,8 +95,8 @@ export default class LiftingForm extends React.Component {
             <div className="form-group">
                 <label for="goalDate">Goal Completion Date</label>
                   <DatePicker className="form-control date-picker"
-                       selected={this.state.startDate}
-                       onChange={this.handleDate.bind(this, "startDate")}  />
+                       selected={this.state.endDate}
+                       onChange={this.handleDate.bind(this, "endDate")}  />
                 </div>
         </div>
 
