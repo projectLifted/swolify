@@ -8,6 +8,7 @@ import GoalsWidget from './sidebar/GoalsWidget'
 
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import ReactFilepicker from 'react-filepicker';
 
 import bodyTypes from '../images/bodytypes.jpg';
 
@@ -29,8 +30,16 @@ export default class Signup extends React.Component {
   }
 
   handleChange(field, event) {
+
     this.setState({
       [field]: event.target.value
+    });
+  }
+
+  handleFile(field, event) {
+    console.log(event.url);
+    this.setState({
+       profilePicture: event.url
     });
   }
 
@@ -170,7 +179,20 @@ export default class Signup extends React.Component {
 
                       </div>
 
-                      <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-user-plus" aria-hidden="true"></i>  Sign-Up</button></center>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <center><label class="extra-height" for="birth-date">Upload Profile Photo</label></center>
+                          <center><ReactFilepicker buttonClass="btn btn-success btn-filepicker" apikey={'AgUFEbg5LQ6OC6EafL3gqz'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} /></center>
+                        </div>
+                     </div>
+
+
+                        <div className="col-md-12">
+                          <center><img className="filepickerPhoto" src={this.state.profilePicture} /></center>
+                        </div>
+
+
+                        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-user-plus" aria-hidden="true"></i>  Sign-Up</button></center>
 
                       </form>
 
@@ -179,7 +201,6 @@ export default class Signup extends React.Component {
 
               <Footer />
               </article>
-
 
     );
   }
