@@ -3,7 +3,7 @@ import {Link, browserHistory} from "react-router";
 
 import Navigation from './Navigation';
 import Footer from './Footer';
-import GoalsWidget from './sidebar/GoalsWidget'
+import GoalsWidget from './sidebar/GoalsWidget';
 
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
@@ -76,6 +76,8 @@ export default class PostWorkout extends React.Component {
                       </form>
                   </div>
                   <div className="col-md-4" id="side-bar">
+
+                      <UserWidget />
                       <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
                       <button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Goal</button>
                       <GoalsWidget />

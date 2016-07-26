@@ -1,0 +1,40 @@
+#user-widget {
+  border-color: $red-orange !important;
+}
+
+#user-widget .panel-heading {
+  background-color: $red-orange !important;
+  border-bottom: 0;
+}
+
+#user-widget .profile-img {
+  width: 120px;
+  height: 120px;
+  background-image: url('https://www.filestackapi.com/api/file/E6Yx55BT2G1NmiuH34rQ');
+  background-size: cover;
+  border-right: 2px solid $red-orange;
+  display: table-cell;
+}
+
+.user-widget-content {
+  display: table-cell;
+  padding: 5px;
+}
+
+.user-widget-content p {
+  font-size: 1em;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.user-widget-footer {
+  background-color: $slightly-purple;
+  border-top: 2px solid $red-orange;
+  height: auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.user-widget-footer a {
+  padding: 10px;
+}

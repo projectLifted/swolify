@@ -186,11 +186,16 @@ export default class Signup extends React.Component {
                         </div>
                      </div>
 
+                     {this.state.profilePicture
 
+                        ?
                         <div className="col-md-12">
                           <center><img className="filepickerPhoto" src={this.state.profilePicture} /></center>
                         </div>
-
+                        :
+                        <div className="col-md-12">
+                        </div>
+                      }
 
                         <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-user-plus" aria-hidden="true"></i>  Sign-Up</button></center>
 

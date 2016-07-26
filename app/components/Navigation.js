@@ -22,9 +22,9 @@ export default class Navigation extends React.Component {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav pullRight>
-          <NavItem eventKey={2} href="/api/auth/facebook">Login</NavItem>
-          <NavItem eventKey={2} href="/api/auth/facebook/logout">Logout</NavItem>
-          <NavItem eventKey={4} href="#">Dashboard</NavItem>
+          <NavItem eventKey={2} href="/api/auth/facebook"><i className="fa fa-sign-in" aria-hidden="true"></i> Login</NavItem>
+          <NavItem eventKey={2} href="/api/auth/facebook/logout"><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</NavItem>
+          <NavItem eventKey={4} href="#"><i className="fa fa-tachometer" aria-hidden="true"></i> Dashboard</NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
