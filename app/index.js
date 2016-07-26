@@ -6,6 +6,7 @@ import Home from './components/Home';
 import NewGoal from './components/NewGoal';
 import Signup from './components/Signup';
 import PostWorkout from './components/PostWorkout';
+import Dashboard from './components/Dashboard/Dashboard';
 
 import './scss/primary.scss';
 
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <Route path="/new-goal" component={NewGoal}/>
           <Route path="/sign-up" component={Signup}/>
           <Route path="/post-workout" component={PostWorkout}/>
+          <Route path="/dashboard" component={Dashboard}/>
         </Router>
     , reactNode);
   }
