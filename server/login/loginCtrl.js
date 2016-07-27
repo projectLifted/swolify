@@ -13,5 +13,12 @@ module.exports = {
         next() }
       else {
         res.render('login'); }
+  },
+  userChecker(req, res, next) {
+    if (req.user.firstName) {
+      res.redirect('/dashboard');
+      }
+    else if (!req.user.firstName) {
+      res.redirect('/sign-up'); }
   }
 }

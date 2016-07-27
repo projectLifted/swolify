@@ -8,7 +8,7 @@ module.exports = app => {
 
     app.get( '/api/auth/facebook/callback',
     	passport.authenticate( 'facebook', {
-    		successRedirect: '/sign-up',
+    		successRedirect: '/api/auth/userchecker',
     		failureRedirect: '/'
     }));
 
@@ -22,4 +22,6 @@ module.exports = app => {
 		// })
 
     app.get('/api/auth/facebook/isauthed', loginCtrl.loggedIn);
+		app.get('/api/auth/userchecker', loginCtrl.userChecker);
+
 }

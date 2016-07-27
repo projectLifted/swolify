@@ -5,6 +5,14 @@ nav {
   border-bottom: 0 !important;
 }
 
+nav a:link {
+  color: $flash-white !important;
+}
+
+nav a:visited {
+  color: $flash-white !important;
+}
+
 .navbar-brand {
   padding: 10px !important;
 }
@@ -17,10 +25,6 @@ nav {
 .navbar-right {
   height: auto !important;
   line-height: 1;
-}
-
-.navbar-inverse .navbar-nav > li > a:hover {
-  color: white;
 }
 
 nav ul li {
@@ -38,6 +42,9 @@ nav ul li {
   margin-bottom: 0;
 }
 
+.deblockify {
+  display: inline !important;
+}
 
 @media (max-width: 768px) {
   nav ul li {

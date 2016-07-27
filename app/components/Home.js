@@ -1,26 +1,67 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Link, browserHistory} from "react-router";
+import {getAuth} from '../services/loginService.js'
 
 import Navigation from './Navigation';
 import Footer from './Footer';
 
+import logo from '../images/logo.png';
 import '../scss/primary.scss';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isAuthed: Boolean
+    }
+
   }
+
+  componentWillMount(){
+    new Promise((resolve, reject)=> {
+      getAuth(resolve, reject);
+    }).then((res, err)=> {
+      if (err){
+      }
+      else if(res.body === false){
+        this.setState({isAuthed: false})
+
+      }
+      else {
+        this.setState({isAuthed: true})
+      }
+    })
+  }
+
   render() {
     return (
       <article>
       <div className="jumbotron">
-        <div className="jt-container">
+        <div className="dark-top-gradient-container">
 
-          <Navigation />
+        <img src={logo} alt="Swolify" id="homepage-logo" />
 
         <h1>Track your gains. Compete.</h1>
-        <p><a className="btn btn-primary btn-lg" href="/api/auth/facebook" role="button"><i className="fa fa-facebook-official" aria-hidden={true}></i>
-      &nbsp;Get Started</a></p>
+
+      { this.state.isAuthed
+
+        ?
+          <span>
+          <Link to="/Dashboard"><button className="btn btn-primary btn-lg" role="button"><i className="fa fa-tachometer" aria-hidden="true"></i>
+          &nbsp;Visit Dashboard</button></Link>
+
+          <a href="/api/auth/facebook/logout"><button className="btn btn-primary btn-lg" role="button"><i className="fa fa-sign-out" aria-hidden="true"></i> &nbsp;Logout</button></a>
+          </span>
+
+        :
+
+          <p><a className="btn btn-primary btn-lg" href="/api/auth/facebook" role="button"><i className="fa fa-facebook-official" aria-hidden={true}></i>
+        &nbsp;Login with Facebook</a></p>
+
+    }
+
       </div>
     </div>
 
