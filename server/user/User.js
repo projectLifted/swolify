@@ -17,7 +17,6 @@ const User = mongoose.Schema({
   location: {city: String, state: String},
   bmi: {type: Number},
   profilePublicStatus: {type: Boolean},
-  goals: [{type: mongoose.Schema.Types.ObjectId, ref: 'Goal'}]
 });
 
 module.exports = mongoose.model('User', User);

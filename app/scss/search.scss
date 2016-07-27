@@ -1,0 +1,17 @@
+#searchPage button {
+  margin-top: 10px;
+}
+
+#searchPage .search-result-heading {
+  background-color: $grey-blue !important;
+  border-bottom: 0;
+  color: $flash-white;
+  height: 40px;
+  font-size: 1.5em;
+}
+
+.search-widget-content {
+  display: table-cell;
+  padding: 5px;
+  margin-top: 5px;
+}
