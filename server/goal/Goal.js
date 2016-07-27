@@ -11,7 +11,8 @@ const Goal = mongoose.Schema({
   goalTime: {type: Number},
   workouts: [
     {workoutDate: Date, workoutReps: Number, workoutWeight: Number, workoutDistance: Number, workoutTime: Number, percentRepChange: Number, percentWeightChange: Number, percentMileTimeChange: Number}
-  ]
+  ],
+  goalOwner: {type: mongoose.Schema.Types.ObjectId}
 });
 
 module.exports = mongoose.model('Goal', Goal);
