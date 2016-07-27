@@ -1,4 +1,9 @@
 
+#homepage-logo {
+  margin-left: 15px;
+  float: left;
+}
+
 .jumbotron {
   text-align: center;
   height: 600px;
@@ -14,7 +19,11 @@
   background-position: center;
   padding-top: 0;
   margin-top: 0;
+}
 
+.jumbotron button {
+  padding: 10px;
+  margin: 10px;
 }
 
 .jumbotron a:link {
@@ -25,7 +34,7 @@
   color: $flash-white;
 }
 
-.jt-container {
+.dark-top-gradient-container {
   width: 100%;
   height: 50%;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,ffffff+100&1+0,0+100 */
@@ -33,7 +42,7 @@
   background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
-
+  padding-top: 15px;
 }
 
 .jumbotron h1 {
@@ -61,7 +70,7 @@
   }
 
   .jumbotron h1 {
-    padding-top: 100px;
+    padding-top: 120px;
     margin-bottom: 50px;
   }
 
@@ -69,12 +78,26 @@
 
 @media (max-width: 768px) {
 
+  #homepage-logo {
+    max-width: 300px;
+    float: none;
+    width: 80%;
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  #homepage-logo img {
+    vertical-align: center;
+  }
+
   .jumbotron {
     height: auto;
   }
 
   .jumbotron h1 {
-    padding-top: 50px;
+    padding-top: 30px;
     margin-bottom: 50px;
     font-size: 1.8em !important;
   }

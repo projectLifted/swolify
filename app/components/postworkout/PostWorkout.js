@@ -81,7 +81,7 @@ export default class PostWorkout extends React.Component {
                   <div className="col-md-4" id="side-bar">
 
                       <UserWidget />
-                      <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
+                      <button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
                       <button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true" id="post-goal"></i> Post Goal</button>
                       <GoalsWidget />
                   </div>

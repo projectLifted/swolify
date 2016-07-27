@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from "react-router";
+import {getAuth} from '../services/loginService.js'
 
 import Navigation from './Navigation';
 import Footer from './Footer';
@@ -19,7 +20,8 @@ export default class Signup extends React.Component {
     super(props);
 
     this.state = {
-      birthdate: ""
+      birthdate: "",
+      user: []
     }
 
   }
@@ -42,6 +44,24 @@ export default class Signup extends React.Component {
        profilePicture: event.url
     });
   }
+
+  componentWillMount(){
+    new Promise((resolve, reject)=> {
+      getAuth(resolve, reject);
+    }).then((res, err)=> {
+      if (err){
+        browserHistory.push('/');
+      }
+      else if(res.body === false){
+        browserHistory.push('/');
+      }
+      else {
+        this.setState({user: res.body})
+        console.log(this.state.user);
+      }
+    })
+  }
+
 
   render() {
     return (
