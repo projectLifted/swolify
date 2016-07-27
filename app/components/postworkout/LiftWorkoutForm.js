@@ -88,14 +88,17 @@ export default class LiftWorkoutForm extends React.Component {
                 </div>
         </div>
 
+        <div className="updateWorkoutCredentials">
           <center>
                 <button
                   type="submit"
                   onClick={this.submitWorkout}
-                  className="btn btn-primary form-submit">
+                  className="btn btn-primary form-submit"
+                  >
                   <i className="fa fa-plus-square" aria-hidden="true"></i> Post Workout
                 </button>
               </center>
+          </div>
 
       {/*<div className="col-md-3">
           <div className="form-group">
