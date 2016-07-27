@@ -24,22 +24,27 @@ export default class CardioForm extends React.Component {
 
   handleChange(field, event) {
     this.setState({[field]: event.target.value});
-    console.log(event.target.value)
   }
 
-  createGoal() {
-    postGoal({
-      goalType: "Cardio",
-      goalName: this.state.goalName,
-      goalStartDate: moment(),
-      goalEndDate: this.state.endDate,
-      goalDistance: this.state.goalDistance,
-      goalTime: this.state.goalTime
-    })
+  handleSubmit(event) {
+    event.preventDefault();
+
+      let goal = {
+        goalType: "cardio",
+        goalName: this.state.goalName,
+        goalStartDate: moment(),
+        goalEndDate: this.state.endDate,
+        goalDistance: this.state.goalDistance,
+        goalTime: this.state.goalTime,
+        workouts: []
+      }
+
+      console.log(goal);
   }
 
   render() {
     return (
+      <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
       <div>
         <div className="col-md-10">
       <div className="form-group">
@@ -50,8 +55,8 @@ export default class CardioForm extends React.Component {
             id="goalName"
             placeholder=""
             required
-            value={this.goalName}
-            onChange={this.handleChange.bind(this, this.state.goalName)}
+            value={this.state.goalName}
+            onChange={this.handleChange.bind(this, "goalName")}
           />
       </div>
     </div>
@@ -67,8 +72,8 @@ export default class CardioForm extends React.Component {
                       id="weightGoal"
                       placeholder=""
                       required
-                      value={this.goalTime}
-                      onChange={this.handleChange.bind(this, this.state.goalTime)}
+                      value={this.state.goalTime}
+                      onChange={this.handleChange.bind(this, "goalTime")}
                     />
                     <div className="input-group-addon">Minutes</div>
                 </div>
@@ -86,8 +91,8 @@ export default class CardioForm extends React.Component {
                       className="form-control"
                       id="weightGoal"
                       placeholder=""
-                      required value={this.goalDistance}
-                      onChange={this.handleChange.bind(this, this.state.goalTime)}
+                      required value={this.state.goalDistance}
+                      onChange={this.handleChange.bind(this, "goalDistance")}
                     />
                     <div className="input-group-addon">Miles</div>
                 </div>
@@ -104,9 +109,10 @@ export default class CardioForm extends React.Component {
                 </div>
         </div>
 
-        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true" onClick={this.createGoal}></i> Add Goal</button></center>
+        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
 
     </div>
+  </form>
     )
   }
 }

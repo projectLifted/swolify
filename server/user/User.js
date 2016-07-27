@@ -9,14 +9,15 @@ const User = mongoose.Schema({
   pictures: [{pic: String, caption: String, date: Date}],
   wallPosts: [{message: String, sender: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}}],
   updatedDate: {type: Date},
-  height: {type: Number},
-  weight: {type: Number},
+  heightFeet: {type: Number},
+  heightInches: {type: Number},
+  startWeight: {type: Number},
+  goalWeight: {type: Number},
   gender: { type: String },
+  birthDate: { type: Date },
   followers: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-  location: {city: String, state: String},
-  bmi: {type: Number},
-  profilePublicStatus: {type: Boolean},
+  location: {city: String, state: String}
 });
 
 module.exports = mongoose.model('User', User);

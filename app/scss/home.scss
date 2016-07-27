@@ -21,9 +21,10 @@
   margin-top: 0;
 }
 
-.jumbotron button {
+.jumbotron .btn-primary {
   padding: 10px;
   margin: 10px;
+  font-size: 1.6em !important;
 }
 
 .jumbotron a:link {
@@ -103,7 +104,7 @@
   }
 
   .jumbotron .btn-primary {
-    font-size: 1em;
+    font-size: 1em !important;
   }
 
 }

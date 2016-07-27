@@ -37,6 +37,10 @@ nav ul li {
   color: #EFE9F4 !important;
 }
 
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    background: none !important;
+}
+
 .navbar {
   border: 0;
   margin-bottom: 0;
