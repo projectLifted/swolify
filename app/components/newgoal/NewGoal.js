@@ -25,6 +25,7 @@ export default class NewGoal extends React.Component {
     }
   }
 
+
     handleDate(field, event) {
       this.setState({
         [field]: event
@@ -39,10 +40,6 @@ export default class NewGoal extends React.Component {
 
     handleRadioChange(field, event) {
       this.setState({radioOption: field})
-    }
-
-    createGoal() {
-      console.log(this.state.goalName)
     }
 
   render() {
@@ -66,7 +63,6 @@ export default class NewGoal extends React.Component {
 
                   <div className="col-md-8">
 
-                  <form id="new-goal-form">
 
                     <div className="row">
                       <div className="col-md-10 extra-height">
@@ -82,19 +78,12 @@ export default class NewGoal extends React.Component {
                       <label className="radio">
                         <input type="radio" name="goalOptions" id="cardioGoal" value={this.state.cardioRadio} onClick={this.handleRadioChange.bind(this, "cardio")} /> Cardio Goal
                       </label>
-                      <label className="radio">
-                        <input type="radio" name="goalOptions" id="healthGoal" value={this.state.bodyWeightRadio} onClick={this.handleRadioChange.bind(this, "bodyWeight")} /> Body Weight Goal
-                      </label>
-
-                      {/* End radio options */}
 
                     </div>
 
                     </div>
 
                       <div className="row">
-
-
                           <div>
                             {
                               this.state.radioOption === "weightLifting"
@@ -103,20 +92,12 @@ export default class NewGoal extends React.Component {
                                   goalName={this.props.goalName}
                               />
                                 :
-                              (
-                                this.state.radioOption === "cardio"
-                                  ?
                                 <CardioForm/>
-                                :
-                                <p>Body weight Form</p>
-                              )
+
                             }
                           </div>
 
                       </div>
-
-                      </form>
-
 
                   </div>
 

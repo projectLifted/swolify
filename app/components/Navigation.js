@@ -1,6 +1,7 @@
 import React from 'react';
 import {Nav, Navbar, NavItem} from 'react-bootstrap';
 import {Link, browserHistory} from "react-router";
+import {LinkContainer} from "react-router-bootstrap";
 
 import {getAuth} from '../services/loginService.js'
 
@@ -15,9 +16,7 @@ export default class Navigation extends React.Component {
     this.state = {
       birthdate: "",
     }
-
   }
-
 
   render() {
     return (
@@ -34,7 +33,7 @@ export default class Navigation extends React.Component {
 
         <Navbar.Collapse>
           <Nav pullRight >
-              <NavItem eventKey={4} ><Link to="/dashboard"><i className="fa fa-tachometer" aria-hidden="true"></i> Dashboard</Link></NavItem>
+              <LinkContainer to="/dashboard"><NavItem eventKey={4} ><i className="fa fa-tachometer" aria-hidden="true"></i> Dashboard</NavItem></LinkContainer>
               <NavItem eventKey={2} href="/api/auth/facebook/logout"><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</NavItem>
         </Nav>
       </Navbar.Collapse>

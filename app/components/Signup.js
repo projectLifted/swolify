@@ -20,19 +20,33 @@ export default class Signup extends React.Component {
     super(props);
 
     this.state = {
-      birthdate: "",
-      user: []
-    }
-
+        firstName: "",
+        lastName: "",
+        city: "",
+        state: "",
+        birthDate: moment(),
+        gender: "",
+        bodyType: "",
+        heightFeet: "",
+        heightInches: "",
+        startWeight: "",
+        goalWeight: "",
+        profilePicture: ""
+      }
   }
   handleDate(field, event) {
     this.setState({
       [field]: event
-    })
+    });
+  }
+
+  handleRadioChange(field, event) {
+    this.setState(
+      {radioOption: field
+      });
   }
 
   handleChange(field, event) {
-
     this.setState({
       [field]: event.target.value
     });
@@ -62,6 +76,23 @@ export default class Signup extends React.Component {
     })
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+
+        this.state.user.firstName = this.state.firstName;
+        this.state.user.lastName = this.state.lastName;
+        this.state.user.location = {city: this.state.city, state: this.state.state};
+        this.state.user.birthdate = this.state.birthdate;
+        this.state.user.gender = this.state.gender;
+        this.state.user.bodyType = this.state.bodyType;
+        this.state.user.heightFeet = this.state.heightFeet;
+        this.state.user.heightInches = this.state.heightInches;
+        this.state.user.startWeight = this.state.startWeight;
+        this.state.user.goalWeight = this.state.goalWeight;
+        this.state.user.profilePicture = this.state.profilePicture;
+
+      console.log(this.state.user);
+  }
 
   render() {
     return (
@@ -80,39 +111,63 @@ export default class Signup extends React.Component {
 
                 <div class="row">
 
-                  <form id="new-goal-form" className="col-md-8 col-md-offset-2">
+                  <form id="new-goal-form" className="col-md-8 col-md-offset-2" onSubmit={this.handleSubmit.bind(this)}>
 
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
                             <label for="firstName">First Name</label>
-                            <input type="text" className="form-control" id="firstName" placeholder="" />
+                            <input required type="text" className="form-control" id="firstName" placeholder=""
+                              value={this.state.firstName}
+                              onChange={this.handleChange.bind(this, "firstName")}
+                               />
+
                         </div>
                         </div>
 
                         <div className="col-md-6">
                           <div className="form-group">
-                              <label for="lastName">Last Name</label>
-                              <input type="text" className="form-control" id="lastName" placeholder="" />
+                              <label required for="lastName">Last Name</label>
+                              <input type="text" className="form-control" id="lastName" placeholder=""
+                                value={this.state.lastName}
+                                onChange={this.handleChange.bind(this, "lastName")}
+                                />
                           </div>
                           </div>
 
                       </div>
 
                       <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                           <div className="form-group">
                               <label for="city">City</label>
-                              <input type="text" className="form-control" id="city" placeholder="" />
+                              <input required type="text" className="form-control" id="city" placeholder=""
+                                value={this.state.city}
+                                onChange={this.handleChange.bind(this, "city")}
+                                />
                           </div>
                           </div>
 
-                          <div className="col-md-6">
+                          <div className="col-md-4">
                             <div className="form-group">
                                 <label for="state">State</label>
-                                <input type="text" className="form-control" id="state" placeholder="" />
+                                <input required type="text" className="form-control" id="state" placeholder=""
+                                  value={this.state.state}
+                                  onChange={this.handleChange.bind(this, "state")}
+                                  />
                             </div>
-                            </div>
+                          </div>
+
+                          <div className="col-md-4">
+                              <div className="form-group">
+                                  <label for="birth-date">Birth Date</label>
+                                    <DatePicker className="form-control date-picker"
+                                         selected={this.state.birthDate}
+                                         onChange={this.handleDate.bind(this, "birthDate")}
+                                         />
+                                  </div>
+                          </div>
+
 
                         </div>
 
@@ -122,11 +177,17 @@ export default class Signup extends React.Component {
                         <label className="block-label">Select your gender:</label>
 
                         <label className="radio">
-                          <input type="radio" name="gender" id="man" value="man" /> Man
+                          <input type="radio" name="gender" id="man"
+                            value="man"
+                            onChange={this.handleChange.bind(this, "gender")}
+                            /> Man
 
                         </label>
                         <label className="radio">
-                          <input type="radio" name="gender" id="woman" value="woman" /> Woman
+                          <input type="radio" name="gender" id="woman"
+                            value="woman"
+                            onChange={this.handleChange.bind(this, "gender")}
+                             /> Woman
                         </label>
 
                     </div>
@@ -136,14 +197,20 @@ export default class Signup extends React.Component {
                       <label className="block-label">Select your body type:</label>
 
                       <label className="radio">
-                        <input type="radio" name="bodyType" id="ectomorph" value="ectomorph" /> Ectomorph
+                        <input type="radio" name="bodyType" id="ectomorph"
+                            value="ectomorph"
+                            onChange={this.handleChange.bind(this, "bodyType")} /> Ectomorph
 
                       </label>
                       <label className="radio">
-                        <input type="radio" name="bodyType" id="mesomorph" value="mesomorph" /> Mesomorph
+                        <input type="radio" name="bodyType" id="mesomorph"
+                            value="mesomorph"
+                            onChange={this.handleChange.bind(this, "bodyType")} /> Mesomorph
                       </label>
                       <label className="radio">
-                        <input type="radio" name="bodyType" id="endomorph" value="endomorph" /> Endomorph
+                        <input type="radio" name="bodyType" id="endomorph"
+                            value="endomorph"
+                            onChange={this.handleChange.bind(this, "bodyType")} /> Endomorph
                       </label>
 
                     </div>
@@ -159,7 +226,9 @@ export default class Signup extends React.Component {
                             <div className="form-group">
                                 <label for="height-feet">Height (Feet)</label>
                                 <div className="input-group">
-                                    <input type="number" className="form-control" id="height-feet" placeholder="" />
+                                    <input required type="number" className="form-control" id="height-feet" placeholder=""
+                                      value={this.state.heightFeet}
+                                      onChange={this.handleChange.bind(this, "heightFeet")} />
                                     <div className="input-group-addon">Feet</div>
                                 </div>
                             </div>
@@ -170,7 +239,9 @@ export default class Signup extends React.Component {
                             <div className="form-group">
                                 <label for="height-inches">Height (Inches)</label>
                                 <div className="input-group">
-                                    <input type="number" className="form-control" id="height-inches" placeholder="" />
+                                    <input required type="number" className="form-control" id="height-inches" placeholder=""
+                                      value={this.state.heightInches}
+                                      onChange={this.handleChange.bind(this, "heightInches")} />
                                     <div className="input-group-addon">Inches</div>
                                 </div>
                             </div>
@@ -179,9 +250,11 @@ export default class Signup extends React.Component {
 
                           <div className="col-md-3">
                               <div className="form-group">
-                                  <label for="body-weight">Weight</label>
+                                  <label for="start-weight">Start Weight</label>
                                   <div className="input-group">
-                                      <input type="number" className="form-control" id="body-weight" placeholder="" />
+                                      <input required type="number" className="form-control" id="start-weight" placeholder=""
+                                        value={this.state.startWeight}
+                                        onChange={this.handleChange.bind(this, "startWeight")} />
                                       <div className="input-group-addon">Lbs</div>
                                   </div>
                               </div>
@@ -190,12 +263,16 @@ export default class Signup extends React.Component {
 
                           <div className="col-md-3">
                               <div className="form-group">
-                                  <label for="birth-date">Birth Date</label>
-                                    <DatePicker className="form-control date-picker"
-                                         selected={this.state.birthDate}
-                                         onChange={this.handleDate.bind(this, "birthDate")}  />
+                                  <label for="goal-weight">Goal Weight</label>
+                                  <div className="input-group">
+                                        <input type="number" className="form-control" id="goal-weight" placeholder=""                                           value={this.state.goalWeight}
+                                        onChange={this.handleChange.bind(this, "goalWeight")} />
+                                      <div className="input-group-addon">Lbs</div>
                                   </div>
+                              </div>
+
                           </div>
+
 
                       </div>
 

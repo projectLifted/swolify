@@ -11,6 +11,7 @@ export default class LiftingForm extends React.Component {
     super(props);
 
     this.state = {
+      goalType: "weightlifting",
       goalName: "",
       repGoal: 0,
       weightGoal: 0,
@@ -20,7 +21,6 @@ export default class LiftingForm extends React.Component {
 
   handleChange(field, event) {
     this.setState({[field]: event.target.value});
-    console.log(event.target.value);
   }
 
   handleDate(field, event) {
@@ -29,20 +29,25 @@ export default class LiftingForm extends React.Component {
     })
   }
 
-  createGoal() {
-    postGoal({
-      goalType: "Weightlifting",
-      goalName: this.state.goalName,
-      goalStartDate: moment(),
-      goalEndDate: this.state.endDate,
-      goalReps: this.state.repGoal,
-      goalWeight: this.state.weightGoal,
-      workouts: []
-    })
+  handleSubmit(event) {
+    event.preventDefault();
+
+      let goal = {
+        goalType: "weightlifting",
+        goalName: this.state.goalName,
+        goalStartDate: moment(),
+        goalEndDate: this.state.endDate,
+        goalReps: this.state.repGoal,
+        goalWeight: this.state.weightGoal,
+        workouts: []
+      }
+
+      console.log(goal);
   }
 
   render() {
     return (
+      <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
       <div>
         <div className="col-md-10">
           <div className="form-group">
@@ -53,8 +58,8 @@ export default class LiftingForm extends React.Component {
               id="goalName"
               placeholder=""
               required
-              value={this.goalName}
-              onChange={this.handleChange.bind(this, this.state.goalName)}
+              value={this.state.goalName}
+              onChange={this.handleChange.bind(this, "goalName")}
             />
         </div>
 
@@ -65,7 +70,10 @@ export default class LiftingForm extends React.Component {
 
 
                 <label for="repGoal">Rep Goal</label>
-                <input type="number" min={0} className="form-control" id="repGoal" placeholder="" required value={this.repGoal}/>
+                <input type="number" min={0} className="form-control" id="repGoal" placeholder="" required
+                value={this.state.repGoal}
+                onChange={this.handleChange.bind(this, "repGoal")}
+                />
             </div>
 
         </div>
@@ -82,7 +90,8 @@ export default class LiftingForm extends React.Component {
                       id="weightGoal"
                       placeholder=""
                       required
-                      value={this.weightGoal}
+                      value={this.state.weightGoal}
+                      onChange={this.handleChange.bind(this, "weightGoal")}
                     />
 
                     <div className="input-group-addon">Lbs</div>
@@ -100,8 +109,9 @@ export default class LiftingForm extends React.Component {
                 </div>
         </div>
 
-        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true" onClick={this.createGoal}></i> Add Goal</button></center>
+        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
       </div>
+    </form>
     )
   }
 }
