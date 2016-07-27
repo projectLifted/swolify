@@ -37,7 +37,8 @@ export default class LiftingForm extends React.Component {
       goalEndDate: this.state.endDate,
       goalReps: this.state.repGoal,
       goalWeight: this.state.weightGoal,
-      workouts: []
+      workouts: [],
+      goalOwner: this.state.user._id
     })
   }
 
@@ -57,7 +58,6 @@ export default class LiftingForm extends React.Component {
               onChange={this.handleChange.bind(this, this.state.goalName)}
             />
         </div>
-
 
       </div>
         <div className="col-md-3">

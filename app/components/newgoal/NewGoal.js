@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Link, browserHistory} from "react-router";
 
 import Navigation from '../Navigation';
@@ -45,6 +44,10 @@ export default class NewGoal extends React.Component {
       console.log(this.state.goalName)
     }
 
+    componentDidMount() {
+      console.log(this.state.user);
+    }
+
   render() {
     return (
     <article>
@@ -82,9 +85,6 @@ export default class NewGoal extends React.Component {
                       <label className="radio">
                         <input type="radio" name="goalOptions" id="cardioGoal" value={this.state.cardioRadio} onClick={this.handleRadioChange.bind(this, "cardio")} /> Cardio Goal
                       </label>
-                      <label className="radio">
-                        <input type="radio" name="goalOptions" id="healthGoal" value={this.state.bodyWeightRadio} onClick={this.handleRadioChange.bind(this, "bodyWeight")} /> Body Weight Goal
-                      </label>
 
                       {/* End radio options */}
 
@@ -103,13 +103,8 @@ export default class NewGoal extends React.Component {
                                   goalName={this.props.goalName}
                               />
                                 :
-                              (
-                                this.state.radioOption === "cardio"
-                                  ?
-                                <CardioForm/>
-                                :
-                                <p>Body weight Form</p>
-                              )
+
+                              <CardioForm/>
                             }
                           </div>
 

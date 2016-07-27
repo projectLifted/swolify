@@ -1,7 +1,7 @@
 import request from 'superagent';
 
 export function postGoal(goal, resolve, reject) {
-  request.post(/* Our api address */)
+  request.post('/api/goals')
     .send(goal)
     .end((err, res) => {
       if (err) {
