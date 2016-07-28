@@ -29,7 +29,7 @@ module.exports = {
   },
 
   updateUser(req, res) { // This method gets hung up and does not update
-    User.findByIdAndUpdate(req.params.id, (err, updatedUser) => {
+    User.findByIdAndUpdate(req.params.id, req.body, (err, updatedUser) => {
       if (err) {
         return res.status(500).json(err);
       }
