@@ -8,6 +8,8 @@ import Signup from './components/Signup';
 import PostWorkout from './components/postworkout/PostWorkout';
 import Dashboard from './components/dashboard/Dashboard';
 import Search from './components/search/Search';
+import MyWorkouts from './components/myworkouts/MyWorkouts';
+import EditProfile from './components/EditProfile';
 
 import './scss/primary.scss';
 
@@ -23,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <Route path="/post-workout" component={PostWorkout}/>
           <Route path="/dashboard" component={Dashboard}/>
           <Route path="/search" component={Search}/>
+          <Route path="/workouts" component={MyWorkouts}/>
+          <Route path="/editprofile" component={EditProfile}/>
         </Router>
     , reactNode);
   }

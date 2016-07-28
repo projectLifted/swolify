@@ -45,7 +45,6 @@ export default class CardioWorkoutForm extends React.Component {
 
         <div className="col-md-10">
         <h2>Jogging</h2> {/* Will eventually become this.props.workoutName */}
-          <label>Performance:</label>
       </div>
 
       <div className="col-md-3">

@@ -7,7 +7,7 @@
   border-bottom: 0;
 }
 
-#user-widget .profile-img {
+.profile-img {
   width: 120px;
   height: 120px;
   background-image: url('https://www.filestackapi.com/api/file/E6Yx55BT2G1NmiuH34rQ');
@@ -27,7 +27,7 @@
   line-height: 1.2;
 }
 
-.user-widget-footer {
+#user-widget .widget-footer {
   background-color: $slightly-purple;
   border-top: 2px solid $red-orange;
   height: auto;
@@ -35,6 +35,6 @@
   text-align: center;
 }
 
-.user-widget-footer a {
+#user-widget .widget-footer a {
   padding: 10px;
 }
