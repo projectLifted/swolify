@@ -63,7 +63,7 @@ export default class CardioForm extends React.Component {
 
         <div className="col-md-3">
             <div className="form-group">
-                <label for="weightGoal">Time</label>
+                <label for="weightGoal">Mile Time</label>
                 <div className="input-group">
                     <input
                       type="number"

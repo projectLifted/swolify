@@ -65,22 +65,10 @@ export default class LiftingForm extends React.Component {
 
 
       </div>
-        <div className="col-md-3">
+
+        <div className="col-md-6">
             <div className="form-group">
-
-
-                <label for="repGoal">Rep Goal</label>
-                <input type="number" min={0} className="form-control" id="repGoal" placeholder="" required
-                value={this.state.repGoal}
-                onChange={this.handleChange.bind(this, "repGoal")}
-                />
-            </div>
-
-        </div>
-
-        <div className="col-md-3">
-            <div className="form-group">
-                <label for="weightGoal">Weight Goal</label>
+                <label for="weightGoal">Max Goal</label>
                 <div className="input-group">
                     <input
                       type="number"
