@@ -47,7 +47,6 @@ passport.use(new FacebookStrategy({
   callbackURL: keys.fbCallbackURL,
   profileFields: ['displayName', 'photos', 'email']
 }, (accessToken, refreshToken, profile, done) => {
-
     User.findOne({facebookId: profile.id}, (err, user) => {
       if (!user) {
         new User({facebookId: profile.id}).save( ( err, user ) => {

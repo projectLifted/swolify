@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Link, browserHistory} from "react-router";
-import {getAuth} from '../services/loginService.js'
+import {Link, browserHistory} from 'react-router';
+import { getAuth } from '../services/loginService.js';
+import { signin } from '../ducks/userDuck';
+import { signupUser } from '../services/signupService';
+import { connect } from 'react-redux';
 
 import Navigation from './Navigation';
 import Footer from './Footer';
@@ -15,15 +18,14 @@ import bodyTypes from '../images/bodytypes.jpg';
 
 import '../scss/primary.scss';
 
-export default class Signup extends React.Component {
+class Signup extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
         firstName: "",
         lastName: "",
-        city: "",
-        state: "",
+        location: {city: "", state: ""},
         birthDate: moment(),
         gender: "",
         bodyType: "",
@@ -76,22 +78,48 @@ export default class Signup extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  handleSignup(event) {
     event.preventDefault();
 
-        this.state.user.firstName = this.state.firstName;
-        this.state.user.lastName = this.state.lastName;
-        this.state.user.location = {city: this.state.city, state: this.state.state};
-        this.state.user.birthdate = this.state.birthdate;
-        this.state.user.gender = this.state.gender;
-        this.state.user.bodyType = this.state.bodyType;
-        this.state.user.heightFeet = this.state.heightFeet;
-        this.state.user.heightInches = this.state.heightInches;
-        this.state.user.startWeight = this.state.startWeight;
-        this.state.user.goalWeight = this.state.goalWeight;
-        this.state.user.profilePicture = this.state.profilePicture;
+    // this.props.dispatch(signin({
+    //   facbookId: this.state.user._id,
+    //   firstName: this.state.firstName,
+    //   lastName: this.state.lastName,
+    //   location: {city: this.state.city, state: this.state.state},
+    //   birthDate: this.state.birthDate,
+    //   gender: this.state.gender,
+    //   bodyType: this.state.bodyType,
+    //   heightFeet: this.state.heightFeet,
+    //   heightInches: this.state.heightInches,
+    //   startWeight: this.state.startWeight,
+    //   goalWeight: this.state.goalWeight,
+    //   profilePicture: this.state.goalWeight,
+    // }));
 
-      console.log(this.state.user);
+    new Promise((resolve, reject) => {
+      signupUser({
+        facbookId: this.state.user.facebookId,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        location: {city: this.state.city, state: this.state.state},
+        birthDate: this.state.birthDate,
+        gender: this.state.gender,
+        bodyType: this.state.bodyType,
+        heightFeet: this.state.heightFeet,
+        heightInches: this.state.heightInches,
+        startWeight: this.state.startWeight,
+        goalWeight: this.state.goalWeight,
+        profilePicture: this.state.goalWeight,
+      }, this.state.user._id, resolve, reject);
+    }).then((res, err) => {
+      if (err) {
+        return console.error(err);
+      }
+      
+    })
+
+    browserHistory.push('/dashboard');
+
   }
 
   render() {
@@ -111,14 +139,14 @@ export default class Signup extends React.Component {
 
                 <div class="row">
 
-                  <form id="new-goal-form" className="col-md-8 col-md-offset-2" onSubmit={this.handleSubmit.bind(this)}>
+                  <form id="new-goal-form" className="col-md-8 col-md-offset-2" onSubmit={this.handleSignup.bind(this)}>
 
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
                             <label for="firstName">First Name</label>
                             <input required type="text" className="form-control" id="firstName" placeholder=""
-                              value={this.state.firstName}
+                              value={this.props.firstName}
                               onChange={this.handleChange.bind(this, "firstName")}
                                />
 
@@ -129,7 +157,7 @@ export default class Signup extends React.Component {
                           <div className="form-group">
                               <label required for="lastName">Last Name</label>
                               <input type="text" className="form-control" id="lastName" placeholder=""
-                                value={this.state.lastName}
+                                value={this.props.lastName}
                                 onChange={this.handleChange.bind(this, "lastName")}
                                 />
                           </div>
@@ -142,7 +170,7 @@ export default class Signup extends React.Component {
                           <div className="form-group">
                               <label for="city">City</label>
                               <input required type="text" className="form-control" id="city" placeholder=""
-                                value={this.state.city}
+                                value={this.props.city}
                                 onChange={this.handleChange.bind(this, "city")}
                                 />
                           </div>
@@ -152,7 +180,7 @@ export default class Signup extends React.Component {
                             <div className="form-group">
                                 <label for="state">State</label>
                                 <input required type="text" className="form-control" id="state" placeholder=""
-                                  value={this.state.state}
+                                  value={this.props.state}
                                   onChange={this.handleChange.bind(this, "state")}
                                   />
                             </div>
@@ -294,7 +322,7 @@ export default class Signup extends React.Component {
                         </div>
                       }
 
-                        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-user-plus" aria-hidden="true"></i>  Sign-Up</button></center>
+                        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-user-plus" aria-hidden="true" onClick={this.handleSignup.bind(this)}></i>  Sign-Up</button></center>
 
                       </form>
 
@@ -307,3 +335,6 @@ export default class Signup extends React.Component {
     );
   }
 }
+
+
+export default connect(state => ({user: state.user}))(Signup);

@@ -5,12 +5,11 @@ const Goal = mongoose.Schema({
   goalName: {type: String, required: true},
   goalStartDate: {type: Date},
   goalEndDate: {type: Date}, // This will be required as true later on
-  goalReps: {type: Number},
-  goalWeight: {type: Number},
+  goalMax: {type: Number},
   goalDistance: {type: Number},
-  goalTime: {type: Number},
+  goalMileTime: {type: Number},
   workouts: [
-    {workoutDate: Date, workoutReps: Number, workoutWeight: Number, workoutDistance: Number, workoutTime: Number, percentRepChange: Number, percentWeightChange: Number, percentMileTimeChange: Number}
+    {workoutDate: Date, workoutMax: Number, workoutDistance: Number, workoutMileTime: Number}
   ],
   goalOwner: {type: mongoose.Schema.Types.ObjectId}
 });
