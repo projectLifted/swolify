@@ -8,28 +8,25 @@ export default class SearchResult extends React.Component {
 
   render() {
     return (
-      <div className="panel panel-default" id="user-widget">
+      <div>
 
-        <div className="search-result-heading"><center>
-          <i className="fa fa-user" aria-hidden="true"></i> Paul Day</center>
-        </div>
 
-        <div className="profile-img"></div>
-        <div className="user-widget-content">
-          <div className="search-widget-content">
-            <p>Age: 33 Years Old</p>
-            <p>Weight: 155 lbs</p>
-            <p>Height: 5 ft 9 in</p>
-            <p>Body Type: Mesomorph</p>
-            <p>Location: Dallas, Texas</p>
+        <a href="#" className="list-group-item">
+          <div className="friend-photo"></div>
+          <div className="list-group-content">
+            <h4 className="list-group-item-heading">Paul Day</h4>
+            <p className="list-group-item-text">
+              33 Years Old, 155 lbs, 5 ft 9 in, Dallas, Texas
+            </p>
+
           </div>
+          <div className="list-group-btn-box">
+            <button className="btn btn-info"><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</button>
+          </div>
+        </a>
 
-        </div>
-      <div className="user-widget-footer">
+    </div>
 
-        <a href="#"><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</a>
-      </div>
-      </div>
     );
   }
 }

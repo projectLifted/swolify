@@ -16,7 +16,7 @@ $grey-blue-light: #858aad;
 
 // common typography
 
-p, h1, li, h2, h3, h4, h5, td, label, input {
+p, h1, li, h2, h3, h4, h5, td, label, input, td, th, tr, table {
   font-family: 'Work Sans', sans-serif;
   color: $grey-blue;
 }
@@ -77,7 +77,7 @@ body {
   }
 
 .btn-primary {
-  background-color: #EE6352 !important;
+  background-color: $red-orange !important;
   border: none;
   font-size: 1.2em;
   font-family: 'Work Sans', sans-serif;
@@ -88,7 +88,7 @@ body {
 }
 
 .btn-success {
-  background-color: #57A773 !important;
+  background-color: $green !important;
   font-family: 'Work Sans', sans-serif;
   margin-bottom: 10px;
 }
@@ -99,7 +99,7 @@ body {
 
 
 .btn-info {
-  background-color: #08B2E3 !important;
+  background-color: $blue !important;
   font-family: 'Work Sans', sans-serif;
 }
 
@@ -114,4 +114,5 @@ body {
 @import 'dashboard';
 @import 'userWidget';
 @import 'postworkout';
-@import 'editworkout';
+@import 'search';
+@import 'workouts';

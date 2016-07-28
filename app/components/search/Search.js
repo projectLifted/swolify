@@ -16,63 +16,61 @@ export default class Search extends React.Component {
 
   render() {
     return (
-      <article id="searchPage">
+      <article>
         <header id="new-goal-header">
 
-      <Navigation />
+        <Navigation />
 
-      </header>
+        </header>
 
-      <div className="page-title-bar">
-          <h1>Search Users</h1>
-      </div>
+        <div className="page-title-bar">
+            <h1>Search Users</h1>
+        </div>
 
-      <div className="container main-content">
-
-        <div className="container">
-
-          <div class="row">
-
-            <div className="col-md-8">
+        <div className="container main-content">
 
               <div className="row">
-                <div className="col-md-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder=""
-                  />
 
-                <center><button className="btn btn-primary form-submit"><i className="fa fa-search" aria-hidden="true" onClick={this.createGoal}></i> Search</button></center>
 
-                <div className="col-md-2"></div>
-                  <div className="col-md-8">
-                    <SearchResult/>
+
+
+
+                <div className="col-md-8 extra-top" id="search-widget">
+                  <form className="form-inline" >
+
+                        <input type="text" className="form-control search-input" id="user-search" placeholder="Search for user" />
+
+                  </form>
+
+
+                  <div className="list-group">
+                      <SearchResult />
+
+                      <SearchResult />
+
+                      <SearchResult />
+
+                      <SearchResult />
                   </div>
-                <div className="col-md-2"></div>
 
                 </div>
+
+                    <div className="col-md-4" id="side-bar">
+
+                        <UserWidget />
+
+                        <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
+                        <GoalsWidget />
+
+                    </div>
+
               </div>
-
-            </div>
-
-            <div className="col-md-4" id="side-bar">
-
-                <UserWidget />
-
-                  <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
-                <GoalsWidget />
-
-              </div>
-
-
-          </div>
 
         </div>
-      </div>
 
-      <Footer/>
+      <Footer />
       </article>
+
     )
   }
 

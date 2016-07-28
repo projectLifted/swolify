@@ -1,17 +1,68 @@
-#searchPage button {
-  margin-top: 10px;
+
+
+#search-widget .list-group-item {
+  width: 100%;
+  padding: 0 !important;
 }
 
-#searchPage .search-result-heading {
-  background-color: $grey-blue !important;
-  border-bottom: 0;
-  color: $flash-white;
-  height: 40px;
-  font-size: 1.5em;
+#search-widget .media-list {
+  border-color: $blue !important;
 }
 
-.search-widget-content {
+#search-widget .friend-photo {
+  width: 10%;
+  height: 80px;
+  background-image: url('https://www.filestackapi.com/api/file/E6Yx55BT2G1NmiuH34rQ');
+  background-size: cover;
   display: table-cell;
-  padding: 5px;
-  margin-top: 5px;
+}
+
+#search-widget .list-group-item-text {
+}
+
+#search-widget .list-group-content {
+  padding: 10px;
+  display: table-cell;
+  width: 80%;
+}
+
+#search-widget h4 {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+#search-widget .form-inline {
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+#search-widget input {
+  width: 100%;
+  margin-right: 10px;
+  font-size: 1.6em;
+  padding: 22px;
+}
+
+#search-widget .list-group-btn-box {
+  display: table-cell;
+  vertical-align: middle;
+  width: 10%;
+  padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+
+  #search-widget .friend-photo {
+    width: 20%;
+  }
+
+  #search-widget .list-group-content {
+    width: 55%;
+  }
+
+  #search-widget .list-group-btn-box {
+    width: 25%;
+  }
+
+
 }

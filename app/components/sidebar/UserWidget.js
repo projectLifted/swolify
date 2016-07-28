@@ -27,7 +27,7 @@ export default class UserSidebar extends React.Component {
           <p>Last Login: 3 Weeks Ago</p>
 
         </div>
-      <div className="user-widget-footer">
+      <div className="widget-footer">
 
         <a href="#"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</a>
         <a href="#"><i className="fa fa-search" aria-hidden="true"></i> My Workouts</a>

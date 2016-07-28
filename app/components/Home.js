@@ -57,8 +57,7 @@ export default class Home extends React.Component {
 
         :
 
-          <p><a className="btn btn-primary btn-lg" href="/api/auth/facebook" role="button"><i className="fa fa-facebook-official" aria-hidden={true}></i>
-        &nbsp;Login with Facebook</a></p>
+          <span><a href="/api/auth/facebook"><button className="btn btn-primary btn-lg" role="button"><i className="fa fa-facebook-official" aria-hidden={true}></i>&nbsp;Login with Facebook</button></a></span>
 
     }
 

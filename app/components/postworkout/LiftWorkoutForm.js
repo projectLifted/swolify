@@ -39,7 +39,6 @@ export default class LiftWorkoutForm extends React.Component {
 
         <div className="col-md-10">
           <h2>Bench Press</h2> {/* Will eventually become this.props.workoutName */}
-            <label>Performance:</label>
         </div>
 
         <div className="col-md-3">
