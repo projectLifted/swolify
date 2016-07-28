@@ -7,6 +7,7 @@ import {getAuth} from '../../services/loginService.js'
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import GoalsWidget from '../sidebar/GoalsWidget'
+import PieChart from '../../D3/test.js'
 
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
@@ -77,6 +78,7 @@ export default class Dashboard extends React.Component {
 
                 <div className="container main-content">
 
+                    <PieChart />
 
                 </div>
 
