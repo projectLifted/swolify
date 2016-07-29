@@ -1,12 +1,14 @@
 import request from 'superagent';
+import store from '../store';
+import { postGoal } from '../ducks/goalDuck';
 
-export function postGoal(goal, resolve, reject) {
-  request.post(/* Our api address */)
-    .send(goal)
-    .end((err, res) => {
+export function createGoal(goalInfo, resolve, reject) {
+  request.post('/api/goals')
+    .send(goalInfo)
+    .end((err, goal) => {
       if (err) {
         return reject(err);
       }
-      return resolve(res);
+      return store.dispatch(postGoal(goal));
     });
 }

@@ -3,8 +3,9 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
+import { getAuth } from '../../services/loginService.js';
 import '../../scss/primary.scss';
-import { postGoal } from '../../services/goalService';
+import { createGoal } from '../../services/goalService';
 
 export default class LiftingForm extends React.Component {
   constructor(props) {
@@ -13,10 +14,25 @@ export default class LiftingForm extends React.Component {
     this.state = {
       goalType: "weightlifting",
       goalName: "",
-      repGoal: 0,
-      weightGoal: 0,
+      goalMax: 0,
       endDate: moment(),
     }
+  }
+
+  componentWillMount() {
+    new Promise((resolve, reject)=> {
+      getAuth(resolve, reject);
+    }).then((res, err)=> {
+      if (err){
+      }
+      else if(res.body === false){
+        browserHistory.push('/');
+      }
+      else {
+        this.setState({user: res.body})
+        console.log(this.state.user);
+      }
+    })
   }
 
   handleChange(field, event) {
@@ -30,19 +46,21 @@ export default class LiftingForm extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
 
-      let goal = {
-        goalType: "weightlifting",
+      createGoal({
+        goalType: "WeightLifting",
         goalName: this.state.goalName,
-        goalStartDate: moment(),
+        goalStartDate: moment,
         goalEndDate: this.state.endDate,
-        goalReps: this.state.repGoal,
-        goalWeight: this.state.weightGoal,
-        workouts: []
-      }
-
-      console.log(goal);
+        goalMax: this.state.max,
+        workouts: [],
+        goalOwner: this.state.user._id
+      }).then((res, err) => {
+        if (err) {
+          return console.error(err);
+        }
+        console.log(res);
+      })
   }
 
   render() {
@@ -75,11 +93,11 @@ export default class LiftingForm extends React.Component {
                       min={0}
                       step={5}
                       className="form-control"
-                      id="weightGoal"
+                      id="goalMax"
                       placeholder=""
                       required
-                      value={this.state.weightGoal}
-                      onChange={this.handleChange.bind(this, "weightGoal")}
+                      value={this.state.goalMax}
+                      onChange={this.handleChange.bind(this, "goalMax")}
                     />
 
                     <div className="input-group-addon">Lbs</div>

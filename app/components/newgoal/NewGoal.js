@@ -8,6 +8,7 @@ import GoalsWidget from '../sidebar/GoalsWidget';
 import LiftingForm from './LiftingForm';
 import CardioForm from './CardioForm';
 import UserWidget from '../sidebar/UserWidget';
+import { getAuth } from '../../services/loginService.js'
 
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
@@ -25,6 +26,20 @@ export default class NewGoal extends React.Component {
     }
   }
 
+    componentWillMount() {
+      new Promise((resolve, reject)=> {
+        getAuth(resolve, reject);
+      }).then((res, err)=> {
+        if (err){
+        }
+        else if(res.body === false){
+          browserHistory.push('/');
+        }
+        else {
+          this.setState({user: res.body})
+        }
+      })
+    }
 
     handleDate(field, event) {
       this.setState({
