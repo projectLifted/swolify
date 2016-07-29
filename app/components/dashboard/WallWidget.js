@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../../scss/primary.scss';
 
-export default class FollowingLeaderboard extends React.Component {
+export default class WallWidget extends React.Component {
   constructor(props) {
     super(props);
   }

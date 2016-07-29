@@ -26,6 +26,8 @@ export default class FollowersLeaderboard extends React.Component {
             <a href="#" className="list-group-item"><div style={followingImg} className="followers-pic"></div> <div className="following-name">Bob Marley</div></a>
             <a href="#" className="list-group-item"><div style={followingImg} className="followers-pic"></div> <div className="following-name">Bob Marley</div></a>
             <a href="#" className="list-group-item"><div style={followingImg} className="followers-pic"></div> <div className="following-name">Bob Marley</div></a>
+            <a href="#" className="list-group-item"><div style={followingImg} className="followers-pic"></div> <div className="following-name">Bob Marley</div></a>
+            <a href="#" className="list-footer"><i className="fa fa-search-plus" aria-hidden="true"></i> View All</a>
           </div>
       </div>
 
