@@ -2,7 +2,6 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:400,900,800,700);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css);
-@import '../../node_modules/react-datepicker/dist/react-datepicker.css';
 
 // primary color scheme
 
@@ -74,6 +73,7 @@ body {
 .btn-default {
     font-size: 1.2em;
     font-family: 'Work Sans', sans-serif;
+    border: none;
   }
 
 .btn-primary {
@@ -91,6 +91,7 @@ body {
   background-color: $green !important;
   font-family: 'Work Sans', sans-serif;
   margin-bottom: 10px;
+  border: none;
 }
 
 .btn-success:hover {
@@ -101,10 +102,15 @@ body {
 .btn-info {
   background-color: $blue !important;
   font-family: 'Work Sans', sans-serif;
+  border: none;
 }
 
 .btn-info:hover {
   background-color: #079cc5 !important;
+}
+
+.gym-font {
+  font-family: gym !important;
 }
 
 @import 'nav';
@@ -113,6 +119,6 @@ body {
 @import 'internalPageCommon';
 @import 'dashboard';
 @import 'userWidget';
-@import 'postworkout';
+@import 'postWorkout';
 @import 'search';
 @import 'workouts';

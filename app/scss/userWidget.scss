@@ -5,6 +5,9 @@
 #user-widget .panel-heading {
   background-color: $red-orange !important;
   border-bottom: 0;
+  font-family: 'Work Sans', sans-serif;
+  color: #EFE9F4 !important;
+  font-size: 1.6em;
 }
 
 .profile-img {
@@ -33,6 +36,8 @@
   height: auto;
   padding: 10px;
   text-align: center;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 #user-widget .widget-footer a {
