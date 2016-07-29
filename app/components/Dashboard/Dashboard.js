@@ -6,14 +6,15 @@ import {getAuth} from '../../services/loginService.js'
 
 import Navigation from '../Navigation';
 import Footer from '../Footer';
-import GoalsWidget from '../sidebar/GoalsWidget'
-import PieChart from '../../D3/test.js'
+import UserWidget from '../sidebar/UserWidget';
+import FollowersLeaderboard from './FollowersLeaderboard';
+import FollowingLeaderboard from './FollowingLeaderboard';
+import WeightGoalsPanel from './WeightGoalsPanel';
+import CardioGoalsPanel from './CardioGoalsPanel';
+import ChartWidget from './ChartWidget';
 
 import moment from 'moment';
-import DatePicker from 'react-datepicker';
 import ReactFilepicker from 'react-filepicker';
-
-import bodyTypes from '../../images/bodytypes.jpg';
 
 import '../../scss/primary.scss';
 
@@ -46,22 +47,22 @@ export default class Dashboard extends React.Component {
     });
   }
 
-  componentWillMount(){
-    new Promise((resolve, reject)=> {
-      getAuth(resolve, reject);
-    }).then((res, err)=> {
-      if (err){
-      }
-      else if(res.body === false){
-        browserHistory.push('/');
-      }
-      else {
-        this.setState({user: res.body})
-        console.log(this.state.user);
-      }
-    })
-
-  }
+  // componentWillMount(){
+  //   new Promise((resolve, reject)=> {
+  //     getAuth(resolve, reject);
+  //   }).then((res, err)=> {
+  //     if (err){
+  //     }
+  //     else if(res.body === false){
+  //       browserHistory.push('/');
+  //     }
+  //     else {
+  //       this.setState({user: res.body})
+  //       console.log(this.state.user);
+  //     }
+  //   })
+  //
+  // }
 
   render() {
     return (
@@ -76,9 +77,35 @@ export default class Dashboard extends React.Component {
                     <h1>Dashboard</h1>
                 </div>
 
-                <div className="container main-content">
+                <div className="container main-content" id='dashboard'>
 
-                    <PieChart />
+                  <div className="row">
+
+                    <div className="col-md-3">
+                      <UserWidget />
+
+                      <FollowingLeaderboard />
+                      <FollowersLeaderboard />
+
+
+                    </div>
+
+                    <div className="col-md-6">
+
+                      <ChartWidget title="Weight Goals: Rep Max" />
+                      <ChartWidget title="Cardio Goals: Miles/Distance" />
+                      <ChartWidget title="Body Weight" />
+
+                    </div>
+
+                    <div className="col-md-3">
+
+                      <WeightGoalsPanel />
+                      <CardioGoalsPanel />
+
+                    </div>
+
+                  </div>
 
                 </div>
 

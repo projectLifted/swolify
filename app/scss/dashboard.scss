@@ -1,0 +1,159 @@
+#following-widget .list-group-item {
+  padding: 0 !important;
+}
+
+#following-widget {
+  border-color: $green !important;
+}
+
+#following-widget .panel-heading {
+  background-color: $green !important;
+  border-bottom: 0;
+  font-family: 'Work Sans', sans-serif;
+  color: $flash-white !important;
+  font-size: 1.6em;
+}
+
+
+#followers-widget .list-group-item {
+  padding: 0 !important;
+}
+
+#followers-widget {
+  border-color: $blue !important;
+}
+
+#followers-widget .panel-heading {
+  background-color: $blue !important;
+  border-bottom: 0;
+  font-family: 'Work Sans', sans-serif;
+  color: $flash-white !important;
+  font-size: 1.6em;
+}
+
+.list-group-item a:hover {
+  cursor: pointer;
+}
+
+.following-pic {
+  width: 15%;
+  height: 40px;
+  background-size: cover;
+  background-position: center;
+  display: table-cell;
+  margin-right: 10px;
+}
+
+.followers-pic {
+  width: 30%;
+  height: 40px;
+  background-size: cover;
+  background-position: center;
+  display: table-cell;
+  margin-right: 10px;
+}
+
+.following-name {
+  width: 70%;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 5px;
+  font-size: 1em;
+}
+
+.delete-follower {
+  width: 10%;
+  display: table-cell;
+  padding: 5px;
+}
+
+#dashboard .profile-img {
+  width: 100%;
+  height: 220px;
+  display: block;
+  border-right: 0;
+  border-bottom: 2px solid $red-orange;
+}
+
+#goals-panel h2 {
+  font-size: 1.6em;
+}
+
+#goals-panel .panel-heading a:hover {
+  cursor: pointer;
+}
+
+#goals-panel img {
+  height: 1.6em;
+}
+
+#goals-panel h2 {
+  text-align: center;
+  margin-bottom: 0 !important;
+}
+
+#goals-panel .panel-heading {
+  background-color: $grey-blue !important;
+  border-bottom: 0;
+  font-family: 'Work Sans', sans-serif;
+  color: $flash-white !important;
+  font-size: 1.6em;
+}
+
+#goals-panel .btn {
+  font-size: 1em !important;
+  margin-right: 5px !important;
+}
+
+#goals-panel .btn-info {
+  margin-right: 5px !important;
+}
+
+.progress-bar-success {
+    background-color: $green;
+}
+
+#goals-panel p {
+  font-size: 1em;
+  margin: 0;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+#goals-panel .progress {
+  margin-bottom: 10px !important;
+}
+
+.btn-danger {
+  padding: 4px 8px !important;
+}
+
+.graph-box {
+  border-color: $grey-blue !important;
+}
+
+.graph-box .panel-heading {
+  background-color: $grey-blue !important;
+  border-bottom: 0;
+  font-family: 'Work Sans', sans-serif;
+  color: $flash-white !important;
+  font-size: 1.6em;
+}
+
+.graph-box {
+  width: 100%;
+  height: 350px;
+  background-color: white;
+  border: 1px solid $grey-blue;
+  margin-top: 15px
+}
+
+@media (max-width: 768px) {
+
+  #dashboard .profile-img {
+    width: 120px;
+    height: 120px;
+    display: table-cell;
+  }
+
+}

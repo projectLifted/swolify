@@ -70,12 +70,12 @@ header h1 {
   text-transform: uppercase;
 }
 
-.panel {
+#goals-widget .panel {
   background-color: transparent !important;
   border: none;
  -webkit-box-shadow: none;
   box-shadow: none;
-  border: 1px solid #484D6D;
+  border: 1px solid $grey-blue;
 
 }
 
@@ -83,8 +83,8 @@ header h1 {
   margin: 5px;
 }
 
-.panel-heading {
-  background-color: #484D6D !important;
+#goals-widget .panel-heading {
+  background-color: $grey-blue !important;
   font-family: 'Work Sans', sans-serif;
   color: #EFE9F4 !important;
   font-size: 1.6em;
@@ -100,8 +100,8 @@ form .btn-primary {
 }
 
 .input-group-addon {
-  background-color: #484D6D;
-  color: #EFE9F4;
+  background-color: $grey-blue;
+  color: $flash-white;
   font-family: 'Work Sans', sans-serif;
 }
 
