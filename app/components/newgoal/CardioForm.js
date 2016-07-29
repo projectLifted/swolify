@@ -2,7 +2,8 @@ import React from 'react';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import { postGoal } from '../../services/goalService';
+import { createGoal } from '../../services/goalService';
+import { getAuth } from '../../services/loginService.js';
 
 export default class CardioForm extends React.Component {
   constructor(props) {
@@ -12,8 +13,24 @@ export default class CardioForm extends React.Component {
       endDate: moment(),
       goalName: "",
       goalDistance: 0,
-      goalTime: 0,
+      goalMileTime: 0,
     }
+  }
+
+  componentWillMount() {
+    new Promise((resolve, reject)=> {
+      getAuth(resolve, reject);
+    }).then((res, err)=> {
+      if (err){
+      }
+      else if(res.body === false){
+        browserHistory.push('/');
+      }
+      else {
+        this.setState({user: res.body})
+        console.log(this.state.user);
+      }
+    })
   }
 
   handleDate(field, event) {
@@ -27,19 +44,21 @@ export default class CardioForm extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
 
-      let goal = {
-        goalType: "cardio",
-        goalName: this.state.goalName,
-        goalStartDate: moment(),
-        goalEndDate: this.state.endDate,
-        goalDistance: this.state.goalDistance,
-        goalTime: this.state.goalTime,
-        workouts: []
+    createGoal({
+      goalType: "WeightLifting",
+      goalName: this.state.goalName,
+      goalStartDate: moment,
+      goalEndDate: this.state.endDate,
+      goalDistance: this.state.goalDistance,
+      workouts: [],
+      goalOwner: this.state.user._id
+    }).then((res, err) => {
+      if (err) {
+        return console.error(err);
       }
-
-      console.log(goal);
+      console.log(res);
+    });
   }
 
   render() {
@@ -69,11 +88,11 @@ export default class CardioForm extends React.Component {
                       type="number"
                       min={0}
                       className="form-control"
-                      id="weightGoal"
+                      id="goalMileTime"
                       placeholder=""
                       required
-                      value={this.state.goalTime}
-                      onChange={this.handleChange.bind(this, "goalTime")}
+                      value={this.state.goalMileTime}
+                      onChange={this.handleChange.bind(this, "goalMileTime")}
                     />
                     <div className="input-group-addon">Minutes</div>
                 </div>
@@ -89,7 +108,7 @@ export default class CardioForm extends React.Component {
                       type="number"
                       min={0}
                       className="form-control"
-                      id="weightGoal"
+                      id="goalDistance"
                       placeholder=""
                       required value={this.state.goalDistance}
                       onChange={this.handleChange.bind(this, "goalDistance")}

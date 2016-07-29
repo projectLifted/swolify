@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from "react-router";
 
-import {getAuth} from '../../services/loginService.js'
+import { getAuth } from '../../services/loginService.js';
 
 import Navigation from '../Navigation';
 import Footer from '../Footer';

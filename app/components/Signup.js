@@ -81,21 +81,6 @@ class Signup extends React.Component {
   handleSignup(event) {
     event.preventDefault();
 
-    // this.props.dispatch(signin({
-    //   facbookId: this.state.user._id,
-    //   firstName: this.state.firstName,
-    //   lastName: this.state.lastName,
-    //   location: {city: this.state.city, state: this.state.state},
-    //   birthDate: this.state.birthDate,
-    //   gender: this.state.gender,
-    //   bodyType: this.state.bodyType,
-    //   heightFeet: this.state.heightFeet,
-    //   heightInches: this.state.heightInches,
-    //   startWeight: this.state.startWeight,
-    //   goalWeight: this.state.goalWeight,
-    //   profilePicture: this.state.goalWeight,
-    // }));
-
     new Promise((resolve, reject) => {
       signupUser({
         facbookId: this.state.user.facebookId,
@@ -115,7 +100,7 @@ class Signup extends React.Component {
       if (err) {
         return console.error(err);
       }
-      
+
     })
 
     browserHistory.push('/dashboard');
