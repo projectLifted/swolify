@@ -14,12 +14,13 @@ export default class ChartWidget extends React.Component {
   render() {
 
     return (
-    
 
-      <div className="panel panel-default graph-box">
-        <div className="panel-heading"><i className="fa fa-line-chart" aria-hidden="true"></i> {this.props.title}</div>
-        <div className="panel-body">D3 Chart</div>
-      </div>
+      <Accordion className="chart-widget">
+          <Panel header={this.props.title} eventKey="1">
+              <div className="chart-frame">D3 Chart</div>
+          </Panel>
+     </Accordion>
+
 
     );
   }

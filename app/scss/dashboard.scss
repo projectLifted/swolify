@@ -1,3 +1,31 @@
+
+#pic-box button {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 1.6em;
+}
+
+#pic-widget .caption {
+  padding: 5px;
+  font-family: Work Sans, sans-serif;
+}
+
+#pic-widget {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.dash-img {
+  background-size: cover;
+  background-position: center;
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  margin-top: 10px;
+}
+
 #following-widget .list-group-item {
   padding: 0 !important;
 }
@@ -35,17 +63,9 @@
   cursor: pointer;
 }
 
-.following-pic {
-  width: 15%;
-  height: 40px;
-  background-size: cover;
-  background-position: center;
-  display: table-cell;
-  margin-right: 10px;
-}
 
-.followers-pic {
-  width: 30%;
+.following-pic {
+  width: 40px;
   height: 40px;
   background-size: cover;
   background-position: center;
@@ -54,17 +74,16 @@
 }
 
 .following-name {
-  width: 70%;
   display: table-cell;
   vertical-align: middle;
   padding: 5px;
   font-size: 1em;
+  line-height: 1;
 }
 
-.delete-follower {
-  width: 10%;
-  display: table-cell;
-  padding: 5px;
+
+#left-dash a.list-group-item:nth-child(5) {
+    border-bottom: 0 !important;
 }
 
 #dashboard .profile-img {
@@ -72,11 +91,15 @@
   height: 220px;
   display: block;
   border-right: 0;
-  border-bottom: 2px solid $red-orange;
+  border-bottom: 1px solid $red-orange;
 }
 
 #goals-panel h2 {
   font-size: 1.6em;
+}
+
+#goals-panel a {
+  color: white;
 }
 
 #goals-panel .panel-heading a:hover {
@@ -125,7 +148,7 @@
 }
 
 .btn-danger {
-  padding: 4px 8px !important;
+  padding: 2px 8px !important;
 }
 
 .graph-box {
@@ -142,10 +165,102 @@
 
 .graph-box {
   width: 100%;
-  height: 350px;
+  height: auto;
   background-color: white;
   border: 1px solid $grey-blue;
   margin-top: 15px
+}
+
+.wall-box .list-group-item {
+  padding: 0 !important;
+}
+
+.wall-box .panel-heading {
+  background-color: $grey-blue !important;
+  border-bottom: 0;
+  font-family: 'Work Sans', sans-serif;
+  color: $flash-white !important;
+  font-size: 1.6em;
+}
+
+.wall-box {
+  width: 100%;
+  background-color: white;
+  border: 1px solid $grey-blue;
+  margin-top: 15px
+}
+
+.wall-pic {
+  width: 100px !important;
+  height: 100px !important;
+  background-size: cover;
+  background-position: center;
+  float: left;
+  margin-right: 10px;
+}
+
+.wall-name {
+  display: inline;
+  vertical-align: middle;
+  font-size: 1em;
+  line-height: 1;
+  font-size: 1.2em;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.wall-content {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.2em;
+  line-height: 1;
+  display: table-cell;
+}
+
+.wall-container {
+  display: table-cell;
+  max-width: 100%;
+  padding: 5px;
+}
+
+.chars-left {
+  margin-top: 5px;
+}
+
+.chart-widget .panel {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  border: 1px solid $grey-blue;
+  margin-top: 15px;
+}
+
+.chart-widget .panel-body {
+  padding: 0 !important;
+}
+
+.chart-widget .panel-heading {
+  background-color: $grey-blue !important;
+  border-bottom: 0;
+  font-family: 'Work Sans', sans-serif;
+  color: $flash-white !important;
+}
+
+.chart-widget h4 {
+  font-size: 1.6em !important;
+}
+
+.chart-widget h4:before {
+  content:' ';
+  font-family: FontAwesome;
+}
+
+.chart-widget .panel-heading a:hover {
+  cursor: pointer;
+}
+
+.chart-frame {
+  height: 300px;
 }
 
 .list-footer {
@@ -169,12 +284,24 @@
   margin-bottom: 0 !important;
 }
 
+#wall {
+  textarea {
+    width: 100%;
+  }
+}
+
+#post-to-wall {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
 
   #dashboard .profile-img {
     width: 120px;
     height: 120px;
     display: table-cell;
+    border-bottom: 0 !important;
   }
 
 }
