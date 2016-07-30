@@ -35,6 +35,21 @@ module.exports = {
       }
       return res.status(200).json(updatedGoal);
     });
+  },
+
+  addWorkout(req, res) {
+    Goal.findById(req.params.id, (err, goal) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      goal.workouts.push(req.body);
+      goal.save((err, goal) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        return res.status(200).json(goal);
+      });
+    });
   }
 
 };

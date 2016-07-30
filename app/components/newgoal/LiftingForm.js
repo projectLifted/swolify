@@ -54,7 +54,7 @@ export default class LiftingForm extends React.Component {
         goalEndDate: this.state.endDate,
         goalMax: this.state.max,
         workouts: [],
-        goalOwner: this.state.user._id
+        goalOwner: this.props.userId
       }).then((res, err) => {
         if (err) {
           return console.error(err);

@@ -105,9 +105,12 @@ export default class NewGoal extends React.Component {
                                 ?
                               <LiftingForm
                                   goalName={this.props.goalName}
+                                  userId={this.state.user._id}
                               />
                                 :
-                                <CardioForm/>
+                                <CardioForm
+                                  userId={this.state.user._id}
+                                />
 
                             }
                           </div>
