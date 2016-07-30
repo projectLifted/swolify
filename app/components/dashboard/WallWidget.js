@@ -43,7 +43,7 @@ export default class WallWidget extends React.Component {
           <div className="list-group-item">
             <div className="wall-container">
                 <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link> <button className="btn btn-danger pull-right">X</button></div>
+                <div className="wall-name"><Link to="/">Abraham Lincoln</Link> <button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
                 <div className="wall-content">Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit. Pellentesque tempus auctor ex nec sodales. Duis orci risus, gravida id elit sit amet, suscipit feugiat urna.
                 </div>
@@ -53,7 +53,7 @@ export default class WallWidget extends React.Component {
           <div className="list-group-item">
             <div className="wall-container">
                 <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right">X</button></div>
+                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
                 <div className="wall-content">Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit. Pellentesque
                 </div>
@@ -63,7 +63,7 @@ export default class WallWidget extends React.Component {
           <div className="list-group-item">
             <div className="wall-container">
                 <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right">X</button></div>
+                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
                 <div className="wall-content">Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit. Pellentesque tempus auctor ex nec sodales. Duis orci risus, gravida id elit sit amet, suscipit feugiat urna.
                 Duis orci risus, gravida id elit sit amet, suscipit feugiat urna. Pellentesque tempus auctor ex nec sodales. Duis orci risus, gravida id elit sit amet, suscipit feugiat urna.
@@ -75,7 +75,7 @@ export default class WallWidget extends React.Component {
           <div className="list-group-item">
             <div className="wall-container">
               <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right">X</button></div>
+                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
                 <div className="wall-content">Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit. Pellentesque tempus auctor ex nec sodales. Duis orci risus, gravida id elit sit amet, suscipit feugiat urna.
                 </div>
@@ -85,7 +85,7 @@ export default class WallWidget extends React.Component {
           <div className="list-group-item">
             <div className="wall-container">
               <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right">X</button>
+                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
                 </div>
                 <div className="wall-content">Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit. Pellentesque tempus
