@@ -12,6 +12,8 @@ import FollowingLeaderboard from './FollowingLeaderboard';
 import WeightGoalsPanel from './WeightGoalsPanel';
 import CardioGoalsPanel from './CardioGoalsPanel';
 import ChartWidget from './ChartWidget';
+import WallWidget from './WallWidget'
+import PicWidget from './PicWidget'
 
 import moment from 'moment';
 import ReactFilepicker from 'react-filepicker';
@@ -81,7 +83,7 @@ export default class Dashboard extends React.Component {
 
                   <div className="row">
 
-                    <div className="col-md-3">
+                    <div className="col-md-3" id="left-dash">
                       <UserWidget />
 
                       <FollowingLeaderboard />
@@ -90,22 +92,28 @@ export default class Dashboard extends React.Component {
 
                     </div>
 
-                    <div className="col-md-6">
+                    <div className="col-md-6" id="content-dash">
 
-                      <ChartWidget title="Weight Goals: Rep Max" />
-                      <ChartWidget title="Cardio Goals: Miles/Distance" />
+                      <ChartWidget title="Weight Goals: Rep Max" key="1" />
+                      <ChartWidget title="Cardio Goals: Miles/Distance" key="2" />
                       <ChartWidget title="Body Weight" />
+                      <WallWidget />
 
                     </div>
 
-                    <div className="col-md-3">
+                    <div className="col-md-3" id="right-dash">
 
                       <WeightGoalsPanel />
                       <CardioGoalsPanel />
 
+                      <PicWidget />
+
                     </div>
 
                   </div>
+
+
+
 
                 </div>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, browserHistory} from "react-router";
 
 import '../../scss/primary.scss';
 // import profilePic from  'https://www.filestackapi.com/api/file/E6Yx55BT2G1NmiuH34rQ';
@@ -29,8 +30,8 @@ export default class UserSidebar extends React.Component {
         </div>
       <div className="widget-footer">
 
-        <a href="#"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</a>
-        <a href="#"><i className="fa fa-search" aria-hidden="true"></i> My Workouts</a>
+        <Link to="#"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</Link>
+        <Link to="#"><i className="fa fa-search" aria-hidden="true"></i> My Workouts</Link>
       </div>
       </div>
     );

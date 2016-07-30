@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, browserHistory} from "react-router";
 
 import '../../scss/primary.scss';
 
@@ -21,15 +22,15 @@ export default class FollowersLeaderboard extends React.Component {
               <center><i className="fa fa-users" aria-hidden="true"></i> Followers</center>
           </div>
 
-      <div className="list-group">
-            <a href="#" className="list-group-item"><div style={followingImg} className="followers-pic"></div> <div className="following-name">Bob Marley</div></a>
-            <a href="#" className="list-group-item"><div style={followingImg} className="followers-pic"></div> <div className="following-name">Bob Marley</div></a>
-            <a href="#" className="list-group-item"><div style={followingImg} className="followers-pic"></div> <div className="following-name">Bob Marley</div></a>
-            <a href="#" className="list-group-item"><div style={followingImg} className="followers-pic"></div> <div className="following-name">Bob Marley</div></a>
-            <a href="#" className="list-group-item"><div style={followingImg} className="followers-pic"></div> <div className="following-name">Bob Marley</div></a>
-            <a href="#" className="list-footer"><i className="fa fa-search-plus" aria-hidden="true"></i> View All</a>
+          <div className="list-group">
+                <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Lincoln</div></Link>
+              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Bob Marley Lincoln</div></Link>
+            <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Bob Marley Lincoln</div></Link>
+          <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Bob Marley Lincoln</div></Link>
+        <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Bob Marley Lincoln</div></Link>
+      <Link to="/" className="list-footer"><i className="fa fa-search-plus" aria-hidden="true"></i> View All</Link>
+              </div>
           </div>
-      </div>
 
 
     );

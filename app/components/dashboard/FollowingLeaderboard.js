@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, browserHistory} from "react-router";
 
 import '../../scss/primary.scss';
 
@@ -22,12 +23,12 @@ export default class FollowingLeaderboard extends React.Component {
           </div>
 
       <div className="list-group">
-            <a href="#" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div><div className="delete-follower"><button className="btn btn-danger">X</button></div></a>
-            <a href="#" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div><div className="delete-follower"><button className="btn btn-danger">X</button></div></a>
-            <a href="#" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div><div className="delete-follower"><button className="btn btn-danger">X</button></div></a>
-            <a href="#" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div><div className="delete-follower"><button className="btn btn-danger">X</button></div></a>
-            <a href="#" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div><div className="delete-follower"><button className="btn btn-danger">X</button></div></a>
-                <a href="#" className="list-footer"><i className="fa fa-search-plus" aria-hidden="true"></i> View All</a>
+            <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div></Link>
+            <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div></Link>
+            <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div></Link>
+            <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div></Link>
+            <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div> <div className="following-name">Abraham Lincoln</div></Link>
+                <Link to="/" className="list-footer"><i className="fa fa-search-plus" aria-hidden="true"></i> View All</Link>
           </div>
       </div>
 

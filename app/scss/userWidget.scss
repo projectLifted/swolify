@@ -6,7 +6,7 @@
   background-color: $red-orange !important;
   border-bottom: 0;
   font-family: 'Work Sans', sans-serif;
-  color: #EFE9F4 !important;
+  color: $flash-white !important;
   font-size: 1.6em;
 }
 
@@ -15,7 +15,7 @@
   height: 120px;
   background-image: url('https://www.filestackapi.com/api/file/E6Yx55BT2G1NmiuH34rQ');
   background-size: cover;
-  border-right: 2px solid $red-orange;
+  border-right: 1px solid $red-orange;
   display: table-cell;
 }
 
@@ -32,7 +32,7 @@
 
 #user-widget .widget-footer {
   background-color: $slightly-purple;
-  border-top: 2px solid $red-orange;
+  border-top: 1px solid $red-orange;
   height: auto;
   padding: 10px;
   text-align: center;
