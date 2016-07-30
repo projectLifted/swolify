@@ -2,12 +2,11 @@ import React from 'react';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import DeleteGoalModal from '../editgoal/DeleteGoalModal';
 
 import { getAuth } from '../../services/loginService.js';
 import '../../scss/primary.scss';
 import { createGoal } from '../../services/goalService';
-
-
 
 export default class LiftingForm extends React.Component {
   constructor(props) {
@@ -102,7 +101,9 @@ export default class LiftingForm extends React.Component {
         </div>
         <div className="edit-buttons">
             <button type="submit" className="btn btn-info form-submit"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Save Changes</button>
-            <button onClick={this.state.show = true} className="btn btn-primary form-submit"><i className="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+
+            <DeleteGoalModal />
+
         </div>
       </div>
     </form>
