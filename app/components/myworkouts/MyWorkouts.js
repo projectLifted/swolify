@@ -9,7 +9,7 @@ import CardioResults from './CardioResults';
 
 import moment from 'moment';
 
-import '../../scss/primary.scss'
+import '../../scss/primary.scss';
 
 export default class MyWorkouts extends React.Component {
   constructor(props) {
@@ -47,9 +47,8 @@ export default class MyWorkouts extends React.Component {
                   <tr>
                     <th>Workout Date</th>
                     <th>Goal</th>
-                    <th>Weight (Lbs)</th>
-                    <th>Reps</th>
-                    <th>Body Weight (Lbs)</th>
+                    <th>Max Rep</th>
+                    <th>Body Weight</th>
                     <th>Delete</th>
                   </tr>
                 </thead>
@@ -71,7 +70,7 @@ export default class MyWorkouts extends React.Component {
                     <th>Workout Date</th>
                     <th>Goal</th>
                     <th>Miles</th>
-                    <th>Minutes</th>
+                    <th>MileTime</th>
                     <th>Body Weight</th>
                     <th>Delete</th>
                   </tr>
