@@ -1,14 +1,15 @@
 import React from 'react';
-
+import { browserHistory } from 'react-router';
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import GoalsWidget from '../sidebar/GoalsWidget';
 import UserWidget from '../sidebar/UserWidget';
+import { getAuth } from '../../services/loginService.js';
 
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 
-import LiftWorkoutForm from './LiftWorkoutForm';
+import WeightWorkoutForm from './WeightWorkoutForm';
 import CardioWorkoutForm from './CardioWorkoutForm';
 
 import '../../scss/primary.scss';
@@ -34,6 +35,21 @@ export default class PostWorkout extends React.Component {
       });
     }
 
+    componentWillMount() {
+      new Promise((resolve, reject)=> {
+        getAuth(resolve, reject);
+      }).then((res, err)=> {
+        if (err){
+        }
+        else if(res.body === false){
+          browserHistory.push('/');
+        }
+        else {
+          this.setState({user: res.body})
+        }
+      })
+    }
+
   render() {
     return (
     <article>
@@ -51,7 +67,7 @@ export default class PostWorkout extends React.Component {
           <div className="container">
               <div className="row">
                   <div className="col-md-8">
-                  <form id="new-goal-form">
+
 
                     <div className="row">
                       <div className="col-md-10 extra-height">
@@ -71,11 +87,10 @@ export default class PostWorkout extends React.Component {
 
                     <div className="row">
 
-                      <CardioWorkoutForm/>
+                      <WeightWorkoutForm/>
 
                     </div>
 
-                      </form>
                   </div>
                   <div className="col-md-4" id="side-bar">
 

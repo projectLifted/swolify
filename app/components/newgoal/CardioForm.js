@@ -17,22 +17,6 @@ export default class CardioForm extends React.Component {
     }
   }
 
-  componentWillMount() {
-    new Promise((resolve, reject)=> {
-      getAuth(resolve, reject);
-    }).then((res, err)=> {
-      if (err){
-      }
-      else if(res.body === false){
-        browserHistory.push('/');
-      }
-      else {
-        this.setState({user: res.body})
-        console.log(this.state.user);
-      }
-    })
-  }
-
   handleDate(field, event) {
     this.setState({
       [field]: event
@@ -52,7 +36,7 @@ export default class CardioForm extends React.Component {
       goalEndDate: this.state.endDate,
       goalDistance: this.state.goalDistance,
       workouts: [],
-      goalOwner: this.state.user._id
+      goalOwner: this.props.userId
     }).then((res, err) => {
       if (err) {
         return console.error(err);

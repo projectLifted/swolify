@@ -2,7 +2,7 @@ import React from 'react';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import { postWorkout } from '../../services/workoutService';
+import { createWorkout } from '../../services/workoutService';
 
 export default class CardioWorkoutForm extends React.Component {
   constructor(props) {
@@ -27,22 +27,22 @@ export default class CardioWorkoutForm extends React.Component {
     });
   }
 
-  submitWorkout() {
+  handleSubmit(event) {
+    event.preventDefault();
     let timeDecimalVal = (this.state.workoutSeconds / 60);
-    let workoutTime = parseFloat((this.state.workoutMinutes + this.state.workoutSeconds).toFixed(2));
-
+    let workoutMileTime = ((parseFloat(this.state.workoutMinutes) + parseFloat(timeDecimalVal)).toFixed(2) / this.state.workoutDistance);
+    console.log(workoutMileTime);
     postWorkout({
       workoutDate: this.state.workoutDate,
       workoutDistance: this.state.workoutDistance,
-      workoutTime: workoutTime,
-    //  percentMileTimeChange: /* Dependent on a formula that depends on the dashboard data */
-    });
+      workoutMileTime: workoutMileTime
+    })
   }
 
   render() {
     return (
-      <div>
-
+      <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
+        <div>
         <div className="col-md-10">
         <h2>Jogging</h2> {/* Will eventually become this.props.workoutName */}
       </div>
@@ -53,11 +53,12 @@ export default class CardioWorkoutForm extends React.Component {
           <input
             type="number"
             className="form-control"
-            id="repGoal"
+            id="workoutMinutes"
             placeholder=""
+            min={0}
             required
-            value={this.workoutTime}
-            onChange={this.handleChange.bind(this, this.state.workoutTime)}
+            value={this.workoutMinutes}
+            onChange={this.handleChange.bind(this, "workoutMinutes")}
           />
         </div>
       </div>
@@ -67,13 +68,13 @@ export default class CardioWorkoutForm extends React.Component {
           <input
             type="number"
             className="form-control"
-            id="repGoal"
+            id="workoutSeconds"
             placeholder=""
             required
             min={0}
             max={59}
-            value={this.workoutTime}
-            onChange={this.handleChange.bind(this, this.state.workoutTime)}
+            value={this.workoutSeconds}
+            onChange={this.handleChange.bind(this, "workoutSeconds")}
           />
         </div>
       </div>
@@ -87,11 +88,11 @@ export default class CardioWorkoutForm extends React.Component {
                     min={0}
                     step="any"
                     className="form-control"
-                    id="weightGoal"
+                    id="workoutDistance"
                     placeholder=""
                     required
-                    value={this.workoutDistance}
-                    onChange={this.handleChange.bind(this, this.state.workoutDistance)}
+                    value={this.state.workoutDistance}
+                    onChange={this.handleChange.bind(this, "workoutDistance")}
                   />
                 <div className="input-group-addon">Miles</div>
               </div>
@@ -105,8 +106,7 @@ export default class CardioWorkoutForm extends React.Component {
                 <DatePicker
                    className="form-control date-picker"
                    selected={this.state.workoutDate}
-                   value={this.workoutDate}
-                   onChange={this.handleDate.bind(this, this.state.workoutDate)}
+                   onChange={this.handleDate.bind(this, "workoutDate")}
                 />
               </div>
       </div>
@@ -114,14 +114,12 @@ export default class CardioWorkoutForm extends React.Component {
         <center>
               <button
                 type="submit"
-                onClick={this.submitWorkout}
                 className="btn btn-primary form-submit">
                 <i className="fa fa-plus-square" aria-hidden="true"></i> Post Workout
               </button>
             </center>
-
-
       </div>
+    </form>
     )
   }
 
