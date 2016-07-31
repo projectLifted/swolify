@@ -50,6 +50,20 @@ nav ul li {
   display: inline !important;
 }
 
+@media (max-width: 1200px) {
+  .nav-link-ctrl {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 1000px) {
+  .nav-link-ctrl {
+    font-size: 1em;
+    margin-right: 0px;
+    padding-right: 0px;
+  }
+}
+
 @media (max-width: 768px) {
   nav ul li {
     text-align: center;

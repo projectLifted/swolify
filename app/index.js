@@ -11,6 +11,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import Search from './components/search/Search';
 import MyWorkouts from './components/myworkouts/MyWorkouts';
 import EditProfile from './components/EditProfile';
+import EditGoal from './components/editgoal/EditGoal';
+
 
 import './scss/primary.scss';
 
@@ -28,7 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <Route path="/dashboard" component={Dashboard}/>
           <Route path="/search" component={Search}/>
           <Route path="/workouts" component={MyWorkouts}/>
-          <Route path="/editprofile" component={EditProfile}/>
+          <Route path="/edit-profile" component={EditProfile}/>
+          <Route path="/edit-goal" component={EditGoal}/>
         </Router>
       </Provider>
     , reactNode);

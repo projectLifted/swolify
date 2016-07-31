@@ -33,8 +33,10 @@ export default class Navigation extends React.Component {
 
         <Navbar.Collapse>
           <Nav pullRight >
-              <LinkContainer to="/dashboard"><NavItem eventKey={4} ><i className="fa fa-tachometer" aria-hidden="true"></i> Dashboard</NavItem></LinkContainer>
-              <NavItem eventKey={2} href="/api/auth/facebook/logout"><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</NavItem>
+              <LinkContainer to="/dashboard"><NavItem className="nav-link-ctrl" eventKey={1} ><i className="fa fa-tachometer" aria-hidden="true"></i> Dashboard</NavItem></LinkContainer>
+              <LinkContainer to="/dashboard"><NavItem className="nav-link-ctrl" eventKey={2} ><i className="fa fa-plus-circle" aria-hidden="true"></i> Add Goal</NavItem></LinkContainer>
+              <LinkContainer to="/dashboard"><NavItem className="nav-link-ctrl" eventKey={3} ><i className="fa fa-search" aria-hidden="true"></i> Search Users</NavItem></LinkContainer>
+              <NavItem className="nav-link-ctrl" eventKey={4} href="/api/auth/facebook/logout"><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</NavItem>
         </Nav>
       </Navbar.Collapse>
 

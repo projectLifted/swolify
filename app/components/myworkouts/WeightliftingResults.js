@@ -16,7 +16,6 @@ export default class WeightliftingResults extends React.Component {
         <td>{this.state.testDate}</td>
         <td>Bench Press</td>
         <td>122</td>
-        <td>8</td>
         <td>166</td>
         <td><button className="btn btn-danger">X</button></td>
       </tr>

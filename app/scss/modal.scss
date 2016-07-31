@@ -1,0 +1,23 @@
+
+.modal-header {
+  background-color: $red-orange !important;
+}
+
+.modal-title {
+  color: $flash-white !important;
+  font-size: 1.8em !important;
+  font-family: Work Sans, sans-serif !important;
+}
+
+.modal-body {
+  font-family: Work Sans, sans-serif !important;
+  font-size: 1.4em;
+}
+
+.delete-goal-button {
+  color: $red-orange;
+}
+
+.delete-goal-button:hover {
+  color: $red-orange;
+}

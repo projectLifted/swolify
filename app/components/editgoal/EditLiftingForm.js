@@ -2,6 +2,7 @@ import React from 'react';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import DeleteGoalModal from '../editgoal/DeleteGoalModal';
 
 import { getAuth } from '../../services/loginService.js';
 import '../../scss/primary.scss';
@@ -17,22 +18,6 @@ export default class LiftingForm extends React.Component {
       goalMax: 0,
       endDate: moment(),
     }
-  }
-
-  componentWillMount() {
-    new Promise((resolve, reject) => {
-      getAuth(resolve, reject);
-    }).then((res, err)=> {
-      if (err){
-      }
-      else if(res.body === false){
-        browserHistory.push('/');
-      }
-      else {
-        this.setState({user: res.body})
-        console.log(this.state.user);
-      }
-    })
   }
 
   handleChange(field, event) {
@@ -54,7 +39,7 @@ export default class LiftingForm extends React.Component {
         goalEndDate: this.state.endDate,
         goalMax: this.state.max,
         workouts: [],
-        goalOwner: this.props.userId
+        goalOwner: this.state.user._id
       }).then((res, err) => {
         if (err) {
           return console.error(err);
@@ -114,8 +99,12 @@ export default class LiftingForm extends React.Component {
                        onChange={this.handleDate.bind(this, "endDate")}  />
                 </div>
         </div>
+        <div className="edit-buttons">
+            <button type="submit" className="btn btn-info form-submit"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Save Changes</button>
 
-        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
+            <DeleteGoalModal />
+
+        </div>
       </div>
     </form>
     )

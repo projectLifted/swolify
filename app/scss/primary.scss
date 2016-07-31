@@ -110,10 +110,6 @@ body {
   background-color: #079cc5 !important;
 }
 
-.gym-font {
-  font-family: gym !important;
-}
-
 @import 'nav';
 @import 'home';
 @import 'footer';
@@ -123,3 +119,6 @@ body {
 @import 'postWorkout';
 @import 'search';
 @import 'workouts';
+@import 'editGoal';
+@import 'sidebar';
+@import 'modal';

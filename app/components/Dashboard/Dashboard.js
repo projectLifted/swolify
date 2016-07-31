@@ -7,7 +7,6 @@ import { getAuth } from '../../services/loginService.js';
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import UserWidget from '../sidebar/UserWidget';
-import FollowersLeaderboard from './FollowersLeaderboard';
 import FollowingLeaderboard from './FollowingLeaderboard';
 import WeightGoalsPanel from './WeightGoalsPanel';
 import CardioGoalsPanel from './CardioGoalsPanel';
@@ -95,8 +94,6 @@ export default class Dashboard extends React.Component {
                       <UserWidget />
 
                       <FollowingLeaderboard />
-                      <FollowersLeaderboard />
-
 
                     </div>
 
@@ -113,6 +110,7 @@ export default class Dashboard extends React.Component {
 
                       <WeightGoalsPanel />
                       <CardioGoalsPanel />
+
 
                       <PicWidget />
 
