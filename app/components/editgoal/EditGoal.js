@@ -98,7 +98,7 @@ export default class EditGoal extends React.Component {
 
                       <UserWidget />
 
-                      <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
+                      <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
                       <GoalsWidget />
 
                   </div>

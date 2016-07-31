@@ -22,7 +22,8 @@ export default class NewGoal extends React.Component {
     this.state = {
       startDate: moment(),
       radioOption: "weightLifting",
-      goalName: this.props.goalName
+      goalName: this.props.goalName,
+      user: {}
     }
   }
 
@@ -123,8 +124,7 @@ export default class NewGoal extends React.Component {
 
                       <UserWidget />
 
-                      <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
-                      <GoalsWidget />
+                        <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
 
                   </div>
 

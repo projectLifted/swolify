@@ -62,22 +62,23 @@ export default class WeightWorkoutForm extends React.Component {
     ))
     return (
       <div className="row">
-        <div className="col-md-12"><h2>Add Sets</h2></div>
 
           <div className="col-md-4">
             <div className="form-group">
               <label for="repGoal">Reps</label>
-              <input
-                type="number"
-                className="form-control"
-                id="workoutReps"
-                placeholder=""
-                required
-                value={this.workoutReps}
-                onChange={this.handleChange.bind(this, "workoutReps")}
-              />
-            </div>
+
+            <input
+              type="number"
+              className="form-control"
+              id="workoutReps"
+              placeholder=""
+              required
+              value={this.workoutReps}
+              onChange={this.handleChange.bind(this, "workoutReps")}
+            />
           </div>
+
+        </div>
 
           <div className="col-md-4">
               <div className="form-group">
@@ -98,28 +99,26 @@ export default class WeightWorkoutForm extends React.Component {
               </div>
           </div>
 
-          <div className="col-md-2">
+          <div className="col-md-4">
+
             <button
               type="submit"
-              className="btn btn-primary form-submit"
+              className="btn btn-success form-submit"
               onClick={this.submitSet.bind(this)}
+              id="add-set"
               >
               <i className="fa fa-plus-square" aria-hidden="true"></i> Add Set
             </button>
           </div>
 
+
+
           <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
 
             <div className="row">
-              <div className="col-md-4"></div>
-              <div className="col-md-8">
-            <div className="panel panel-default" id="goals-widget">
+              <div className="col-md-10">
 
-                <div className="panel-heading">
-                    <center><i className="fa fa-tasks" aria-hidden="true"></i> Workout Sets</center>
-                </div>
-
-                <table className="table">
+                <table className="table" id="set-table">
                   <tbody>
                     <tr>
                         <td>
@@ -138,7 +137,7 @@ export default class WeightWorkoutForm extends React.Component {
                 </table>
             </div>
           </div>
-          </div>
+
 
           <div className="col-md-3"></div>
           <div className="col-md-4">

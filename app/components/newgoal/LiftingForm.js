@@ -19,22 +19,6 @@ export default class LiftingForm extends React.Component {
     }
   }
 
-  componentWillMount() {
-    new Promise((resolve, reject) => {
-      getAuth(resolve, reject);
-    }).then((res, err)=> {
-      if (err){
-      }
-      else if(res.body === false){
-        browserHistory.push('/');
-      }
-      else {
-        this.setState({user: res.body})
-        console.log(this.state.user);
-      }
-    })
-  }
-
   handleChange(field, event) {
     this.setState({[field]: event.target.value});
   }
@@ -64,6 +48,8 @@ export default class LiftingForm extends React.Component {
   }
 
   render() {
+
+    console.log(this.props.userId);
     return (
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
       <div>

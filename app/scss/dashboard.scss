@@ -56,8 +56,7 @@ button.btn.btn-success.btn-filepicker:before {
 
 #following-widget .list-group-item {
   padding: 0 !important;
-  display: flex;
-  justify-content: space-between;
+
 }
 
 
@@ -66,18 +65,17 @@ button.btn.btn-success.btn-filepicker:before {
   height: 40px;
   background-size: cover;
   background-position: center;
-  margin-right: 10px;
+  margin-right: 5px;
+  display: table-cell;
 }
 
 .following-name {
-  width: 180px;
+
   padding: 5px;
   font-size: 1em;
   line-height: 1;
-}
-
-.following-delete {
-  padding: 5px;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 #left-dash a.list-group-item:nth-child(5) {
@@ -271,7 +269,7 @@ button.btn.btn-success.btn-filepicker:before {
 }
 
 #following-widget .list-footer {
-  border-top: 1px solid $green !important;
+  border-top: 1px solid $blue !important;
 }
 
 .list-group-item {

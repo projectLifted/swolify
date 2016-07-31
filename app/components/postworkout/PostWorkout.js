@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import GoalsWidget from '../sidebar/GoalsWidget';
@@ -35,20 +35,20 @@ export default class PostWorkout extends React.Component {
       });
     }
 
-    componentWillMount() {
-      new Promise((resolve, reject)=> {
-        getAuth(resolve, reject);
-      }).then((res, err)=> {
-        if (err){
-        }
-        else if(res.body === false){
-          browserHistory.push('/');
-        }
-        else {
-          this.setState({user: res.body})
-        }
-      })
-    }
+    // componentWillMount() {
+    //   new Promise((resolve, reject)=> {
+    //     getAuth(resolve, reject);
+    //   }).then((res, err)=> {
+    //     if (err){
+    //     }
+    //     else if(res.body === false){
+    //       browserHistory.push('/');
+    //     }
+    //     else {
+    //       this.setState({user: res.body})
+    //     }
+    //   })
+    // }
 
   render() {
     return (
@@ -95,8 +95,10 @@ export default class PostWorkout extends React.Component {
                   <div className="col-md-4" id="side-bar">
 
                       <UserWidget />
-                      <button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
-                      <button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true" id="post-goal"></i> Post Goal</button>
+                      <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
+
+                      <Link to="/new-goal"><button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true" id="post-goal"></i> New Goal</button></Link>
+
                       <GoalsWidget />
                   </div>
               </div>
