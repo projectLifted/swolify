@@ -25,7 +25,12 @@ export default class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      birthdate: ""
+      birthdate: "",
+      images: [{
+          src:'http://a4.files.biography.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTIwNjA4NjMzODg2NTc0MDky.jpg',
+          title: 'This is a test',
+          description: 'this is a test'
+      }]
     }
 
   }
@@ -66,7 +71,10 @@ export default class Dashboard extends React.Component {
   //
   // }
 
+
+
   render() {
+
     return (
               <article>
                 <header id="dashboard-header">
