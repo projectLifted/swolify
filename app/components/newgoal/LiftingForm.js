@@ -20,7 +20,7 @@ export default class LiftingForm extends React.Component {
   }
 
   componentWillMount() {
-    new Promise((resolve, reject)=> {
+    new Promise((resolve, reject) => {
       getAuth(resolve, reject);
     }).then((res, err)=> {
       if (err){
