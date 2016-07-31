@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link, browserHistory} from 'react-router';
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import GoalsWidget from '../sidebar/GoalsWidget';
@@ -59,7 +59,10 @@ export default class Search extends React.Component {
 
                         <UserWidget />
 
-                        <button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button>
+                          <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
+
+                          <Link to="/new-goal"><button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true" id="post-goal"></i> New Goal</button></Link>
+
                         <GoalsWidget />
 
                     </div>

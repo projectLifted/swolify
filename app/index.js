@@ -12,6 +12,7 @@ import Search from './components/search/Search';
 import MyWorkouts from './components/myworkouts/MyWorkouts';
 import EditProfile from './components/EditProfile';
 import EditGoal from './components/editgoal/EditGoal';
+import FriendDash from './components/frienddash/FriendDash';
 
 
 import './scss/primary.scss';
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <Route path="/workouts" component={MyWorkouts}/>
           <Route path="/edit-profile" component={EditProfile}/>
           <Route path="/edit-goal" component={EditGoal}/>
+          <Route path="/friend-dash" component={FriendDash}/>
         </Router>
       </Provider>
     , reactNode);

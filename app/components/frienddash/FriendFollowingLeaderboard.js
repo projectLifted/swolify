@@ -3,7 +3,7 @@ import {Link, browserHistory} from "react-router";
 
 import '../../scss/primary.scss';
 
-export default class FollowingLeaderboard extends React.Component {
+export default class FriendFollowingLeaderboard extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -34,9 +34,6 @@ export default class FollowingLeaderboard extends React.Component {
               <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith Mooboo Lincoln</div></Link>
               <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith</div></Link>
               <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith Mooboo Lincoln</div></Link>
-              <div className="list-footer">
-                <Link to="/search"><i className="fa fa-search" aria-hidden="true"></i> Find and Remove Followers</Link>
-              </div>
               </div>
           </div>
 

@@ -6,7 +6,7 @@ import {Modal, Button} from "react-bootstrap";
 
 import '../../scss/primary.scss';
 
-export default class PicWidget extends React.Component {
+export default class FriendPicWidget extends React.Component {
   constructor(props) {
     super(props);
 
@@ -14,8 +14,6 @@ export default class PicWidget extends React.Component {
       addPic: "",
       show: false
     }
-
-
   }
 
   handleFile(field, event) {
@@ -25,12 +23,9 @@ export default class PicWidget extends React.Component {
     });
   }
 
-
-
   render() {
 
     let modalImg = "http://feelgrafix.com/data/landscape/landscape-4.jpg";
-
     let dashImg = {
       backgroundImage: 'url("http://a4.files.biography.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTIwNjA4NjMzODg2NTc0MDky.jpg")'
     };
@@ -41,24 +36,7 @@ export default class PicWidget extends React.Component {
     return (
 
       <div id="pic-box">
-
-
-        {this.state.addPic
-              ?
-                <center><button type="button" className="btn btn-success"><i className="fa fa-picture-o" aria-hidden="true"></i> Save Pic</button>
-                <img className="filepickerPhotoSidebar" src={this.state.addPic} /></center>
-
-              :
-
-                <ReactFilepicker buttonClass="btn btn-success btn-filepicker" apikey={'AgUFEbg5LQ6OC6EafL3gqz'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} />
-
-            }
-
-
       <div id="pic-widget">
-
-
-
 
         <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
         </div>
