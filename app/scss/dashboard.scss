@@ -17,6 +17,11 @@
   justify-content: space-between;
 }
 
+button.btn.btn-success.btn-filepicker:before {
+  content:' ';
+  font-family: FontAwesome;
+}
+
 .dash-img {
   background-size: cover;
   background-position: center;
