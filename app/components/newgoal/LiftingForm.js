@@ -34,9 +34,9 @@ export default class LiftingForm extends React.Component {
       createGoal({
         goalType: "WeightLifting",
         goalName: this.state.goalName,
-        goalStartDate: moment,
+        goalStartDate: moment(),
         goalEndDate: this.state.endDate,
-        goalMax: this.state.max,
+        goalMax: this.state.goalMax,
         workouts: [],
         goalOwner: this.props.userId
       }).then((res, err) => {

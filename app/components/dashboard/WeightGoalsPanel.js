@@ -11,14 +11,11 @@ export default class WeightGoalsPanel extends React.Component {
   }
 
   render() {
-
-    let now = 22;
-
     return (
       <Accordion>
           <Panel header={this.props.title} eventKey="1">
               <p>Goal Progress:</p>
-              <ProgressBar bsStyle="success" now={now} label={`${now}%`} />
+              <ProgressBar bsStyle="success" now={this.props.progress} label={`${this.props.progress}%`} />
               <Link to="/" className="btn btn-info"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</Link>
             <Link to="/" className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Workout</Link>
           </Panel>
