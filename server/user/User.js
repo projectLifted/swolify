@@ -6,18 +6,19 @@ const User = mongoose.Schema({
   lastName: {type: String, trim: true},
   email: {type: String, trim: true},
   profilePicture: {type: String},
-  pictures: [{pic: String, caption: String, date: Date}],
+  pictures: [],
   wallPosts: [{message: String, sender: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}}],
   updatedDate: {type: Date},
+  bodyType: {type: String},
   heightFeet: {type: Number},
   heightInches: {type: Number},
   startWeight: {type: Number},
   goalWeight: {type: Number},
   gender: { type: String },
   birthDate: { type: Date },
-  followers: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-  location: {city: String, state: String}
+  location: { type: String},
+  updated:  { type : Date, default : Date.now }
 });
 
 module.exports = mongoose.model('User', User);

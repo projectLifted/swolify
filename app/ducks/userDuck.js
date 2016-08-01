@@ -16,10 +16,11 @@ const initialState = {
   goalWeight: 0,
   gender: "",
   birthDate: new Date,
-  followers: [],
   following: [],
-  location: {city: "", state: ""},
-  loggedIn: false
+  location: "",
+  loggedIn: false,
+  bodyType: "",
+  updated: new Date
 };
 
 export default function reducer(state = initialState, action) {

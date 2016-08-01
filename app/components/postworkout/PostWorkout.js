@@ -19,7 +19,8 @@ export default class PostWorkout extends React.Component {
     super(props);
 
     this.state = {
-      startDate: moment()
+      startDate: moment(),
+      user: {}
     }
   }
 
@@ -94,7 +95,7 @@ export default class PostWorkout extends React.Component {
                   </div>
                   <div className="col-md-4" id="side-bar">
 
-                      <UserWidget />
+                      <UserWidget user={this.state.user} />
                       <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
 
                       <Link to="/new-goal"><button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true" id="post-goal"></i> New Goal</button></Link>

@@ -22,7 +22,8 @@ export default class EditGoal extends React.Component {
     this.state = {
       startDate: moment(),
       radioOption: "weightLifting",
-      goalName: this.props.goalName
+      goalName: this.props.goalName,
+      user: {}
     }
   }
 
@@ -96,7 +97,7 @@ export default class EditGoal extends React.Component {
 
                   <div className="col-md-4" id="side-bar">
 
-                      <UserWidget />
+                      <UserWidget user={this.state.user} />
 
                       <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
                       <GoalsWidget />
