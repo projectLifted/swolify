@@ -30,7 +30,7 @@ export default class CardioForm extends React.Component {
   handleSubmit(event) {
 
     createGoal({
-      goalType: "WeightLifting",
+      goalType: "Cardio",
       goalName: this.state.goalName,
       goalStartDate: moment,
       goalEndDate: this.state.endDate,
