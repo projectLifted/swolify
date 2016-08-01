@@ -14,7 +14,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 * ====================================================== */
 
 var PykCharts = {};
-PykCharts.assets = "../pykih-charts/assets/";
+PykCharts.assets = "../pykcharts/pykih-charts/assets/";
 PykCharts.export_menu_status = 0;
 
 PykCharts['boolean'] = function(d) {

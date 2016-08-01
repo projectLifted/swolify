@@ -22,7 +22,6 @@ mongoose.connection.once('open', () => {
   console.log(`Connected to mongo at ${mongoUri}`);
 });
 
-
 app.listen(port, () => console.log(`Express is listening on port ${port}`));
 app.use(express.static(`${__dirname}/dist`));
 
@@ -30,6 +29,9 @@ app.use(bodyParser.json());
 app.use(sessions({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
+// Setting the template engine
+// app.use(express.static(path.resolve(__dirname, 'views', 'pykcharts')));
+app.set('view engine', 'ejs');
 
 masterRoutes(app);
 
