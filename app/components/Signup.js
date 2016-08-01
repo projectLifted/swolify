@@ -42,12 +42,6 @@ class Signup extends React.Component {
     });
   }
 
-  handleRadioChange(field, event) {
-    this.setState(
-      {radioOption: field
-      });
-  }
-
   handleChange(field, event) {
     this.setState({
       [field]: event.target.value
@@ -87,7 +81,7 @@ class Signup extends React.Component {
         facebookId: this.state.user.facebookId,
         firstName: this.state.firstName,
         lastName: this.state.lastName,
-        location: `${this.state.city} ${this.state.state}`,
+        location: `${this.state.city}, ${this.state.state}`,
         birthDate: this.state.birthDate,
         gender: this.state.gender,
         bodyType: this.state.bodyType,
@@ -106,7 +100,7 @@ class Signup extends React.Component {
 
     setTimeout(function() {
       browserHistory.push('/dashboard');
-    }, 2000)
+    }, 1000)
 
   }
 

@@ -15,6 +15,8 @@ const corsOptions = {
 }
 
 const app = express();
+app.set('view engine', 'ejs');
+
 const mongoUri = `mongodb://${keys.mongoUser}:${keys.mongoPass}@ds027165.mlab.com:27165/swolify`;
 
 mongoose.connect(mongoUri);
@@ -31,7 +33,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 // Setting the template engine
 // app.use(express.static(path.resolve(__dirname, 'views', 'pykcharts')));
-app.set('view engine', 'ejs');
 
 masterRoutes(app);
 
