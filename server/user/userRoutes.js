@@ -5,6 +5,6 @@ module.exports = app => {
   app.get('/api/users/:id', userCtrl.retrieveUser);
   app.delete('/api/users/:id', userCtrl.deleteUser);
   app.put('/api/users/:id', userCtrl.updateUser);
+  app.get('/api/users', userCtrl.getUsers);
 
-  /* ADD LOGIN ROUTES */
 };

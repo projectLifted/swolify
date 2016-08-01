@@ -10,14 +10,14 @@ module.exports = {
     });
   },
 
-  findUserGoal(req, res) {
-    Goal.findById(req.params.id, (err, goal) => {
-      if (err) {
-        return res.status(500).json(err);
-      }
-      return res.status(200).json(goal);
-    });
-  },
+  // findUserGoal(req, res) {
+  //   Goal.findById(req.params.id, (err, goal) => {
+  //     if (err) {
+  //       return res.status(500).json(err);
+  //     }
+  //     return res.status(200).json(goal);
+  //   });
+  // },
 
   deleteGoal(req, res) {
     Goal.findByIdAndRemove(req.params.id, (err, deletedGoal) => {
@@ -50,6 +50,17 @@ module.exports = {
         return res.status(200).json(goal);
       });
     });
+  },
+
+  findUserGoals(req, res) {
+    Goal.where('goalOwner').equals(req.params.userId)
+      .exec((err, goals) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        console.log(goals);
+        return res.status(200).json(goals);
+      });
   }
 
 };
