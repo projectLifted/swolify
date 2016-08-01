@@ -6,6 +6,7 @@ import GoalsWidget from '../sidebar/GoalsWidget';
 import UserWidget from '../sidebar/UserWidget';
 import SearchResult from './SearchResult';
 import { getAuth } from '../../services/loginService.js';
+import { getAllUsers } from '../../services/userService';
 
 import '../../scss/primary.scss'
 
@@ -14,7 +15,8 @@ export default class Search extends React.Component {
     super(props);
 
     this.state = {
-      user: {}
+      user: {},
+      users: [],
     }
 
   }
@@ -34,10 +36,39 @@ export default class Search extends React.Component {
       }
     })
 
+
+    new Promise( ( resolve, reject ) => {
+			getAllUsers( resolve, reject );
+		} ).then( ( res, err ) => {
+			if ( err ) {
+				return console.error( err );
+			}
+			this.setState( {
+        users: res.body,
+       } )
+      //  console.log(this.state.users);
+		} );
+
   }
 
 
   render() {
+
+    const allUsers = this.state.users.map( ( user ) => {
+      return (
+        <SearchResult
+          key={user._id}
+          name={user.firstName + ' ' + user.lastName}
+          pic={user.profilePicture}
+          age={user.birthDate}
+          weight={user.startWeight}
+          heightFeet={user.heightFeet}
+          heightInches={user.heightInches}
+          location={user.location}
+        />
+      );
+    } );
+
     return (
       <article>
         <header id="new-goal-header">
@@ -67,13 +98,9 @@ export default class Search extends React.Component {
 
 
                   <div className="list-group">
-                      <SearchResult />
 
-                      <SearchResult />
+                  {allUsers}
 
-                      <SearchResult />
-
-                      <SearchResult />
                   </div>
 
                 </div>
