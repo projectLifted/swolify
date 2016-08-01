@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
+import _ from 'lodash';
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import GoalsWidget from '../sidebar/GoalsWidget';
@@ -17,6 +18,7 @@ export default class Search extends React.Component {
     this.state = {
       user: {},
       users: [],
+      term: ''
     }
 
   }
@@ -52,6 +54,15 @@ export default class Search extends React.Component {
   }
 
 
+  onInputChange(term) {
+    this.setState({
+      term,
+    });
+    this.props.onSearchTermChange(term);
+    console.log(term)
+  }
+
+
   render() {
 
     const allUsers = this.state.users.map( ( user ) => {
@@ -68,6 +79,8 @@ export default class Search extends React.Component {
         />
       );
     } );
+
+    const userSearch = _.debounce((term) => { this.userSearch(term); }, 500);
 
     return (
       <article>
@@ -92,7 +105,14 @@ export default class Search extends React.Component {
                 <div className="col-md-8 extra-top" id="search-widget">
                   <form className="form-inline" >
 
-                        <input type="text" className="form-control search-input" id="user-search" placeholder="Search for user" />
+                        <input
+                          type="text"
+                          placeholder="Search for user"
+                          value={this.state.term}
+                          onChange={event => this.onInputChange(event.target.value)}
+                          id="user-search"
+                          className="form-control search-input"
+                        />
 
                   </form>
 

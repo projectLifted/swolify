@@ -18,7 +18,8 @@ export default class UserSidebar extends React.Component {
     let editLink = `/edit-profile/${this.props.user._id}`;
     let workoutsLink = `/workouts/${this.props.user._id}`;
     let profileImg = {
-            backgroundImage: `url("${this.props.user.profilePicture}")`
+            backgroundImage: `url("${this.props.user.profilePicture}")`,
+            backgroundPosition: 'center',
     };
 
 
@@ -35,7 +36,7 @@ export default class UserSidebar extends React.Component {
           <p>Age: {birthAge}</p>
           <p>Weight: {this.props.user.startWeight} lbs</p>
           <p>Height: {this.props.user.heightFeet} ft {this.props.user.heightInches} in</p>
-          <p>Body Type: Mesomorph</p>
+          <p>Body Type: {this.props.user.bodyType}</p>
           <p>Location: {this.props.user.location}</p>
           <p>Last Login: {lastSignedIn}</p>
 
