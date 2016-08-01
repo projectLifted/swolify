@@ -52,10 +52,7 @@ export default class EditGoal extends React.Component {
       this.setState({
         [field]: event.target.value
       });
-    }
 
-    handleRadioChange(field, event) {
-      this.setState({radioOption: field})
     }
 
   render() {

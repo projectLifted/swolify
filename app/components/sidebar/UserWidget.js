@@ -15,8 +15,6 @@ export default class UserSidebar extends React.Component {
 
     let birthAge = moment().diff(this.props.user.birthDate, 'years');
     let lastSignedIn = moment(this.props.user.updated).fromNow();
-    let editLink = `/edit-profile/${this.props.user._id}`;
-    let workoutsLink = `/workouts/${this.props.user._id}`;
     let profileImg = {
             backgroundImage: `url("${this.props.user.profilePicture}")`
     };
@@ -35,15 +33,15 @@ export default class UserSidebar extends React.Component {
           <p>Age: {birthAge}</p>
           <p>Weight: {this.props.user.startWeight} lbs</p>
           <p>Height: {this.props.user.heightFeet} ft {this.props.user.heightInches} in</p>
-          <p>Body Type: Mesomorph</p>
+          <p>Body Type: {this.props.user.bodyType}</p>
           <p>Location: {this.props.user.location}</p>
           <p>Last Login: {lastSignedIn}</p>
 
         </div>
       <div className="widget-footer">
 
-        <Link to={editLink}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</Link>
-        <Link to={workoutsLink}><i className="fa fa-search" aria-hidden="true"></i> My Workouts</Link>
+        <Link to="/edit-profile"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</Link>
+        <Link to="/workouts"><i className="fa fa-search" aria-hidden="true"></i> My Workouts</Link>
       </div>
       </div>
     );

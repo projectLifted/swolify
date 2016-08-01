@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Link, browserHistory} from "react-router";
-import {getAuth} from '../services/loginService.js'
+import {Link, browserHistory} from 'react-router';
+import { getAuth } from '../services/loginService.js';
+import { signin } from '../ducks/userDuck';
+import { signupUser } from '../services/signupService';
+import { connect } from 'react-redux';
 
 import Navigation from './Navigation';
 import Footer from './Footer';
@@ -15,15 +18,14 @@ import bodyTypes from '../images/bodytypes.jpg';
 
 import '../scss/primary.scss';
 
-export default class EditProfile extends React.Component {
+class Signup extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
         firstName: "",
         lastName: "",
-        city: "",
-        state: "",
+        location: {city: "", state: ""},
         birthDate: moment(),
         gender: "",
         bodyType: "",
@@ -31,25 +33,69 @@ export default class EditProfile extends React.Component {
         heightInches: "",
         startWeight: "",
         goalWeight: "",
-        profilePicture: ""
+        profilePicture: "",
+        ladyChecked: false,
+        manChecked: false,
+        ectoChecked: false,
+        endoChecked: false,
+        mesoChecked: false
       }
   }
+
+
+
   handleDate(field, event) {
     this.setState({
       [field]: event
     });
   }
 
-  handleRadioChange(field, event) {
-    this.setState(
-      {radioOption: field
-      });
-  }
-
   handleChange(field, event) {
     this.setState({
       [field]: event.target.value
     });
+
+    if (event.target.value === "man") {
+      this.setState({
+        manChecked: true,
+        ladyChecked: false,
+        gender: 'man'
+      });
+    }
+    else if (event.target.value === "woman") {
+      this.setState({
+        manChecked: false,
+        ladyChecked: true,
+        gender: 'woman'
+      });
+    }
+
+    else if (event.target.value === "mesomorph") {
+      this.setState({
+        ectoChecked: false,
+        endoChecked: false,
+        mesoChecked: true,
+        bodyType: 'mesomorph'
+      });
+    }
+    else if (event.target.value === "ectomorph") {
+      this.setState({
+        ectoChecked: true,
+        endoChecked: false,
+        mesoChecked: false,
+        bodyType: 'ectomorph'
+      });
+    }
+
+    else if (event.target.value === "endomorph") {
+      this.setState({
+        ectoChecked: false,
+        endoChecked: true,
+        mesoChecked: false,
+        bodyType: 'endomorph'
+      });
+    }
+
   }
 
   handleFile(field, event) {
@@ -70,31 +116,83 @@ export default class EditProfile extends React.Component {
         browserHistory.push('/');
       }
       else {
-        this.setState({user: res.body})
-        console.log(this.state.user);
+
+        let location = res.body.location.split(', ');
+        let city = location[0];
+        let state = location[1];
+
+        if(res.body.gender === "man") {
+          this.state.manChecked = true;
+        }
+        else if (res.body.gender === "woman") {
+          this.state.ladyChecked = true
+        }
+
+        if(res.body.bodyType === "ectomorph") {
+          this.state.ectoChecked = true;
+        }
+
+        else if(res.body.bodyType === "mesomorph") {
+          this.state.mesoChecked = true;
+        }
+
+        else if(res.body.bodyType === "endomorph") {
+          this.state.endoChecked = true;
+        }
+
+
+        this.setState({
+          user: res.body,
+          firstName: res.body.firstName,
+          lastName: res.body.lastName,
+          city: city,
+          state: state,
+          birthDate: moment(res.body.birthDate),
+          gender: res.body.gender,
+          bodyType: res.body.bodyType,
+          heightFeet: res.body.heightFeet,
+          heightInches: res.body.heightFeet,
+          startWeight: res.body.startWeight,
+          goalWeight: res.body.goalWeight,
+          profilePicture: res.body.profilePicture
+        })
       }
     })
   }
 
-  handleSubmit(event) {
+  handleSignup(event) {
     event.preventDefault();
 
-        this.state.user.firstName = this.state.firstName;
-        this.state.user.lastName = this.state.lastName;
-        this.state.user.location = {city: this.state.city, state: this.state.state};
-        this.state.user.birthdate = this.state.birthdate;
-        this.state.user.gender = this.state.gender;
-        this.state.user.bodyType = this.state.bodyType;
-        this.state.user.heightFeet = this.state.heightFeet;
-        this.state.user.heightInches = this.state.heightInches;
-        this.state.user.startWeight = this.state.startWeight;
-        this.state.user.goalWeight = this.state.goalWeight;
-        this.state.user.profilePicture = this.state.profilePicture;
+    new Promise((resolve, reject) => {
+      signupUser({
+        _id: this.state.user._id,
+        facebookId: this.state.user.facebookId,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        location: `${this.state.city}, ${this.state.state}`,
+        birthDate: this.state.birthDate,
+        gender: this.state.gender,
+        bodyType: this.state.bodyType,
+        heightFeet: this.state.heightFeet,
+        heightInches: this.state.heightInches,
+        startWeight: this.state.startWeight,
+        goalWeight: this.state.goalWeight,
+        profilePicture: this.state.profilePicture,
+      }, this.state.user._id, resolve, reject);
+    }).then((res, err) => {
+      if (err) {
+        return console.error(err);
+      }
+    })
 
-      console.log(this.state.user);
+    setTimeout(function() {
+      browserHistory.push('/dashboard');
+    }, 1000)
+
   }
 
   render() {
+
     return (
               <article>
                 <header id="signup-header">
@@ -111,7 +209,7 @@ export default class EditProfile extends React.Component {
 
                 <div class="row">
 
-                  <form id="new-goal-form" className="col-md-8 col-md-offset-2" onSubmit={this.handleSubmit.bind(this)}>
+                  <form id="new-goal-form" className="col-md-8 col-md-offset-2" onSubmit={this.handleSignup.bind(this)}>
 
                     <div className="row">
                       <div className="col-md-6">
@@ -179,13 +277,15 @@ export default class EditProfile extends React.Component {
                         <label className="radio">
                           <input type="radio" name="gender" id="man"
                             value="man"
+                            checked={this.state.manChecked}
                             onChange={this.handleChange.bind(this, "gender")}
-                            /> Man
+                          /> Man
 
                         </label>
                         <label className="radio">
                           <input type="radio" name="gender" id="woman"
                             value="woman"
+                            checked={this.state.ladyChecked}
                             onChange={this.handleChange.bind(this, "gender")}
                              /> Woman
                         </label>
@@ -199,17 +299,20 @@ export default class EditProfile extends React.Component {
                       <label className="radio">
                         <input type="radio" name="bodyType" id="ectomorph"
                             value="ectomorph"
+                            checked={this.state.ectoChecked}
                             onChange={this.handleChange.bind(this, "bodyType")} /> Ectomorph
 
                       </label>
                       <label className="radio">
                         <input type="radio" name="bodyType" id="mesomorph"
                             value="mesomorph"
+                            checked={this.state.mesoChecked}
                             onChange={this.handleChange.bind(this, "bodyType")} /> Mesomorph
                       </label>
                       <label className="radio">
                         <input type="radio" name="bodyType" id="endomorph"
                             value="endomorph"
+                            checked={this.state.endoChecked}
                             onChange={this.handleChange.bind(this, "bodyType")} /> Endomorph
                       </label>
 
@@ -294,7 +397,7 @@ export default class EditProfile extends React.Component {
                         </div>
                       }
 
-                        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-user-plus" aria-hidden="true"></i>  Save Changes</button></center>
+                        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-user-plus" aria-hidden="true" onClick={this.handleSignup.bind(this)}></i>  Save Changes</button></center>
 
                       </form>
 
@@ -307,3 +410,5 @@ export default class EditProfile extends React.Component {
     );
   }
 }
+
+export default connect(state => ({user: state.user}))(Signup);
