@@ -58,14 +58,18 @@ export default class Search extends React.Component {
     this.setState({
       term,
     });
-    this.props.onSearchTermChange(term);
-    console.log(term)
   }
 
 
   render() {
+    let filteredUsers = this.state.users.filter(
+      (user) => {
+        let name = user.firstName + ' ' + user.lastName;
+        return name.toLowerCase().indexOf( this.state.term.toLowerCase() ) !== -1;
+      }
+    );
 
-    const allUsers = this.state.users.map( ( user ) => {
+    const allUsers = filteredUsers.map( ( user ) => {
       return (
         <SearchResult
           key={user._id}
