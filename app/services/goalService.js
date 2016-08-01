@@ -12,3 +12,13 @@ export function createGoal(goalInfo, resolve, reject) {
       return store.dispatch(postGoal(goal));
     });
 }
+
+export function getUserGoals(userId, resolve, reject) {
+  request.get(`/api/goals/${userId}`)
+    .end((err, goals) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(goals);
+    });
+}
