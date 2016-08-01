@@ -15,6 +15,10 @@ export default class MyWorkouts extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+       user: {}
+    }
+
   }
 
   render() {
@@ -88,7 +92,7 @@ export default class MyWorkouts extends React.Component {
 
                     <div className="col-md-4" id="side-bar">
 
-                        <UserWidget />
+                        <UserWidget user={this.state.user} />
 
                         <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
 

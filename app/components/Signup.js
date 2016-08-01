@@ -83,10 +83,11 @@ class Signup extends React.Component {
 
     new Promise((resolve, reject) => {
       signupUser({
-        facbookId: this.state.user.facebookId,
+        _id: this.state.user._id,
+        facebookId: this.state.user.facebookId,
         firstName: this.state.firstName,
         lastName: this.state.lastName,
-        location: `$(this.state.city) $(this.state.state)`,
+        location: `${this.state.city} ${this.state.state}`,
         birthDate: this.state.birthDate,
         gender: this.state.gender,
         bodyType: this.state.bodyType,
@@ -103,7 +104,9 @@ class Signup extends React.Component {
 
     })
 
-    browserHistory.push('/dashboard');
+    setTimeout(function() {
+      browserHistory.push('/dashboard');
+    }, 2000)
 
   }
 

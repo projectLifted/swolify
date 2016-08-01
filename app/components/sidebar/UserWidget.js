@@ -13,7 +13,8 @@ export default class UserSidebar extends React.Component {
   }
   render() {
 
-    let currentDate = moment().diff(this.props.user.birthDate, 'years');
+    let birthAge = moment().diff(this.props.user.birthDate, 'years');
+    let lastSignedIn = moment(this.props.user.updated).fromNow();
     let editLink = `/edit-profile/${this.props.user._id}`;
     let workoutsLink = `/workouts/${this.props.user._id}`;
     let profileImg = {
@@ -31,12 +32,12 @@ export default class UserSidebar extends React.Component {
 
         <div style={profileImg} className="profile-img"></div>
         <div className="user-widget-content">
-          <p>Age: {currentDate}</p>
+          <p>Age: {birthAge}</p>
           <p>Weight: {this.props.user.startWeight} lbs</p>
           <p>Height: {this.props.user.heightFeet} ft {this.props.user.heightInches} in</p>
           <p>Body Type: Mesomorph</p>
           <p>Location: {this.props.user.location}</p>
-          <p>Last Login: 3 Weeks Ago</p>
+          <p>Last Login: {lastSignedIn}</p>
 
         </div>
       <div className="widget-footer">

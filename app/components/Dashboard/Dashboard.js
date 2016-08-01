@@ -65,6 +65,7 @@ export default class Dashboard extends React.Component {
       }
       else {
         this.setState({user: res.body})
+        console.log(res.body);
       }
     })
 

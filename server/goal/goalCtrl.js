@@ -19,6 +19,15 @@ module.exports = {
     });
   },
 
+  getUserGoals(req, res) {
+    Goal.find({goalOwner: req.params.id}, (err, goals) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      return res.status(200).json(goals);
+    });
+  },
+
   deleteGoal(req, res) {
     Goal.findByIdAndRemove(req.params.id, (err, deletedGoal) => {
       if (err) {
