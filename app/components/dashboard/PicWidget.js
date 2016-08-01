@@ -32,10 +32,11 @@ export default class PicWidget extends React.Component {
     let modalImg = "http://feelgrafix.com/data/landscape/landscape-4.jpg";
 
     let dashImg = {
-      backgroundImage: 'url("http://a4.files.biography.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTIwNjA4NjMzODg2NTc0MDky.jpg")'
+      backgroundImage: `url("http://feelgrafix.com/data/landscape/landscape-4.jpg")`
     };
 
     let close = () => this.setState({ show: false});
+
 
 
     return (
@@ -57,31 +58,24 @@ export default class PicWidget extends React.Component {
 
       <div id="pic-widget">
 
+        <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
 
-
-
-        <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
-        </div>
-        <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
-        </div>
-        <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
-        </div>
-        <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
         </div>
 
         <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
+
         </div>
         <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
+
         </div>
         <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
+
         </div>
         <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
+
         </div>
         <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
-        </div>
-        <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
-        </div>
-        <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
+
         </div>
 
 

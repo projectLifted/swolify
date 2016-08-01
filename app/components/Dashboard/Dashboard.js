@@ -35,7 +35,8 @@ export default class Dashboard extends React.Component {
           description: 'this is a test'
       }],
       weightLiftingGoals: [],
-      cardioGoals: []
+      cardioGoals: [],
+      user: {}
     }
 
   }
@@ -70,7 +71,6 @@ export default class Dashboard extends React.Component {
       }
       else {
         this.setState({user: res.body});
-        console.log(this.state.user);
 
         new Promise((resolve, reject) => {
           getUserGoals(this.state.user._id, resolve, reject);
@@ -112,6 +112,7 @@ export default class Dashboard extends React.Component {
   }
 
 
+
   render() {
 
     return (
@@ -131,7 +132,7 @@ export default class Dashboard extends React.Component {
                   <div className="row">
 
                     <div className="col-md-3" id="left-dash">
-                      <UserWidget />
+                      <UserWidget user={this.state.user} />
 
                       <FollowingLeaderboard />
 
@@ -165,7 +166,7 @@ export default class Dashboard extends React.Component {
                       </div>
 
 
-                      <PicWidget />
+                      <PicWidget user={this.state.user} />
 
                     </div>
 

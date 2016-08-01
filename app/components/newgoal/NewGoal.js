@@ -122,9 +122,10 @@ export default class NewGoal extends React.Component {
 
                   <div className="col-md-4" id="side-bar">
 
-                      <UserWidget />
+                      <UserWidget user={this.state.user} />
 
                         <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
+
 
                   </div>
 

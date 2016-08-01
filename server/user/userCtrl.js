@@ -28,11 +28,30 @@ module.exports = {
     });
   },
 
+  getUsers(req, res) {
+    User.find({}, (err, users) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      return res.status(200).json(users);
+    });
+  },
+
   updateUser(req, res) { // This method gets hung up and does not update
     User.findByIdAndUpdate(req.params.id, req.body, (err, updatedUser) => {
       if (err) {
         return res.status(500).json(err);
       }
+
+      let user = req.body;
+
+      req.login(user, function(error) {
+          if (!error) {
+             console.log('succcessfully updated user');
+          }
+      });
+      res.end();
+
       return res.status(200).json(updatedUser);
     });
   },
