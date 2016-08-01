@@ -29,7 +29,8 @@ export default class Dashboard extends React.Component {
           src:'http://a4.files.biography.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTIwNjA4NjMzODg2NTc0MDky.jpg',
           title: 'This is a test',
           description: 'this is a test'
-      }]
+      }],
+      user: []
     }
 
   }
@@ -53,22 +54,21 @@ export default class Dashboard extends React.Component {
     });
   }
 
-  // componentWillMount(){
-  //   new Promise((resolve, reject)=> {
-  //     getAuth(resolve, reject);
-  //   }).then((res, err)=> {
-  //     if (err){
-  //     }
-  //     else if(res.body === false){
-  //       browserHistory.push('/');
-  //     }
-  //     else {
-  //       this.setState({user: res.body})
-  //       console.log(this.state.user);
-  //     }
-  //   })
-  //
-  // }
+  componentWillMount(){
+    new Promise((resolve, reject)=> {
+      getAuth(resolve, reject);
+    }).then((res, err)=> {
+      if (err){
+      }
+      else if(res.body === false){
+        browserHistory.push('/');
+      }
+      else {
+        this.setState({user: res.body})
+      }
+    })
+
+  }
 
 
 
@@ -91,7 +91,7 @@ export default class Dashboard extends React.Component {
                   <div className="row">
 
                     <div className="col-md-3" id="left-dash">
-                      <UserWidget />
+                      <UserWidget user={this.state.user} />
 
                       <FollowingLeaderboard />
 
@@ -112,7 +112,7 @@ export default class Dashboard extends React.Component {
                       <CardioGoalsPanel />
 
 
-                      <PicWidget />
+                      <PicWidget user={this.state.user} />
 
                     </div>
 
