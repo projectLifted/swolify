@@ -94,15 +94,20 @@ export default class Dashboard extends React.Component {
               <WeightGoalsPanel
                   key={goal._id}
                   title={goal.goalName}
+                  progress={goal.goalMaxProgress}
               />
           ))})
             this.setState({cardioPanels: this.state.cardioGoals.map((goal) => (
               <CardioGoalsPanel
                   key={goal._id}
                   title={goal.goalName}
+                  distanceProgress={goal.distanceProgress}
+                  timeProgress={goal.timeProgress}
+                  avgDistance={goal.distanceAvg}
+                  mileMinutes={goal.mileMinutesAvg}
+                  mileSeconds={goal.milesSecondsAvg}
               />
           ))})
-
 
           }
         })
