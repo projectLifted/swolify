@@ -150,8 +150,6 @@ export default class WeightWorkoutForm extends React.Component {
                     />
                   </div>
 
-
-
           <div className="updateWorkoutCredentials">
             <center>
                   <button
