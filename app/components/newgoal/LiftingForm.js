@@ -41,7 +41,7 @@ export default class LiftingForm extends React.Component {
         workouts: [],
         goalOwner: this.props.userId
       });
-      
+
         browserHistory.push("/dashboard")
   }
 
