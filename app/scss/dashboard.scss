@@ -297,11 +297,8 @@ iframe {
 
 @media (max-width: 800px) {
 
-  #left-dash .profile-img {
-      width: 120px;
-      height: 120px;
-      display: table-cell;
-      border-bottom: 0 !important;
+  #left-dash {
+      display: none;
     }
 
 }

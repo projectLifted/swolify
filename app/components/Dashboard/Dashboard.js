@@ -74,8 +74,8 @@ export default class Dashboard extends React.Component {
       else {
         this.setState({
           user: res.body,
-          weightChartUrl: `http://localhost:8080/api/weightchart/${res.body._id}`,
-          cardioChartUrl: `http://localhost:8080/api/cardiochart/${res.body._id}`
+          weightChartUrl: `/api/weightchart/${res.body._id}`,
+          cardioChartUrl: `/api/cardiochart/${res.body._id}`
         });
 
         new Promise((resolve, reject) => {
@@ -152,7 +152,7 @@ export default class Dashboard extends React.Component {
                     <div className="col-md-6" id="content-dash">
 
                       <ChartWidget title="Weight Goals: Rep Max" chartUrl={this.state.weightChartUrl} />
-                      <ChartWidget title="Cardio Goals: Miles/Distance" key="2" />
+                      <ChartWidget title="Cardio Goals: Miles/Distance" chartUrl={this.state.cardioChartUrl} />
                       <ChartWidget title="Body Weight" />
                       <WallWidget />
 
