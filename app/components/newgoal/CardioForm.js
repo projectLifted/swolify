@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { browserHistory } from 'react-router';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { createGoal } from '../../services/goalService';
@@ -27,8 +27,11 @@ export default class CardioForm extends React.Component {
     this.setState({[field]: event.target.value});
   }
 
+  // TODO: This is recieving an error, cannot read '.then' of undefined
+
   handleSubmit(event) {
 
+    event.preventDefault();
     createGoal({
       goalType: "Cardio",
       goalName: this.state.goalName,
@@ -38,12 +41,8 @@ export default class CardioForm extends React.Component {
       goalMileTime: this.state.goalMileTime,
       workouts: [],
       goalOwner: this.props.userId
-    }).then((res, err) => {
-      if (err) {
-        return console.error(err);
-      }
-      console.log(res);
-    });
+    })
+      browserHistory.push("/dashboard");
   }
 
   render() {

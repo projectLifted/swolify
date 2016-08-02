@@ -32,11 +32,12 @@ export default class CardioWorkoutForm extends React.Component {
     let timeDecimalVal = (this.state.workoutSeconds / 60);
     let workoutMileTime = ((parseFloat(this.state.workoutMinutes) + parseFloat(timeDecimalVal)).toFixed(2) / this.state.workoutDistance);
     console.log(workoutMileTime);
-    postWorkout({
-      workoutDate: this.state.workoutDate,
+    createWorkout({
+      workoutDate: this.state.workoutDate.format("YYYY, MM, DD"),
       workoutDistance: this.state.workoutDistance,
       workoutMileTime: workoutMileTime
     })
+      browserHistory.push("/dashboard");
   }
 
   render() {
@@ -44,7 +45,7 @@ export default class CardioWorkoutForm extends React.Component {
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
         <div>
         <div className="col-md-10">
-        <h2>Jogging</h2> {/* Will eventually become this.props.workoutName */}
+      <h2>{this.props.goalName}</h2>
       </div>
 
       <div className="col-md-3">

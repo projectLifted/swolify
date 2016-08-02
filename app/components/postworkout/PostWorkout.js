@@ -36,20 +36,20 @@ export default class PostWorkout extends React.Component {
       });
     }
 
-    // componentWillMount() {
-    //   new Promise((resolve, reject)=> {
-    //     getAuth(resolve, reject);
-    //   }).then((res, err)=> {
-    //     if (err){
-    //     }
-    //     else if(res.body === false){
-    //       browserHistory.push('/');
-    //     }
-    //     else {
-    //       this.setState({user: res.body})
-    //     }
-    //   })
-    // }
+    componentWillMount() {
+      new Promise((resolve, reject)=> {
+        getAuth(resolve, reject);
+      }).then((res, err)=> {
+        if (err){
+        }
+        else if(res.body === false){
+          browserHistory.push('/');
+        }
+        else {
+          this.setState({user: res.body})
+        }
+      })
+    }
 
   render() {
     return (
@@ -73,23 +73,27 @@ export default class PostWorkout extends React.Component {
                     <div className="row">
                       <div className="col-md-10 extra-height">
 
-                      {/*<label className="block-label">Select your goal type:</label>
-                      <label className="radio">
-                        <input type="radio" name="goalOptions" id="weightGoal" value="weightlifting" /> Weightlifting Goal
-                      </label>
-                      <label className="radio">
-                        <input type="radio" name="goalOptions" id="cardioGoal" value="cardio" /> Cardio Goal
-                      </label>
-                      <label className="radio">
-                        <input type="radio" name="goalOptions" id="healthGoal" value="personalhealth" /> Personal Health Goal
-                      </label>*/}
                       </div>
                     </div>
 
                     <div className="row">
 
-                      <WeightWorkoutForm/>
+                      <div>
 
+                        {
+                          this.props.params.workoutType === "cardio" ?
+                          <CardioWorkoutForm
+                              goalId={this.props.params.goalId}
+                              goalName={this.props.params.goalName}
+                          />
+                          :
+                          <WeightWorkoutForm
+                              goalId={this.props.params.goalId}
+                              goalName={this.props.params.goalName}
+                          />
+                        }
+
+                      </div>
                     </div>
 
                   </div>

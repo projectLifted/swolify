@@ -93,6 +93,7 @@ export default class Dashboard extends React.Component {
             this.setState({liftPanels: this.state.weightLiftingGoals.map((goal) => (
               <WeightGoalsPanel
                   key={goal._id}
+                  goalId={goal._id}
                   title={goal.goalName}
                   progress={goal.goalMaxProgress}
               />
@@ -100,6 +101,7 @@ export default class Dashboard extends React.Component {
             this.setState({cardioPanels: this.state.cardioGoals.map((goal) => (
               <CardioGoalsPanel
                   key={goal._id}
+                  goalId={goal._id}
                   title={goal.goalName}
                   distanceProgress={goal.distanceProgress}
                   timeProgress={goal.timeProgress}
