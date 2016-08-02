@@ -62,6 +62,7 @@ export default class PostWorkout extends React.Component {
 
       <div className="page-title-bar">
           <h1>Post Workout</h1>
+          <h4>Goal Name Here</h4>
       </div>
 
       <div className="container main-content">
@@ -88,7 +89,7 @@ export default class PostWorkout extends React.Component {
 
                     <div className="row">
 
-                      <WeightWorkoutForm/>
+                      <CardioWorkoutForm/>
 
                     </div>
 

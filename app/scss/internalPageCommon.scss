@@ -50,12 +50,12 @@ header .container {
   background: -webkit-linear-gradient(top,  rgba(238,99,82,1) 0%,rgba(234,69,53,1) 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom,  rgba(238,99,82,1) 0%,rgba(234,69,53,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee6352', endColorstr='#ea4535',GradientType=0 ); /* IE6-9 */
-
+  padding: 15px;
 }
 
 .page-title-bar h1 {
   margin: 0;
-  padding: 10px;
+  padding: 0;
   text-align: center;
 }
 
