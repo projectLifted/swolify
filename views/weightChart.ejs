@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,500,700,600,800,900' rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+const chartData = JSON.parse('<%- JSON.stringify(chartData) %>');
+
+window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+        theme: "theme1",
+        title: {
+            text: null
+        },
+        axisX:{
+            valueFormatString: "MM-DD-YYYY" ,
+            labelAngle: -50,
+            labelFontFamily: "Work Sans"
+
+        },
+        axisY: {
+          valueFormatString: "###" + " Lbs",
+
+          labelFontFamily: "Work Sans"
+      },
+        legend: {
+          fontFamily: "Work Sans"
+        },
+      data: chartData
+});
+
+chart.render();
+}
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+</head>
+<body>
+<div id="chartContainer" style="height: 350px; width: 100%;">
+</div>
+</body>
+</html>

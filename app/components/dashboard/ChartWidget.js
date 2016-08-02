@@ -18,7 +18,7 @@ export default class ChartWidget extends React.Component {
       <Accordion className="chart-widget">
           <Panel header={this.props.title} eventKey="1">
               <div className="chart-frame">
-                <iframe src="http://localhost:8080/api/testchart" />
+                <iframe src={this.props.chartUrl} />
               </div>
           </Panel>
      </Accordion>
