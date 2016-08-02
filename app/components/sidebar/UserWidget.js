@@ -16,7 +16,8 @@ export default class UserSidebar extends React.Component {
     let birthAge = moment().diff(this.props.user.birthDate, 'years');
     let lastSignedIn = moment(this.props.user.updated).fromNow();
     let profileImg = {
-            backgroundImage: `url("${this.props.user.profilePicture}")`
+            backgroundImage: `url("${this.props.user.profilePicture}")`,
+            backgroundPosition: 'center',
     };
 
 

@@ -1,11 +1,13 @@
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
+import _ from 'lodash';
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import GoalsWidget from '../sidebar/GoalsWidget';
 import UserWidget from '../sidebar/UserWidget';
 import SearchResult from './SearchResult';
 import { getAuth } from '../../services/loginService.js';
+import { getAllUsers } from '../../services/userService';
 
 import '../../scss/primary.scss'
 
@@ -14,7 +16,9 @@ export default class Search extends React.Component {
     super(props);
 
     this.state = {
-      user: {}
+      user: {},
+      users: [],
+      term: ''
     }
 
   }
@@ -30,14 +34,60 @@ export default class Search extends React.Component {
       }
       else {
         this.setState({user: res.body})
-        console.log(this.state.user);
+        // console.log(this.state.user);
       }
     })
+
+
+    new Promise( ( resolve, reject ) => {
+			getAllUsers( resolve, reject );
+		} ).then( ( res, err ) => {
+			if ( err ) {
+				return console.error( err );
+			}
+			this.setState( {
+        users: res.body,
+       } )
+      //  console.log(this.state.users);
+		} );
 
   }
 
 
+  onInputChange(term) {
+    this.setState({
+      term,
+    });
+  }
+
+
   render() {
+    let filteredUsers = this.state.users.filter(
+      (user) => {
+        let name = user.firstName + ' ' + user.lastName;
+        return name.toLowerCase().indexOf( this.state.term.toLowerCase() ) !== -1;
+      }
+    );
+
+    const allUsers = filteredUsers.map( ( user ) => {
+      return (
+        <SearchResult
+          key={user._id}
+          name={user.firstName + ' ' + user.lastName}
+          pic={user.profilePicture}
+          age={user.birthDate}
+          weight={user.startWeight}
+          heightFeet={user.heightFeet}
+          heightInches={user.heightInches}
+          location={user.location}
+          users={user}
+          authUser={this.state.user}
+        />
+      );
+    } );
+
+    const userSearch = _.debounce((term) => { this.userSearch(term); }, 500);
+
     return (
       <article>
         <header id="new-goal-header">
@@ -61,19 +111,22 @@ export default class Search extends React.Component {
                 <div className="col-md-8 extra-top" id="search-widget">
                   <form className="form-inline" >
 
-                        <input type="text" className="form-control search-input" id="user-search" placeholder="Search for user" />
+                        <input
+                          type="text"
+                          placeholder="Search for user"
+                          value={this.state.term}
+                          onChange={event => this.onInputChange(event.target.value)}
+                          id="user-search"
+                          className="form-control search-input"
+                        />
 
                   </form>
 
 
                   <div className="list-group">
-                      <SearchResult />
 
-                      <SearchResult />
+                  {allUsers}
 
-                      <SearchResult />
-
-                      <SearchResult />
                   </div>
 
                 </div>

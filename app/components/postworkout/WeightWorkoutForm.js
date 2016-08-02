@@ -69,7 +69,7 @@ export default class WeightWorkoutForm extends React.Component {
       </tr>
     ))
     return (
-      <div className="row">
+      <article>
 
         <h2>{this.props.goalName}</h2>
           <div className="col-md-4">
@@ -147,9 +147,8 @@ export default class WeightWorkoutForm extends React.Component {
             </div>
           </div>
 
-
-          <div className="col-md-3"></div>
-          <div className="col-md-4">
+          <div className="row">
+          <div className="col-md-5">
               <div className="form-group">
                   <label for="goalDate">Workout Date</label>
                     <DatePicker
@@ -158,10 +157,30 @@ export default class WeightWorkoutForm extends React.Component {
                        onChange={this.handleDate.bind(this, "workoutDate")}
                     />
                   </div>
+                </div>
 
+                  <div className="col-md-5">
+                      <div className="form-group">
+                          <label for="goalDate">Current Body Weight (Optional)</label>
+                            <div className="input-group">
+                                <input
+                                type="number"
+                                min={0} step={5}
+                                className="form-control"
+                                id="workoutWeight"
+                                placeholder=""
+                                required
+                                value={this.workoutWeight}
+                                onChange={this.handleChange.bind(this, "workoutWeight")}
+                            />
+                                <div className="input-group-addon">Lbs</div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
 
-
-          <div className="updateWorkoutCredentials">
+            <div className="row">
+          <div className="updateWorkoutCredentials col-md-12">
             <center>
                   <button
                     type="submit"
@@ -172,14 +191,12 @@ export default class WeightWorkoutForm extends React.Component {
                   </button>
                 </center>
             </div>
-          </div>
 
-          <div className="col-md-3"></div>
-
+            </div>
 
           </form>
 
-      </div>
+        </article>
     )
   }
 

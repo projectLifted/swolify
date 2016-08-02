@@ -9,7 +9,7 @@ const Goal = mongoose.Schema({
   goalDistance: {type: Number},
   goalMileTime: {type: Number},
   workouts: [
-    {workoutDate: Date, workoutMax: Number, workoutDistance: Number, workoutMileTime: Number}
+    {workoutDate: String, workoutMax: Number, workoutDistance: Number, workoutMileTime: Number}
   ],
   goalOwner: {type: mongoose.Schema.Types.ObjectId}
 });

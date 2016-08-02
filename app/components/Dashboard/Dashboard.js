@@ -36,7 +36,9 @@ export default class Dashboard extends React.Component {
       }],
       weightLiftingGoals: [],
       cardioGoals: [],
-      user: {}
+      user: {},
+      weightChartUrl: '',
+      cardioChartUrl: ''
     }
 
   }
@@ -70,7 +72,11 @@ export default class Dashboard extends React.Component {
         browserHistory.push('/');
       }
       else {
-        this.setState({user: res.body});
+        this.setState({
+          user: res.body,
+          weightChartUrl: `/api/weightchart/${res.body._id}`,
+          cardioChartUrl: `/api/cardiochart/${res.body._id}`
+        });
 
         new Promise((resolve, reject) => {
           getUserGoals(this.state.user._id, resolve, reject);
@@ -147,8 +153,8 @@ export default class Dashboard extends React.Component {
 
                     <div className="col-md-6" id="content-dash">
 
-                      <ChartWidget title="Weight Goals: Rep Max" key="1" />
-                      <ChartWidget title="Cardio Goals: Miles/Distance" key="2" />
+                      <ChartWidget title="Weight Goals: Rep Max" chartUrl={this.state.weightChartUrl} />
+                      <ChartWidget title="Cardio Goals: Miles/Distance" chartUrl={this.state.cardioChartUrl} />
                       <ChartWidget title="Body Weight" />
                       <WallWidget />
 

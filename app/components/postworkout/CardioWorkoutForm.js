@@ -44,10 +44,8 @@ export default class CardioWorkoutForm extends React.Component {
     return (
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
         <div>
-        <div className="col-md-10">
-      <h2>{this.props.goalName}</h2>
-      </div>
 
+      <div className="row">
       <div className="col-md-3">
         <div className="form-group">
           <label for="repGoal">Minutes</label>
@@ -80,7 +78,7 @@ export default class CardioWorkoutForm extends React.Component {
         </div>
       </div>
 
-      <div className="col-md-3">
+      <div className="col-md-4">
           <div className="form-group">
               <label for="weightGoal">Distance</label>
               <div className="input-group">
@@ -100,8 +98,9 @@ export default class CardioWorkoutForm extends React.Component {
           </div>
 
       </div>
-
-      <div className="col-md-3">
+      </div>
+      <div className="row">
+      <div className="col-md-5">
           <div className="form-group">
               <label for="goalDate">Workout Date</label>
                 <DatePicker
@@ -110,7 +109,27 @@ export default class CardioWorkoutForm extends React.Component {
                    onChange={this.handleDate.bind(this, "workoutDate")}
                 />
               </div>
-      </div>
+            </div>
+
+              <div className="col-md-5">
+                  <div className="form-group">
+                      <label for="goalDate">Current Body Weight (Optional)</label>
+                        <div className="input-group">
+                            <input
+                            type="number"
+                            min={0} step={5}
+                            className="form-control"
+                            id="workoutWeight"
+                            placeholder=""
+                            required
+                            value={this.workoutWeight}
+                            onChange={this.handleChange.bind(this, "workoutWeight")}
+                        />
+                            <div className="input-group-addon">Lbs</div>
+                      </div>
+                    </div>
+                </div>
+              </div>
 
         <center>
               <button
