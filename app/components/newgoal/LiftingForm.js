@@ -49,7 +49,7 @@ export default class LiftingForm extends React.Component {
 
     return (
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
-      <div>
+
         <div className="col-md-10">
           <div className="form-group">
             <label for="goalName">Name Your Goal (example: <i>"Bench Press"</i>)</label>
@@ -67,9 +67,9 @@ export default class LiftingForm extends React.Component {
 
       </div>
 
-        <div className="col-md-6">
+        <div className="col-md-3">
             <div className="form-group">
-                <label for="weightGoal">Max Goal</label>
+                <label for="weightGoal">One Rep Max Goal</label>
                 <div className="input-group">
                     <input
                       type="number"
@@ -89,17 +89,17 @@ export default class LiftingForm extends React.Component {
 
         </div>
 
-        <div className="col-md-4">
-            <div className="form-group">
-                <label for="goalDate">Goal Completion Date</label>
-                  <DatePicker className="form-control date-picker"
-                       selected={this.state.endDate}
-                       onChange={this.handleDate.bind(this, "endDate")}  />
-                </div>
+        <div className="row">
+
+          <div className="col-md-10">
+
+            <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
+
+          </div>
+
         </div>
 
-        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
-      </div>
+
     </form>
     )
   }

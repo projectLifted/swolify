@@ -5,7 +5,6 @@ const initialState = {
   goalType: "",
   goalName: "",
   goalStartDate: new Date,
-  goalEndDate: new Date,
   goalMax: 0,
   goalDistance: 0,
   goalMileTime: 0,

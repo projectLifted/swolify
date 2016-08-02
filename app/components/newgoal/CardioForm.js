@@ -102,16 +102,17 @@ export default class CardioForm extends React.Component {
 
         </div>
 
-        <div className="col-md-4">
-            <div className="form-group">
-                <label for="goalDate">Goal Completion Date</label>
-                  <DatePicker className="form-control date-picker"
-                       selected={this.state.endDate}
-                       onChange={this.handleDate.bind(this, "endDate")}  />
-                </div>
-        </div>
 
-        <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
+
+        <div className="row">
+
+          <div className="col-md-10">
+
+          <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-plus-square" aria-hidden="true"></i> Add Goal</button></center>
+
+          </div>
+
+        </div>
 
     </div>
   </form>
