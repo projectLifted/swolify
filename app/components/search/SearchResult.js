@@ -5,23 +5,34 @@ export default class SearchResult extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   user: {}
-    // }
+    this.state = {
+      isFollowing: false
+    }
   }
 
-  // componentWillMount() {
 
-	// }
+  componentWillMount() {
+    const checkFollowing = () => {
+    var followingArray = this.props.authUser.following
+    for (var i = 0; i < followingArray.length; i++) {
+
+      if ( followingArray[i] === this.props.users._id)  {
+        this.setState({ isFollowing : true })
+      }
+
+    }
+  }
+  checkFollowing();
+  }
+
+
 
   render() {
-
-
-    let profileImg = {
+    const profileImg = {
       backgroundImage: `url("${this.props.pic}")`
     };
 
-    let birthAge = moment().diff(this.props.age, 'years');
+    const birthAge = moment().diff(this.props.age, 'years');
 
 
     return (
@@ -38,7 +49,12 @@ export default class SearchResult extends React.Component {
 
           </div>
           <div className="list-group-btn-box">
-            <button className="btn btn-info"><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</button>
+          { this.state.isFollowing
+            ?
+              <button className="btn btn-primary"><i className="fa fa-user-times" aria-hidden="true"></i> Unfollow</button>
+            :
+              <button className="btn btn-info"><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</button>
+          }
           </div>
         </a>
 

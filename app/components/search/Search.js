@@ -34,7 +34,7 @@ export default class Search extends React.Component {
       }
       else {
         this.setState({user: res.body})
-        console.log(this.state.user);
+        // console.log(this.state.user);
       }
     })
 
@@ -80,6 +80,8 @@ export default class Search extends React.Component {
           heightFeet={user.heightFeet}
           heightInches={user.heightInches}
           location={user.location}
+          users={user}
+          authUser={this.state.user}
         />
       );
     } );

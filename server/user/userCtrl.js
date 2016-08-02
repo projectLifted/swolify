@@ -55,4 +55,8 @@ module.exports = {
       return res.status(200).json(updatedUser);
     });
   },
+
+  addFollower(req, res) {
+
+  }
 };
