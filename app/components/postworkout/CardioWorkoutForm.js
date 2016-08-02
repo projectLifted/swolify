@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { browserHistory } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { createWorkout } from '../../services/workoutService';

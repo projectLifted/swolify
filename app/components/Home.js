@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import { logout } from '../ducks/userDuck';
 import {Link, browserHistory} from "react-router";
 import {getAuth} from '../services/loginService.js'
 
@@ -9,7 +11,7 @@ import Footer from './Footer';
 import logo from '../images/logo.png';
 import '../scss/primary.scss';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
 
@@ -20,19 +22,29 @@ export default class Home extends React.Component {
   }
 
   componentWillMount(){
-    new Promise((resolve, reject)=> {
-      getAuth(resolve, reject);
-    }).then((res, err)=> {
-      if (err){
-      }
-      else if(res.body === false){
-        this.setState({isAuthed: false})
+    // new Promise((resolve, reject)=> {
+    //   getAuth(resolve, reject);
+    // }).then((res, err)=> {
+    //   if (err){
+    //   }
+    //   else if(res.body === false){
+    //     this.setState({isAuthed: false})
+    //
+    //   }
+    //   else {
+    //     this.setState({isAuthed: true})
+    //   }
+    // })
+    if (this.props.user.loggedIn) {
+      this.setState({isAuthed: false});
+    }
+    else {
+      this.setState({isAuthed: true});
+    }
+  }
 
-      }
-      else {
-        this.setState({isAuthed: true})
-      }
-    })
+  logoutUser() {
+    this.props.dispatch(signout());
   }
 
   render() {
@@ -52,7 +64,7 @@ export default class Home extends React.Component {
           <Link to="/Dashboard"><button className="btn btn-primary btn-lg" role="button"><i className="fa fa-tachometer" aria-hidden="true"></i>
           &nbsp;Visit Dashboard</button></Link>
 
-          <a href="/api/auth/facebook/logout"><button className="btn btn-primary btn-lg" role="button"><i className="fa fa-sign-out" aria-hidden="true"></i> &nbsp;Logout</button></a>
+        <a onClick={this.logoutUser} href="/api/auth/facebook/logout"><button className="btn btn-primary btn-lg" role="button"><i className="fa fa-sign-out" aria-hidden="true"></i> &nbsp;Logout</button></a>
           </span>
 
         :
@@ -97,3 +109,5 @@ export default class Home extends React.Component {
     );
   }
 }
+
+export default connect(state => ({user: state.user}))(Home);
