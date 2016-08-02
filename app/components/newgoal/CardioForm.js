@@ -35,8 +35,7 @@ export default class CardioForm extends React.Component {
     createGoal({
       goalType: "Cardio",
       goalName: this.state.goalName,
-      goalStartDate: moment,
-      goalEndDate: this.state.endDate,
+      goalStartDate: moment(),
       goalDistance: this.state.goalDistance,
       goalMileTime: this.state.goalMileTime,
       workouts: [],

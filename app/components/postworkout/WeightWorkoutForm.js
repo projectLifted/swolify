@@ -37,9 +37,9 @@ export default class WeightWorkoutForm extends React.Component {
     }
     let weightedOneRepMax = Math.floor((runningTotal / this.state.sets.length) / 5.0) * 5;
     console.log(weightedOneRepMax);
-    console.log(this.state.workoutDate.format("YYYY, MM, DD"));
+    console.log(moment(this.state.workoutDate).format("YYYY, MM, DD"));
     createWorkout({
-      workoutDate: this.state.workoutDate.format("YYYY, MM, DD"),
+      workoutDate: moment(this.state.workoutDate).format("YYYY, MM, DD"),
       workoutMax: weightedOneRepMax,
     }, this.props.goalId);
 

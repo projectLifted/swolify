@@ -33,7 +33,7 @@ export default class CardioWorkoutForm extends React.Component {
     let workoutMileTime = ((parseFloat(this.state.workoutMinutes) + parseFloat(timeDecimalVal)).toFixed(2) / this.state.workoutDistance);
     console.log(workoutMileTime);
     createWorkout({
-      workoutDate: this.state.workoutDate.format("YYYY, MM, DD"),
+      workoutDate: moment(this.state.workoutDate).format("YYYY, MM, DD"),
       workoutDistance: this.state.workoutDistance,
       workoutMileTime: workoutMileTime
     })
