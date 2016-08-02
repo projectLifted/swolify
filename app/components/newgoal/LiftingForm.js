@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { browserHistory } from 'react-router';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
@@ -31,6 +31,7 @@ export default class LiftingForm extends React.Component {
 
   handleSubmit(event) {
 
+    event.preventDefault();
       createGoal({
         goalType: "WeightLifting",
         goalName: this.state.goalName,
@@ -39,17 +40,13 @@ export default class LiftingForm extends React.Component {
         goalMax: this.state.goalMax,
         workouts: [],
         goalOwner: this.props.userId
-      }).then((res, err) => {
-        if (err) {
-          return console.error(err);
-        }
-        console.log(res);
-      })
+      });
+      
+        browserHistory.push("/dashboard")
   }
 
   render() {
 
-    console.log(this.props.userId);
     return (
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
       <div>

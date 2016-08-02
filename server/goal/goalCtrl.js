@@ -83,14 +83,19 @@ module.exports = {
             let totalTimeOfAvgs = 0;
             let avgMileMinutes = 0;
             let avgMileSeconds = 0;
-            goal.workouts.length === 0 ?
-            goal.goalProgress = 0
-              :
+            if (goal.workouts.length === 0) {
+            goal.distanceProgress = 0;
+            goal.timeProgress = 0;
+            mileMinutesAvg = 0;
+            milesSecondsAvg = 0;
+          }
+          else {
             goal.distanceProgress = ((goal.workouts[goal.workouts.length - 1].workoutDistance - goal.workouts[0].workoutDistance) / (goal.goalDistance - goal.workouts[0].workoutDistance))
             goal.timeProgress = ((goal.workouts[goal.workouts.length - 1].workoutMileTime - goal.workouts[0].workoutMileTime) / (goal.goalMileTime - goal.workouts[0].workoutMileTime))
             goal.workouts.map(workout => {
               totalDistance += workout.workoutDistance;
               totalTimeOfAvgs += workout.workoutMileTime;
+
             });
 
             function getMinutesAndSeconds() {
@@ -100,6 +105,7 @@ module.exports = {
               avgMileSeconds = (parseInt(nums[1]) / 10) * 60;
             }
             getMinutesAndSeconds();
+          }
 
             returnedGoals.push({
               _id: goal._id,

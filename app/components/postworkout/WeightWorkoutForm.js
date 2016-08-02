@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { createWorkout } from '../../services/workoutService';
 import '../../scss/primary.scss';
-
+import { browserHistory } from 'react-router'
 
 export default class WeightWorkoutForm extends React.Component {
   constructor(props) {
@@ -18,6 +18,7 @@ export default class WeightWorkoutForm extends React.Component {
   }
 
   handleChange(field, event) {
+    // console.log(event.target.value);
     this.setState({[field]: event.target.value});
   }
 
@@ -29,19 +30,26 @@ export default class WeightWorkoutForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    if (this.state.sets.length > 0) {
     let runningTotal = 0;
     for (let i = 0; i < this.state.sets.length; i++) {
-      runningTotal += (this.state.sets[i].weight / (1.0278 - (0.0278 * this.state.sets[i].reps)));
+      runningTotal += (parseFloat(this.state.sets[i].weight * this.state.sets[i].reps * .0333) + parseInt(this.state.sets[i].weight));
     }
     let weightedOneRepMax = Math.floor((runningTotal / this.state.sets.length) / 5.0) * 5;
+    console.log(weightedOneRepMax);
+    console.log(this.state.workoutDate.format("YYYY, MM, DD"));
     createWorkout({
-      workoutDate: this.state.workoutDate,
+      workoutDate: this.state.workoutDate.format("YYYY, MM, DD"),
       workoutMax: weightedOneRepMax,
-    }, "579afb1c3adf46fc1144b1d1");
+    }, this.props.goalId);
+
+      browserHistory.push("/dashboard");
+    }
   }
 
   submitSet(event) {
     if (this.state.workoutReps && this.state.workoutWeight) {
+      let setMax = (this.state.workoutWeight * this.state.workoutReps * .0333) + this.state.sets.workoutWeight;
      this.setState({sets: this.state.sets.concat([{setNumber: this.state.sets.length + 1, reps: this.state.workoutReps, weight: this.state.workoutWeight}])})
    }
   }
@@ -63,6 +71,7 @@ export default class WeightWorkoutForm extends React.Component {
     return (
       <article>
 
+        <h2>{this.props.goalName}</h2>
           <div className="col-md-4">
             <div className="form-group">
               <label for="repGoal">Reps</label>
