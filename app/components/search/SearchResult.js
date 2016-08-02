@@ -1,22 +1,39 @@
 import React from 'react';
+import moment from 'moment';
 
 export default class SearchResult extends React.Component {
   constructor(props) {
     super(props);
 
+    // this.state = {
+    //   user: {}
+    // }
   }
 
+  // componentWillMount() {
+
+	// }
+
   render() {
+
+
+    let profileImg = {
+      backgroundImage: `url("${this.props.pic}")`
+    };
+
+    let birthAge = moment().diff(this.props.age, 'years');
+
+
     return (
       <div>
 
 
         <a href="#" className="list-group-item">
-          <div className="friend-photo"></div>
+          <div style={profileImg} className="friend-photo"></div>
           <div className="list-group-content">
-            <h4 className="list-group-item-heading">Paul Day</h4>
+            <h4 className="list-group-item-heading">{this.props.name}</h4>
             <p className="list-group-item-text">
-              33 Years Old, 155 lbs, 5 ft 9 in, Dallas, Texas
+              {birthAge} years old, {this.props.weight} lbs, {this.props.heightFeet} ft {this.props.heightInches}, in {this.props.location}
             </p>
 
           </div>
