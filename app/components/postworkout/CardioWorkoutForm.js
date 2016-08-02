@@ -3,6 +3,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { createWorkout } from '../../services/workoutService';
+import { browserHistory } from 'react-router';
 
 export default class CardioWorkoutForm extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ export default class CardioWorkoutForm extends React.Component {
       workoutDistance: 0,
       workoutMinutes: 0,
       workoutSeconds: 0,
-      percentMileTimeChange: 0
+      percentMileTimeChange: 0,
+      currentWeight: 0
     }
 
   }
@@ -35,13 +37,15 @@ export default class CardioWorkoutForm extends React.Component {
     createWorkout({
       workoutDate: moment(this.state.workoutDate).format("YYYY, MM, DD"),
       workoutDistance: this.state.workoutDistance,
-      workoutMileTime: workoutMileTime
+      workoutMileTime: workoutMileTime,
+      currentWeight: this.state.currentWeight
     })
       browserHistory.push("/dashboard");
   }
 
   render() {
     return (
+      <article>
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
         <div>
 
@@ -113,7 +117,7 @@ export default class CardioWorkoutForm extends React.Component {
 
               <div className="col-md-5">
                   <div className="form-group">
-                      <label for="goalDate">Current Body Weight (Optional)</label>
+                      <label for="goalDate">Current Body Weight</label>
                         <div className="input-group">
                             <input
                             type="number"
@@ -122,8 +126,8 @@ export default class CardioWorkoutForm extends React.Component {
                             id="workoutWeight"
                             placeholder=""
                             required
-                            value={this.workoutWeight}
-                            onChange={this.handleChange.bind(this, "workoutWeight")}
+                            value={this.state.currentWeight}
+                            onChange={this.handleChange.bind(this, "currentWeight")}
                         />
                             <div className="input-group-addon">Lbs</div>
                       </div>
@@ -140,6 +144,7 @@ export default class CardioWorkoutForm extends React.Component {
             </center>
       </div>
     </form>
+    </article>
     )
   }
 

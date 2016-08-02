@@ -47,6 +47,7 @@ module.exports = {
         if (err) {
           return res.status(500).json(err);
         }
+        console.log(req.body);
         return res.status(200).json(goal);
       });
     });
@@ -72,7 +73,6 @@ module.exports = {
               goalMax: goal.goalMax,
               goalOwner: goal.goalOwner,
               goalStartDate: goal.goalStartDate,
-              goalEndDate: goal.goalEndDate,
               goalName: goal.goalName,
               goalMaxProgress: goal.goalMaxProgress * 100,
               workouts: goal.workouts,
@@ -110,7 +110,6 @@ module.exports = {
             returnedGoals.push({
               _id: goal._id,
               goalDistance: goal.goalDistance,
-              goalEndDate: goal.goalEndDate,
               goalMileTime: goal.goalMileTime,
               goalName: goal.goalName,
               goalOwner: goal.goalOwner,

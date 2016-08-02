@@ -124,11 +124,14 @@ export default class NewGoal extends React.Component {
 
                       <UserWidget user={this.state.user} />
 
-                        <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
+                        <Link to="/dashboard"><button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
+
+                      <GoalsWidget />
+
+
 
 
                   </div>
-
               </div>
           </div>
 
