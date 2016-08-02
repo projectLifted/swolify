@@ -8,7 +8,6 @@ const User = mongoose.Schema({
   profilePicture: {type: String},
   pictures: [],
   wallPosts: [{message: String, sender: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}}],
-  updatedDate: {type: Date},
   bodyType: {type: String},
   heightFeet: {type: Number},
   heightInches: {type: Number},

@@ -54,7 +54,11 @@ passport.use(new FacebookStrategy({
       if (!user) {
         new User({facebookId: profile.id}).save( ( err, user ) => {
           return done(err, user);
-        })
+        });
+      }
+      else if(user) {
+          user.updated = new Date();
+          return done(err, user);
       }
       else {
         return done(err, user);
