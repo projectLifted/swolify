@@ -164,15 +164,15 @@ module.exports = {
                          return 0;
                        });
 
-
-
-                      for(let i = 0; i < workoutData.length; i++ ){
-                        let z = i + 1;
-                        if(workoutData[i].x === workoutData[z].x){
-                          workoutData.splice(z, 1);
-                        }
-                      }
-
+                      // 
+                      //
+                      // for(let i = 0; i < workoutData.length; i++ ){
+                      //
+                      //   if(workoutData[i].x === workoutData[i+1].x){
+                      //     workoutData.splice(i+1, 1);
+                      //   }
+                      // }
+                      //
 
                        let goalData = {
                          type: "line",
