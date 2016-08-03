@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from "react-router";
+import { connect } from 'react-redux';
 
 import Navigation from '../Navigation';
 import Footer from '../Footer';
@@ -15,7 +16,7 @@ import DatePicker from 'react-datepicker';
 
 import '../../scss/primary.scss';
 
-export default class NewGoal extends React.Component {
+class NewGoal extends React.Component {
   constructor(props) {
     super(props);
 
@@ -28,18 +29,11 @@ export default class NewGoal extends React.Component {
   }
 
     componentWillMount() {
-      new Promise((resolve, reject)=> {
-        getAuth(resolve, reject);
-      }).then((res, err)=> {
-        if (err){
-        }
-        else if(res.body === false){
-          browserHistory.push('/');
-        }
-        else {
-          this.setState({user: res.body})
-        }
-      })
+      console.log(this.props.user);
+      console.log(this.props.user.loggedIn);
+      if (!this.props.user.loggedIn) {
+        browserHistory.push('/');
+      }
     }
 
     handleDate(field, event) {
@@ -59,6 +53,8 @@ export default class NewGoal extends React.Component {
     }
 
   render() {
+    console.log(this.props.user);
+
     return (
     <article>
       <header id="new-goal-header">
@@ -106,11 +102,11 @@ export default class NewGoal extends React.Component {
                                 ?
                               <LiftingForm
                                   goalName={this.props.goalName}
-                                  userId={this.state.user._id}
+                                  userId={this.props.user._id}
                               />
                                 :
                                 <CardioForm
-                                  userId={this.state.user._id}
+                                  userId={this.props.user._id}
                                 />
 
                             }
@@ -144,3 +140,5 @@ export default class NewGoal extends React.Component {
     );
   }
 }
+
+export default connect(state => ({user: state.user}))(NewGoal);
