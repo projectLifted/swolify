@@ -76,7 +76,8 @@ export default class Dashboard extends React.Component {
         this.setState({
           user: res.body,
           weightChartUrl: `/api/weightchart/${res.body._id}`,
-          cardioChartUrl: `/api/cardiochart/${res.body._id}`
+          cardioChartUrl: `/api/cardiochart/${res.body._id}`,
+          bodyWeightChartUrl: `/api/bodyweightchart/${res.body._id}`
         });
 
         new Promise((resolve, reject) => {
@@ -174,7 +175,7 @@ export default class Dashboard extends React.Component {
                       <span>
                       <ChartWidget title="Weight Goals: Rep Max" chartUrl={this.state.weightChartUrl} />
                       <ChartWidget title="Cardio Goals: Miles/Distance" chartUrl={this.state.cardioChartUrl} />
-                      <ChartWidget title="Body Weight" />
+                      <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
                       </span>
 
                       }
