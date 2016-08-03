@@ -26,18 +26,18 @@ module.exports = {
               }
               workoutData.push(workout);
 
-              workoutData.sort(function (a, b) {
-                  if (a.x > b.x) {
-                    return 1;
-                  }
-                  if (a.x < b.x) {
-                    return -1;
-                  }
-                  // a must be equal to b
-                  return 0;
-                });
-
             })
+
+            workoutData.sort((a, b)=> {
+                if (a.x > b.x) {
+                  return 1;
+                }
+                if (a.x < b.x) {
+                  return -1;
+                }
+                // a must be equal to b
+                return 0;
+              });
 
             let goalData = {
               type: "line",
@@ -83,18 +83,22 @@ module.exports = {
                   }
                   workoutData.push(workout);
 
-                  workoutData.sort(function (a, b) {
-                      if (a.x > b.x) {
-                        return 1;
-                      }
-                      if (a.x < b.x) {
-                        return -1;
-                      }
-                      // a must be equal to b
-                      return 0;
-                    });
+
 
                 })
+
+
+                workoutData.sort((a, b)=> {
+                    if (a.x > b.x) {
+                      return 1;
+                    }
+                    if (a.x < b.x) {
+                      return -1;
+                    }
+                    // a must be equal to b
+                    return 0;
+                  });
+
 
                 let goalData = {
                   type: "line",
@@ -143,29 +147,32 @@ module.exports = {
 
                       workoutData.push(workout);
 
-                      workoutData.sort((a, b)=> {
-                          if (a.x > b.x) {
-                            return 1;
-                          }
-                          if (a.x < b.x) {
-                            return -1;
-                          }
-                          // a must be equal to b
-                          return 0;
-                        });
-
-
-
-
-
                       }
-
-
-
 
                     })
 
                    })
+
+                     workoutData.sort((a, b)=> {
+                         if (a.x > b.x) {
+                           return 1;
+                         }
+                         if (a.x < b.x) {
+                           return -1;
+                         }
+                         // a must be equal to b
+                         return 0;
+                       });
+
+
+
+                      for(let i = 0; i < workoutData.length; i++ ){
+                        let z = i + 1;
+                        if(workoutData[i].x === workoutData[z].x){
+                          workoutData.splice(z, 1);
+                        }
+                      }
+
 
                        let goalData = {
                          type: "line",
@@ -176,6 +183,7 @@ module.exports = {
                          dataPoints: workoutData,
                          xValueType: "dateTime"
                        }
+
 
                        testData.push(goalData)
 
