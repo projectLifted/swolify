@@ -67,7 +67,7 @@ class Dashboard extends React.Component {
     });
   }
 
-  componentWillMount(){
+  componentWillMount() {
     new Promise((resolve, reject)=> {
       getAuth(resolve, reject);
     }).then((res, err)=> {
@@ -95,11 +95,16 @@ class Dashboard extends React.Component {
             return console.log("no goals");
           }
           else {
-            this.setState({userGoals: res.body});
+            if (this.props.goals.goals.length === 0) {
+              console.log("hello");
+              res.body.map(goal => {
+                store.dispatch(postGoal(goal));
+              })
+            }
 
             // Seperate goals by goal type
             res.body.map(goal => {
-              //store.dispatch(postGoal(goal));
+
               if (goal.goalType === "WeightLifting") {
                 this.setState((state) => ({weightLiftingGoals: state.weightLiftingGoals.concat(goal)}))
               }
@@ -217,7 +222,6 @@ class Dashboard extends React.Component {
 
                       }
 
-
                       <PicWidget user={this.props.user} />
 
                     </div>
@@ -236,4 +240,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user, goals: state.goal}))(Dashboard);
+export default connect(state => ({user: state.user, goals: state.goals}))(Dashboard);

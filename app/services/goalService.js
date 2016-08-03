@@ -1,6 +1,7 @@
 import request from 'superagent';
 import store from '../store';
 import { postGoal } from '../ducks/goalDuck';
+import { setGoals } from '../ducks/goalDuck';
 
 export function createGoal(goalInfo, resolve, reject) {
   request.post('/api/goals')
@@ -22,3 +23,7 @@ export function getUserGoals(userId, resolve, reject) {
       return resolve(goals);
     });
 }
+
+// export funcion setUserGoals(userId, goals, reject) {
+//   request.get(`/api/goals/${userId}`, (err, userGoals))
+// }

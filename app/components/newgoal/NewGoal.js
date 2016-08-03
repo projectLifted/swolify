@@ -53,7 +53,7 @@ class NewGoal extends React.Component {
     }
 
   render() {
-    console.log(this.props.user);
+    console.log(this.props.goals);
 
     return (
     <article>
@@ -118,7 +118,7 @@ class NewGoal extends React.Component {
 
                   <div className="col-md-4" id="side-bar">
 
-                      <UserWidget user={this.state.user} />
+                      <UserWidget user={this.props.user} />
 
                         <Link to="/dashboard"><button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
 
@@ -141,4 +141,4 @@ class NewGoal extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user}))(NewGoal);
+export default connect(state => ({user: state.user, goals: state.goals}))(NewGoal);
