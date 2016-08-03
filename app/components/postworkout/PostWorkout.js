@@ -45,6 +45,7 @@ class PostWorkout extends React.Component {
     }
 
   render() {
+    console.log(this.props.goals);
     return (
     <article>
       <header id="post-workout-header">
@@ -111,4 +112,4 @@ class PostWorkout extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user}))(PostWorkout);
+export default connect(state => ({user: state.user, goals: state.goals}))(PostWorkout);
