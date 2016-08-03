@@ -11,3 +11,16 @@ export function getAllUsers( resolve, reject ) {
 				return resolve( response );
 		} );
 }
+
+export function putUser(userInfo, userId, resolve, reject) {
+	request.put(`/api/users/${userId}`)
+		.send(userInfo)
+		.end((err, user) => {
+			if (err) {
+				console.log(err);
+				return reject(err);
+			}
+			console.log(userInfo)
+			return store.dispatch(signin(userInfo));
+		});
+}

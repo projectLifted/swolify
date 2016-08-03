@@ -1,16 +1,13 @@
 import React from 'react';
 import {Link, browserHistory} from "react-router";
-import PicGridItem from "./PicGridItem";
-import ReactFilepicker from 'react-filepicker';
-import {Modal, Button} from "react-bootstrap";
 import { putUser } from '../../services/userService.js';
 import { signin } from '../../ducks/userDuck';
 import { connect } from 'react-redux';
-import store from '../../store';
+import {Modal, Button} from "react-bootstrap";
 
 import '../../scss/primary.scss';
 
-class PicWidget extends React.Component {
+export default class PicGridItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -20,13 +17,23 @@ class PicWidget extends React.Component {
     }
   }
 
-  handleFile(field, event) {
+
+    deletePhoto(field, event) {
     this.setState({
-       addPic: event.url
+       addPic: event.url,
+       show: false
     });
 
     let newPicArray = this.props.user.pictures;
-    newPicArray.push(this.state.addPic);
+
+    console.log(this.props.user.pictures);
+    console.log(this.props.pic);
+
+    let picIndex = newPicArray.indexOf(this.props.pic);
+
+    console.log(picIndex);
+
+    newPicArray.splice(picIndex, 1);
 
     new Promise((resolve, reject) => {
       putUser({
@@ -50,34 +57,47 @@ class PicWidget extends React.Component {
         return console.error(err);
       }
     })
-
   }
 
 
   render() {
 
-    const allPics = this.props.user.pictures.map((pic) => (
-        <PicGridItem key={pic} pic={pic} />
-    ))
+    let modalImg = this.props.pic;
+
+    let dashImg = {
+      backgroundImage: `url("${this.props.pic}")`
+    };
+
+    let close = () => this.setState({ show: false});
+
+
 
     return (
+      <span>
+        <div onClick={() => this.setState({ show: true})} style={dashImg} className="dash-img">
 
-      <div id="pic-box">
+        </div>
 
 
-        <ReactFilepicker buttonClass="btn btn-success btn-filepicker" apikey={'AgUFEbg5LQ6OC6EafL3gqz'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} />
+        <Modal
+          show={this.state.show}
+          onHide={close}
+          container={this}
+          aria-labelledby="contained-modal-title"
+        >
+          <Modal.Body>
+           <img class="modal-image" src={modalImg} />
+          </Modal.Body>
+          <Modal.Footer>
+           <Button onClick={this.deletePhoto.bind(this, "file")} className="delete-goal-button">Delete</Button>
+           <Button onClick={close}>Close</Button>
+          </Modal.Footer>
+       </Modal>
 
-
-      <div id="pic-widget">
-
-        {allPics}
-
-      </div>
-
-    </div>
+     </span>
 
     );
   }
 }
 
-export default connect(state => ({user: state.user}))(PicWidget);
+export default connect(state => ({user: state.user}))(PicGridItem);

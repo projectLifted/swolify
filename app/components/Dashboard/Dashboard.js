@@ -217,15 +217,11 @@ class Dashboard extends React.Component {
 
                       }
 
-
-                      <PicWidget user={this.props.user} />
+                      <PicWidget />
 
                     </div>
 
                   </div>
-
-
-
 
                 </div>
 
