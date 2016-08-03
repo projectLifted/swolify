@@ -13,4 +13,6 @@ export function signupUser(userInfo, userId, resolve, reject) {
 
       return store.dispatch(signin(user));
     });
+
+
 }

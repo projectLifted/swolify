@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import { getAuth } from '../services/loginService.js';
 import { signin } from '../ducks/userDuck';
-import { signupUser } from '../services/signupService';
 import { connect } from 'react-redux';
+import { signupUser } from '../services/signupService';
+
 
 import Navigation from './Navigation';
 import Footer from './Footer';

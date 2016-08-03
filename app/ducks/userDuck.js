@@ -28,6 +28,7 @@ export default function reducer(state = initialState, action) {
 
     case SIGNOUT:
       return initialState;
+
   }
   return state;
 }
