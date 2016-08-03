@@ -38,19 +38,10 @@ class PostWorkout extends React.Component {
     }
 
     componentWillMount() {
-      new Promise((resolve, reject)=> {
-        getAuth(resolve, reject);
-      }).then((res, err)=> {
-        if (err){
-        }
-        else if(res.body === false){
-          browserHistory.push('/');
-        }
-        else {
-          this.setState({user: res.body})
-        }
-      });
-      console.log(this.props.user);
+
+      if (!this.props.user.loggedIn) {
+        browserHistory.push('/');
+      }
     }
 
   render() {
@@ -102,7 +93,7 @@ class PostWorkout extends React.Component {
                   </div>
                   <div className="col-md-4" id="side-bar">
 
-                      <UserWidget user={this.state.user} />
+                      <UserWidget user={this.props.user} />
                       <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
 
                       <Link to="/new-goal"><button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true" id="post-goal"></i> New Goal</button></Link>

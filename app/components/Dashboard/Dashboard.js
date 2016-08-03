@@ -5,6 +5,7 @@ import { Accordion } from 'react-bootstrap';
 import { Link, browserHistory } from "react-router";
 import store from '../../store';
 import { signin } from '../../ducks/userDuck';
+import { postGoal } from '../../ducks/goalDuck';
 
 import { getAuth } from '../../services/loginService.js';
 import { getUserGoals } from '../../services/goalService';
@@ -89,15 +90,15 @@ class Dashboard extends React.Component {
             this.setState({userGoals: res.body});
           //  console.log(this.state.userGoals);
             // Seperate goals by goal type
-
-            this.state.userGoals.map(goal => {
+            res.body.map(goal => {
+              //store.dispatch(postGoal(goal));
               if (goal.goalType === "WeightLifting") {
                 this.setState((state) => ({weightLiftingGoals: state.weightLiftingGoals.concat(goal)}))
               }
               else {
                 this.setState((state) => ({cardioGoals: state.cardioGoals.concat(goal)}))
               }
-            })
+            });
 
             this.setState({liftPanels: this.state.weightLiftingGoals.map((goal) => (
               <WeightGoalsPanel
@@ -200,4 +201,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user}))(Dashboard);
+export default connect(state => ({user: state.user, goals: state.goal}))(Dashboard);
