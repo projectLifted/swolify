@@ -9,6 +9,7 @@ import { postGoal } from '../../ducks/goalDuck';
 
 import { getAuth } from '../../services/loginService.js';
 import { getUserGoals } from '../../services/goalService';
+import { getAllUsers } from '../../services/userService';
 
 import Navigation from '../Navigation';
 import Footer from '../Footer';
@@ -41,9 +42,10 @@ class Dashboard extends React.Component {
       weightLiftingGoals: [],
       cardioGoals: [],
       user: {},
+      users: [],
       weightChartUrl: '',
       cardioChartUrl: '',
-      noGoals: false
+      noGoals: false,
     }
 
   }
@@ -139,11 +141,37 @@ class Dashboard extends React.Component {
       }
     });
 
+
+    new Promise( ( resolve, reject ) => {
+      getAllUsers( resolve, reject );
+    } ).then( ( res, err ) => {
+      if ( err ) {
+        return console.error( err );
+      }
+      this.setState( {
+        users: res.body,
+       } )
+      //  console.log(this.state.users);
+    } );
+
+
   }
 
 
 
   render() {
+
+    const allUsers = this.state.users.map( ( user ) => {
+      return (
+        <FollowingLeaderboard
+          key={user._id}
+          name={user.firstName + ' ' + user.lastName}
+          pic={user.profilePicture}
+          users={user}
+          authUser={this.props.user}
+        />
+      );
+    } );
 
     return (
               <article>
@@ -164,7 +192,26 @@ class Dashboard extends React.Component {
                     <div className="col-md-3" id="left-dash">
                       <UserWidget user={this.props.user} />
 
-                      <FollowingLeaderboard />
+
+
+                      <div className="panel panel-default" id="following-widget">
+
+                          <div className="panel-heading">
+                              <center><i className="fa fa-users" aria-hidden="true"></i> Following</center>
+                          </div>
+
+                          <div className="list-group">
+
+                              {allUsers}
+
+                              <div className="list-footer">
+                                <Link to="/search"><i className="fa fa-search" aria-hidden="true"></i> Find and Remove Followers</Link>
+                              </div>
+
+                          </div>
+                      </div>
+
+
 
                     </div>
 
