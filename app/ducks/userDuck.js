@@ -2,25 +2,23 @@ const SIGNIN = "user/SIGNIN";
 const SIGNOUT = "user/SIGNOUT";
 
 const initialState = {
+  _id: "",
   facebookId: "",
-  firstName: "",
-  lasName: "",
-  email: "",
-  profilePicture: "",
-  pictures: [],
+  updated: new Date,
+  following: [],
   wallPosts: [],
-  updatedDate: new Date,
-  heightFeet: 0,
-  heightInches: 0,
-  startWeight: 0,
+  pictures: [],
+  profilePicture: "",
   goalWeight: 0,
+  startWeight: 0,
+  heightInches: 0,
+  heightFeet: 0,
+  bodyType: "",
   gender: "",
   birthDate: new Date,
-  following: [],
   location: "",
-  loggedIn: false,
-  bodyType: "",
-  updated: new Date
+  lastName: "",
+  firstName: ""
 };
 
 export default function reducer(state = initialState, action) {

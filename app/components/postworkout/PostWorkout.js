@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
+import { connect } from 'react-redux';
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import GoalsWidget from '../sidebar/GoalsWidget';
@@ -14,7 +15,7 @@ import CardioWorkoutForm from './CardioWorkoutForm';
 
 import '../../scss/primary.scss';
 
-export default class PostWorkout extends React.Component {
+class PostWorkout extends React.Component {
   constructor(props) {
     super(props);
 
@@ -48,7 +49,8 @@ export default class PostWorkout extends React.Component {
         else {
           this.setState({user: res.body})
         }
-      })
+      });
+      console.log(this.props.user);
     }
 
   render() {
@@ -117,3 +119,5 @@ export default class PostWorkout extends React.Component {
     );
   }
 }
+
+export default connect(state => ({user: state.user}))(PostWorkout);

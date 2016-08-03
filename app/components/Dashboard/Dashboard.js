@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import { Accordion } from 'react-bootstrap';
 import { Link, browserHistory } from "react-router";
+import store from '../../store';
+import { signin } from '../../ducks/userDuck';
 
 import { getAuth } from '../../services/loginService.js';
 import { getUserGoals } from '../../services/goalService';
@@ -23,7 +26,7 @@ import gym from '../../images/gym.png';
 import running from '../../images/running.png';
 import '../../scss/primary.scss';
 
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
@@ -72,19 +75,19 @@ export default class Dashboard extends React.Component {
         browserHistory.push('/');
       }
       else {
+        store.dispatch(signin(res.body));
         this.setState({
-          user: res.body,
           weightChartUrl: `/api/weightchart/${res.body._id}`,
           cardioChartUrl: `/api/cardiochart/${res.body._id}`
         });
 
         new Promise((resolve, reject) => {
-          getUserGoals(this.state.user._id, resolve, reject);
+          getUserGoals(this.props.user._id, resolve, reject);
         }).then((res, err) => {
           if (err) { return }
           else {
             this.setState({userGoals: res.body});
-            console.log(this.state.userGoals);
+          //  console.log(this.state.userGoals);
             // Seperate goals by goal type
 
             this.state.userGoals.map(goal => {
@@ -120,7 +123,7 @@ export default class Dashboard extends React.Component {
           }
         })
       }
-    })
+    });
 
   }
 
@@ -145,7 +148,7 @@ export default class Dashboard extends React.Component {
                   <div className="row">
 
                     <div className="col-md-3" id="left-dash">
-                      <UserWidget user={this.state.user} />
+                      <UserWidget user={this.props.user} />
 
                       <FollowingLeaderboard />
 
@@ -179,7 +182,7 @@ export default class Dashboard extends React.Component {
                       </div>
 
 
-                      <PicWidget user={this.state.user} />
+                      <PicWidget user={this.props.user} />
 
                     </div>
 
@@ -196,3 +199,5 @@ export default class Dashboard extends React.Component {
     );
   }
 }
+
+export default connect(state => ({user: state.user}))(Dashboard);
