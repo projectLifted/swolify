@@ -66,7 +66,7 @@ export default class EditGoal extends React.Component {
 
       <div className="page-title-bar">
           <h1>Edit Goal</h1>
-          <h4>Goal Name Here</h4>
+          <h5>Goal Name Here</h5>
       </div>
 
       <div className="container main-content">

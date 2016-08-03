@@ -13,6 +13,7 @@ module.exports = app => {
     }));
 
     app.get('/api/auth/facebook/logout', function(req, res){
+			console.log(req.body);
       req.logout();
       res.redirect('/');
   });
