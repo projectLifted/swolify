@@ -50,8 +50,7 @@ module.exports = {
              console.log('succcessfully updated user');
           }
       });
-      res.end();
-
+      
       return res.status(200).json(updatedUser);
     });
   },
