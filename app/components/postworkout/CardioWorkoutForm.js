@@ -39,7 +39,7 @@ export default class CardioWorkoutForm extends React.Component {
       workoutDistance: this.state.workoutDistance,
       workoutMileTime: workoutMileTime,
       currentWeight: this.state.currentWeight
-    })
+    }, this.props.goalId);
       browserHistory.push("/dashboard");
   }
 
@@ -121,7 +121,7 @@ export default class CardioWorkoutForm extends React.Component {
                         <div className="input-group">
                             <input
                             type="number"
-                            min={0} step={5}
+                            min={0}
                             className="form-control"
                             id="workoutWeight"
                             placeholder=""

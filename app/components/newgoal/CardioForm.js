@@ -99,7 +99,6 @@ export default class CardioForm extends React.Component {
                     <div className="input-group-addon">Miles</div>
                 </div>
             </div>
-
         </div>
 
 

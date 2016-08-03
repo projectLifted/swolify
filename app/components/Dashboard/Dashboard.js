@@ -42,7 +42,8 @@ class Dashboard extends React.Component {
       cardioGoals: [],
       user: {},
       weightChartUrl: '',
-      cardioChartUrl: ''
+      cardioChartUrl: '',
+      noGoals: false
     }
 
   }
@@ -79,16 +80,23 @@ class Dashboard extends React.Component {
         store.dispatch(signin(res.body));
         this.setState({
           weightChartUrl: `/api/weightchart/${res.body._id}`,
-          cardioChartUrl: `/api/cardiochart/${res.body._id}`
+          cardioChartUrl: `/api/cardiochart/${res.body._id}`,
+          bodyWeightChartUrl: `/api/bodyweightchart/${res.body._id}`
         });
 
         new Promise((resolve, reject) => {
           getUserGoals(this.props.user._id, resolve, reject);
         }).then((res, err) => {
           if (err) { return }
+          else if (res.body.length === 0) {
+            this.setState({
+              noGoals: true
+            })
+            return console.log("no goals");
+          }
           else {
             this.setState({userGoals: res.body});
-          //  console.log(this.state.userGoals);
+
             // Seperate goals by goal type
             res.body.map(goal => {
               //store.dispatch(postGoal(goal));
@@ -157,15 +165,39 @@ class Dashboard extends React.Component {
 
                     <div className="col-md-6" id="content-dash">
 
+                    {this.state.noGoals
+                      ?
+
+                      <center><h2>You have no goals, bro. Time to set some goals.</h2>
+
+                      <Link to="/new-goal"><button className="btn-lg btn-success" id="no-goals-btn"><i className="fa fa-plus-circle" aria-hidden="true"></i> Add a New Goal</button></Link></center>
+
+                      :
+
+
+                      <span>
                       <ChartWidget title="Weight Goals: Rep Max" chartUrl={this.state.weightChartUrl} />
                       <ChartWidget title="Cardio Goals: Miles/Distance" chartUrl={this.state.cardioChartUrl} />
-                      <ChartWidget title="Body Weight" />
+                      <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
+                      </span>
+
+                      }
+
                       <WallWidget />
 
                     </div>
 
                     <div className="col-md-3" id="right-dash">
 
+                    {this.state.noGoals
+
+                      ?
+
+                        <span></span>
+
+                      :
+
+                      <span>
                       <div id="goals-panel">
 
                       <div id="weightlifting-goals">
@@ -174,13 +206,16 @@ class Dashboard extends React.Component {
                       </div>
                       </div>
 
-
                       <div id="goals-panel">
                         <div id="cardio-goals">
                         <h2><img src={running} /> Cardio Goals</h2>
                           {this.state.cardioPanels}
                         </div>
                       </div>
+
+                      </span>
+
+                      }
 
 
                       <PicWidget user={this.props.user} />

@@ -55,7 +55,7 @@ class PostWorkout extends React.Component {
 
       <div className="page-title-bar">
           <h1>Post Workout</h1>
-          <h4>{this.props.params.goalName}</h4>
+          <h5>{this.props.params.goalName}</h5>
       </div>
 
       <div className="container main-content">

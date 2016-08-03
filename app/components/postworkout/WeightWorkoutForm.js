@@ -165,7 +165,7 @@ export default class WeightWorkoutForm extends React.Component {
                             <div className="input-group">
                                 <input
                                 type="number"
-                                min={0} step={5}
+                                min={0}
                                 className="form-control"
                                 id="workoutWeight"
                                 placeholder=""
