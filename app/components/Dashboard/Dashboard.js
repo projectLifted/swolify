@@ -46,6 +46,8 @@ class Dashboard extends React.Component {
       weightChartUrl: '',
       cardioChartUrl: '',
       noGoals: false,
+      weightGoalsPresent: false,
+      cardioGoalsPresent: false
     }
 
   }
@@ -63,7 +65,6 @@ class Dashboard extends React.Component {
   }
 
   handleFile(field, event) {
-    console.log(event.url);
     this.setState({
        profilePicture: event.url
     });
@@ -98,7 +99,6 @@ class Dashboard extends React.Component {
           }
           else {
             if (this.props.goals.goals.length === 0) {
-              console.log("hello");
               res.body.map(goal => {
                 store.dispatch(postGoal(goal));
               })
@@ -108,9 +108,11 @@ class Dashboard extends React.Component {
             res.body.map(goal => {
 
               if (goal.goalType === "WeightLifting") {
+                this.setState({weightGoalsPresent: true})
                 this.setState((state) => ({weightLiftingGoals: state.weightLiftingGoals.concat(goal)}))
               }
-              else {
+              else if (goal.goalType === "Cardio") {
+                this.setState({cardioGoalsPresent: true})
                 this.setState((state) => ({cardioGoals: state.cardioGoals.concat(goal)}))
               }
             });
@@ -220,20 +222,42 @@ class Dashboard extends React.Component {
                     {this.state.noGoals
                       ?
 
+                      <span>
                       <center><h2>You have no goals, bro. Time to set some goals.</h2>
 
                       <Link to="/new-goal"><button className="btn-lg btn-success" id="no-goals-btn"><i className="fa fa-plus-circle" aria-hidden="true"></i> Add a New Goal</button></Link></center>
+                      </span>
 
                       :
 
+                    <span></span>
+
+                      }
+
+
+                      {this.state.weightGoalsPresent ?
 
                       <span>
                       <ChartWidget title="Weight Goals: Rep Max" chartUrl={this.state.weightChartUrl} />
-                      <ChartWidget title="Cardio Goals: Miles/Distance" chartUrl={this.state.cardioChartUrl} />
-                      <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
+
                       </span>
 
+                      :
+
+                      <span></span>
+
                       }
+
+                     {this.state.cardioGoalsPresent ?
+
+                      <ChartWidget title="Cardio Goals: Miles/Distance" chartUrl={this.state.cardioChartUrl} />
+
+
+                     :
+                     <span> </span>
+                      }
+
+                      <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
 
                       <WallWidget />
 
@@ -241,16 +265,14 @@ class Dashboard extends React.Component {
 
                     <div className="col-md-3" id="right-dash">
 
-                    {this.state.noGoals
 
-                      ?
-
-                        <span></span>
-
-                      :
 
                       <span>
+
+                    {this.state.weightGoalsPresent ?
+
                       <div id="goals-panel">
+
 
                       <div id="weightlifting-goals">
                       <h2><img src={gym} /> Weightlifting Goals</h2>
@@ -258,16 +280,33 @@ class Dashboard extends React.Component {
                       </div>
                       </div>
 
+                        :
+
+                        <span></span>
+
+                        }
+
+                        {this.state.cardioGoalsPresent ?
+
+
                       <div id="goals-panel">
+
                         <div id="cardio-goals">
+
+
                         <h2><img src={running} /> Cardio Goals</h2>
                           {this.state.cardioPanels}
                         </div>
+
                       </div>
 
-                      </span>
+                        :
 
-                      }
+                       <span></span>
+
+                       }
+
+                      </span>
 
                       <PicWidget user={this.props.user} />
 

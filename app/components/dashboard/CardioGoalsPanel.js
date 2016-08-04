@@ -22,7 +22,7 @@ export default class CardioGoalsPanel extends React.Component {
               <ProgressBar bsStyle="success" now={this.props.timeProgress} label={`${this.props.timeProgress}%`} />
               <p>Avg Distance: {this.props.avgDistance}</p>
               <p>Avg Mile Time: {this.props.mileMinutes} Minutes and {this.props.mileSeconds} Seconds</p>
-              <Link to="/" className="btn btn-info"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</Link>
+              <Link to={`/edit-goal/${this.props.goalId}`} className="btn btn-info"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</Link>
               <Link to={`/post-workout/cardio/${this.props.goalId}/${this.props.title}`} className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Workout</Link>
           </Panel>
       </Accordion>

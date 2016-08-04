@@ -1,29 +1,4 @@
-.edit-buttons {
-  text-align: center;
-}
-
-.edit-buttons button {
-  margin-right: 10px;
-}
-
-.edit-buttons .btn-info {
-  font-size: 1.8em;
-  margin-top: 30px;
-}
-
-
-@media (max-width: 768px) {
-
-  .edit-buttons .btn-info {
-    margin-top: 0;
-  }
-
-  .edit-buttons .btn-primary {
-    margin-top: 10px;
-  }
-
-  .edit-buttons .form-submit {
-    margin-bottom: 10px;
-  }
-
+#edit-goal-button {
+  font-size: 1.6em;
+  margin-top: 25px;
 }

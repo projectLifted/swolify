@@ -60,12 +60,16 @@ class PicWidget extends React.Component {
         <PicGridItem key={pic} pic={pic} />
     ))
 
+    const options = {
+      buttonText: 'Add Photo',
+    };
+
     return (
 
       <div id="pic-box">
 
 
-        <ReactFilepicker buttonClass="btn btn-success btn-filepicker" apikey={'AgUFEbg5LQ6OC6EafL3gqz'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} />
+        <ReactFilepicker options={options} buttonClass="btn btn-success btn-filepicker" apikey={'AgUFEbg5LQ6OC6EafL3gqz'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} />
 
 
       <div id="pic-widget">
