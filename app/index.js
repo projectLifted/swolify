@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <Route path="/workouts" component={MyWorkouts}/>
           <Route path="/edit-profile" component={EditProfile}/>
           <Route path="/edit-goal/:goalId" component={EditGoal}/>
-          <Route path="/friend-dash" component={FriendDash}/>
         </Router>
       </Provider>
     , reactNode);

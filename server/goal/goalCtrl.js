@@ -51,6 +51,15 @@ module.exports = {
       });
     });
   },
+  getOneGoal(req, res) {
+    Goal.findById(req.params.goalId, (err, goal) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+        console.log(goal);
+        return res.status(200).json(goal);
+      });
+  },
 
   findUserGoals(req, res) {
     Goal.where('goalOwner').equals(req.params.userId)

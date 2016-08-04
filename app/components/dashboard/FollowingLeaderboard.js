@@ -6,40 +6,42 @@ import '../../scss/primary.scss';
 export default class FollowingLeaderboard extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isFollowing: false,
+    }
+  }
+
+  componentWillMount() {
+
+    var followingArray = this.props.authUser.following;
+    for (var i = 0; i < followingArray.length; i++) {
+      if ( followingArray[i] === this.props.users._id )  {
+        this.setState({ isFollowing : true })
+      }
+    }
+
   }
 
   render() {
-
-    let followingImg = {
-      backgroundImage: `url("http://cps-static.rovicorp.com/3/JPG_400/MI0003/146/MI0003146038.jpg?partner=allrovi.com")`
+    const profileImg = {
+      backgroundImage: `url("${this.props.pic}")`
     };
+
 
     return (
 
-      <div className="panel panel-default" id="following-widget">
-
-          <div className="panel-heading">
-              <center><i className="fa fa-users" aria-hidden="true"></i> Following</center>
-          </div>
-
-          <div className="list-group">
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith Mooboo Lincoln</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith Mooboo Lincoln</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith Mooboo Lincoln</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith Mooboo Lincoln</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Smith Mooboo Lincoln</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith Mooboo Lincoln</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith Mooboo Lincoln</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith</div></Link>
-              <Link to="/" className="list-group-item"><div style={followingImg} className="following-pic"></div><div className="following-name">Bob Marley Johnson Smith Mooboo Lincoln</div></Link>
-              <div className="list-footer">
-                <Link to="/search"><i className="fa fa-search" aria-hidden="true"></i> Find and Remove Followers</Link>
-              </div>
-              </div>
-          </div>
-
+      <div>
+        { this.state.isFollowing
+          ?
+            <Link to="/" className="list-group-item">
+                <div style={profileImg} className="following-pic"></div>
+                <div className="following-name">{this.props.name}</div>
+            </Link>
+          :
+            <span></span>
+          }
+      </div>
 
     );
   }

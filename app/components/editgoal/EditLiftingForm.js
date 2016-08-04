@@ -1,22 +1,17 @@
 import React from 'react';
-
+import { browserHistory } from 'react-router';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import DeleteGoalModal from '../editgoal/DeleteGoalModal';
-
-import { getAuth } from '../../services/loginService.js';
+import { updateGoal } from '../../services/goalService';
+import DeleteGoalModal from './DeleteGoalModal';
 import '../../scss/primary.scss';
-import { createGoal } from '../../services/goalService';
 
-export default class LiftingForm extends React.Component {
+export default class EditLiftingForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      goalType: "weightlifting",
-      goalName: "",
-      goalMax: 0,
-      endDate: moment(),
+      show: false
     }
   }
 
@@ -32,26 +27,28 @@ export default class LiftingForm extends React.Component {
 
   handleSubmit(event) {
 
-      createGoal({
-        goalType: "WeightLifting",
+    event.preventDefault();
+      updateGoal({
         goalName: this.state.goalName,
-        goalStartDate: moment,
-        goalEndDate: this.state.endDate,
-        goalMax: this.state.max,
-        workouts: [],
-        goalOwner: this.state.user._id
-      }).then((res, err) => {
-        if (err) {
-          return console.error(err);
-        }
-        console.log(res);
-      })
+        goalMax: this.state.goalMax,
+      }, this.props.goal._id);
+
+        browserHistory.push("/dashboard")
   }
 
+
+   componentWillReceiveProps(){
+      this.setState({
+        goalName: this.props.goal.goalName,
+        goalMax: this.props.goal.goalMax
+      })
+    }
+
   render() {
+
     return (
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
-      <div>
+
         <div className="col-md-10">
           <div className="form-group">
             <label for="goalName">Name Your Goal (example: <i>"Bench Press"</i>)</label>
@@ -69,9 +66,9 @@ export default class LiftingForm extends React.Component {
 
       </div>
 
-        <div className="col-md-6">
+        <div className="col-md-3">
             <div className="form-group">
-                <label for="weightGoal">Max Goal</label>
+                <label for="weightGoal">One Rep Max Goal</label>
                 <div className="input-group">
                     <input
                       type="number"
@@ -91,21 +88,22 @@ export default class LiftingForm extends React.Component {
 
         </div>
 
-        <div className="col-md-4">
-            <div className="form-group">
-                <label for="goalDate">Goal Completion Date</label>
-                  <DatePicker className="form-control date-picker"
-                       selected={this.state.endDate}
-                       onChange={this.handleDate.bind(this, "endDate")}  />
-                </div>
-        </div>
-        <div className="edit-buttons">
-            <button type="submit" className="btn btn-info form-submit"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Save Changes</button>
 
-            <DeleteGoalModal />
+        <div className="row">
+
+          <div className="col-md-10">
+
+            <center><button type="submit" className="btn btn-info form-submit" id="edit-goal-button"><i className="fa fa-plus-square" aria-hidden="true"></i> Save Changes</button>
+
+            <DeleteGoalModal goalId={this.props.goal._id} show={this.state.show} /></center>
+
+
+
+          </div>
 
         </div>
-      </div>
+
+
     </form>
     )
   }

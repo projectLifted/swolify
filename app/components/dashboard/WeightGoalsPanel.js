@@ -27,7 +27,7 @@ export default class WeightGoalsPanel extends React.Component {
                 {
                   this.props.progress >= 100 ?
                   <div>
-                    <p>Congrats on ahieving your goal!</p>
+                    <p>Congrats on achieving your goal!</p>
                     <button onClick={this.setGoalToUpdate.bind(this, this.props.goalId, this.props.title)} className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Aim Higher!</button>
                   </div>
                   :
@@ -38,6 +38,7 @@ export default class WeightGoalsPanel extends React.Component {
                 </div>
               }
             </div>
+
           </Panel>
         </Accordion>
     );

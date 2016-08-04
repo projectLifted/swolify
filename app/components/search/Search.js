@@ -73,6 +73,7 @@ export default class Search extends React.Component {
       return (
         <SearchResult
           key={user._id}
+          id={user._id}
           name={user.firstName + ' ' + user.lastName}
           pic={user.profilePicture}
           age={user.birthDate}
