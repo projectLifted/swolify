@@ -47,7 +47,6 @@ module.exports = {
         if (err) {
           return res.status(500).json(err);
         }
-        console.log(req.body);
         return res.status(200).json(goal);
       });
     });
@@ -63,10 +62,18 @@ module.exports = {
         goals.map((goal) => {
           if (goal.goalType === "WeightLifting") {
             goal.workouts.length > 0 ?
-            goal.goalMaxProgress = ((goal.workouts[goal.workouts.length - 1].workoutMax - goal.workouts[0].workoutMax) / (goal.goalMax - goal.workouts[0].workoutMax))
+            (
+            goal.workouts[goal.workouts.length - 1].workoutMax >= goal.goalMax ?
+              goal.goalMaxProgress = 100
+              :
+              goal.goalMaxProgress = ((goal.workouts[goal.workouts.length - 1].workoutMax - goal.workouts[0].workoutMax) / (goal.goalMax - goal.workouts[0].workoutMax))
+            )
              :
             goal.goalMaxProgress = 0;
 
+            // console.log(goal.goalMaxProgress, "GOAL MAX PROGRESS");
+            // console.log(goal.workouts[goal.workouts.length - 1].workoutMax - goal.workouts[0].workoutMax);
+            // console.log(goal.goalMax - goal.workouts[0].workoutMax, "DIVISOR");
             returnedGoals.push({
               _id: goal._id,
               goalType: goal.goalType,
