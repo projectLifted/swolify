@@ -51,23 +51,25 @@ export default class Dashboard extends React.Component {
     });
   }
 
-  // componentWillMount(){
-  //   new Promise((resolve, reject)=> {
-  //     getAuth(resolve, reject);
-  //   }).then((res, err)=> {
-  //     if (err){
-  //     }
-  //     else if(res.body === false){
-  //       browserHistory.push('/');
-  //     }
-  //     else {
-  //       this.setState({user: res.body})
-  //       console.log(this.state.user);
-  //     }
-  //   })
-  //
-  // }
+  componentWillMount(){
+    new Promise((resolve, reject)=> {
+      getAuth(resolve, reject);
+    }).then((res, err)=> {
+      if (err){
+      }
+      else if(res.body === false){
+        browserHistory.push('/');
+      }
+      else {
+        this.setState({user: res.body})
+        this.getUser();
+      }
+    })
+  }
 
+  getUser(){
+
+  }
 
 
   render() {
