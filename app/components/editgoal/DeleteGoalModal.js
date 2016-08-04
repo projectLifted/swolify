@@ -42,7 +42,7 @@ export default class DeleteGoalModal extends React.Component {
         this.setState({
           show: false
         })
-        browserHistory.push('/');
+        browserHistory.push('/dashboard');
       })
     }
 
