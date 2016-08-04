@@ -98,7 +98,6 @@ class Dashboard extends React.Component {
           }
           else {
             if (this.props.goals.goals.length === 0) {
-              console.log("hello");
               res.body.map(goal => {
                 store.dispatch(postGoal(goal));
               })
@@ -106,7 +105,7 @@ class Dashboard extends React.Component {
 
             // Seperate goals by goal type
             res.body.map(goal => {
-
+              console.log(goal);
               if (goal.goalType === "WeightLifting") {
                 this.setState((state) => ({weightLiftingGoals: state.weightLiftingGoals.concat(goal)}))
               }
