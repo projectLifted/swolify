@@ -45,7 +45,6 @@ class PostWorkout extends React.Component {
     }
 
   render() {
-    console.log(this.props.goals);
     return (
     <article>
       <header id="post-workout-header">

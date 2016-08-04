@@ -1,12 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import '../../scss/primary.scss';
 
-export default class GoalsWidget extends React.Component {
+class GoalsWidget extends React.Component {
   constructor(props) {
     super(props);
   }
+
+
+  componentDidMount() {
+    console.log(this.props.goals);
+
+  }
+
+
   render() {
+    const goalData = this.props.goals.goals.map((goal) => (
+      <tr>
+        <td>
+          {goal.goalName}
+        </td>
+        <td>
+          {goal.goalMaxProgress}%
+        </td>
+      </tr>
+    ))
+
     return (
       <div className="panel panel-default" id="goals-widget">
 
@@ -26,7 +46,9 @@ export default class GoalsWidget extends React.Component {
                   </td>
               </tr>
 
-              <tr>
+              {goalData}
+
+              {/*<tr>
                   <td>
                       Bench Press
                   </td>
@@ -70,7 +92,7 @@ export default class GoalsWidget extends React.Component {
                   <td>
                       50%
                   </td>
-              </tr>
+              </tr>*/}
               </tbody>
           </table>
       </div>
@@ -78,3 +100,5 @@ export default class GoalsWidget extends React.Component {
     );
   }
 }
+
+export default connect(state => ({goals: state.goals}))(GoalsWidget)

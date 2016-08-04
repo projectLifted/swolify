@@ -106,7 +106,7 @@ class Dashboard extends React.Component {
 
             // Seperate goals by goal type
             res.body.map(goal => {
-
+              console.log(goal);
               if (goal.goalType === "WeightLifting") {
                 this.setState({weightGoalsPresent: true})
                 this.setState((state) => ({weightLiftingGoals: state.weightLiftingGoals.concat(goal)}))

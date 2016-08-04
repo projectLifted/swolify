@@ -1,7 +1,7 @@
 import request from 'superagent';
 import store from '../store';
 import { postGoal } from '../ducks/goalDuck';
-import { setGoals } from '../ducks/goalDuck';
+import { setGoals, removeThisGoal } from '../ducks/goalDuck';
 
 export function createGoal(goalInfo, resolve, reject) {
   request.post('/api/goals')
@@ -10,7 +10,7 @@ export function createGoal(goalInfo, resolve, reject) {
       if (err) {
         return reject(err);
       }
-      return store.dispatch(postGoal(goal));
+      return store.dispatch(postGoal(goal.body));
     });
 }
 
@@ -21,6 +21,16 @@ export function getUserGoals(userId, resolve, reject) {
         return reject(err);
       }
       return resolve(goals);
+    });
+}
+
+export function removeUserGoal(userId) {
+  request.delete(`/api/goals/${userId}`)
+    .end((err, goal) => {
+      if (err) {
+        return console.log(err);
+      }
+      return store.dispatch(removeThisGoal(goal.body));
     });
 }
 
@@ -54,8 +64,3 @@ export function updateGoal(goalInfo, goalId, resolve, reject) {
       return store.dispatch(postGoal(goal));
     });
 }
-
-
-// export funcion setUserGoals(userId, goals, reject) {
-//   request.get(`/api/goals/${userId}`, (err, userGoals))
-// }
