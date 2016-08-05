@@ -17,7 +17,7 @@ class GoalsWidget extends React.Component {
 
   render() {
     const goalData = this.props.goals.goals.map((goal) => (
-      <tr>
+      <tr key={goal._id}>
         <td>
           {goal.goalName}
         </td>
@@ -47,52 +47,7 @@ class GoalsWidget extends React.Component {
               </tr>
 
               {goalData}
-
-              {/*<tr>
-                  <td>
-                      Bench Press
-                  </td>
-                  <td>
-                      86%
-                  </td>
-              </tr>
-
-              <tr>
-                  <td>
-                      Squats
-                  </td>
-                  <td>
-                      70%
-                  </td>
-              </tr>
-
-              <tr>
-                  <td>
-                      Pullups
-                  </td>
-                  <td>
-                      26%
-                  </td>
-              </tr>
-
-
-              <tr>
-                  <td>
-                      Body Weight
-                  </td>
-                  <td>
-                      23%
-                  </td>
-              </tr>
-
-              <tr>
-                  <td>
-                      Cycling
-                  </td>
-                  <td>
-                      50%
-                  </td>
-              </tr>*/}
+              
               </tbody>
           </table>
       </div>

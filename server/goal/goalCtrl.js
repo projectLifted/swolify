@@ -73,7 +73,7 @@ module.exports = {
             goal.workouts.length > 0 ?
             (
             goal.workouts[goal.workouts.length - 1].workoutMax >= goal.goalMax ?
-              goal.goalMaxProgress = 100
+              goal.goalMaxProgress = 1
               :
               goal.goalMaxProgress = ((goal.workouts[goal.workouts.length - 1].workoutMax - goal.workouts[0].workoutMax) / (goal.goalMax - goal.workouts[0].workoutMax))
             )
@@ -90,7 +90,7 @@ module.exports = {
               goalOwner: goal.goalOwner,
               goalStartDate: goal.goalStartDate,
               goalName: goal.goalName,
-              goalMaxProgress: goal.goalMaxProgress * 100,
+              goalMaxProgress: Math.floor(goal.goalMaxProgress * 100),
               workouts: goal.workouts,
             });
           }

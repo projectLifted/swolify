@@ -50,12 +50,38 @@ module.exports = {
              console.log('succcessfully updated user');
           }
       });
-      
+
       return res.status(200).json(updatedUser);
     });
   },
 
-  addFollower(req, res) {
+  addUserPost(req, res) {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      user.wallPosts.push(req.body);
+      User.findByIdAndUpdate(req.params.id, user, (err, updatedUser) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        return res.status(200).json(updatedUser);
+      });
+    });
+  },
 
+  deletePost(req, res) {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      user.wallPosts.findByIdAndRemove(req.params.postId, (err, post) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        return res.status(200).json(post);
+      });
+    });
   }
+
 };

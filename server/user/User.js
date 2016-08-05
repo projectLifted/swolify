@@ -7,7 +7,7 @@ const User = mongoose.Schema({
   email: {type: String, trim: true},
   profilePicture: {type: String},
   pictures: [],
-  wallPosts: [{message: String, sender: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}}],
+  wallPosts: [{message: String, sender: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}, posterPic: String, posterName: String}],
   bodyType: {type: String},
   heightFeet: {type: Number},
   heightInches: {type: Number},

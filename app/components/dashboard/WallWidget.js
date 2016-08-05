@@ -1,16 +1,20 @@
 import React from 'react';
 import {Accordion, ListGroup, ListGroupItem, Panel, ProgressBar} from 'react-bootstrap';
 import {Link, browserHistory} from "react-router";
+import { connect } from "react-redux";
+import { postToWall } from "../../services/userService";
 
 import '../../scss/primary.scss';
+import WallPostComponent from './WallPostComponent';
 
-export default class WallWidget extends React.Component {
+class WallWidget extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       max_chars: 160,
-      chars_left: 160
+      chars_left: 160,
+      messageContent: ""
     }
 
   }
@@ -18,15 +22,26 @@ export default class WallWidget extends React.Component {
   handleTextAreaChange(event) {
     let input = event.target.value;
       this.setState({
-        chars_left: this.state.max_chars - input.length
+        chars_left: this.state.max_chars - input.length,
+        messageContent: input
       });
   }
 
-  render() {
+  submitPost(content) {
+    postToWall({message: content, sender: this.props.user._id, posterPic: this.props.user.profilePicture, posterName: `${this.props.user.firstName} ${this.props.user.lastName}`}, this.props.user._id);
+  }
 
-    let followingImg = {
-      backgroundImage: `url("http://a4.files.biography.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTIwNjA4NjMzODg2NTc0MDky.jpg")`
-    };
+  render() {
+    const posts = this.props.user.wallPosts.reverse().map((post) => (
+      <WallPostComponent
+          key={post._id}
+          postId={post._id}
+          posterName={post.posterName}
+          posterPic={post.posterPic}
+          message={post.message}
+      />
+    ))
+    const userPosts = this.props.user.wallPosts.reverse();
 
     return (
 
@@ -34,67 +49,19 @@ export default class WallWidget extends React.Component {
     <div className="panel-heading"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Wall Posts</div>
     <div className="panel-body">
 
-        <textarea maxLength="160" onChange={this.handleTextAreaChange.bind(this)} className="form-control" rows="3"></textarea>
+        <textarea maxLength="160" id="postContent" onChange={this.handleTextAreaChange.bind(this)} className="form-control" rows="3"></textarea>
           <p className="pull-left chars-left">{this.state.chars_left}</p>
-        <button id="post-to-wall" className="btn btn-info pull-right"><i className="fa fa-pencil" aria-hidden="true"></i> Post</button>
+        <button id="post-to-wall" onClick={this.submitPost.bind(this, this.state.messageContent)} className="btn btn-info pull-right"><i className="fa fa-pencil" aria-hidden="true"></i> Post</button>
 
     </div>
           <div className="list-group">
-          <div className="list-group-item">
-            <div className="wall-container">
-                <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link> <button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
-                <div className="wall-content">Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Pellentesque tempus auctor ex nec sodales. Duis orci risus, gravida id elit sit amet, suscipit feugiat urna.
-                </div>
-          </div>
-        </div>
 
-          <div className="list-group-item">
-            <div className="wall-container">
-                <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
-                <div className="wall-content">Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Pellentesque
-                </div>
-          </div>
-          </div>
-
-          <div className="list-group-item">
-            <div className="wall-container">
-                <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
-                <div className="wall-content">Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Pellentesque tempus auctor ex nec sodales. Duis orci risus, gravida id elit sit amet, suscipit feugiat urna.
-                Duis orci risus, gravida id elit sit amet, suscipit feugiat urna. Pellentesque tempus auctor ex nec sodales. Duis orci risus, gravida id elit sit amet, suscipit feugiat urna.
-                Duis orci risus, gravida id elit sit amet, suscipit feugiat urna.
-                </div>
-          </div>
-          </div>
-
-          <div className="list-group-item">
-            <div className="wall-container">
-              <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
-                <div className="wall-content">Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Pellentesque tempus auctor ex nec sodales. Duis orci risus, gravida id elit sit amet, suscipit feugiat urna.
-                </div>
-          </div>
-        </div>
-
-          <div className="list-group-item">
-            <div className="wall-container">
-              <div style={followingImg} className="wall-pic"></div>
-                <div className="wall-name"><Link to="/">Abraham Lincoln</Link><button className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
-                </div>
-                <div className="wall-content">Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Pellentesque tempus
-                </div>
-          </div>
-          </div>
+          {posts}
 
         </div>
     </div>
     );
   }
 }
+
+export default connect(state => ({user: state.user}))(WallWidget);

@@ -31,7 +31,6 @@ export function postGoal(goal) {
 }
 
 export function removeThisGoal(goal) {
-  console.log(goal);
   return { type: REMOVE_GOAL, goal };
 }
 
