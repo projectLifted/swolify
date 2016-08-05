@@ -8,4 +8,5 @@ module.exports = app => {
   app.get('/api/users', userCtrl.getUsers);
   app.post('/api/user/:id', userCtrl.addUserPost);
   app.delete('/api/user/:id/wallpost/:postId', userCtrl.deletePost);
+  app.get('/api/user/:id', userCtrl.getPreviouslyPostedGoal);
 };

@@ -33,7 +33,23 @@ export default function reducer(state = initialState, action) {
 
     case WALL_POST:
       return {
-        wallPosts: [...state.wallPosts, action.post]
+        _id: state._id,
+        facebookId: state.facebookId,
+        updated: state.updated,
+        following: state.following,
+        wallPosts: [...state.wallPosts, action.post],
+        pictures: state.pictures,
+        profilePicture: state.profilePicture,
+        goalWeight: state.goalWeight,
+        startWeight: state.startWeight,
+        heightInches: state.heightInches,
+        heightFeet: state.heightFeet,
+        bodyType: state.bodyType,
+        gender: state.gender,
+        birthDate: state.birthDate,
+        location: state.location,
+        lastName: state.lastName,
+        firstName: state.firstName
       };
 
     case DELETE_POST:
@@ -54,6 +70,7 @@ export function signout() {
 }
 
 export function postMessage(post) {
+  console.log(post)
   return {type: WALL_POST, post}
 }
 
