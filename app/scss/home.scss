@@ -1,7 +1,67 @@
+.tinUpIn {
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: tinUpIn;
+  animation-name: tinUpIn;
+}
 
-#homepage-logo {
-  margin-left: 15px;
+@-webkit-keyframes tinUpIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(1, 1) translateY(-900%);
+  }
+
+  50%, 70%, 90% {
+    opacity: 1;
+    -webkit-transform: scale(1.1, 1.1) translateY(0);
+  }
+
+  60%, 80%, 100% {
+    opacity: 1;
+    -webkit-transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes tinUpIn {
+  0% {
+    opacity: 0;
+    transform: scale(1, 1) translateY(-900%);
+  }
+
+  50%, 70%, 90% {
+    opacity: 1;
+    transform: scale(1.1, 1.1) translateY(0);
+  }
+
+  60%, 80%, 100% {
+    opacity: 1;
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
+.textLogo {
+  font-family: Work Sans, sans-serif;
+  font-weight: bolder;
+  font-size: 3.4em;
+  color: $red-orange !important;
+  text-transform: uppercase;
+  margin-top: 17px;
+  margin-left: 10px;
   float: left;
+  clear: both;
+}
+
+.jumbotron .textLogo {
+  font-size: 4.4em;
+  margin-top: -20px;
+}
+
+.logoIcon {
+  font-family: Gym;
+  font-weight: normal;
+  color: white;
+  padding-right: 3px;
 }
 
 .jumbotron {
@@ -14,11 +74,12 @@
 }
 
 .jumbotron {
-  background-image: url('../images/jumbotron.jpg');
+  background-image: url('../images/newgoalbgd.jpg');
   background-size: cover;
   background-position: center;
   padding-top: 0;
   margin-top: 0;
+  border-bottom: 4px solid $red-orange;
 }
 
 .jumbotron .btn-primary {
@@ -47,8 +108,9 @@
 }
 
 .jumbotron h1 {
-  padding-top: 150px;
+  padding-top: 180px;
   margin-bottom: 50px;
+  text-transform: uppercase;
 }
 
 #promotionTable {
@@ -71,7 +133,7 @@
   }
 
   .jumbotron h1 {
-    padding-top: 120px;
+    padding-top: 150px;
     margin-bottom: 50px;
   }
 
@@ -79,18 +141,18 @@
 
 @media (max-width: 768px) {
 
-  #homepage-logo {
-    max-width: 300px;
+  .jumbotron .textLogo {
+    font-size: 3em;
     float: none;
-    width: 80%;
-    display: inline-block;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  #homepage-logo img {
-    vertical-align: center;
+  .textLogo {
+    margin-top: 5px;
+    font-size: 2em;
+    margin-left: 0;
   }
 
   .jumbotron {

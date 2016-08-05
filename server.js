@@ -58,7 +58,10 @@ passport.use(new FacebookStrategy({
       }
       else if(user) {
           user.updated = new Date();
-          return done(err, user);
+          User.findByIdAndUpdate(user._id, user, (err, user)=>{
+            console.log(user);
+            return done(err, user);
+          })
       }
       else {
         return done(err, user);

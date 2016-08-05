@@ -107,9 +107,6 @@ module.exports = {
           returnedGoals.push(item);
 
         })
-
-        console.log(returnedGoals);
-
         return res.status(200).json(returnedGoals);
       });
   }
