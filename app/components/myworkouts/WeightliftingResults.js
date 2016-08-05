@@ -1,22 +1,22 @@
 import React from 'react';
+import { deleteWorkout } from './MyWorkouts.js'
 
 export default class WeightliftingResults extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      testDate: "2 months ago"
-    }
-
   }
 
   render() {
+
+console.log(deleteWorkout);
+
     return (
       <tr>
-        <td>{this.state.testDate}</td>
-        <td>Bench Press</td>
-        <td>122</td>
-        <td>166</td>
+        <td>{this.props.date}</td>
+        <td>???</td>
+        <td>{this.props.max}</td>
+        <td>{this.props.weight}</td>
         <td><button className="btn btn-danger">X</button></td>
       </tr>
 

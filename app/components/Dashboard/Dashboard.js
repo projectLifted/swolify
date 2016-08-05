@@ -98,7 +98,6 @@ class Dashboard extends React.Component {
           }
           else {
             if (this.props.goals.goals.length === 0) {
-              console.log("hello");
               res.body.map(goal => {
                 store.dispatch(postGoal(goal));
               })
