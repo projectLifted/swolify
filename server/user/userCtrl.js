@@ -15,6 +15,7 @@ module.exports = {
       if (err) {
         return res.status(500).json(err);
       }
+      user.updated = new Date();
       return res.status(200).json(user);
     });
   },
@@ -50,12 +51,9 @@ module.exports = {
              console.log('succcessfully updated user');
           }
       });
-      
+
       return res.status(200).json(updatedUser);
     });
   },
 
-  addFollower(req, res) {
-
-  }
 };

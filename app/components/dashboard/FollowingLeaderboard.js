@@ -28,13 +28,15 @@ export default class FollowingLeaderboard extends React.Component {
       backgroundImage: `url("${this.props.pic}")`
     };
 
+    const linkUrl = `/friend-dash/${this.props.userId}`;
+
 
     return (
 
       <div>
         { this.state.isFollowing
           ?
-            <Link to="/" className="list-group-item">
+            <Link to={linkUrl} className="list-group-item">
                 <div style={profileImg} className="following-pic"></div>
                 <div className="following-name">{this.props.name}</div>
             </Link>

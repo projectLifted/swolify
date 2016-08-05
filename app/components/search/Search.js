@@ -106,9 +106,6 @@ export default class Search extends React.Component {
               <div className="row">
 
 
-
-
-
                 <div className="col-md-8 extra-top" id="search-widget">
                   <form className="form-inline" >
 

@@ -24,3 +24,14 @@ export function putUser(userInfo, userId, resolve, reject) {
 			return store.dispatch(signin(userInfo));
 		});
 }
+
+export function getUser(userId, resolve, reject) {
+	request.get(`/api/users/${userId}`)
+		.end((err, user) => {
+			if (err) {
+				console.log(err);
+				return reject(err);
+			}
+			return resolve( user );
+		});
+}
