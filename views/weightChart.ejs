@@ -11,7 +11,7 @@ const chartData = JSON.parse('<%- JSON.stringify(chartData) %>');
 window.onload = function () {
     var chart = new CanvasJS.Chart("chartContainer",
     {
-        theme: "theme1",
+        theme: "theme4",
         title: {
             text: null
         },
@@ -22,7 +22,7 @@ window.onload = function () {
 
         },
         axisY: {
-          valueFormatString: "###" + " minutes",
+          valueFormatString: "###" + " lbs",
 
           labelFontFamily: "Work Sans"
       },
@@ -38,7 +38,7 @@ chart.render();
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
 </head>
 <body>
-<div id="chartContainer" style="height: 350px; width: 100%;">
+<div id="chartContainer" style="width: 100%;">
 </div>
 </body>
 </html>

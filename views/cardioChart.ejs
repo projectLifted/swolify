@@ -4,6 +4,7 @@
 <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,500,700,600,800,900' rel='stylesheet' type='text/css'>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js" charset="utf-8"></script>
 
+
 <script type="text/javascript">
 
 const chartData = JSON.parse('<%- JSON.stringify(chartData) %>');
@@ -11,7 +12,7 @@ const chartData = JSON.parse('<%- JSON.stringify(chartData) %>');
 window.onload = function () {
     var chart = new CanvasJS.Chart("chartContainer",
     {
-        theme: "theme1",
+        theme: "theme4",
         title: {
             text: null
         },
@@ -38,7 +39,7 @@ chart.render();
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
 </head>
 <body>
-<div id="chartContainer" style="height: 350px; width: 100%;">
+<div id="chartContainer" style="width: 100%;">
 </div>
 </body>
 </html>
