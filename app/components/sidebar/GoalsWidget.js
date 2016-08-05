@@ -38,8 +38,10 @@ class GoalsWidget extends React.Component {
 
 
   render() {
+
     const goalData = this.state.goals.map((goal) => (
       <tr>
+
         <td>
           {goal.goalName}
         </td>
@@ -84,10 +86,7 @@ class GoalsWidget extends React.Component {
                   </td>
               </tr>
 
-
               {goalData}
-
-
 
               </tbody>
 

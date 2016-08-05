@@ -260,7 +260,9 @@ class Dashboard extends React.Component {
 
                       <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
 
-                      <WallWidget />
+                      <WallWidget
+                          wallPosts={this.props.user.wallPosts}
+                      />
 
                     </div>
 

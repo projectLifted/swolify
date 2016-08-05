@@ -64,9 +64,6 @@ export default class LiftingForm extends React.Component {
   }
 
   render() {
-    if (this.props.selectedGoal.goalId) {
-      console.log(this.props.selectedGoal);
-    }
 
     return (
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>

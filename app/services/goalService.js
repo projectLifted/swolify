@@ -24,8 +24,8 @@ export function getUserGoals(userId, resolve, reject) {
     });
 }
 
-export function removeUserGoal(userId) {
-  request.delete(`/api/goals/${userId}`)
+export function removeUserGoal(goalId) {
+  request.delete(`/api/goal/${goalId}`)
     .end((err, goal) => {
       if (err) {
         return console.log(err);
