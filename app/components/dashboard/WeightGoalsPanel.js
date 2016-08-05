@@ -27,12 +27,12 @@ export default class WeightGoalsPanel extends React.Component {
                 {
                   this.props.progress >= 100 ?
                   <div>
-                    <p>Congrats on achieving your goal!</p>
-                    <button onClick={this.setGoalToUpdate.bind(this, this.props.goalId, this.props.title)} className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Aim Higher!</button>
+                    <strong><p>You achieved your rep max goal of {this.props.maxRepGoal} lbs! Update your goal now.</p></strong>
                   </div>
                   :
                   <div>
                   <ProgressBar bsStyle="success" now={this.props.progress} label={`${this.props.progress}%`} />
+                  <p className="extra-bottom">Rep max goal: {this.props.maxRepGoal} lbs</p>
                   <Link to={`/edit-goal/${this.props.goalId}`} className="btn btn-info"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</Link>
                 <Link to={`/post-workout/lifting/${this.props.goalId}/${this.props.title}`} className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Workout</Link>
                 </div>

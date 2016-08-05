@@ -123,18 +123,21 @@ class Dashboard extends React.Component {
                   goalId={goal._id}
                   title={goal.goalName}
                   progress={goal.goalMaxProgress}
+                  maxRepGoal={goal.goalMax}
               />
           ))})
-            this.setState({cardioPanels: this.state.cardioGoals.map((goal) => (
+            this.setState({cardioPanels:
+             this.state.cardioGoals.map((goal) => (
               <CardioGoalsPanel
                   key={goal._id}
                   goalId={goal._id}
                   title={goal.goalName}
-                  distanceProgress={goal.distanceProgress}
-                  timeProgress={goal.timeProgress}
-                  avgDistance={goal.distanceAvg}
-                  mileMinutes={goal.mileMinutesAvg}
-                  mileSeconds={goal.milesSecondsAvg}
+                  distanceProgress={goal.goalDistanceProgress}
+                  timeProgress={goal.goalTimeProgress}
+                  avgDistance={goal.avgDistance}
+                  mileMinutes={goal.avgMileTime}
+                  distanceGoal={goal.goalDistance}
+                  mileTimeGoal={goal.goalMileTime}
               />
           ))})
 
@@ -160,13 +163,13 @@ class Dashboard extends React.Component {
   }
 
 
-
   render() {
 
     const allUsers = this.state.users.map( ( user ) => {
       return (
         <FollowingLeaderboard
           key={user._id}
+          userId={user._id}
           name={user.firstName + ' ' + user.lastName}
           pic={user.profilePicture}
           users={user}
@@ -193,7 +196,6 @@ class Dashboard extends React.Component {
 
                     <div className="col-md-3" id="left-dash">
                       <UserWidget user={this.props.user} />
-
 
 
                       <div className="panel panel-default" id="following-widget">
@@ -233,7 +235,6 @@ class Dashboard extends React.Component {
                     <span></span>
 
                       }
-
 
                       {this.state.weightGoalsPresent ?
 

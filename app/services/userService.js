@@ -47,3 +47,14 @@ export function deleteFromWall(userId, postId, reject) {
 			return store.dispatch(deleteWallPost(postId));
 		});
 }
+
+export function getUser(userId, resolve, reject) {
+	request.get(`/api/users/${userId}`)
+		.end((err, user) => {
+			if (err) {
+				console.log(err);
+				return reject(err);
+			}
+			return resolve( user );
+		});
+}

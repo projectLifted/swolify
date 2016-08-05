@@ -7,6 +7,11 @@ const Goal = mongoose.Schema({
   goalMax: {type: Number},
   goalDistance: {type: Number},
   goalMileTime: {type: Number},
+  goalMaxProgress: {type: Number, default: 0},
+  avgDistance: {type: Number, default: 0},
+  avgMileTime: {type: Number, default: 0},
+  goalTimeProgress: {type: Number, default: 0},
+  goalDistanceProgress: {type: Number, default: 0},
   workouts: [
     {currentWeight: Number, workoutDate: String, workoutMax: Number, workoutDistance: Number, workoutMileTime: Number}
   ],

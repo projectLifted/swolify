@@ -10,15 +10,6 @@ module.exports = {
     });
   },
 
-  // findUserGoal(req, res) {
-  //   Goal.findById(req.params.id, (err, goal) => {
-  //     if (err) {
-  //       return res.status(500).json(err);
-  //     }
-  //     return res.status(200).json(goal);
-  //   });
-  // },
-
   deleteGoal(req, res) {
     Goal.findByIdAndRemove(req.params.id, (err, deletedGoal) => {
       if (err) {
@@ -56,7 +47,6 @@ module.exports = {
       if (err) {
         return res.status(500).json(err);
       }
-        console.log(goal);
         return res.status(200).json(goal);
       });
   },
@@ -67,78 +57,58 @@ module.exports = {
         if (err) {
           return res.status(500).json(err);
         }
+
+        let cardioGoals = [];
+        let weightGoals = [];
         let returnedGoals = [];
-        goals.map((goal) => {
-          if (goal.goalType === "WeightLifting") {
-            goal.workouts.length > 0 ?
-            (
-            goal.workouts[goal.workouts.length - 1].workoutMax >= goal.goalMax ?
-              goal.goalMaxProgress = 1
-              :
-              goal.goalMaxProgress = ((goal.workouts[goal.workouts.length - 1].workoutMax - goal.workouts[0].workoutMax) / (goal.goalMax - goal.workouts[0].workoutMax))
-            )
-             :
-            goal.goalMaxProgress = 0;
 
-            // console.log(goal.goalMaxProgress, "GOAL MAX PROGRESS");
-            // console.log(goal.workouts[goal.workouts.length - 1].workoutMax - goal.workouts[0].workoutMax);
-            // console.log(goal.goalMax - goal.workouts[0].workoutMax, "DIVISOR");
-            returnedGoals.push({
-              _id: goal._id,
-              goalType: goal.goalType,
-              goalMax: goal.goalMax,
-              goalOwner: goal.goalOwner,
-              goalStartDate: goal.goalStartDate,
-              goalName: goal.goalName,
-              goalMaxProgress: Math.floor(goal.goalMaxProgress * 100),
-              workouts: goal.workouts,
-            });
+        goals.forEach((oneGoal)=>{
+          if(oneGoal.goalType === "Cardio"){
+            cardioGoals.push(oneGoal);
           }
-          else { // Else condition is "Cardio"
-            let totalDistance = 0;
-            let totalTimeOfAvgs = 0;
-            let avgMileMinutes = 0;
-            let avgMileSeconds = 0;
-            if (goal.workouts.length === 0) {
-            goal.distanceProgress = 0;
-            goal.timeProgress = 0;
-            mileMinutesAvg = 0;
-            milesSecondsAvg = 0;
-          }
-          else {
-            goal.distanceProgress = ((goal.workouts[goal.workouts.length - 1].workoutDistance - goal.workouts[0].workoutDistance) / (goal.goalDistance - goal.workouts[0].workoutDistance))
-            goal.timeProgress = ((goal.workouts[goal.workouts.length - 1].workoutMileTime - goal.workouts[0].workoutMileTime) / (goal.goalMileTime - goal.workouts[0].workoutMileTime))
-            goal.workouts.map(workout => {
-              totalDistance += workout.workoutDistance;
-              totalTimeOfAvgs += workout.workoutMileTime;
-
-            });
-
-            function getMinutesAndSeconds() {
-              let mileTimeAvg = parseFloat((totalTimeOfAvgs / goal.workouts.length).toFixed(1));
-              let nums = mileTimeAvg.toString().split('.');
-              avgMileMinutes = parseInt(nums[0]);
-              avgMileSeconds = (parseInt(nums[1]) / 10) * 60;
-            }
-            getMinutesAndSeconds();
-          }
-
-            returnedGoals.push({
-              _id: goal._id,
-              goalDistance: goal.goalDistance,
-              goalMileTime: goal.goalMileTime,
-              goalName: goal.goalName,
-              goalOwner: goal.goalOwner,
-              goalType: goal.goalType,
-              distanceProgress: Math.floor(goal.distanceProgress * 100),
-              timeProgress: Math.floor(goal.timeProgress * 100),
-              workouts: goal.workouts,
-              distanceAvg: parseFloat((totalDistance / goal.workouts.length).toFixed(1)),
-              mileMinutesAvg: avgMileMinutes,
-              milesSecondsAvg: avgMileSeconds
-            });
+          else if (oneGoal.goalType === "WeightLifting"){
+            weightGoals.push(oneGoal);
           }
         })
+
+        weightGoals.forEach((item)=>{
+          let workouts = item.workouts;
+          let i = 0;
+          let workoutMaxTotal = 0;
+          workouts.forEach((item)=>{
+            i++
+            workoutMaxTotal = workoutMaxTotal + item.workoutMax;
+          })
+
+          let workoutMaxAvg = workoutMaxTotal / i;
+          item.goalMaxProgress = Math.floor(workoutMaxAvg / item.goalMax * 100);
+
+          returnedGoals.push(item);
+
+        })
+
+        cardioGoals.forEach((item)=>{
+          let workouts = item.workouts;
+          let goalTimeTotal = 0;
+          let goalDistanceTotal = 0;
+          let i = 0;
+
+          workouts.forEach((item)=>{
+            i++
+            goalTimeTotal = goalTimeTotal + item.workoutMileTime;
+            goalDistanceTotal = goalDistanceTotal + item.workoutDistance;
+          })
+
+          item.avgMileTime = parseFloat(goalTimeTotal / i).toFixed(1);
+          item.avgDistance = parseFloat(goalDistanceTotal / i).toFixed(1);
+          item.goalTimeProgress = Math.floor(item.avgMileTime / item.goalMileTime * 100);
+          item.goalDistanceProgress = Math.floor(item.avgDistance / item.goalDistance * 100);
+
+          returnedGoals.push(item);
+
+        })
+
+        console.log(returnedGoals);
 
         return res.status(200).json(returnedGoals);
       });

@@ -6,7 +6,7 @@ import '../../scss/primary.scss';
 import gym from '../../images/gym.png';
 import running from '../../images/running.png';
 
-export default class FriendChartWidget extends React.Component {
+export default class FriendDashChartWidget extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -17,7 +17,9 @@ export default class FriendChartWidget extends React.Component {
 
       <Accordion className="chart-widget">
           <Panel header={this.props.title} eventKey="1">
-              <div className="chart-frame">D3 Chart</div>
+              <div className="chart-frame">
+                <iframe src={this.props.chartUrl} />
+              </div>
           </Panel>
      </Accordion>
 

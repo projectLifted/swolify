@@ -4,6 +4,7 @@ import { signin } from '../../ducks/userDuck';
 import { signupUser } from '../../services/signupService';
 import { connect } from 'react-redux';
 import { putUser } from '../../services/userService.js';
+import {Link, browserHistory} from 'react-router';
 import store from '../../store';
 
 class SearchResult extends React.Component {
@@ -130,12 +131,14 @@ class SearchResult extends React.Component {
       return followingArray;
     }
 
+    const linkUrl = `/friend-dash/${this.props.id}`;
+
 
     return (
       <div>
 
-
-        <a href="#" className="list-group-item">
+      <Link to={linkUrl}>
+        <div className="list-group-item">
           <div style={profileImg} className="friend-photo"></div>
           <div className="list-group-content">
             <h4 className="list-group-item-heading">{this.props.name}</h4>
@@ -152,7 +155,8 @@ class SearchResult extends React.Component {
               <button className="btn btn-info" onClick={this.handleFollow.bind(this, "file")}><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</button>
           }
           </div>
-        </a>
+        </div>
+      </Link>
 
     </div>
 
