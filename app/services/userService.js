@@ -26,13 +26,21 @@ export function putUser(userInfo, userId, resolve, reject) {
 }
 
 export function postToWall(wallPost, userId, reject) {
+	console.log(wallPost, userId);
 	request.post(`/api/user/${userId}`)
 		.send(wallPost)
 		.end((err, post) => {
 			if (err) {
 				return console.log(err);
 			}
-			return store.dispatch(postMessage(wallPost));
+			request.get(`/api/user/${userId}`)
+				.end((err, finalPost) => {
+					if (err) {
+						return console.log(err);
+					}
+					console.log(finalPost.body);
+					return store.dispatch(postMessage(finalPost.body))
+				})
 		})
 }
 

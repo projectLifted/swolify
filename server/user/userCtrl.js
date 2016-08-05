@@ -61,13 +61,23 @@ module.exports = {
       if (err) {
         return res.status(500).json(err);
       }
+
+      console.log(req.body);
       user.wallPosts.push(req.body);
-      User.findByIdAndUpdate(req.params.id, user, (err, updatedUser) => {
+      user.save((err, updatedUser) => {
         if (err) {
           return res.status(500).json(err);
         }
         return res.status(200).json(updatedUser);
-      });
+      })
+      // console.log(user);
+      // User.findByIdAndUpdate(req.params.id, user, (err, updatedUser) => {
+      //   if (err) {
+      //     return res.status(500).json(err);
+      //   }
+      //   console.log(updatedUser.wallPosts, "RETURNED UPDATED USER");
+      //   return res.status(200).json(updatedUser);
+      // });
     });
   },
 
@@ -83,11 +93,21 @@ module.exports = {
             if (err) {
               return res.status(500).json(err);
             }
+            console.log(updatedUser);
             return res.status(200).json(updatedUser);
           })
         }
       }
     });
+  },
+
+  getPreviouslyPostedGoal(req, res) {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      return res.status(200).json(user.wallPosts[user.wallPosts.length - 1]);
+    })
   }
 
 };

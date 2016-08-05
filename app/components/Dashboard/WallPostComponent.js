@@ -10,6 +10,8 @@ class WallPostComponent extends React.Component {
   }
 
   deletePost(postId) {
+    console.log(postId);
+    console.log(this.props.user._id);
     deleteFromWall(this.props.user._id, postId);
   }
 
