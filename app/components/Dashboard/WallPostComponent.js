@@ -1,14 +1,16 @@
 import React from 'react';
 import '../../scss/primary.scss';
+import { connect } from 'react-redux';
 import {Link, browserHistory} from "react-router";
+import { deleteFromWall } from '../../services/userService';
 
-export default class WallPostComponent extends React.Component {
+class WallPostComponent extends React.Component {
   constructor(props) {
    super(props);
   }
 
   deletePost(postId) {
-    console.log(postId);
+    deleteFromWall(this.props.user._id, postId);
   }
 
   render() {
@@ -30,3 +32,5 @@ export default class WallPostComponent extends React.Component {
     )
   }
 }
+
+export default connect(state => ({user: state.user}))(WallPostComponent)

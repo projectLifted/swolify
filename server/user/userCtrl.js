@@ -75,12 +75,17 @@ module.exports = {
       if (err) {
         return res.status(500).json(err);
       }
-      user.wallPosts.findByIdAndRemove(req.params.postId, (err, post) => {
-        if (err) {
-          return res.status(500).json(err);
+      for (let i = 0; i < user.wallPosts.length; i++) {
+        if ((user.wallPosts[i]._id).toString() === (req.params.postId).toString()) {
+          user.wallPosts.splice(i, 1);
+          user.save((err, updatedUser) => {
+            if (err) {
+              return res.status(500).json(err);
+            }
+            return res.status(200).json(updatedUser);
+          })
         }
-        return res.status(200).json(post);
-      });
+      }
     });
   }
 

@@ -1,6 +1,6 @@
 import request from 'superagent';
 import store from '../store';
-import { signin, postMessage } from '../ducks/userDuck';
+import { signin, postMessage, deleteWallPost } from '../ducks/userDuck';
 
 export function getAllUsers( resolve, reject ) {
 	request.get( '/api/users' )
@@ -34,4 +34,16 @@ export function postToWall(wallPost, userId, reject) {
 			}
 			return store.dispatch(postMessage(wallPost));
 		})
+}
+
+export function deleteFromWall(userId, postId, reject) {
+	console.log(userId, postId)
+	request.delete(`/api/user/${userId}/wallpost/${postId}`)
+		.end((err, newPost) => {
+			if (err) {
+				return console.log(err);
+			}
+			console.log(newPost)
+			return store.dispatch(deleteWallPost(postId));
+		});
 }
