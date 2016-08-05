@@ -22,8 +22,6 @@ export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(props)
-
     this.state = {
       birthdate: "",
       images: [{
@@ -58,6 +56,22 @@ export default class Dashboard extends React.Component {
   }
 
   componentWillMount(){
+    new Promise((resolve, reject)=> {
+      getAuth(resolve, reject);
+    }).then((res, err)=> {
+      if (err){
+        browserHistory.push('/');
+      }
+      else if(res.body === false){
+        browserHistory.push('/');
+      }
+      else {
+        this.getUser();
+      }
+    })
+  }
+
+  componentWillReceiveProps(){
     new Promise((resolve, reject)=> {
       getAuth(resolve, reject);
     }).then((res, err)=> {
