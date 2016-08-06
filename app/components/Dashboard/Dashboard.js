@@ -41,7 +41,6 @@ class Dashboard extends React.Component {
       }],
       weightLiftingGoals: [],
       cardioGoals: [],
-      user: {},
       users: [],
       weightChartUrl: '',
       cardioChartUrl: '',
@@ -50,24 +49,6 @@ class Dashboard extends React.Component {
       cardioGoalsPresent: false
     }
 
-  }
-  handleDate(field, event) {
-    this.setState({
-      [field]: event
-    })
-  }
-
-  handleChange(field, event) {
-
-    this.setState({
-      [field]: event.target.value
-    });
-  }
-
-  handleFile(field, event) {
-    this.setState({
-       profilePicture: event.url
-    });
   }
 
   componentWillMount() {
@@ -247,6 +228,7 @@ class Dashboard extends React.Component {
 
                       <span></span>
 
+
                       }
 
                      {this.state.cardioGoalsPresent ?
@@ -261,7 +243,7 @@ class Dashboard extends React.Component {
                       <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
 
                       <WallWidget
-                          wallPosts={this.props.user.wallPosts}
+
                       />
 
                     </div>
@@ -311,7 +293,7 @@ class Dashboard extends React.Component {
 
                       </span>
 
-                      <PicWidget user={this.props.user} />
+                      <PicWidget />
 
                     </div>
 

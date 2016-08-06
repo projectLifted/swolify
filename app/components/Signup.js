@@ -290,7 +290,7 @@ class Signup extends React.Component {
                       <div className="row">
                         <div className="col-md-12">
                           <center><label class="extra-height" for="birth-date">Upload Profile Photo</label></center>
-                          <center><ReactFilepicker buttonClass="btn btn-success btn-filepicker" apikey={'AgUFEbg5LQ6OC6EafL3gqz'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} /></center>
+                          <center><ReactFilepicker buttonClass="btn btn-success btn-filepicker" apikey={'Agks1hdLoTWKr1uAnYtC3z'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} /></center>
                         </div>
                      </div>
 

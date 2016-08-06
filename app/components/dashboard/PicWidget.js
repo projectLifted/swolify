@@ -69,7 +69,9 @@ class PicWidget extends React.Component {
       <div id="pic-box">
 
 
-        <ReactFilepicker options={options} buttonClass="btn btn-success btn-filepicker" apikey={'AgUFEbg5LQ6OC6EafL3gqz'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} />
+
+        <ReactFilepicker options={options} buttonClass="btn btn-success btn-filepicker" apikey={'Agks1hdLoTWKr1uAnYtC3z'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} />
+
 
 
       <div id="pic-widget">

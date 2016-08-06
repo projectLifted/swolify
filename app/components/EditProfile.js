@@ -105,60 +105,60 @@ class Signup extends React.Component {
     });
   }
 
-  componentWillMount(){
-    new Promise((resolve, reject)=> {
-      getAuth(resolve, reject);
-    }).then((res, err)=> {
-      if (err){
-        browserHistory.push('/');
-      }
-      else if(res.body === false){
-        browserHistory.push('/');
-      }
-      else {
-
-        let location = res.body.location.split(', ');
-        let city = location[0];
-        let state = location[1];
-
-        if(res.body.gender === "man") {
-          this.state.manChecked = true;
-        }
-        else if (res.body.gender === "woman") {
-          this.state.ladyChecked = true
-        }
-
-        if(res.body.bodyType === "ectomorph") {
-          this.state.ectoChecked = true;
-        }
-
-        else if(res.body.bodyType === "mesomorph") {
-          this.state.mesoChecked = true;
-        }
-
-        else if(res.body.bodyType === "endomorph") {
-          this.state.endoChecked = true;
-        }
-
-
-        this.setState({
-          user: res.body,
-          firstName: res.body.firstName,
-          lastName: res.body.lastName,
-          city: city,
-          state: state,
-          birthDate: moment(res.body.birthDate),
-          gender: res.body.gender,
-          bodyType: res.body.bodyType,
-          heightFeet: res.body.heightFeet,
-          heightInches: res.body.heightFeet,
-          startWeight: res.body.startWeight,
-          goalWeight: res.body.goalWeight,
-          profilePicture: res.body.profilePicture
-        })
-      }
-    })
-  }
+  // componentWillMount(){
+  //   new Promise((resolve, reject)=> {
+  //     getAuth(resolve, reject);
+  //   }).then((res, err)=> {
+  //     if (err){
+  //       browserHistory.push('/');
+  //     }
+  //     else if(res.body === false){
+  //       browserHistory.push('/');
+  //     }
+  //     else {
+  //
+  //       let location = res.body.location.split(', ');
+  //       let city = location[0];
+  //       let state = location[1];
+  //
+  //       if(res.body.gender === "man") {
+  //         this.state.manChecked = true;
+  //       }
+  //       else if (res.body.gender === "woman") {
+  //         this.state.ladyChecked = true
+  //       }
+  //
+  //       if(res.body.bodyType === "ectomorph") {
+  //         this.state.ectoChecked = true;
+  //       }
+  //
+  //       else if(res.body.bodyType === "mesomorph") {
+  //         this.state.mesoChecked = true;
+  //       }
+  //
+  //       else if(res.body.bodyType === "endomorph") {
+  //         this.state.endoChecked = true;
+  //       }
+  //
+  //
+  //       this.setState({
+  //         user: res.body,
+  //         firstName: res.body.firstName,
+  //         lastName: res.body.lastName,
+  //         city: city,
+  //         state: state,
+  //         birthDate: moment(res.body.birthDate),
+  //         gender: res.body.gender,
+  //         bodyType: res.body.bodyType,
+  //         heightFeet: res.body.heightFeet,
+  //         heightInches: res.body.heightFeet,
+  //         startWeight: res.body.startWeight,
+  //         goalWeight: res.body.goalWeight,
+  //         profilePicture: res.body.profilePicture
+  //       })
+  //     }
+  //   })
+  // }
 
   handleSignup(event) {
     event.preventDefault();
@@ -382,7 +382,7 @@ class Signup extends React.Component {
                       <div className="row">
                         <div className="col-md-12">
                           <center><label class="extra-height" for="birth-date">Upload Profile Photo</label></center>
-                          <center><ReactFilepicker buttonClass="btn btn-success btn-filepicker" apikey={'AgUFEbg5LQ6OC6EafL3gqz'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} /></center>
+                          <center><ReactFilepicker buttonClass="btn btn-success btn-filepicker" apikey={'Agks1hdLoTWKr1uAnYtC3z'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} /></center>
                         </div>
                      </div>
 

@@ -7,7 +7,7 @@ import {Modal, Button} from "react-bootstrap";
 
 import '../../scss/primary.scss';
 
-export default class PicGridItem extends React.Component {
+class PicGridItem extends React.Component {
   constructor(props) {
     super(props);
 
