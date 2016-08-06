@@ -10,8 +10,7 @@ class WallPostComponent extends React.Component {
   }
 
   deletePost(postId) {
-    console.log(postId);
-    console.log(this.props.user._id);
+
     deleteFromWall(this.props.user._id, postId);
   }
 
@@ -22,13 +21,18 @@ class WallPostComponent extends React.Component {
 
     return (
       <div className="list-group-item">
+
         <div className="wall-container">
-            <div style={followingImg} className="wall-pic"></div>
-            <div className="wall-name"><Link to="/">{this.props.posterName}</Link>
-            <button onClick={this.deletePost.bind(this, this.props.postId)} className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
+
+          <div style={followingImg} className="wall-pic"><div className="test"></div></div>
+
             <div className="wall-content">
+              <div className="wall-name"><Link to="/">{this.props.posterName}</Link>                         <button onClick={this.deletePost.bind(this, this.props.postId)} className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+</div>
+
               {this.props.message}
             </div>
+
       </div>
     </div>
     )

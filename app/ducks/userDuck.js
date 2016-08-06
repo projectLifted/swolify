@@ -54,10 +54,25 @@ export default function reducer(state = initialState, action) {
 
     case DELETE_POST:
       return {
-        wallPosts: state.wallPosts.filter(post => post._id !== action.post)
-      };
-
+        wallPosts: state.wallPosts.filter(post => post._id !== action.post),
+        _id: state._id,
+        facebookId: state.facebookId,
+        updated: state.updated,
+        following: state.following,
+        pictures: state.pictures,
+        profilePicture: state.profilePicture,
+        goalWeight: state.goalWeight,
+        startWeight: state.startWeight,
+        heightInches: state.heightInches,
+        heightFeet: state.heightFeet,
+        bodyType: state.bodyType,
+        gender: state.gender,
+        birthDate: state.birthDate,
+        location: state.location,
+        lastName: state.lastName,
+        firstName: state.firstName
   }
+}
   return state;
 }
 

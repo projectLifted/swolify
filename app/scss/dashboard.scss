@@ -201,17 +201,18 @@ button.btn.btn-success.btn-filepicker:before {
 }
 
 .wall-pic {
-  width: 100px !important;
-  height: 100px !important;
   background-size: cover;
   background-position: center;
-  float: left;
   margin-right: 10px;
 }
 
+.test {
+  height: 100px;
+  width: 100px;
+}
+
 .wall-name {
-  display: inline;
-  vertical-align: middle;
+  display: block;
   font-size: 1em;
   line-height: 1;
   font-size: 1.2em;
@@ -224,11 +225,12 @@ button.btn.btn-success.btn-filepicker:before {
   font-family: 'Work Sans', sans-serif;
   font-size: 1.2em;
   line-height: 1;
-  display: table-cell;
+  word-break: break-all;
+  flex-grow: 2;
 }
 
 .wall-container {
-  display: table-cell;
+  display: flex;
   max-width: 100%;
   padding: 5px;
 }
