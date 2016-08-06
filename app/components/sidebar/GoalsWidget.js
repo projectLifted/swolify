@@ -1,12 +1,65 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import store from '../../store';
+import { getUserGoals } from '../../services/goalService';
+
 
 import '../../scss/primary.scss';
 
-export default class GoalsWidget extends React.Component {
+class GoalsWidget extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      goals: [],
+      noGoals: false
+    }
   }
+
+
+  componentWillMount() {
+
+    new Promise((resolve, reject) => {
+      getUserGoals(this.props.user._id, resolve, reject);
+    }).then((res, err) => {
+      if (err) { return }
+      else if (res.body.length === 0) {
+          this.setState({
+            noGoals: true
+          })
+      }
+
+        this.setState({
+          goals: res.body
+        })
+
+  })
+}
+
+
   render() {
+
+    const goalData = this.state.goals.map((goal) => (
+      <tr>
+
+        <td>
+          {goal.goalName}
+        </td>
+        <td>
+          {goal.goalType === "WeightLifting" ?
+
+          <span>{goal.goalMaxProgress}</span>
+
+          :
+
+          <span>{goal.goalTimeProgress}</span>
+
+          }
+
+        </td>
+      </tr>
+    ))
+
     return (
       <div className="panel panel-default" id="goals-widget">
 
@@ -16,6 +69,13 @@ export default class GoalsWidget extends React.Component {
 
 
           <table className="table">
+
+            { this.state.noGoals ?
+
+            <center><strong><p>You have no goals! Please make some.</p></strong></center>
+
+            :
+
             <tbody>
               <tr>
                   <td>
@@ -26,55 +86,16 @@ export default class GoalsWidget extends React.Component {
                   </td>
               </tr>
 
-              <tr>
-                  <td>
-                      Bench Press
-                  </td>
-                  <td>
-                      86%
-                  </td>
-              </tr>
+              {goalData}
 
-              <tr>
-                  <td>
-                      Squats
-                  </td>
-                  <td>
-                      70%
-                  </td>
-              </tr>
-
-              <tr>
-                  <td>
-                      Pullups
-                  </td>
-                  <td>
-                      26%
-                  </td>
-              </tr>
-
-
-              <tr>
-                  <td>
-                      Body Weight
-                  </td>
-                  <td>
-                      23%
-                  </td>
-              </tr>
-
-              <tr>
-                  <td>
-                      Cycling
-                  </td>
-                  <td>
-                      50%
-                  </td>
-              </tr>
               </tbody>
+
+              }
           </table>
       </div>
 
     );
   }
 }
+
+export default connect(state => ({goals: state.goals}))(GoalsWidget)

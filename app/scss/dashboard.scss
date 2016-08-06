@@ -94,7 +94,9 @@ button.btn.btn-success.btn-filepicker:before {
 }
 
 
-
+#goals-panel panel {
+  margin-top: 10px !important;
+}
 #goals-panel h2 {
   font-size: 1.6em;
 }
@@ -131,8 +133,9 @@ button.btn.btn-success.btn-filepicker:before {
 }
 
 #goals-panel .btn {
-  font-size: 1em !important;
+  font-size: .8em !important;
   margin-right: 5px !important;
+  padding: 5px !important;
 }
 
 #goals-panel .btn-info {
@@ -236,7 +239,6 @@ button.btn.btn-success.btn-filepicker:before {
 
 .chart-widget .panel {
   width: 100%;
-
   background-color: white;
   border: 1px solid $grey-blue;
   margin-top: 15px;
@@ -298,8 +300,9 @@ button.btn.btn-success.btn-filepicker:before {
 
 iframe {
   width: 100%;
-  height: 380px;
+  height: 420px;
   border: 0;
+  overflow: hidden;
 }
 
 #no-goals-btn {

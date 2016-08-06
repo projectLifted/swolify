@@ -2,10 +2,12 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import store from '../../store';
+import { removeGoal } from '../../ducks/updateGoalDuck';
 
 import { getAuth } from '../../services/loginService.js';
 import '../../scss/primary.scss';
-import { createGoal } from '../../services/goalService';
+import { createGoal, removeUserGoal } from '../../services/goalService';
 
 export default class LiftingForm extends React.Component {
   constructor(props) {
@@ -29,6 +31,18 @@ export default class LiftingForm extends React.Component {
     })
   }
 
+  componentWillMount() {
+    if (this.props.selectedGoal) {
+      this.setState({goalName: this.props.selectedGoal.goalName});
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.selectedGoal.goalId) {
+      store.dispatch(removeGoal());
+    }
+  }
+
   handleSubmit(event) {
 
     event.preventDefault();
@@ -42,7 +56,11 @@ export default class LiftingForm extends React.Component {
         goalOwner: this.props.userId
       });
 
-        browserHistory.push("/dashboard")
+      browserHistory.push("/dashboard");
+
+      if (this.props.selectedGoal.goalId) {
+        removeUserGoal(this.props.selectedGoal.goalId);
+      }
   }
 
   render() {
@@ -53,15 +71,35 @@ export default class LiftingForm extends React.Component {
         <div className="col-md-10">
           <div className="form-group">
             <label for="goalName">Name Your Goal (example: <i>"Bench Press"</i>)</label>
-            <input
-              type="text"
-              className="form-control"
-              id="goalName"
-              placeholder=""
-              required
-              value={this.state.goalName}
-              onChange={this.handleChange.bind(this, "goalName")}
-            />
+
+            <div>
+              {
+                this.props.selectedGoal ?
+                <input
+                  type="text"
+                  className="form-control"
+                  id="goalName"
+                  placeholder=""
+                  required
+                  value={this.state.goalName}
+                  onChange={this.handleChange.bind(this, "goalName")}
+                />
+
+                :
+                <input
+                  type="text"
+                  className="form-control"
+                  id="goalName"
+                  placeholder=""
+                  required
+                  value={this.state.goalName}
+                  onChange={this.handleChange.bind(this, "goalName")}
+                />
+
+              }
+
+          </div>
+
         </div>
 
 

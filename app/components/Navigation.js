@@ -31,7 +31,7 @@ export default class Navigation extends React.Component {
       <Navbar.Header>
         <Navbar.Brand>
           <div class="navbar-brand">
-          <Link to="/"><img src={logo} alt="swolify" /></Link>
+          <Link to="/"><div className="textLogo"><span className="logoIcon">5</span>Swolify</div></Link>
           </div>
         </Navbar.Brand>
         <Navbar.Toggle />

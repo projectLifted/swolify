@@ -46,6 +46,8 @@ class Dashboard extends React.Component {
       weightChartUrl: '',
       cardioChartUrl: '',
       noGoals: false,
+      weightGoalsPresent: false,
+      cardioGoalsPresent: false
     }
 
   }
@@ -63,7 +65,6 @@ class Dashboard extends React.Component {
   }
 
   handleFile(field, event) {
-    console.log(event.url);
     this.setState({
        profilePicture: event.url
     });
@@ -105,11 +106,13 @@ class Dashboard extends React.Component {
 
             // Seperate goals by goal type
             res.body.map(goal => {
-
+              console.log(goal);
               if (goal.goalType === "WeightLifting") {
+                this.setState({weightGoalsPresent: true})
                 this.setState((state) => ({weightLiftingGoals: state.weightLiftingGoals.concat(goal)}))
               }
-              else {
+              else if (goal.goalType === "Cardio") {
+                this.setState({cardioGoalsPresent: true})
                 this.setState((state) => ({cardioGoals: state.cardioGoals.concat(goal)}))
               }
             });
@@ -120,18 +123,21 @@ class Dashboard extends React.Component {
                   goalId={goal._id}
                   title={goal.goalName}
                   progress={goal.goalMaxProgress}
+                  maxRepGoal={goal.goalMax}
               />
           ))})
-            this.setState({cardioPanels: this.state.cardioGoals.map((goal) => (
+            this.setState({cardioPanels:
+             this.state.cardioGoals.map((goal) => (
               <CardioGoalsPanel
                   key={goal._id}
                   goalId={goal._id}
                   title={goal.goalName}
-                  distanceProgress={goal.distanceProgress}
-                  timeProgress={goal.timeProgress}
-                  avgDistance={goal.distanceAvg}
-                  mileMinutes={goal.mileMinutesAvg}
-                  mileSeconds={goal.milesSecondsAvg}
+                  distanceProgress={goal.goalDistanceProgress}
+                  timeProgress={goal.goalTimeProgress}
+                  avgDistance={goal.avgDistance}
+                  mileMinutes={goal.avgMileTime}
+                  distanceGoal={goal.goalDistance}
+                  mileTimeGoal={goal.goalMileTime}
               />
           ))})
 
@@ -157,13 +163,13 @@ class Dashboard extends React.Component {
   }
 
 
-
   render() {
 
     const allUsers = this.state.users.map( ( user ) => {
       return (
         <FollowingLeaderboard
           key={user._id}
+          userId={user._id}
           name={user.firstName + ' ' + user.lastName}
           pic={user.profilePicture}
           users={user}
@@ -192,7 +198,6 @@ class Dashboard extends React.Component {
                       <UserWidget user={this.props.user} />
 
 
-
                       <div className="panel panel-default" id="following-widget">
 
                           <div className="panel-heading">
@@ -219,37 +224,58 @@ class Dashboard extends React.Component {
                     {this.state.noGoals
                       ?
 
+                      <span>
                       <center><h2>You have no goals, bro. Time to set some goals.</h2>
 
                       <Link to="/new-goal"><button className="btn-lg btn-success" id="no-goals-btn"><i className="fa fa-plus-circle" aria-hidden="true"></i> Add a New Goal</button></Link></center>
+                      </span>
 
                       :
 
-
-                      <span>
-                      <ChartWidget title="Weight Goals: Rep Max" chartUrl={this.state.weightChartUrl} />
-                      <ChartWidget title="Cardio Goals: Miles/Distance" chartUrl={this.state.cardioChartUrl} />
-                      <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
-                      </span>
+                    <span></span>
 
                       }
 
-                      <WallWidget />
+                      {this.state.weightGoalsPresent ?
+
+                      <span>
+                      <ChartWidget title="Weight Goals: Rep Max" chartUrl={this.state.weightChartUrl} />
+
+                      </span>
+
+                      :
+
+                      <span></span>
+
+                      }
+
+                     {this.state.cardioGoalsPresent ?
+
+                      <ChartWidget title="Cardio Goals: Miles/Distance" chartUrl={this.state.cardioChartUrl} />
+
+
+                     :
+                     <span> </span>
+                      }
+
+                      <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
+
+                      <WallWidget
+                          wallPosts={this.props.user.wallPosts}
+                      />
 
                     </div>
 
                     <div className="col-md-3" id="right-dash">
 
-                    {this.state.noGoals
 
-                      ?
-
-                        <span></span>
-
-                      :
 
                       <span>
+
+                    {this.state.weightGoalsPresent ?
+
                       <div id="goals-panel">
+
 
                       <div id="weightlifting-goals">
                       <h2><img src={gym} /> Weightlifting Goals</h2>
@@ -257,16 +283,33 @@ class Dashboard extends React.Component {
                       </div>
                       </div>
 
+                        :
+
+                        <span></span>
+
+                        }
+
+                        {this.state.cardioGoalsPresent ?
+
+
                       <div id="goals-panel">
+
                         <div id="cardio-goals">
+
+
                         <h2><img src={running} /> Cardio Goals</h2>
                           {this.state.cardioPanels}
                         </div>
+
                       </div>
 
-                      </span>
+                        :
 
-                      }
+                       <span></span>
+
+                       }
+
+                      </span>
 
                       <PicWidget user={this.props.user} />
 

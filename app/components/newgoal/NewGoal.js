@@ -29,12 +29,11 @@ class NewGoal extends React.Component {
   }
 
     componentWillMount() {
-      console.log(this.props.user);
-      console.log(this.props.user.loggedIn);
       if (!this.props.user.loggedIn) {
         browserHistory.push('/');
       }
     }
+
 
     handleDate(field, event) {
       this.setState({
@@ -53,7 +52,7 @@ class NewGoal extends React.Component {
     }
 
   render() {
-    console.log(this.props.goals);
+    console.log(this.props.updateGoal);
 
     return (
     <article>
@@ -101,6 +100,7 @@ class NewGoal extends React.Component {
                               this.state.radioOption === "weightLifting"
                                 ?
                               <LiftingForm
+                                  selectedGoal={this.props.updateGoal}
                                   goalName={this.props.goalName}
                                   userId={this.props.user._id}
                               />
@@ -122,7 +122,7 @@ class NewGoal extends React.Component {
 
                         <Link to="/dashboard"><button type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
 
-                      <GoalsWidget />
+                      <GoalsWidget user={this.props.user} />
 
 
 
@@ -141,4 +141,4 @@ class NewGoal extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user, goals: state.goals}))(NewGoal);
+export default connect(state => ({user: state.user, goals: state.goals, updateGoal: state.updateGoal}))(NewGoal);

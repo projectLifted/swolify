@@ -25,6 +25,10 @@ p {
   font-size: 1.4em;
 }
 
+.extra-bottom {
+  margin-bottom: 8px !important;
+}
+
 h1 {
   font-weight: bolder;
   font-size: 2.8em !important;
@@ -116,6 +120,7 @@ body {
   background-color: #079cc5 !important;
 }
 
+@import 'fonts';
 @import 'nav';
 @import 'home';
 @import 'footer';

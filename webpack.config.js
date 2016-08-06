@@ -26,7 +26,11 @@ module.exports = {
             'file?hash=sha512&digest=hex&name=[hash].[ext]',
             'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
         ]
-    }
+			},
+				{
+		      test: /\.(eot|svg|ttf|woff|woff2)$/,
+		      loader: 'file?name=app/scss/[name].[ext]'
+		  }
 		]
 	}
 	, resolve: {

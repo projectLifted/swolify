@@ -6,7 +6,7 @@ import {getAuth} from '../services/loginService.js'
 import Navigation from './Navigation';
 import Footer from './Footer';
 
-import logo from '../images/logo.png';
+// import logo from '../images/logo.png';
 import '../scss/primary.scss';
 
 export default class Home extends React.Component {
@@ -41,7 +41,8 @@ export default class Home extends React.Component {
       <div className="jumbotron">
         <div className="dark-top-gradient-container">
 
-        <img src={logo} alt="Swolify" id="homepage-logo" />
+
+        <div className="textLogo tinUpIn"><span className="logoIcon">5</span>Swolify</div>
 
         <h1>Track your gains. Compete.</h1>
 
@@ -71,7 +72,7 @@ export default class Home extends React.Component {
               <span><i className="fa fa-tachometer" aria-hidden={true}></i></span>
               <h2>Chart Your Progress</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu finibus est. Aenean magna ante, convallis vitae leo rhoncus, faucibus auctor nisi.
+                Detailed real-time analytics will revolutionize your workout with chart fanciness.
               </p>
             </div>
 

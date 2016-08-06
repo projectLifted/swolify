@@ -1,6 +1,6 @@
 // import { List, Map } from 'immutable';
-
 const POST_GOAL = "goal/POST_GOAL";
+const REMOVE_GOAL = "goal/REMOVE_GOAL";
 // const SET_GOALS = "goal/SET_GOALS";
 
 const initialState = {
@@ -14,9 +14,10 @@ export default function reducer(state = initialState, action) {
         goals: [...state.goals, action.goal]
       }
 
-      // case SET_GOALS:
-      //   return state.set('goals', List.of(...action.goals));
-
+    case REMOVE_GOAL:
+      return {
+        goals: state.goals.filter(goal => goal._id !== action.goal._id)
+      };
     // case POST_WORKOUT:
     //   return {
     //     workouts: [...state.workouts, action.workout]
@@ -27,6 +28,10 @@ export default function reducer(state = initialState, action) {
 
 export function postGoal(goal) {
   return { type: POST_GOAL, goal };
+}
+
+export function removeThisGoal(goal) {
+  return { type: REMOVE_GOAL, goal };
 }
 
 // export function setGoals(goals) {

@@ -1,21 +1,20 @@
 import React from 'react';
-
+import { browserHistory } from 'react-router';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import { createGoal } from '../../services/goalService';
-import { getAuth } from '../../services/loginService.js';
-
-import DeleteGoalModal from '../editgoal/DeleteGoalModal';
+import { updateGoal } from '../../services/goalService';
+import DeleteGoalModal from './DeleteGoalModal';
+import '../../scss/primary.scss';
 
 export default class EditCardioForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      endDate: moment(),
-      goalName: "",
-      goalDistance: 0,
-      goalMileTime: 0
+      show: false,
+      goalName: this.props.goal.goalName,
+      goalMileTime: this.props.goal.goalMileTime,
+      goalDistance: this.props.goal.goalDistance
     }
   }
 
@@ -30,25 +29,24 @@ export default class EditCardioForm extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
 
-    createGoal({
-      goalType: "WeightLifting",
+    event.preventDefault();
+    updateGoal({
       goalName: this.state.goalName,
-      goalStartDate: moment,
-      goalEndDate: this.state.endDate,
       goalDistance: this.state.goalDistance,
-      workouts: [],
-      goalOwner: this.props.user._id
-    }).then((res, err) => {
-      if (err) {
-        return console.error(err);
-      }
-      console.log(res);
-    });
+      goalMileTime: this.state.goalMileTime
+    }, this.props.goal._id)
+      browserHistory.push("/dashboard");
   }
 
+  componentWillReceiveProps(){
+     this.setState({
+
+     })
+   }
+
   render() {
+
     return (
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
       <div>
@@ -69,7 +67,7 @@ export default class EditCardioForm extends React.Component {
 
         <div className="col-md-3">
             <div className="form-group">
-                <label for="weightGoal">Mile Time</label>
+                <label for="weightGoal">Goal Mile Time</label>
                 <div className="input-group">
                     <input
                       type="number"
@@ -89,7 +87,7 @@ export default class EditCardioForm extends React.Component {
 
         <div className="col-md-3">
             <div className="form-group">
-                <label for="weightGoal">Distance</label>
+                <label for="weightGoal">Goal Distance</label>
                 <div className="input-group">
                     <input
                       type="number"
@@ -103,26 +101,21 @@ export default class EditCardioForm extends React.Component {
                     <div className="input-group-addon">Miles</div>
                 </div>
             </div>
-
         </div>
 
-        <div className="col-md-4">
-            <div className="form-group">
-                <label for="goalDate">Goal Completion Date</label>
-                  <DatePicker className="form-control date-picker"
-                       selected={this.state.endDate}
-                       onChange={this.handleDate.bind(this, "endDate")}  />
-                </div>
-        </div>
+        <div className="row">
 
-        <div className="col-md-10">
+          <div className="col-md-10">
 
-          <div className="edit-buttons">
-            <button type="submit" className="btn btn-info form-submit"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Save Changes</button>
+            <center><button type="submit" className="btn btn-info form-submit" id="edit-goal-button"><i className="fa fa-plus-square" aria-hidden="true"></i> Save Changes</button>
 
-            <DeleteGoalModal />
+            <DeleteGoalModal goalId={this.props.goal._id} show={this.state.show} /></center>
+
+
           </div>
+
         </div>
+
     </div>
   </form>
     )

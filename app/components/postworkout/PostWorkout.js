@@ -45,7 +45,6 @@ class PostWorkout extends React.Component {
     }
 
   render() {
-    console.log(this.props.goals);
     return (
     <article>
       <header id="post-workout-header">
@@ -99,7 +98,7 @@ class PostWorkout extends React.Component {
 
                       <Link to="/new-goal"><button type="button" className="btn btn-info"><i className="fa fa-plus-circle" aria-hidden="true" id="post-goal"></i> New Goal</button></Link>
 
-                      <GoalsWidget />
+                      <GoalsWidget user={this.props.user} />
                   </div>
               </div>
           </div>

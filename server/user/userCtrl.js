@@ -15,6 +15,7 @@ module.exports = {
       if (err) {
         return res.status(500).json(err);
       }
+      user.updated = new Date();
       return res.status(200).json(user);
     });
   },
@@ -50,12 +51,63 @@ module.exports = {
              console.log('succcessfully updated user');
           }
       });
-      
+
       return res.status(200).json(updatedUser);
     });
   },
 
-  addFollower(req, res) {
+  addUserPost(req, res) {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
 
+      console.log(req.body);
+      user.wallPosts.push(req.body);
+      user.save((err, updatedUser) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        return res.status(200).json(updatedUser);
+      })
+      // console.log(user);
+      // User.findByIdAndUpdate(req.params.id, user, (err, updatedUser) => {
+      //   if (err) {
+      //     return res.status(500).json(err);
+      //   }
+      //   console.log(updatedUser.wallPosts, "RETURNED UPDATED USER");
+      //   return res.status(200).json(updatedUser);
+      // });
+    });
+  },
+
+  deletePost(req, res) {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      for (let i = 0; i < user.wallPosts.length; i++) {
+        if ((user.wallPosts[i]._id).toString() === (req.params.postId).toString()) {
+          user.wallPosts.splice(i, 1);
+          user.save((err, updatedUser) => {
+            if (err) {
+              return res.status(500).json(err);
+            }
+            console.log(updatedUser);
+            return res.status(200).json(updatedUser);
+          })
+        }
+      }
+    });
+  },
+
+  getPreviouslyPostedGoal(req, res) {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      return res.status(200).json(user.wallPosts[user.wallPosts.length - 1]);
+    })
   }
+
 };
