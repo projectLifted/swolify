@@ -228,6 +228,7 @@ class Dashboard extends React.Component {
 
                       <span></span>
 
+
                       }
 
                      {this.state.cardioGoalsPresent ?
@@ -242,6 +243,7 @@ class Dashboard extends React.Component {
                       <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
 
                       <WallWidget
+
                       />
 
                     </div>

@@ -1,23 +1,20 @@
 import React from 'react';
+import { deleteWorkout } from './MyWorkouts.js'
 
 export default class CardioResults extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      testDate: "2 months ago"
-    }
 
   }
 
   render() {
     return (
       <tr>
-        <td>{this.state.testDate}</td>
-        <td>Treadmill Run</td>
-        <td>1</td>
-        <td>10</td>
-        <td>166</td>
+        <td>{this.props.date}</td>
+        <td>???</td>
+        <td>{this.props.distance}</td>
+        <td>{this.props.time}</td>
+        <td>{this.props.weight}</td>
         <td><button className="btn btn-danger">X</button></td>
       </tr>
 
