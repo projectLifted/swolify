@@ -1,6 +1,6 @@
 import request from 'superagent';
 import store from '../store';
-import { signin, postMessage, deleteWallPost } from '../ducks/userDuck';
+import { signin, putphoto, postMessage, deleteWallPost, deletephoto } from '../ducks/userDuck';
 
 export function getAllUsers( resolve, reject ) {
 	request.get( '/api/users' )
@@ -20,8 +20,31 @@ export function putUser(userInfo, userId, resolve, reject) {
 				console.log(err);
 				return reject(err);
 			}
-			console.log(userInfo)
-			return store.dispatch(signin(userInfo.body));
+			return store.dispatch(signin(userInfo));
+		});
+}
+
+export function putPhoto(photosObject, photosArray, userId, resolve, reject) {
+	request.put(`/api/users/${userId}`)
+		.send(photosObject)
+		.end((err, user) => {
+			if (err) {
+				console.log(err);
+				return reject(err);
+			}
+			return store.dispatch(putphoto(photosArray));
+		});
+}
+
+export function deletePhoto(photosObject, photosArray, userId, resolve, reject) {
+	request.put(`/api/users/${userId}`)
+		.send(photosObject)
+		.end((err, user) => {
+			if (err) {
+				console.log(err);
+				return reject(err);
+			}
+			return store.dispatch(deletephoto(photosArray));
 		});
 }
 
@@ -38,7 +61,6 @@ export function postToWall(wallPost, userId, reject) {
 					if (err) {
 						return console.log(err);
 					}
-					console.log(finalPost.body);
 					return store.dispatch(postMessage(finalPost.body))
 				})
 		})
@@ -51,7 +73,6 @@ export function deleteFromWall(userId, postId, reject) {
 			if (err) {
 				return console.log(err);
 			}
-			console.log(newPost)
 			return store.dispatch(deleteWallPost(postId));
 		});
 }

@@ -3,8 +3,8 @@ import {Link, browserHistory} from "react-router";
 import PicGridItem from "./PicGridItem";
 import ReactFilepicker from 'react-filepicker';
 import {Modal, Button} from "react-bootstrap";
-import { putUser } from '../../services/userService.js';
-import { signin } from '../../ducks/userDuck';
+import { putPhoto } from '../../services/userService.js';
+import { signin, putphoto } from '../../ducks/userDuck';
 import { connect } from 'react-redux';
 import store from '../../store';
 
@@ -28,28 +28,10 @@ class PicWidget extends React.Component {
     let newPicArray = this.props.user.pictures;
     newPicArray.push(this.state.addPic);
 
-    new Promise((resolve, reject) => {
-      putUser({
-        _id: this.props.user._id,
-        facebookId: this.props.user.facebookId,
-        firstName: this.props.user.firstName,
-        lastName: this.props.user.lastName,
-        location: this.props.user.location,
-        birthDate: this.props.user.birthDate,
-        gender: this.props.user.gender,
-        bodyType: this.props.user.bodyType,
-        heightFeet: this.props.user.heightFeet,
-        heightInches: this.props.user.heightInches,
-        startWeight: this.props.user.startWeight,
-        goalWeight: this.props.user.goalWeight,
-        profilePicture: this.props.user.profilePicture,
-        pictures: newPicArray
-      }, this.props.user._id, resolve, reject);
-    }).then((res, err) => {
-      if (err) {
-        return console.error(err);
-      }
-    })
+    putPhoto({
+      _id: this.props.user._id,
+      pictures: newPicArray
+    }, newPicArray, this.props.user._id);
 
   }
 

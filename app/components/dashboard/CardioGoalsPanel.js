@@ -22,9 +22,6 @@ export default class CardioGoalsPanel extends React.Component {
       <Accordion>
           <Panel header={this.props.title} eventKey="1">
 
-
-
-
               { this.props.distanceProgress >= 100 ?
 
                 <div>

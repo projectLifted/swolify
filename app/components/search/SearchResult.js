@@ -137,11 +137,11 @@ class SearchResult extends React.Component {
     return (
       <div>
 
-      <Link to={linkUrl}>
+
         <div className="list-group-item">
           <div style={profileImg} className="friend-photo"></div>
           <div className="list-group-content">
-            <h4 className="list-group-item-heading">{this.props.name}</h4>
+            <Link to={linkUrl}><h4 className="list-group-item-heading">{this.props.name}</h4>      </Link>
             <p className="list-group-item-text">
               {birthAge} years old, {this.props.weight} lbs, {this.props.heightFeet} ft {this.props.heightInches}, in {this.props.location}
             </p>
@@ -156,8 +156,6 @@ class SearchResult extends React.Component {
           }
           </div>
         </div>
-      </Link>
-
     </div>
 
     );

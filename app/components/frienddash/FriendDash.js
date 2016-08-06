@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from "react-router";
+import { connect } from 'react-redux';
 
 import { getAuth } from '../../services/loginService.js';
 import { getUser, getAllUsers } from '../../services/userService.js';
@@ -18,7 +19,7 @@ import ReactFilepicker from 'react-filepicker';
 
 import '../../scss/primary.scss';
 
-export default class Dashboard extends React.Component {
+class FriendDash extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,9 +30,10 @@ export default class Dashboard extends React.Component {
           title: 'This is a test',
           description: 'this is a test'
       }],
-      user: {},
       users: [],
-      allPics: []
+      allPics: [],
+      friend: {},
+      friends: []
     }
 
   }
@@ -96,14 +98,14 @@ export default class Dashboard extends React.Component {
       }
       else {
         this.setState({
-          user: res.body,
+          friend: res.body,
           weightChartUrl: `/api/weightchart/${res.body._id}`,
           cardioChartUrl: `/api/cardiochart/${res.body._id}`,
           bodyWeightChartUrl: `/api/bodyweightchart/${res.body._id}`
         })
 
 
-        const AllPics = this.state.user.pictures.map((pic) => (
+        const AllPics = this.state.friend.pictures.map((pic) => (
                   <FriendPicGridItem key={pic} pic={pic} />
          ))
 
@@ -132,15 +134,15 @@ export default class Dashboard extends React.Component {
 
   render() {
 
-    const allUsers = this.state.users.map( ( user ) => {
+    const allUsers = this.state.users.map( ( friend ) => {
       return (
         <FriendFollowingLeaderboard
-          key={user._id}
-          userId={user._id}
-          name={user.firstName + ' ' + user.lastName}
-          pic={user.profilePicture}
-          users={user}
-          friendUser={this.state.user}
+          key={friend._id}
+          userId={friend._id}
+          name={friend.firstName + ' ' + friend.lastName}
+          pic={friend.profilePicture}
+          users={friend}
+          friendUser={this.state.friend}
         />
       );
     } );
@@ -148,6 +150,8 @@ export default class Dashboard extends React.Component {
     return (
 
               <article>
+                {this.props.children}
+
                 <header id="dashboard-header">
 
                   <Navigation />
@@ -155,7 +159,7 @@ export default class Dashboard extends React.Component {
                 </header>
 
                 <div className="page-title-bar">
-                    <h1>{this.state.user.firstName}'s Dashboard</h1>
+                    <h1>{this.state.friend.firstName}s Dashboard</h1>
                 </div>
 
                 <div className="container main-content" id='dashboard'>
@@ -164,7 +168,7 @@ export default class Dashboard extends React.Component {
 
                     <div className="col-md-3" id="left-dash">
 
-                      <FriendUserWidget user={this.state.user} />
+                      <FriendUserWidget thisFriend={this.state.friend} />
 
                         <div className="panel panel-default" id="following-widget">
 
@@ -192,7 +196,7 @@ export default class Dashboard extends React.Component {
 
                     <FriendChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
 
-                      <FriendWallWidget />
+                      <FriendWallWidget thisFriend={this.state.friend} />
 
                     </div>
 
@@ -214,6 +218,7 @@ export default class Dashboard extends React.Component {
 
 
 
+
                 </div>
 
               <Footer />
@@ -222,3 +227,5 @@ export default class Dashboard extends React.Component {
     );
   }
 }
+
+export default connect(state => ({user: state.user}))(FriendDash);
