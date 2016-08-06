@@ -10,15 +10,22 @@ export default class FriendWallWidget extends React.Component {
 
     this.state = {
       max_chars: 160,
-      chars_left: 160
+      chars_left: 160,
+      messageContent: ""
     }
 
+  }
+
+  submitPost() {
+    console.log(this.state.messageContent);
+    this.setState({messageContent: ""})
   }
 
   handleTextAreaChange(event) {
     let input = event.target.value;
       this.setState({
-        chars_left: this.state.max_chars - input.length
+        chars_left: this.state.max_chars - input.length,
+        messageContent: input
       });
   }
 
@@ -36,7 +43,7 @@ export default class FriendWallWidget extends React.Component {
 
         <textarea maxLength="160" onChange={this.handleTextAreaChange.bind(this)} className="form-control" rows="3"></textarea>
           <p className="pull-left chars-left">{this.state.chars_left}</p>
-        <button id="post-to-wall" className="btn btn-info pull-right"><i className="fa fa-pencil" aria-hidden="true"></i> Post</button>
+        <button id="post-to-wall" onClick={this.submitPost.bind(this, this.state.messageContent)} className="btn btn-info pull-right"><i className="fa fa-pencil" aria-hidden="true"></i> Post</button>
 
     </div>
           <div className="list-group">

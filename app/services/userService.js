@@ -1,6 +1,6 @@
 import request from 'superagent';
 import store from '../store';
-import { signin, postMessage, deleteWallPost } from '../ducks/userDuck';
+import { signin, postMessage, deleteWallPost, followUser } from '../ducks/userDuck';
 
 export function getAllUsers( resolve, reject ) {
 	request.get( '/api/users' )
@@ -20,8 +20,20 @@ export function putUser(userInfo, userId, resolve, reject) {
 				console.log(err);
 				return reject(err);
 			}
-			console.log(userInfo)
 			return store.dispatch(signin(userInfo.body));
+		});
+}
+
+export function addFollower(newUserId, userId) {
+	console.log(newUserId, userId);
+	request.post(`/api/user/following/${userId}`)
+		.send(newUserId)
+		.end((err, user) => {
+			if (err) {
+				return console.log(err);
+			}
+			console.log(user);
+			return store.dispatch(followUser(newUserId));
 		});
 }
 
@@ -40,8 +52,8 @@ export function postToWall(wallPost, userId, reject) {
 					}
 					console.log(finalPost.body);
 					return store.dispatch(postMessage(finalPost.body))
-				})
-		})
+				});
+		});
 }
 
 export function deleteFromWall(userId, postId, reject) {
