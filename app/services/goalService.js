@@ -55,12 +55,14 @@ export function deleteGoal(goalId, resolve, reject) {
 }
 
 export function updateGoal(goalInfo, goalId, resolve, reject) {
+  console.log(goalInfo);
   request.put(`/api/goal/${goalId}`)
     .send(goalInfo)
     .end((err, goal) => {
       if (err) {
-        return reject(err);
+        return console.log(err);
       }
-      return store.dispatch(postGoal(goal));
+      return console.log(goal)
+    //  return store.dispatch(postGoal(goal));
     });
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from "react-router";
-
+import { connect } from "react-redux";
 import Navigation from '../Navigation';
 import Footer from '../Footer';
 import GoalsWidget from '../sidebar/GoalsWidget';
@@ -16,7 +16,7 @@ import DatePicker from 'react-datepicker';
 
 import '../../scss/primary.scss';
 
-export default class EditGoal extends React.Component {
+class EditGoal extends React.Component {
   constructor(props) {
     super(props);
 
@@ -28,18 +28,23 @@ export default class EditGoal extends React.Component {
   }
 
     componentWillMount() {
-      new Promise((resolve, reject)=> {
-        getAuth(resolve, reject);
-      }).then((res, err)=> {
-        if (err){
-        }
-        else if(res.body === false){
-          browserHistory.push('/');
-        }
-        else {
-          this.setState({user: res.body})
-          this.getGoal();
-        }})
+      // new Promise((resolve, reject)=> {
+      //   getAuth(resolve, reject);
+      // }).then((res, err)=> {
+      //   if (err){
+      //   }
+      //   else if(res.body === false){
+      //     browserHistory.push('/');
+      //   }
+      //   else {
+      //     this.setState({user: res.body})
+      //     this.getGoal();
+      //   }})
+      if (!this.props.user.loggedIn) {
+        browserHistory.push('/');
+      }
+
+      console.log(this.props.editGoal)
 
       }
 
@@ -89,12 +94,11 @@ export default class EditGoal extends React.Component {
         </header>
 
         <div className="page-title-bar">
-            <h1>New Goal</h1>
+            <h1>Edit Goal</h1>
             <h5>{this.state.goal.goalName}</h5>
         </div>
 
         <div className="container main-content">
-
 
             <div className="container">
                 <div className="row">
@@ -112,16 +116,21 @@ export default class EditGoal extends React.Component {
                         <div className="row">
                             <div>
                               {
-                                this.state.weightStart
+                                this.props.editGoal.goalType === "WeightLifting"
                                   ?
                                 <EditLiftingForm
-                                    goal={this.state.goal}
-                                    user={this.state.user}
+                                    goalName={this.props.editGoal.goalName}
+                                    goalMax={this.props.editGoal.goalMax}
+                                    user={this.props.user}
+                                    goalId={this.props.editGoal.goalId}
                                 />
                                   :
                                   <EditCardioForm
-                                    goal={this.state.goal}
+                                    goalName={this.props.editGoal.goalName}
+                                    goalMileTime={this.props.editGoal.goalMileTime}
+                                    goalDistance={this.props.editGoal.goalDistance}
                                     user={this.state.user}
+                                    goalId={this.props.editGoal.goalId}
                                   />
 
                               }
@@ -157,3 +166,5 @@ export default class EditGoal extends React.Component {
     );
   }
 }
+
+export default connect(state => ({user: state.user, editGoal: state.editGoal}))(EditGoal);

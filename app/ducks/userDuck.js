@@ -24,7 +24,8 @@ const initialState = {
   birthDate: new Date,
   location: "",
   lastName: "",
-  firstName: ""
+  firstName: "",
+  loggedIn: false
 };
 
 export default function reducer(state = initialState, action) {

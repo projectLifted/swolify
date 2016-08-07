@@ -10,12 +10,9 @@ class WallPostComponent extends React.Component {
   }
 
   deletePost(postId) {
-<<<<<<< HEAD
     console.log(postId);
     console.log(this.props.user._id);
-=======
 
->>>>>>> 39794ef3e8a7f16bb0af726f71b8c69603466f04
     deleteFromWall(this.props.user._id, postId);
   }
 
@@ -26,15 +23,6 @@ class WallPostComponent extends React.Component {
 
     return (
       <div className="list-group-item">
-<<<<<<< HEAD
-        <div className="wall-container">
-            <div style={followingImg} className="wall-pic"></div>
-            <div className="wall-name"><Link to="/">{this.props.posterName}</Link>
-            <button onClick={this.deletePost.bind(this, this.props.postId)} className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button></div>
-            <div className="wall-content">
-              {this.props.message}
-            </div>
-=======
 
         <div className="wall-container">
 
@@ -46,8 +34,6 @@ class WallPostComponent extends React.Component {
 
               {this.props.message}
             </div>
-
->>>>>>> 39794ef3e8a7f16bb0af726f71b8c69603466f04
       </div>
     </div>
     )

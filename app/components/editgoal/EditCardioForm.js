@@ -12,9 +12,9 @@ export default class EditCardioForm extends React.Component {
 
     this.state = {
       show: false,
-      goalName: this.props.goal.goalName,
-      goalMileTime: this.props.goal.goalMileTime,
-      goalDistance: this.props.goal.goalDistance
+      goalName: this.props.goalName,
+      goalMileTime: this.props.goalMileTime,
+      goalDistance: this.props.goalDistance
     }
   }
 
@@ -30,12 +30,14 @@ export default class EditCardioForm extends React.Component {
 
   handleSubmit(event) {
 
+    console.log(this.state.goalName)
+
     event.preventDefault();
     updateGoal({
       goalName: this.state.goalName,
       goalDistance: this.state.goalDistance,
       goalMileTime: this.state.goalMileTime
-    }, this.props.goal._id)
+    }, this.props.goalId)
       browserHistory.push("/dashboard");
   }
 
@@ -109,7 +111,7 @@ export default class EditCardioForm extends React.Component {
 
             <center><button type="submit" className="btn btn-info form-submit" id="edit-goal-button"><i className="fa fa-plus-square" aria-hidden="true"></i> Save Changes</button>
 
-            <DeleteGoalModal goalId={this.props.goal._id} show={this.state.show} /></center>
+            <DeleteGoalModal goalId={this.props.goalId} show={this.state.show} /></center>
 
 
           </div>

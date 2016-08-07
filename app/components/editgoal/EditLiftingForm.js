@@ -2,6 +2,8 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import store from '../../store';
+import { clearGoal } from '../../ducks/editGoalDuck';
 import { updateGoal } from '../../services/goalService';
 import DeleteGoalModal from './DeleteGoalModal';
 import '../../scss/primary.scss';
@@ -11,8 +13,14 @@ export default class EditLiftingForm extends React.Component {
     super(props);
 
     this.state = {
-      show: false
+      show: false,
+      goalName: this.props.goalName,
+      goalMax: this.props.goalMax
     }
+  }
+
+  componentWillunMount() {
+    store.dispatch(clearGoal());
   }
 
   handleChange(field, event) {
@@ -31,20 +39,21 @@ export default class EditLiftingForm extends React.Component {
       updateGoal({
         goalName: this.state.goalName,
         goalMax: this.state.goalMax,
-      }, this.props.goal._id);
+      }, this.props.goalId);
 
         browserHistory.push("/dashboard")
   }
 
-
-   componentWillReceiveProps(){
-      this.setState({
-        goalName: this.props.goal.goalName,
-        goalMax: this.props.goal.goalMax
-      })
-    }
+   //
+  //  componentWillReceiveProps(){
+  //     this.setState({
+  //       goalName: this.props.goalName,
+  //       goalMax: this.props.goalMax
+  //     })
+  //   }
 
   render() {
+    console.log(this.props.goalName);
 
     return (
       <form id="new-goal-form" onSubmit={this.handleSubmit.bind(this)}>
@@ -95,7 +104,7 @@ export default class EditLiftingForm extends React.Component {
 
             <center><button type="submit" className="btn btn-info form-submit" id="edit-goal-button"><i className="fa fa-plus-square" aria-hidden="true"></i> Save Changes</button>
 
-            <DeleteGoalModal goalId={this.props.goal._id} show={this.state.show} /></center>
+            <DeleteGoalModal goalId={this.props.goalId} show={this.state.show} /></center>
 
 
 

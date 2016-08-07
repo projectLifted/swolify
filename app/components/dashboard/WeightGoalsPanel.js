@@ -3,7 +3,7 @@ import {Accordion, Panel, ProgressBar} from 'react-bootstrap';
 import {Link, browserHistory} from "react-router";
 import { connect } from "react-redux";
 import store from "../../store";
-import { selectGoal } from "../../ducks/updateGoalDuck";
+import { selectGoalToEdit } from '../../ducks/editGoalDuck';
 
 import '../../scss/primary.scss';
 import running from '../../images/running.png';
@@ -13,9 +13,13 @@ export default class WeightGoalsPanel extends React.Component {
     super(props);
   }
 
-  setGoalToUpdate(goalId, goalName) {
-    store.dispatch(selectGoal({goalId, goalName}))
-      browserHistory.push("/new-goal");
+
+  goToEditGoal(title, maxGoal, goalId) {
+
+    store.dispatch(selectGoalToEdit({goalId, goalType: "WeightLifting", goalName: title, goalMax: maxGoal}))
+
+    browserHistory.push(`/edit-goal/${goalId}`)
+
   }
 
   render() {
@@ -33,7 +37,7 @@ export default class WeightGoalsPanel extends React.Component {
                   <div>
                   <ProgressBar bsStyle="success" now={this.props.progress} label={`${this.props.progress}%`} />
                   <p className="extra-bottom">Rep max goal: {this.props.maxRepGoal} lbs</p>
-                  <Link to={`/edit-goal/${this.props.goalId}`} className="btn btn-info"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</Link>
+                  <button onClick={this.goToEditGoal.bind(this, this.props.title, this.props.maxRepGoal, this.props.goalId)} className="btn btn-info"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
                 <Link to={`/post-workout/lifting/${this.props.goalId}/${this.props.title}`} className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Workout</Link>
                 </div>
               }
