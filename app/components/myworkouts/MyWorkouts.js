@@ -25,18 +25,13 @@ class MyWorkouts extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-
-    }
   }
-
 
   componentWillMount(){
 
     this.getGoals();
 
   }
-
 
   getGoals() {
 

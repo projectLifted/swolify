@@ -9,15 +9,11 @@ class WeightliftingResults extends React.Component {
 
   }
 
-
   deleteWorkout() {
-
     deleteWorkout(this.props.goalId, this.props.workoutId);
-
   }
 
   render() {
-
     return (
       <tr>
         <td>{this.props.date}</td>
@@ -26,7 +22,6 @@ class WeightliftingResults extends React.Component {
         <td>{this.props.weight}</td>
         <td><button onClick={this.deleteWorkout.bind(this)} className="btn btn-danger">X</button></td>
       </tr>
-
     );
   }
 }
