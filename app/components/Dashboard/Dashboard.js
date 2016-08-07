@@ -9,7 +9,7 @@ import { postGoal } from '../../ducks/goalDuck';
 
 import { getAuth } from '../../services/loginService.js';
 import { getUserGoals } from '../../services/goalService';
-import { getAllUsers } from '../../services/userService';
+import { getFollowing } from '../../services/userService';
 
 import Navigation from '../Navigation';
 import Footer from '../Footer';
@@ -128,39 +128,81 @@ class Dashboard extends React.Component {
           }
         })
       }
+      if (this.props.following.following.length === 0) {
+        for (let i = 0; i < this.props.user.following.length; i++) {
+          new Promise((reject) => {
+            getFollowing(this.props.user.following[i], reject);
+          }).then((res, err) => {
+            if (err) {
+              return console.log(err);
+            }
+            return console.log(res);
+          });
+        }
+      }
+
     });
 
 
-    new Promise( ( resolve, reject ) => {
-      getAllUsers( resolve, reject );
-    } ).then( ( res, err ) => {
-      if ( err ) {
-        return console.error( err );
-      }
-      this.setState( {
-        users: res.body,
-       } )
-      //  console.log(this.state.users);
-    } );
+    // new Promise( ( resolve, reject ) => {
+    //   getAllUsers( resolve, reject );
+    // } ).then( ( res, err ) => {
+    //   if ( err ) {
+    //     return console.error( err );
+    //   }
+    //   this.setState( {
+    //     users: res.body,
+    //    } )
+    //   //  console.log(this.state.users);
+    // } );
 
+    // setTimeout(() => {
+    //   for (let i = 0; i < this.props.user.following.length; i++) {
+    //     new Promise((resolve, reject) => {
+    //       console.log(this.props.user.following[i]);
+    //       getUser(this.props.user.following[i], resolve, reject);
+    //     }).then((res, err) => {
+    //       if (err) {
+    //         return console.log(err);
+    //       }
+    //       this.setState({users: this.state.users.concat(res.body)});
+    //     });
+    //   }
+    // }, 1000);
+
+  }
+
+  componentWillReceiveProps() {
 
   }
 
 
   render() {
+    console.log(this.props.following);
 
-    const allUsers = this.state.users.map( ( user ) => {
-      return (
-        <FollowingLeaderboard
-          key={user._id}
-          userId={user._id}
-          name={user.firstName + ' ' + user.lastName}
-          pic={user.profilePicture}
-          users={user}
-          authUser={this.props.user}
-        />
-      );
-    } );
+
+    const allFollowing = this.props.following.following.map((follow) => (
+      <FollowingLeaderboard
+          key={follow._id}
+          followId={follow._id}
+          firstName={follow.firstName}
+          lastName={follow.lastName}
+          profilePicture={follow.profilePicture}
+      />
+    ))
+
+    // const allUsers = this.state.users.map( ( user ) => {
+    //   return (
+    //     <FollowingLeaderboard
+    //       key={user._id}
+    //       userId={user._id}
+    //       name={user.firstName + ' ' + user.lastName}
+    //       pic={user.profilePicture}
+    //       users={user}
+    //       authUser={this.props.user}
+    //     />
+    //   );
+    // } );
 
     return (
               <article>
@@ -190,7 +232,7 @@ class Dashboard extends React.Component {
 
                           <div className="list-group">
 
-                              {allUsers}
+                              {allFollowing}
 
                               <div className="list-footer">
                                 <Link to="/search"><i className="fa fa-search" aria-hidden="true"></i> Find and Remove Followers</Link>
@@ -311,4 +353,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user, goals: state.goals}))(Dashboard);
+export default connect(state => ({user: state.user, goals: state.goals, following: state.following}))(Dashboard);

@@ -17,7 +17,7 @@ class FollowingLeaderboard extends React.Component {
 
     var followingArray = this.props.user.following;
     for (var i = 0; i < followingArray.length; i++) {
-      if ( followingArray[i] === this.props.users._id )  {
+      if ( followingArray[i] === this.props.followId )  {
         this.setState({ isFollowing : true })
       }
     }
@@ -26,10 +26,10 @@ class FollowingLeaderboard extends React.Component {
 
   render() {
     const profileImg = {
-      backgroundImage: `url("${this.props.pic}")`
+      backgroundImage: `url("${this.props.profilePicture}")`
     };
 
-    const linkUrl = `/friend-dash/${this.props.userId}`;
+    const linkUrl = `/friend-dash/${this.props.followId}`;
 
 
     return (
@@ -39,7 +39,7 @@ class FollowingLeaderboard extends React.Component {
           ?
             <Link to={linkUrl} className="list-group-item">
                 <div style={profileImg} className="following-pic"></div>
-                <div className="following-name">{this.props.name}</div>
+                <div className="following-name">{this.props.firstName} {this.props.lastName}</div>
             </Link>
           :
             <span></span>

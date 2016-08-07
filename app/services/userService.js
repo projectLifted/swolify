@@ -1,6 +1,7 @@
 import request from 'superagent';
 import store from '../store';
-import { signin, putphoto, postMessage, deleteWallPost, deletephoto, putfriend, putuser } from '../ducks/userDuck';
+import { signin, putphoto, postMessage, deleteWallPost, deletephoto, addFollow, putuser, removeUserFollow } from '../ducks/userDuck';
+import { followUser, removeFollow } from '../ducks/followDuck';
 
 export function getAllUsers( resolve, reject ) {
 	request.get( '/api/users' )
@@ -100,4 +101,44 @@ export function getUser(userId, resolve, reject) {
 			}
 			return resolve( user );
 		});
+}
+
+export function getFollowing(followId, reject) {
+	request.get(`/api/users/${followId}`)
+		.end((err, user) => {
+			if (err) {
+				return console.log(err);
+			}
+			return store.dispatch(followUser({_id: user.body._id, firstName: user.body.firstName, lastName: user.body.lastName, profilePicture: user.body.profilePicture}));
+		})
+}
+
+export function addUserToFollowing(userId, newFollowing) {
+	request.post(`/api/user/following/${userId}`)
+		.send({_id: newFollowing})
+		.end((err, user) => {
+			return console.log(err);
+		});
+		request.get(`/api/users/${newFollowing}`)
+			.end((err, user) => {
+				if (err) {
+					return console.log(err)
+				}
+
+				store.dispatch(addFollow(newFollowing));
+
+				return store.dispatch(followUser({_id: user.body._id, firstName: user.body.firstName, lastName: user.body.lastName, profilePicture: user.body.profilePicture}));
+			});
+}
+
+export function removeFromFollowing(userId, unfollowId) {
+	request.put(`/api/user/following/${userId}`)
+		.send({_id: unfollowId})
+		.end((err, updatedUser) => {
+			if (err) {
+				return console.log(err)
+			}
+			store.dispatch(removeFollow(unfollowId));
+			return store.dispatch(removeFollow(unfollowId));
+		})
 }

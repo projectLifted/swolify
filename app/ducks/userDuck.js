@@ -4,7 +4,8 @@ const WALL_POST = "user/WALL_POST";
 const PUT_PHOTO  = "user/PUT_PHOTO";
 const DELETE_PHOTO  = "user/DELETE_PHOTO";
 const DELETE_POST = "user/DELETE_POST";
-const PUT_FRIEND = "user/PUT_FRIEND";
+const ADD_FOLLOW = "user/ADD_FOLLOW";
+const REMOVE_FOLLOW = "user/REMOVE_FOLLOW";
 const PUT_USER = "user/PUT_USER";
 
 const initialState = {
@@ -77,12 +78,12 @@ export default function reducer(state = initialState, action) {
             firstName: state.firstName
       };
 
-      case PUT_FRIEND:
+      case ADD_FOLLOW:
         return {
               _id: state._id,
               facebookId: state.facebookId,
               updated: state.updated,
-              following: action.post,
+              following: [...state.following, action.post],
               wallPosts: state.wallPosts,
               pictures: state.pictures,
               profilePicture: state.profilePicture,
@@ -97,6 +98,27 @@ export default function reducer(state = initialState, action) {
               lastName: state.lastName,
               firstName: state.firstName
         };
+
+      case REMOVE_FOLLOW:
+        return {
+          _id: state._id,
+          facebookId: state.facebookId,
+          updated: state.updated,
+          following: state.following.filter(follow => follow._id !== action.follow),
+          wallPosts: state.wallPosts,
+          pictures: state.pictures,
+          profilePicture: state.profilePicture,
+          goalWeight: state.goalWeight,
+          startWeight: state.startWeight,
+          heightInches: state.heightInches,
+          heightFeet: state.heightFeet,
+          bodyType: state.bodyType,
+          gender: state.gender,
+          birthDate: state.birthDate,
+          location: state.location,
+          lastName: state.lastName,
+          firstName: state.firstName
+        }
 
         case PUT_USER:
           console.log(action.post._id)
@@ -189,10 +211,14 @@ export function deleteWallPost(post) {
   return {type: DELETE_POST, post}
 }
 
-export function putFriend(post) {
-  return {type: PUT_FRIEND, post}
+export function addFollow(post) {
+  return {type: ADD_FOLLOW, post}
 }
 
 export function putuser(post) {
   return {type: PUT_USER, post}
+}
+
+export function removeUserFollow(follow) {
+  return {type: REMOVE_FOLLOW, follow}
 }

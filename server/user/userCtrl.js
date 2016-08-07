@@ -55,14 +55,13 @@ module.exports = {
         return res.status(500).json(err);
       }
 
-      console.log(req.body);
       user.wallPosts.push(req.body);
       user.save((err, updatedUser) => {
         if (err) {
           return res.status(500).json(err);
         }
         return res.status(200).json(updatedUser);
-      })
+      });
       // console.log(user);
       // User.findByIdAndUpdate(req.params.id, user, (err, updatedUser) => {
       //   if (err) {
@@ -71,6 +70,22 @@ module.exports = {
       //   console.log(updatedUser.wallPosts, "RETURNED UPDATED USER");
       //   return res.status(200).json(updatedUser);
       // });
+    });
+  },
+
+  addToFollowing(req, res) {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      console.log(req.body);
+      user.following.push(req.body);
+      user.save((err, updatedUser) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        return res.status(200).json(updatedUser);
+      });
     });
   },
 
@@ -87,6 +102,25 @@ module.exports = {
               return res.status(500).json(err);
             }
             console.log(updatedUser);
+            return res.status(200).json(updatedUser);
+          })
+        }
+      }
+    });
+  },
+
+  removeFollow(req, res) {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      for (let i = 0; i < user.following.length; i++) {
+        if ((user.following[i]).toString() === req.body._id) {
+          user.following.splice(i, 1);
+          user.save((err, updatedUser) => {
+            if (err) {
+              return res.status(500).json(err);
+            }
             return res.status(200).json(updatedUser);
           })
         }
