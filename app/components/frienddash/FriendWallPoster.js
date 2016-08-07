@@ -2,7 +2,8 @@ import React from 'react';
 import {Accordion, ListGroup, ListGroupItem, Panel, ProgressBar} from 'react-bootstrap';
 import {Link, browserHistory} from "react-router";
 import { connect } from "react-redux";
-import { postToWall } from "../../services/userService";
+import { getFriend, getAllUsers, postToFriendWall, deleteFriendWallPost} from '../../services/friendService.js';
+
 
 import '../../scss/primary.scss';
 
@@ -28,7 +29,7 @@ class FriendWallPoster extends React.Component {
   }
 
   submitPost(content) {
-    postToWall({message: content, sender: this.props.user._id, posterPic: this.props.user.profilePicture, posterName: `${this.props.user.firstName} ${this.props.user.lastName}`}, this.props.thisFriend._id);
+    postToFriendWall({message: content, sender: this.props.user._id, posterPic: this.props.user.profilePicture, posterName: `${this.props.user.firstName} ${this.props.user.lastName}`}, this.props.friend._id);
   }
 
 
@@ -50,4 +51,4 @@ class FriendWallPoster extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user}))(FriendWallPoster);
+export default connect(state => ({user: state.user, friend: state.friend}))(FriendWallPoster)

@@ -4,6 +4,8 @@ const WALL_POST = "user/WALL_POST";
 const PUT_PHOTO  = "user/PUT_PHOTO";
 const DELETE_PHOTO  = "user/DELETE_PHOTO";
 const DELETE_POST = "user/DELETE_POST";
+const PUT_FRIEND = "user/PUT_FRIEND";
+const PUT_USER = "user/PUT_USER";
 
 const initialState = {
   _id: "",
@@ -74,6 +76,49 @@ export default function reducer(state = initialState, action) {
             firstName: state.firstName
       };
 
+      case PUT_FRIEND:
+        return {
+              _id: state._id,
+              facebookId: state.facebookId,
+              updated: state.updated,
+              following: action.post,
+              wallPosts: state.wallPosts,
+              pictures: state.pictures,
+              profilePicture: state.profilePicture,
+              goalWeight: state.goalWeight,
+              startWeight: state.startWeight,
+              heightInches: state.heightInches,
+              heightFeet: state.heightFeet,
+              bodyType: state.bodyType,
+              gender: state.gender,
+              birthDate: state.birthDate,
+              location: state.location,
+              lastName: state.lastName,
+              firstName: state.firstName
+        };
+
+        case PUT_USER:
+          console.log(action.post._id)
+          return {
+                _id: action.post._id,
+                facebookId: action.post.facebookId,
+                updated: action.post.updated,
+                following: action.post.following,
+                wallPosts: action.post.wallPosts,
+                pictures: action.post.pictures,
+                profilePicture: action.post.profilePicture,
+                goalWeight: action.post.goalWeight,
+                startWeight: action.post.startWeight,
+                heightInches: action.post.heightInches,
+                heightFeet: action.post.heightFeet,
+                bodyType: action.post.bodyType,
+                gender: action.post.gender,
+                birthDate: action.post.birthDate,
+                location: action.post.location,
+                lastName: action.post.lastName,
+                firstName: action.post.firstName
+          };
+
       case DELETE_PHOTO:
       return {
             _id: state._id,
@@ -141,4 +186,12 @@ export function deletephoto(post) {
 
 export function deleteWallPost(post) {
   return {type: DELETE_POST, post}
+}
+
+export function putFriend(post) {
+  return {type: PUT_FRIEND, post}
+}
+
+export function putuser(post) {
+  return {type: PUT_USER, post}
 }

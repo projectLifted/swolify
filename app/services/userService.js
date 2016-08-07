@@ -1,6 +1,6 @@
 import request from 'superagent';
 import store from '../store';
-import { signin, putphoto, postMessage, deleteWallPost, deletephoto } from '../ducks/userDuck';
+import { signin, putphoto, postMessage, deleteWallPost, deletephoto, putfriend, putuser } from '../ducks/userDuck';
 
 export function getAllUsers( resolve, reject ) {
 	request.get( '/api/users' )
@@ -20,7 +20,9 @@ export function putUser(userInfo, userId, resolve, reject) {
 				console.log(err);
 				return reject(err);
 			}
-			return store.dispatch(signin(userInfo));
+
+			console.log(userInfo)
+			return store.dispatch(putuser(userInfo));
 		});
 }
 
@@ -33,6 +35,18 @@ export function putPhoto(photosObject, photosArray, userId, resolve, reject) {
 				return reject(err);
 			}
 			return store.dispatch(putphoto(photosArray));
+		});
+}
+
+export function putFriend(friendsObject, friendsArray, userId, resolve, reject) {
+	request.put(`/api/users/${userId}`)
+		.send(friendsObject)
+		.end((err, user) => {
+			if (err) {
+				console.log(err);
+				return reject(err);
+			}
+			return store.dispatch(putFriend(friendsArray));
 		});
 }
 
