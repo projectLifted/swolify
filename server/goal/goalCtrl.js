@@ -53,7 +53,7 @@ module.exports = {
         if (err) {
           return res.status(500).json(err);
         }
-        return res.status(200).json(goal);
+        return res.status(200).json(goal.workouts[goal.workouts.length - 1]);
       });
     });
   },

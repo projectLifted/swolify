@@ -87,6 +87,8 @@ class Dashboard extends React.Component {
               })
             }
 
+            console.log(this.props.goals.goals)
+
             // Seperate goals by goal type
             res.body.map(goal => {
               if (goal.goalType === "WeightLifting") {
