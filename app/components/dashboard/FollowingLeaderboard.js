@@ -13,18 +13,23 @@ class FollowingLeaderboard extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidUpdate(){
+    console.log("hello from following widget", this.props.user.following)
+  }
+
+
+  render() {
+
+    let isFollowing = false;
 
     var followingArray = this.props.user.following;
     for (var i = 0; i < followingArray.length; i++) {
       if ( followingArray[i] === this.props.users._id )  {
-        this.setState({ isFollowing : true })
+        isFollowing = true;
       }
     }
 
-  }
 
-  render() {
     const profileImg = {
       backgroundImage: `url("${this.props.pic}")`
     };
@@ -35,7 +40,7 @@ class FollowingLeaderboard extends React.Component {
     return (
 
       <div>
-        { this.state.isFollowing
+        { isFollowing
           ?
             <Link to={linkUrl} className="list-group-item">
                 <div style={profileImg} className="following-pic"></div>

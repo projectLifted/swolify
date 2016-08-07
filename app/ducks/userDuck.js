@@ -98,7 +98,6 @@ export default function reducer(state = initialState, action) {
         };
 
         case PUT_USER:
-          console.log(action.post._id)
           return {
                 _id: action.post._id,
                 facebookId: action.post.facebookId,
@@ -116,7 +115,8 @@ export default function reducer(state = initialState, action) {
                 birthDate: action.post.birthDate,
                 location: action.post.location,
                 lastName: action.post.lastName,
-                firstName: action.post.firstName
+                firstName: action.post.firstName,
+                following: action.post.following
           };
 
       case DELETE_PHOTO:
@@ -188,7 +188,7 @@ export function deleteWallPost(post) {
   return {type: DELETE_POST, post}
 }
 
-export function putFriend(post) {
+export function putfriend(post) {
   return {type: PUT_FRIEND, post}
 }
 

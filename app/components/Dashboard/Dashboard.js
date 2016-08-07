@@ -46,14 +46,13 @@ class Dashboard extends React.Component {
       cardioChartUrl: '',
       noGoals: false,
       weightGoalsPresent: false,
-      cardioGoalsPresent: false
+      cardioGoalsPresent: false,
+      allUsers: []
     }
 
   }
 
   componentWillMount() {
-
-    console.log(this.props.goals);
 
     new Promise((resolve, reject)=> {
       getAuth(resolve, reject);
@@ -90,7 +89,6 @@ class Dashboard extends React.Component {
 
             // Seperate goals by goal type
             res.body.map(goal => {
-              console.log(goal);
               if (goal.goalType === "WeightLifting") {
                 this.setState({weightGoalsPresent: true})
                 this.setState((state) => ({weightLiftingGoals: state.weightLiftingGoals.concat(goal)}))
@@ -140,14 +138,28 @@ class Dashboard extends React.Component {
       this.setState( {
         users: res.body,
        } )
-      //  console.log(this.state.users);
+
     } );
+
+
 
 
   }
 
 
+  componentDidUpdate(){
+
+  console.log(this.props.user.following);
+
+
+  }
+
+
+
+
+
   render() {
+
 
     const allUsers = this.state.users.map( ( user ) => {
       return (
@@ -157,10 +169,11 @@ class Dashboard extends React.Component {
           name={user.firstName + ' ' + user.lastName}
           pic={user.profilePicture}
           users={user}
-          authUser={this.props.user}
         />
       );
     } );
+
+
 
     return (
               <article>
