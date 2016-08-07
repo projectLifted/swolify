@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import { getAuth } from '../services/loginService.js';
+import { getUser } from '../services/userService.js';
+
 import { signin } from '../ducks/userDuck';
 import { connect } from 'react-redux';
-import { signupUser } from '../services/signupService';
-
 
 import Navigation from './Navigation';
 import Footer from './Footer';
@@ -77,7 +77,7 @@ class Signup extends React.Component {
     event.preventDefault();
 
     new Promise((resolve, reject) => {
-      signupUser({
+      putUser({
         _id: this.state.user._id,
         facebookId: this.state.user.facebookId,
         firstName: this.state.firstName,

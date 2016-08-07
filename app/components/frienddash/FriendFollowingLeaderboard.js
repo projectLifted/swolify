@@ -1,9 +1,10 @@
 import React from 'react';
 import {Link, browserHistory} from "react-router";
+import { connect } from 'react-redux';
 
 import '../../scss/primary.scss';
 
-export default class FriendFollowingLeaderboard extends React.Component {
+class FriendFollowingLeaderboard extends React.Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +15,7 @@ export default class FriendFollowingLeaderboard extends React.Component {
 
   componentWillMount() {
 
-    var followingArray = this.props.friendUser.following;
+    var followingArray = this.props.friend.following;
     for (var i = 0; i < followingArray.length; i++) {
       if ( followingArray[i] === this.props.users._id )  {
         this.setState({ isFollowing : true })
@@ -50,3 +51,5 @@ export default class FriendFollowingLeaderboard extends React.Component {
     );
   }
 }
+
+export default connect(state => ({user: state.user, friend: state.friend}))(FriendFollowingLeaderboard);

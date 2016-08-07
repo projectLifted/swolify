@@ -2,7 +2,7 @@ import React from 'react';
 import '../../scss/primary.scss';
 import { connect } from 'react-redux';
 import {Link, browserHistory} from "react-router";
-import { deleteFromWall } from '../../services/userService';
+import { getFriend, getAllUsers, postToFriendWall, deleteFromFriendWall} from '../../services/friendService.js';
 
 class FriendWallPostComponent extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class FriendWallPostComponent extends React.Component {
 
   deletePost(postId) {
 
-    deleteFromWall(this.props.thisFriendId, postId);
+    deleteFromFriendWall(this.props.friend._id, postId);
   }
 
 
@@ -45,4 +45,4 @@ class FriendWallPostComponent extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user}))(FriendWallPostComponent)
+export default connect(state => ({user: state.user, friend: state.friend}))(FriendWallPostComponent);

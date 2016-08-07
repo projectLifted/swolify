@@ -1,6 +1,6 @@
 import request from 'superagent';
 import store from '../store';
-import { signin } from '../ducks/userDuck';
+import { signup } from '../ducks/userDuck';
 
 export function signupUser(userInfo, userId, resolve, reject) {
   request.put(`/api/users/${userId}`)
@@ -11,7 +11,7 @@ export function signupUser(userInfo, userId, resolve, reject) {
         return reject(err);
       }
 
-      return store.dispatch(signin(user));
+      return store.dispatch(signup(userInfo));
     });
 
 

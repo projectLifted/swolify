@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from 'react-router';
-import { getAuth } from '../services/loginService.js';
-import { signin } from '../ducks/userDuck';
-import { signupUser } from '../services/signupService';
+import { putUser } from '../services/userService';
 import { connect } from 'react-redux';
 
 import Navigation from './Navigation';
@@ -105,68 +103,56 @@ class Signup extends React.Component {
     });
   }
 
-  // componentWillMount(){
-  //   new Promise((resolve, reject)=> {
-  //     getAuth(resolve, reject);
-  //   }).then((res, err)=> {
-  //     if (err){
-  //       browserHistory.push('/');
-  //     }
-  //     else if(res.body === false){
-  //       browserHistory.push('/');
-  //     }
-  //     else {
-  //
-  //       let location = res.body.location.split(', ');
-  //       let city = location[0];
-  //       let state = location[1];
-  //
-  //       if(res.body.gender === "man") {
-  //         this.state.manChecked = true;
-  //       }
-  //       else if (res.body.gender === "woman") {
-  //         this.state.ladyChecked = true
-  //       }
-  //
-  //       if(res.body.bodyType === "ectomorph") {
-  //         this.state.ectoChecked = true;
-  //       }
-  //
-  //       else if(res.body.bodyType === "mesomorph") {
-  //         this.state.mesoChecked = true;
-  //       }
-  //
-  //       else if(res.body.bodyType === "endomorph") {
-  //         this.state.endoChecked = true;
-  //       }
-  //
-  //
-  //       this.setState({
-  //         user: res.body,
-  //         firstName: res.body.firstName,
-  //         lastName: res.body.lastName,
-  //         city: city,
-  //         state: state,
-  //         birthDate: moment(res.body.birthDate),
-  //         gender: res.body.gender,
-  //         bodyType: res.body.bodyType,
-  //         heightFeet: res.body.heightFeet,
-  //         heightInches: res.body.heightFeet,
-  //         startWeight: res.body.startWeight,
-  //         goalWeight: res.body.goalWeight,
-  //         profilePicture: res.body.profilePicture
-  //       })
-  //     }
-  //   })
-  // }
+  componentWillMount(){
+
+
+        let location = this.props.user.location.split(', ');
+        let city = location[0];
+        let state = location[1];
+
+        if(this.props.user.gender === "man") {
+          this.state.manChecked = true;
+        }
+        else if (this.props.user.gender === "woman") {
+          this.state.ladyChecked = true
+        }
+
+        if(this.props.user.bodyType === "ectomorph") {
+          this.state.ectoChecked = true;
+        }
+
+        else if(this.props.user.bodyType === "mesomorph") {
+          this.state.mesoChecked = true;
+        }
+
+        else if(this.props.user.bodyType === "endomorph") {
+          this.state.endoChecked = true;
+        }
+
+
+        this.setState({
+          firstName: this.props.user.firstName,
+          lastName: this.props.user.lastName,
+          city: city,
+          state: state,
+          birthDate: moment(this.props.user.birthDate),
+          gender: this.props.user.gender,
+          bodyType: this.props.user.bodyType,
+          heightFeet: this.props.user.heightFeet,
+          heightInches: this.props.user.heightInches,
+          startWeight: this.props.user.startWeight,
+          goalWeight: this.props.user.goalWeight,
+          profilePicture: this.props.user.profilePicture
+        })
+
+  }
 
   handleSignup(event) {
     event.preventDefault();
 
-    new Promise((resolve, reject) => {
-      signupUser({
-        _id: this.state.user._id,
-        facebookId: this.state.user.facebookId,
+      putUser({
+        _id: this.props.user._id,
+        facebookId: this.props.user.facebookId,
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         location: `${this.state.city}, ${this.state.state}`,
@@ -178,16 +164,9 @@ class Signup extends React.Component {
         startWeight: this.state.startWeight,
         goalWeight: this.state.goalWeight,
         profilePicture: this.state.profilePicture,
-      }, this.state.user._id, resolve, reject);
-    }).then((res, err) => {
-      if (err) {
-        return console.error(err);
-      }
-    })
+      }, this.props.user._id);
 
-    setTimeout(function() {
       browserHistory.push('/dashboard');
-    }, 1000)
 
   }
 

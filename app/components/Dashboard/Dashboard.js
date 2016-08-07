@@ -179,7 +179,7 @@ class Dashboard extends React.Component {
                   <div className="row">
 
                     <div className="col-md-3" id="left-dash">
-                      <UserWidget user={this.props.user} />
+                      <UserWidget />
 
 
                       <div className="panel panel-default" id="following-widget">

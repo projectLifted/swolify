@@ -1,12 +1,12 @@
 import React from 'react';
 import {Link, browserHistory} from "react-router";
 import moment from 'moment';
-
+import { connect } from 'react-redux';
 
 import '../../scss/primary.scss';
 // import profilePic from  'https://www.filestackapi.com/api/file/E6Yx55BT2G1NmiuH34rQ';
 
-export default class UserSidebar extends React.Component {
+class UserSidebar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -48,3 +48,5 @@ export default class UserSidebar extends React.Component {
     );
   }
 }
+
+export default connect(state => ({user: state.user}))(UserSidebar);

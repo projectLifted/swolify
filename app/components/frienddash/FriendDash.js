@@ -4,7 +4,8 @@ import {Link, browserHistory} from "react-router";
 import { connect } from 'react-redux';
 
 import { getAuth } from '../../services/loginService.js';
-import { getUser, getAllUsers } from '../../services/userService.js';
+import { putFriend } from '../../services/userService.js';
+import { getFriend, getAllUsers } from '../../services/friendService.js';
 
 import Navigation from '../Navigation';
 import Footer from '../Footer';
@@ -24,16 +25,10 @@ class FriendDash extends React.Component {
     super(props);
 
     this.state = {
-      birthdate: "",
-      images: [{
-          src:'http://a4.files.biography.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTIwNjA4NjMzODg2NTc0MDky.jpg',
-          title: 'This is a test',
-          description: 'this is a test'
-      }],
       users: [],
       allPics: [],
-      friend: {},
-      friends: []
+      friends: [],
+      isFollowing: false
     }
 
   }
@@ -57,7 +52,7 @@ class FriendDash extends React.Component {
     });
   }
 
-  componentWillMount(){
+  mountStuff(){
     new Promise((resolve, reject)=> {
       getAuth(resolve, reject);
     }).then((res, err)=> {
@@ -68,71 +63,85 @@ class FriendDash extends React.Component {
         browserHistory.push('/');
       }
       else {
-        this.getUser();
+        getFriend(this.props.params.userId);
+
+        let isFollowing = false;
+        var followingArray = this.props.user.following;
+        for (var i = 0; i < followingArray.length; i++) {
+          if ( followingArray[i] === this.props.friend._id )  {
+            this.setState({isFollowing: true});
+          }
+        }
+
+        new Promise( ( resolve, reject ) => {
+          getAllUsers( resolve, reject );
+        } ).then( ( res, err ) => {
+          if ( err ) {
+            return console.error( err );
+          }
+          this.setState( {
+            users: res.body
+           } )
+        } );
       }
     })
+
   }
+
+  componentWillMount(){
+
+    this.mountStuff();
+
+  }
+
 
   componentWillReceiveProps(){
-    new Promise((resolve, reject)=> {
-      getAuth(resolve, reject);
-    }).then((res, err)=> {
-      if (err){
-        browserHistory.push('/');
-      }
-      else if(res.body === false){
-        browserHistory.push('/');
-      }
-      else {
-        this.getUser();
-      }
-    })
-  }
 
-  getUser(){
-    new Promise((resolve, reject)=> {
-      getUser(this.props.params.userId, resolve, reject);
-    }).then((res, err)=>{
-      if(err){
-        browserHistory.push('/');
-      }
-      else {
-        this.setState({
-          friend: res.body,
-          weightChartUrl: `/api/weightchart/${res.body._id}`,
-          cardioChartUrl: `/api/cardiochart/${res.body._id}`,
-          bodyWeightChartUrl: `/api/bodyweightchart/${res.body._id}`
-        })
-
-
-        const AllPics = this.state.friend.pictures.map((pic) => (
-                  <FriendPicGridItem key={pic} pic={pic} />
-         ))
-
-         this.setState({allPics: AllPics });
-
-        this.getAllUsers()
-      }
-    })
+    this.mountStuff();
 
   }
 
-  getAllUsers(){
-    new Promise( ( resolve, reject ) => {
-      getAllUsers( resolve, reject );
-    } ).then( ( res, err ) => {
-      if ( err ) {
-        return console.error( err );
-      }
-      this.setState( {
-        users: res.body
-       } )
+  unfollow(){
 
-    } );
+      let newFollowingArray = this.props.user.following;
+      let followIndex = newFollowingArray.indexOf(this.props.friend._id);
+      newFollowingArray.splice(followIndex, 1);
+
+      console.log(this.props.user._id);
+      console.log(newFollowingArray);
+      putFriend({
+        _id: this.props.user._id,
+        following: newFollowingArray
+      }, newFollowingArray, this.props.user._id);
+
+      this.setState({isFollowing: false});
+
+
+  }
+
+  follow(){
+
+      let newFollowingArray = this.props.user.following;
+      newFollowingArray.push(this.props.friend._id);
+
+      putFriend({
+        _id: this.props.user._id,
+        following: newFollowingArray
+      }, newFollowingArray, this.props.user._id);
+
+      this.setState({isFollowing: true});
+
   }
 
 
   render() {
+
+
+
+    let weightChartUrl = `/api/weightchart/${this.props.friend._id}`
+    let cardioChartUrl = `/api/cardiochart/${this.props.friend._id}`
+    let bodyWeightChartUrl = `/api/bodyweightchart/${this.props.friend._id}`
+
 
     const allUsers = this.state.users.map( ( friend ) => {
       return (
@@ -142,15 +151,17 @@ class FriendDash extends React.Component {
           name={friend.firstName + ' ' + friend.lastName}
           pic={friend.profilePicture}
           users={friend}
-          friendUser={this.state.friend}
         />
       );
     } );
 
+    const allPics = this.props.friend.pictures.map((pic) => (
+              <FriendPicGridItem key={pic} pic={pic} />
+     ))
+
     return (
 
               <article>
-                {this.props.children}
 
                 <header id="dashboard-header">
 
@@ -159,7 +170,7 @@ class FriendDash extends React.Component {
                 </header>
 
                 <div className="page-title-bar">
-                    <h1>{this.state.friend.firstName}s Dashboard</h1>
+                    <h1>{this.props.friend.firstName}s Dashboard</h1>
                 </div>
 
                 <div className="container main-content" id='dashboard'>
@@ -168,7 +179,17 @@ class FriendDash extends React.Component {
 
                     <div className="col-md-3" id="left-dash">
 
-                      <FriendUserWidget thisFriend={this.state.friend} />
+                      <FriendUserWidget />
+
+                      {this.state.isFollowing ?
+
+                        <button onClick={this.unfollow.bind(this)} className="btn btn-success"><i className="fa fa-user-times" aria-hidden="true" ></i> Unfollow</button>
+
+                        :
+
+                        <button onClick={this.follow.bind(this)} className="btn btn-success"><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</button>
+
+                        }
 
                         <div className="panel panel-default" id="following-widget">
 
@@ -182,41 +203,33 @@ class FriendDash extends React.Component {
 
                             </div>
 
-
-
                             </div>
 
-                    </div>
+                            <div id="pic-widget">
 
-                    <div className="col-md-6" id="content-dash">
+                                      {allPics}
 
-                    <FriendChartWidget title="Weight Goals: Rep Max" chartUrl={this.state.weightChartUrl} />
-
-                    <FriendChartWidget title="Cardio Goals: Miles/Distance" chartUrl={this.state.cardioChartUrl} />
-
-                    <FriendChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
-
-                      <FriendWallWidget thisFriend={this.state.friend} />
-
-                    </div>
-
-                    <div className="col-md-3" id="right-dash">
-
-                      <div id="pic-box">
-
-                      <div id="pic-widget">
-                      {this.state.allPics}
-
-                    </div>
-                  </div>
+                                  </div>
 
 
                     </div>
+
+                    <div className="col-md-9" id="content-dash">
+
+                    <FriendChartWidget title="Weight Goals: Rep Max" chartUrl={weightChartUrl} />
+
+                    <FriendChartWidget title="Cardio Goals: Miles/Distance" chartUrl={cardioChartUrl} />
+
+                    <FriendChartWidget title="Body Weight" chartUrl={bodyWeightChartUrl} />
+
+                      <FriendWallWidget />
+
+                    </div>
+
+
+
 
                   </div>
-
-
-
 
 
                 </div>
@@ -228,4 +241,4 @@ class FriendDash extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user}))(FriendDash);
+export default connect(state => ({user: state.user, friend: state.friend}))(FriendDash);
