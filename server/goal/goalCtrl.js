@@ -20,12 +20,27 @@ module.exports = {
   },
 
   updateGoal(req, res) {
+    console.log(req.body)
     Goal.findByIdAndUpdate(req.params.id, req.body, (err, updatedGoal) => {
       if (err) {
         return res.status(500).json(err);
       }
-      return res.status(200).json(updatedGoal);
+      return res.status(200).json(req.body);
     });
+  },
+
+  deleteWorkout(req, res) {
+    Goal.findById(req.params.goalId, (err, goal) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+
+      goal.workouts.pull({_id: req.params.workoutId})
+      goal.save();
+
+      return res.status(200).json(goal);
+
+      })
   },
 
   addWorkout(req, res) {

@@ -72,7 +72,7 @@ export default class Home extends React.Component {
               <span><i className="fa fa-tachometer" aria-hidden={true}></i></span>
               <h2>Chart Your Progress</h2>
               <p>
-                Detailed real-time analytics will revolutionize your workout with chart fanciness.
+                Detailed charts for rep max and mile time will revolutionize your routine.
               </p>
             </div>
 
@@ -80,14 +80,14 @@ export default class Home extends React.Component {
               <span><i className="fa fa-users" aria-hidden={true}></i></span>
               <h2>Follow Your Friends</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu finibus est. Aenean magna ante, convallis vitae leo rhoncus, faucibus auctor nisi.
+                Follow your friends. Check their stats. Compete.
               </p>
             </div>
             <div className="col-md-4">
               <span><i className="fa fa-flag-checkered" aria-hidden={true}></i></span>
               <h2>Reach Your Goals</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu finibus est. Aenean magna ante, convallis vitae leo rhoncus, faucibus auctor nisi.
+                Track your goal progress for strength and cardio and upgrade your goals over time.
               </p>
             </div>
             </div>
