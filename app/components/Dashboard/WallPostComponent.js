@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../scss/primary.scss';
-import { connect } from 'react-redux';
+import {Accordion, ListGroup, ListGroupItem, Panel, ProgressBar} from 'react-bootstrap';
 import {Link, browserHistory} from "react-router";
-import { deleteFromWall } from '../../services/userService';
+import { connect } from "react-redux";
+import { getAllUsers, postToWall, deleteFromWall} from '../../services/userService.js';
 
 class WallPostComponent extends React.Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class WallPostComponent extends React.Component {
     deleteFromWall(this.props.user._id, postId);
   }
 
+
   render() {
     let followingImg = {
       backgroundImage: `url(${this.props.posterPic})`
@@ -22,15 +23,19 @@ class WallPostComponent extends React.Component {
     return (
       <div className="list-group-item">
 
-
         <div className="wall-container">
 
           <div style={followingImg} className="wall-pic"><div className="test"></div></div>
 
             <div className="wall-content">
               <div className="wall-name"><Link to="/">{this.props.posterName}</Link>
+
               <button onClick={this.deletePost.bind(this, this.props.postId)} className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
-              </div>
+
+              <span></span>
+            
+</div>
+
               {this.props.message}
             </div>
 
@@ -40,4 +45,4 @@ class WallPostComponent extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user}))(WallPostComponent)
+export default connect(state => ({user: state.user}))(WallPostComponent);
