@@ -142,7 +142,9 @@ class Signup extends React.Component {
           heightInches: this.props.user.heightInches,
           startWeight: this.props.user.startWeight,
           goalWeight: this.props.user.goalWeight,
-          profilePicture: this.props.user.profilePicture
+          profilePicture: this.props.user.profilePicture,
+          following: this.props.user.following,
+          pictures: this.props.user.pictures
         })
 
   }
@@ -164,6 +166,8 @@ class Signup extends React.Component {
         startWeight: this.state.startWeight,
         goalWeight: this.state.goalWeight,
         profilePicture: this.state.profilePicture,
+        following: this.props.user.following,
+        pictures: this.props.user.pictures
       }, this.props.user._id);
 
       browserHistory.push('/dashboard');
