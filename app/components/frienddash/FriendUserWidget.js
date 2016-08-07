@@ -11,10 +11,10 @@ export default class FriendUserWidget extends React.Component {
   }
   render() {
 
-    let birthAge = moment().diff(this.props.user.birthDate, 'years');
-    let lastSignedIn = moment(this.props.user.updated).fromNow();
+    let birthAge = moment().diff(this.props.thisFriend.birthDate, 'years');
+    let lastSignedIn = moment(this.props.thisFriend.updated).fromNow();
     let profileImg = {
-            backgroundImage: `url("${this.props.user.profilePicture}")`,
+            backgroundImage: `url("${this.props.thisFriend.profilePicture}")`,
             backgroundPosition: 'center',
     };
 
@@ -24,20 +24,20 @@ export default class FriendUserWidget extends React.Component {
       <div className="panel panel-default" id="user-widget">
 
         <div className="panel-heading"><center>
-          <i className="fa fa-user" aria-hidden="true"></i> {this.props.user.firstName} {this.props.user.lastName}</center>
+          <i className="fa fa-user" aria-hidden="true"></i> {this.props.thisFriend.firstName} {this.props.thisFriend.lastName}</center>
         </div>
 
         <div style={profileImg} className="profile-img"></div>
         <div className="user-widget-content">
           <p>Age: {birthAge}</p>
-          <p>Weight: {this.props.user.startWeight} lbs</p>
-          <p>Height: {this.props.user.heightFeet} ft {this.props.user.heightInches} in</p>
-          <p>Body Type: {this.props.user.bodyType}</p>
-          <p>Location: {this.props.user.location}</p>
+          <p>Weight: {this.props.thisFriend.startWeight} lbs</p>
+          <p>Height: {this.props.thisFriend.heightFeet} ft {this.props.thisFriend.heightInches} in</p>
+          <p>Body Type: {this.props.thisFriend.bodyType}</p>
+          <p>Location: {this.props.thisFriend.location}</p>
           <p>Last Login: {lastSignedIn}</p>
 
         </div>
-  
+
       </div>
     );
   }

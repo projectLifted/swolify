@@ -52,6 +52,9 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount() {
+
+    console.log(this.props.goals);
+
     new Promise((resolve, reject)=> {
       getAuth(resolve, reject);
     }).then((res, err)=> {

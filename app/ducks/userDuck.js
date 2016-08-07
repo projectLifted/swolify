@@ -1,6 +1,8 @@
 const SIGNIN = "user/SIGNIN";
 const SIGNOUT = "user/SIGNOUT";
 const WALL_POST = "user/WALL_POST";
+const PUT_PHOTO  = "user/PUT_PHOTO";
+const DELETE_PHOTO  = "user/DELETE_PHOTO";
 const DELETE_POST = "user/DELETE_POST";
 
 const initialState = {
@@ -50,6 +52,47 @@ export default function reducer(state = initialState, action) {
         location: state.location,
         lastName: state.lastName,
         firstName: state.firstName
+    };
+    case PUT_PHOTO:
+      return {
+            _id: state._id,
+            facebookId: state.facebookId,
+            updated: state.updated,
+            following: state.following,
+            wallPosts: state.wallPosts,
+            pictures: action.post,
+            profilePicture: state.profilePicture,
+            goalWeight: state.goalWeight,
+            startWeight: state.startWeight,
+            heightInches: state.heightInches,
+            heightFeet: state.heightFeet,
+            bodyType: state.bodyType,
+            gender: state.gender,
+            birthDate: state.birthDate,
+            location: state.location,
+            lastName: state.lastName,
+            firstName: state.firstName
+      };
+
+      case DELETE_PHOTO:
+      return {
+            _id: state._id,
+            facebookId: state.facebookId,
+            updated: state.updated,
+            following: state.following,
+            wallPosts: state.wallPosts,
+            pictures: action.post,
+            profilePicture: state.profilePicture,
+            goalWeight: state.goalWeight,
+            startWeight: state.startWeight,
+            heightInches: state.heightInches,
+            heightFeet: state.heightFeet,
+            bodyType: state.bodyType,
+            gender: state.gender,
+            birthDate: state.birthDate,
+            location: state.location,
+            lastName: state.lastName,
+            firstName: state.firstName
       };
 
     case DELETE_POST:
@@ -85,8 +128,15 @@ export function signout() {
 }
 
 export function postMessage(post) {
-  console.log(post)
   return {type: WALL_POST, post}
+}
+
+export function putphoto(post) {
+  return {type: PUT_PHOTO, post}
+}
+
+export function deletephoto(post) {
+  return {type: DELETE_PHOTO, post}
 }
 
 export function deleteWallPost(post) {
