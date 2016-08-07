@@ -39,15 +39,23 @@ module.exports = {
   },
 
   updateUser(req, res, next) {
-    console.log(req.body)
-    User.findByIdAndUpdate(req.params.id, req.body, (err, response)=> {
-      if(err) {
-        return res.status(500).json(err)
-      }
-        console.log(req.body)
-        return res.status(200).json(req.body)
-      });
-    },
+      User.findByIdAndUpdate(req.params.id, req.body, (err, response)=> {
+        if(err) {
+          return res.status(500).json(err)
+          }
+
+          let user = req.body;
+
+          req.login(user, function(error) {
+              if (!error) {
+                  console.log('succcessfully updated user', req.user);
+            }
+
+          return res.status(200).json(user)
+          });
+
+        });
+      },
 
   addUserPost(req, res) {
     User.findById(req.params.id, (err, user) => {

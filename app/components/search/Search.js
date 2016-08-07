@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router';
 import _ from 'lodash';
 import Navigation from '../Navigation';
@@ -11,7 +12,7 @@ import { getAllUsers } from '../../services/userService';
 
 import '../../scss/primary.scss'
 
-export default class Search extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
 
@@ -24,20 +25,6 @@ export default class Search extends React.Component {
   }
 
   componentWillMount(){
-    new Promise((resolve, reject)=> {
-      getAuth(resolve, reject);
-    }).then((res, err)=> {
-      if (err){
-      }
-      else if(res.body === false){
-        browserHistory.push('/');
-      }
-      else {
-        this.setState({user: res.body})
-        // console.log(this.state.user);
-      }
-    })
-
 
     new Promise( ( resolve, reject ) => {
 			getAllUsers( resolve, reject );
@@ -48,7 +35,8 @@ export default class Search extends React.Component {
 			this.setState( {
         users: res.body,
        } )
-      //  console.log(this.state.users);
+
+       console.log(this.state.users)
 		} );
 
   }
@@ -56,7 +44,7 @@ export default class Search extends React.Component {
 
   onInputChange(term) {
     this.setState({
-      term,
+      term
     });
   }
 
@@ -82,7 +70,6 @@ export default class Search extends React.Component {
           heightInches={user.heightInches}
           location={user.location}
           users={user}
-          authUser={this.state.user}
         />
       );
     } );
@@ -131,7 +118,7 @@ export default class Search extends React.Component {
 
                     <div className="col-md-4" id="side-bar">
 
-                        <UserWidget user={this.state.user} />
+                        <UserWidget />
 
                           <Link to="/dashboard"><button id="view-dash-postworkout" type="button" className="btn btn-success"><i className="fa fa-tachometer" aria-hidden="true"></i> View Dashboard</button></Link>
 
@@ -150,3 +137,5 @@ export default class Search extends React.Component {
   }
 
 }
+
+export default connect(state => ({user: state.user}))(Search);

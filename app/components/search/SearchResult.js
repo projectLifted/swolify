@@ -1,9 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import { signin } from '../../ducks/userDuck';
-import { signupUser } from '../../services/signupService';
 import { connect } from 'react-redux';
+
 import { addUserToFollowing, removeFromFollowing } from '../../services/userService.js';
+
 import {Link, browserHistory} from 'react-router';
 import store from '../../store';
 
@@ -19,7 +19,7 @@ class SearchResult extends React.Component {
 
   componentWillMount() {
 
-    var followingArray = this.props.authUser.following;
+    var followingArray = this.props.user.following;
     for (var i = 0; i < followingArray.length; i++) {
       if ( followingArray[i] === this.props.users._id )  {
         this.setState({ isFollowing : true })
@@ -37,17 +37,13 @@ class SearchResult extends React.Component {
 
   }
 
-
-
   handleUnfollow(unfollowId) {
     console.log(unfollowId);
     this.setState({
        isFollowing: false
     });
     removeFromFollowing(this.props.user._id, unfollowId);
-
   }
-
 
 
   render() {
@@ -96,9 +92,11 @@ class SearchResult extends React.Component {
           <div className="list-group-btn-box">
           { this.state.isFollowing
             ?
+
               <button className="btn btn-primary" onClick={this.handleUnfollow.bind(this, this.props.id)}><i className="fa fa-user-times" aria-hidden="true" ></i> Unfollow</button>
             :
               <button className="btn btn-info" onClick={this.handleFollow.bind(this, this.props.id)}><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</button>
+
           }
           </div>
         </div>

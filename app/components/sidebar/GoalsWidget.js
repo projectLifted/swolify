@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import store from '../../store';
 import { getUserGoals } from '../../services/goalService';
 
+import GoalResults from './GoalResults'
 
 import '../../scss/primary.scss';
 
@@ -40,24 +41,14 @@ class GoalsWidget extends React.Component {
   render() {
 
     const goalData = this.state.goals.map((goal) => (
-      <tr>
-
-        <td>
-          {goal.goalName}
-        </td>
-        <td>
-          {goal.goalType === "WeightLifting" ?
-
-          <span>{goal.goalMaxProgress}</span>
-
-          :
-
-          <span>{goal.goalTimeProgress}</span>
-
-          }
-
-        </td>
-      </tr>
+      <GoalResults
+        key={goal._id}
+        id={goal._id}
+        name={goal.goalName}
+        type={goal.goalType}
+        max={goal.goalMaxProgress}
+        time={goal.goalTimeProgress}
+      />
     ))
 
     return (
@@ -98,4 +89,4 @@ class GoalsWidget extends React.Component {
   }
 }
 
-export default connect(state => ({goals: state.goals}))(GoalsWidget)
+export default connect(state => ({user: state.user, goals: state.goals}))(GoalsWidget)

@@ -46,14 +46,14 @@ class Dashboard extends React.Component {
       cardioChartUrl: '',
       noGoals: false,
       weightGoalsPresent: false,
-      cardioGoalsPresent: false
+      cardioGoalsPresent: false,
+      allUsers: []
     }
 
   }
 
   componentWillMount() {
 
-    console.log(this.props.goals);
 
     new Promise((resolve, reject)=> {
       getAuth(resolve, reject);
@@ -143,42 +143,10 @@ class Dashboard extends React.Component {
 
     });
 
-
-    // new Promise( ( resolve, reject ) => {
-    //   getAllUsers( resolve, reject );
-    // } ).then( ( res, err ) => {
-    //   if ( err ) {
-    //     return console.error( err );
-    //   }
-    //   this.setState( {
-    //     users: res.body,
-    //    } )
-    //   //  console.log(this.state.users);
-    // } );
-
-    // setTimeout(() => {
-    //   for (let i = 0; i < this.props.user.following.length; i++) {
-    //     new Promise((resolve, reject) => {
-    //       console.log(this.props.user.following[i]);
-    //       getUser(this.props.user.following[i], resolve, reject);
-    //     }).then((res, err) => {
-    //       if (err) {
-    //         return console.log(err);
-    //       }
-    //       this.setState({users: this.state.users.concat(res.body)});
-    //     });
-    //   }
-    // }, 1000);
-
-  }
-
-  componentWillReceiveProps() {
-
   }
 
 
   render() {
-    console.log(this.props.following);
 
 
     const allFollowing = this.props.following.following.map((follow) => (
@@ -191,18 +159,6 @@ class Dashboard extends React.Component {
       />
     ))
 
-    // const allUsers = this.state.users.map( ( user ) => {
-    //   return (
-    //     <FollowingLeaderboard
-    //       key={user._id}
-    //       userId={user._id}
-    //       name={user.firstName + ' ' + user.lastName}
-    //       pic={user.profilePicture}
-    //       users={user}
-    //       authUser={this.props.user}
-    //     />
-    //   );
-    // } );
 
     return (
               <article>
@@ -285,7 +241,17 @@ class Dashboard extends React.Component {
                      <span> </span>
                       }
 
-                      <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
+                      {this.state.noGoals
+                        ?
+
+                        <span></span>
+
+
+                        :
+
+                        <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
+
+                      }
 
                       <WallWidget
 

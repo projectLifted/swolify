@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import { getAuth } from '../services/loginService.js';
-import { getUser } from '../services/userService.js';
+import { signupUser } from '../services/signupService.js';
 
 import { signin } from '../ducks/userDuck';
 import { connect } from 'react-redux';
@@ -19,7 +19,7 @@ import bodyTypes from '../images/bodytypes.jpg';
 
 import '../scss/primary.scss';
 
-class Signup extends React.Component {
+export default class Signup extends React.Component {
   constructor(props) {
     super(props);
 
@@ -77,7 +77,7 @@ class Signup extends React.Component {
     event.preventDefault();
 
     new Promise((resolve, reject) => {
-      putUser({
+      signupUser({
         _id: this.state.user._id,
         facebookId: this.state.user.facebookId,
         firstName: this.state.firstName,
@@ -91,6 +91,9 @@ class Signup extends React.Component {
         startWeight: this.state.startWeight,
         goalWeight: this.state.goalWeight,
         profilePicture: this.state.profilePicture,
+        wallPosts: [],
+        following: [],
+        pictures: []
       }, this.state.user._id, resolve, reject);
     }).then((res, err) => {
       if (err) {
@@ -101,7 +104,7 @@ class Signup extends React.Component {
 
     setTimeout(function() {
       browserHistory.push('/dashboard');
-    }, 1000)
+    }, 1500)
 
   }
 
@@ -318,6 +321,3 @@ class Signup extends React.Component {
     );
   }
 }
-
-
-export default connect(state => ({user: state.user}))(Signup);

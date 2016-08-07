@@ -14,6 +14,7 @@ export function getAllUsers( resolve, reject ) {
 }
 
 export function putUser(userInfo, userId, resolve, reject) {
+	console.log(userInfo)
 	request.put(`/api/users/${userId}`)
 		.send(userInfo)
 		.end((err, user) => {
@@ -47,7 +48,7 @@ export function putFriend(friendsObject, friendsArray, userId, resolve, reject) 
 				console.log(err);
 				return reject(err);
 			}
-			return store.dispatch(putFriend(friendsArray));
+			return store.dispatch(putfriend(friendsArray));
 		});
 }
 
