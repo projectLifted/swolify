@@ -33,6 +33,7 @@ class WallWidget extends React.Component {
   }
 
   render() {
+
     const posts = this.props.user.wallPosts.reverse().map((post) => (
       <WallPostComponent
           key={post._id}
@@ -42,6 +43,7 @@ class WallWidget extends React.Component {
           message={post.message}
       />
     ))
+
 
     return (
 
@@ -56,7 +58,9 @@ class WallWidget extends React.Component {
     </div>
           <div className="list-group">
 
-          {posts}
+
+            {posts}
+
 
         </div>
     </div>

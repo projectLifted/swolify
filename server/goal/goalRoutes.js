@@ -7,5 +7,5 @@ module.exports = app => {
   app.put('/api/goal/:id', goalCtrl.updateGoal);
   app.get('/api/goals/:userId', goalCtrl.findUserGoals);
   app.get('/api/goal/:goalId', goalCtrl.getOneGoal);
-
+  app.delete('/api/workout/:goalId/:workoutId', goalCtrl.deleteWorkout);
 };

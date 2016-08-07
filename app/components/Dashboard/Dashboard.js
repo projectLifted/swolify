@@ -147,16 +147,6 @@ class Dashboard extends React.Component {
   }
 
 
-  componentDidUpdate(){
-
-  console.log(this.props.user.following);
-
-
-  }
-
-
-
-
 
   render() {
 
@@ -256,7 +246,17 @@ class Dashboard extends React.Component {
                      <span> </span>
                       }
 
-                      <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
+                      {this.state.noGoals
+                        ?
+
+                        <span></span>
+
+
+                        :
+
+                        <ChartWidget title="Body Weight" chartUrl={this.state.bodyWeightChartUrl} />
+
+                      }
 
                       <WallWidget
 

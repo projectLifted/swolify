@@ -98,4 +98,4 @@ class GoalsWidget extends React.Component {
   }
 }
 
-export default connect(state => ({goals: state.goals}))(GoalsWidget)
+export default connect(state => ({user: state.user, goals: state.goals}))(GoalsWidget)

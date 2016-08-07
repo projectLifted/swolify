@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import { getAuth } from '../services/loginService.js';
-import { signUp } from '../services/signupService.js';
+import { signupUser } from '../services/signupService.js';
 
 import { signin } from '../ducks/userDuck';
 import { connect } from 'react-redux';
@@ -91,6 +91,9 @@ export default class Signup extends React.Component {
         startWeight: this.state.startWeight,
         goalWeight: this.state.goalWeight,
         profilePicture: this.state.profilePicture,
+        wallPosts: [],
+        following: [],
+        pictures: []
       }, this.state.user._id, resolve, reject);
     }).then((res, err) => {
       if (err) {
@@ -101,7 +104,7 @@ export default class Signup extends React.Component {
 
     setTimeout(function() {
       browserHistory.push('/dashboard');
-    }, 1000)
+    }, 1500)
 
   }
 
