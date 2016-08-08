@@ -10,7 +10,7 @@ import { postWorkout } from '../../ducks/workoutDuck';
 
 import { getAuth } from '../../services/loginService.js';
 import { getUserGoals } from '../../services/goalService';
-import { getAllUsers } from '../../services/userService';
+import { getAllUsers, getFollowing } from '../../services/userService';
 
 import Navigation from '../Navigation';
 import Footer from '../Footer';
@@ -141,23 +141,21 @@ class Dashboard extends React.Component {
           }
         })
       }
+
+      if (this.props.following.following.length === 0) {
+         for (let i = 0; i < this.props.user.following.length; i++) {
+           new Promise((reject) => {
+             getFollowing(this.props.user.following[i], reject);
+           }).then((res, err) => {
+             if (err) {
+               return console.log(err);
+             }
+             return console.log(res);
+           });
+         }
+       }
+
     });
-
-
-    new Promise( ( resolve, reject ) => {
-      getAllUsers( resolve, reject );
-    } ).then( ( res, err ) => {
-      if ( err ) {
-        return console.error( err );
-      }
-      this.setState( {
-        users: res.body,
-       } )
-
-    } );
-
-
-
 
   }
 
@@ -165,20 +163,17 @@ class Dashboard extends React.Component {
 
   render() {
 
+    console.log(this.props.following.following);
 
-    const allUsers = this.state.users.map( ( user ) => {
-      return (
-        <FollowingLeaderboard
-          key={user._id}
-          userId={user._id}
-          name={user.firstName + ' ' + user.lastName}
-          pic={user.profilePicture}
-          users={user}
-        />
-      );
-    } );
-
-
+    let allFollowing = this.props.following.following.map((follow) => (
+       <FollowingLeaderboard
+           key={follow._id}
+           followId={follow._id}
+           firstName={follow.firstName}
+           lastName={follow.lastName}
+           profilePicture={follow.profilePicture}
+       />
+     ))
 
     return (
               <article>
@@ -208,7 +203,7 @@ class Dashboard extends React.Component {
 
                           <div className="list-group">
 
-                              {allUsers}
+                              {allFollowing}
 
                               <div className="list-footer">
                                 <Link to="/search"><i className="fa fa-search" aria-hidden="true"></i> Find and Remove Followers</Link>
@@ -339,4 +334,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user, goals: state.goals, workouts: state.workouts}))(Dashboard);
+export default connect(state => ({user: state.user, goals: state.goals, workouts: state.workouts, following: state.following}))(Dashboard);

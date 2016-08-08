@@ -9,4 +9,6 @@ module.exports = app => {
   app.post('/api/user/:id', userCtrl.addUserPost);
   app.delete('/api/user/:id/wallpost/:postId', userCtrl.deletePost);
   app.get('/api/user/:id', userCtrl.getPreviouslyPostedGoal);
+  app.post('/api/user/following/:id', userCtrl.addToFollowing);
+  app.put('/api/user/following/:id', userCtrl.removeFollow);
 };

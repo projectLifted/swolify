@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { putFriend, putUser } from '../../services/userService';
+import { addUserToFollowing, removeFromFollowing } from '../../services/userService';
 import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router';
 import store from '../../store';
@@ -16,10 +17,11 @@ class SearchResult extends React.Component {
 
 
   componentWillMount() {
+    console.log(this.props.users);
 
-    var followingArray = this.props.user.following;
+    var followingArray = this.props.following.following;
     for (var i = 0; i < followingArray.length; i++) {
-      if ( followingArray[i] === this.props.users._id )  {
+      if ( followingArray[i]._id === this.props.users._id )  {
         this.setState({ isFollowing : true })
       }
     }
@@ -27,34 +29,50 @@ class SearchResult extends React.Component {
   }
 
 
-  unfollow(){
+  // unfollow(){
+  //
+  //     let newFollowingArray = this.props.user.following;
+  //     let followIndex = newFollowingArray.indexOf(this.props.id);
+  //     newFollowingArray.splice(followIndex, 1);
+  //
+  //     putFriend({
+  //       _id: this.props.user._id,
+  //       following: newFollowingArray
+  //     }, newFollowingArray, this.props.user._id);
+  //
+  //     this.setState({isFollowing: false});
+  //
+  //
+  // }
+  //
+  // follow(){
+  //
+  //     let newFollowingArray = this.props.user.following;
+  //     newFollowingArray.push(this.props.id);
+  //
+  //     putFriend({
+  //       _id: this.props.user._id,
+  //       following: newFollowingArray
+  //     }, newFollowingArray, this.props.user._id);
+  //
+  //     this.setState({isFollowing: true});
+  //
+  // }
 
-      let newFollowingArray = this.props.user.following;
-      let followIndex = newFollowingArray.indexOf(this.props.id);
-      newFollowingArray.splice(followIndex, 1);
-
-      putFriend({
-        _id: this.props.user._id,
-        following: newFollowingArray
-      }, newFollowingArray, this.props.user._id);
-
-      this.setState({isFollowing: false});
-
-
+  handleFollow(followId) {
+    console.log(followId);
+    this.setState({
+      isFollowing: true
+    });
+    addUserToFollowing(this.props.user._id, followId);
   }
 
-  follow(){
+  handleUnfollow(unfollowId) {
 
-      let newFollowingArray = this.props.user.following;
-      newFollowingArray.push(this.props.id);
-
-      putFriend({
-        _id: this.props.user._id,
-        following: newFollowingArray
-      }, newFollowingArray, this.props.user._id);
-
-      this.setState({isFollowing: true});
-
+    this.setState({
+      isFollowing: false
+    });
+    removeFromFollowing(this.props.user._id, unfollowId);
   }
 
 
@@ -105,9 +123,9 @@ class SearchResult extends React.Component {
           <div className="list-group-btn-box">
           { this.state.isFollowing
             ?
-              <button className="btn btn-primary" onClick={this.unfollow.bind(this)}><i className="fa fa-user-times" aria-hidden="true" ></i> Unfollow</button>
+              <button className="btn btn-primary" onClick={this.handleUnfollow.bind(this, this.props.id)}><i className="fa fa-user-times" aria-hidden="true" ></i> Unfollow</button>
             :
-              <button className="btn btn-info" onClick={this.follow.bind(this)}><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</button>
+              <button className="btn btn-info" onClick={this.handleFollow.bind(this, this.props.id)}><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</button>
           }
           </div>
         </div>
@@ -118,4 +136,4 @@ class SearchResult extends React.Component {
 }
 
 
-export default connect(state => ({user: state.user}))(SearchResult);
+export default connect(state => ({user: state.user, following: state.following}))(SearchResult);
