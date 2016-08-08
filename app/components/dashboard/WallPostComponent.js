@@ -20,6 +20,8 @@ class WallPostComponent extends React.Component {
       backgroundImage: `url(${this.props.posterPic})`
     };
 
+    let friendLink = `/friend-dash/${this.props.posterId}`;
+
     return (
       <div className="list-group-item">
 
@@ -28,12 +30,12 @@ class WallPostComponent extends React.Component {
           <div style={followingImg} className="wall-pic"><div className="test"></div></div>
 
             <div className="wall-content">
-              <div className="wall-name"><Link to="/">{this.props.posterName}</Link>
+              <div className="wall-name"><Link to={friendLink}>{this.props.posterName}</Link>
 
               <button onClick={this.deletePost.bind(this, this.props.postId)} className="btn btn-danger pull-right"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
 
               <span></span>
-            
+
 </div>
 
               {this.props.message}

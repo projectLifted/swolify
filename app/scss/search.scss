@@ -1,6 +1,7 @@
 
 
 #search-widget .list-group-item {
+  display: flex;
   width: 100%;
   padding: 0 !important;
 }
@@ -10,11 +11,15 @@
 }
 
 #search-widget .friend-photo {
-  width: 10%;
-  height: 80px;
   background-size: cover;
-  display: table-cell;
   background-position: center;
+  width: 100px;
+  height: 100px;
+}
+
+
+#search-widget .friend-photo-box {
+
 }
 
 #search-widget .list-group-item-text {
@@ -22,8 +27,7 @@
 
 #search-widget .list-group-content {
   padding: 10px;
-  display: table-cell;
-  width: 80%;
+  flex-grow: 2;
 }
 
 #search-widget h4 {
@@ -43,26 +47,23 @@
   padding: 22px;
 }
 
-#search-widget .list-group-btn-box {
-  display: table-cell;
-  vertical-align: middle;
-  width: 10%;
+#search-widget .list-group-item button {
   padding-right: 10px;
+  font-size: 1em;
+  float: right;
+  margin-top: -10px;
 }
+
 
 @media (max-width: 768px) {
 
-  #search-widget .friend-photo {
-    width: 20%;
+
+  #search-widget .list-group-item button {
+    margin: 10px;
+    padding-right: 10px;
+    font-size: 1em;
   }
 
-  #search-widget .list-group-content {
-    width: 55%;
-  }
-
-  #search-widget .list-group-btn-box {
-    width: 25%;
-  }
 
 
 }

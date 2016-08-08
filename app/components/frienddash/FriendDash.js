@@ -241,4 +241,4 @@ class FriendDash extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user, friend: state.friend}))(FriendDash);
+export default connect(state => ({user: state.user, friend: state.friend, following: state.following}))(FriendDash);

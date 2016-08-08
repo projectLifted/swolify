@@ -28,6 +28,7 @@ class FriendWallWidget extends React.Component {
       <FriendWallPostComponent
           key={post._id}
           postId={post._id}
+          posterId={post.sender}
           posterName={post.posterName}
           posterPic={post.posterPic}
           message={post.message}
