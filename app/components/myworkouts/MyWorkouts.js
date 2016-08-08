@@ -10,6 +10,9 @@ import WeightliftingResults from './WeightliftingResults';
 import CardioResults from './CardioResults';
 import WeightGoalsPanel from '../Dashboard/WeightGoalsPanel';
 import CardioGoalsPanel from '../Dashboard/CardioGoalsPanel';
+import store from '../../store';
+
+import { postWorkout } from '../../ducks/workoutDuck';
 
 import { getAuth } from '../../services/loginService.js';
 import { getUserGoals } from '../../services/goalService';
@@ -25,131 +28,90 @@ class MyWorkouts extends React.Component {
   constructor(props) {
     super(props);
 
-  }
-
-  componentWillMount(){
-
-    this.getGoals();
-
-  }
-
-  getGoals() {
-
-        let weightGoals = [];
-        let cardioGoals = [];
-        let allGoals = this.props.goals.goals;
-        let weightGoalsMap = [];
-        let cardioGoalsMap = [];
-        let weightWorkouts = [];
-        let cardioWorkouts = [];
-
-        console.log(allGoals);
-
-        allGoals.forEach((goal) => {
-          if (goal.goalType === "WeightLifting") {
-
-            weightGoals.push(goal);
-
-          }
-          else {
-
-            cardioGoals.push(goal);
-
-          }
-        });
-
-
-          weightGoals.forEach((goal)=> {
-
-
-            goal.workouts.forEach((oneWorkout)=>{
-
-              oneWorkout.goalId = goal._id;
-              oneWorkout.goalName = goal.goalName;
-              oneWorkout.workoutDate = moment(oneWorkout.workoutDate).format('L');
-              weightWorkouts.push(oneWorkout)
-            })
-
-
-          })
-
-
-          cardioGoals.forEach((goal)=> {
-
-            goal.workouts.forEach((oneWorkout)=>{
-              oneWorkout.goalId = goal._id;
-              oneWorkout.goalName = goal.goalName;
-              oneWorkout.workoutDate = moment(oneWorkout.workoutDate).format('L');
-              cardioWorkouts.push(oneWorkout)
-            })
-
-
-          })
-
-
-          cardioWorkouts.sort((a, b)=> {
-              if (a.workoutDate > b.workoutDate) {
-                return 1;
-              }
-              if (a.workoutDate < b.workoutDate) {
-                return -1;
-              }
-              // a must be equal to b
-              return 0;
-            });
-
-
-            weightWorkouts.sort((a, b)=> {
-                if (a.workoutDate > b.workoutDate) {
-                  return 1;
-                }
-                if (a.workoutDate < b.workoutDate) {
-                  return -1;
-                }
-                // a must be equal to b
-                return 0;
-              });
-
-
-          weightGoalsMap = weightWorkouts.map((workout)=>(
-            <WeightliftingResults
-                key={workout._id}
-                workoutId={workout._id}
-                goalId={workout.goalId}
-                date={workout.workoutDate}
-                max={workout.workoutMax}
-                weight={workout.currentWeight}
-                goalName={workout.goalName}
-            />
-
-            )
-          )
-
-
-          cardioGoalsMap = cardioWorkouts.map((workout)=>(
-            <CardioResults
-                key={workout._id}
-                workoutId={workout._id}
-                goalId={workout.goalId}
-                date={workout.workoutDate}
-                distance={workout.workoutDistance}
-                time={workout.workoutMileTime}
-                weight={workout.currentWeight}
-                goalName={workout.goalName}
-            />
-
-          )
-          )
-
-          this.setState({liftPanels: weightGoalsMap, cardioPanels: cardioGoalsMap})
-
+    this.state = {
+      goals: []
     }
 
+  }
 
   render() {
 
+    let allWorkouts = this.props.workouts.workouts;
+    let weightGoalsMap = [];
+    let cardioGoalsMap = [];
+    let weightWorkouts = [];
+    let cardioWorkouts = [];
+
+
+    allWorkouts.forEach((workout) => {
+      if (workout.goalType === "WeightLifting") {
+        weightWorkouts.push(workout);
+
+      }
+      else {
+        cardioWorkouts.push(workout);
+      }
+
+    });
+
+      cardioWorkouts.sort((a, b)=> {
+          if (a.workoutDate > b.workoutDate) {
+            return 1;
+          }
+          if (a.workoutDate < b.workoutDate) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        });
+
+
+        weightWorkouts.sort((a, b)=> {
+            if (a.workoutDate > b.workoutDate) {
+              return 1;
+            }
+            if (a.workoutDate < b.workoutDate) {
+              return -1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
+
+      const liftPanels = weightWorkouts.map((workout)=>(
+        <WeightliftingResults
+            key={workout._id}
+            workoutId={workout._id}
+            goalId={workout.goalId}
+            date={workout.workoutDate}
+            max={workout.workoutMax}
+            weight={workout.currentWeight}
+            goalName={workout.goalName}
+        />
+
+        )
+      )
+
+
+      const cardioPanels = cardioWorkouts.map((workout)=>(
+        <CardioResults
+            key={workout._id}
+            workoutId={workout._id}
+            goalId={workout.goalId}
+            date={workout.workoutDate}
+            distance={workout.workoutDistance}
+            time={workout.workoutMileTime}
+            weight={workout.currentWeight}
+            goalName={workout.goalName}
+        />
+
+      )
+      )
+
     return (
+
       <article>
+
         <header id="new-goal-header">
 
         <Navigation />
@@ -183,7 +145,7 @@ class MyWorkouts extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.liftPanels}
+                  {liftPanels}
                 </tbody>
               </table>
 
@@ -202,7 +164,7 @@ class MyWorkouts extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.cardioPanels}
+                  {cardioPanels}
                 </tbody>
               </table>
 
@@ -233,4 +195,4 @@ class MyWorkouts extends React.Component {
 
 }
 
-export default connect(state => ({user: state.user, goals: state.goals}))(MyWorkouts);
+export default connect(state => ({user: state.user, goals: state.goals, workouts: state.workouts}))(MyWorkouts);

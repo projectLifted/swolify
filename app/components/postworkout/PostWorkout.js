@@ -79,11 +79,13 @@ class PostWorkout extends React.Component {
                           <CardioWorkoutForm
                               goalId={this.props.params.goalId}
                               goalName={this.props.params.goalName}
+                              goalType={this.props.params.goalType}
                           />
                           :
                           <WeightWorkoutForm
                               goalId={this.props.params.goalId}
                               goalName={this.props.params.goalName}
+                              goalType={this.props.params.goalType}
                           />
                         }
 

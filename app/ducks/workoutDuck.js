@@ -11,7 +11,7 @@ export default function reducer(state = initialState, action) {
       return {workouts: [...state.workouts, action.workout]}
 
     case REMOVE_WORKOUT:
-      return {workouts: state.workouts.filter(workout => workout._id !== action.workout)}
+      return {workouts: state.workouts.filter(workout => workout._id !== action.workoutId)}
   }
   return state;
 }
@@ -20,6 +20,6 @@ export function postWorkout(workout) {
   return {type: POST_WORKOUT, workout};
 }
 
-export function removeWorkout(follow) {
-  return {type: REMOVE_WORKOUT, follow};
+export function removeWorkout(workoutId) {
+  return {type: REMOVE_WORKOUT, workoutId};
 }

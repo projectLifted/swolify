@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteWorkout } from '../../services/goalService';
+import { deleteWorkout } from '../../services/workoutService';
 
 
 class WeightliftingResults extends React.Component {
@@ -10,7 +10,7 @@ class WeightliftingResults extends React.Component {
   }
 
   deleteWorkout() {
-    deleteWorkout(this.props.goalId, this.props.workoutId);
+    deleteWorkout(this.props.goalId, this.props.workoutId)
   }
 
   render() {
@@ -27,4 +27,4 @@ class WeightliftingResults extends React.Component {
 }
 
 
-export default connect(state => ({user: state.user, goals: state.goals}))(WeightliftingResults);
+export default connect(state => ({user: state.user, goals: state.goals, workouts: state.workouts}))(WeightliftingResults);

@@ -36,7 +36,7 @@ export default class WeightGoalsPanel extends React.Component {
                   <div>
                   <p className="extra-bottom">Rep max goal: {this.props.maxRepGoal} lbs</p>
                   <Link to={`/edit-goal/${this.props.goalId}`} className="btn btn-info"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</Link>
-                <Link to={`/post-workout/lifting/${this.props.goalId}/${this.props.title}`} className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Workout</Link>
+                <Link to={`/post-workout/lifting/${this.props.goalId}/${this.props.title}/${this.props.goalType}`} className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Workout</Link>
 
 
             </div>

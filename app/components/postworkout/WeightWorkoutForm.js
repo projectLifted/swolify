@@ -43,7 +43,7 @@ export default class WeightWorkoutForm extends React.Component {
       workoutDate: this.state.workoutDate.format("YYYY, MM, DD"),
       workoutMax: weightedOneRepMax,
       currentWeight: this.state.currentWeight
-    }, this.props.goalId);
+    }, this.props.goalId, this.props.goalName, this.props.goalType);
 
       browserHistory.push("/dashboard");
     }
