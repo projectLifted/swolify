@@ -6,6 +6,7 @@ const initialState = {
  };
 
 export default function reducer(state = initialState, action) {
+  console.log(state);
     switch(action.type) {
           case ADD_TO_FOLLOWING:
             return {following: [...state.following, action.follow]}

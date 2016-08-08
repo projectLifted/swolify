@@ -4,6 +4,7 @@ import { putFriend, putUser } from '../../services/userService';
 import { addUserToFollowing, removeFromFollowing } from '../../services/userService';
 import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router';
+import { followUser, removeFollow } from '../../ducks/followDuck';
 import store from '../../store';
 
 class SearchResult extends React.Component {
@@ -29,11 +30,14 @@ class SearchResult extends React.Component {
   }
 
   handleFollow(followId) {
-    console.log(followId);
-    this.setState({
-      isFollowing: true
-    });
-    addUserToFollowing(this.props.user._id, followId);
+    console.log(this.props.users);
+      addUserToFollowing(this.props.user._id, followId);
+      this.setState({
+        isFollowing: true
+      });
+      store.dispatch(followUser({_id: this.props.users._id, firstName: this.props.users.firstName, lastName: this.props.users.lastName, profilePicture: this.props.users.profilePicture}));
+
+
   }
 
   handleUnfollow(unfollowId) {
@@ -42,6 +46,7 @@ class SearchResult extends React.Component {
       isFollowing: false
     });
     removeFromFollowing(this.props.user._id, unfollowId);
+    store.dispatch(removeFollow(this.props.users._id));
   }
 
 
@@ -53,20 +58,6 @@ class SearchResult extends React.Component {
     };
 
     const birthAge = moment().diff(this.props.age, 'years');
-
-
-    const arrCheck = () => {
-      let followingArray = this.props.authUser.following;
-
-      for (var i = 0; i < followingArray.length; i++) {
-        console.log(followingArray[i]);
-        console.log(this.props.users._id);
-          if (followingArray[i] !== this.props.users._id) {
-              followingArray.push(this.props.users._id);
-          }
-      }
-      return followingArray;
-    }
 
     const linkUrl = `/friend-dash/${this.props.id}`;
 

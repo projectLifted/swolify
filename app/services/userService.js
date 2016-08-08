@@ -118,19 +118,12 @@ export function getFollowing(followId, reject) {
  	request.post(`/api/user/following/${userId}`)
  		.send({_id: newFollowing})
  		.end((err, user) => {
- 			return console.log(err);
+			if (err) {
+					return console.log(err);
+			}
+			return store.dispatch(addFollow(newFollowing));
  		});
- 		request.get(`/api/users/${newFollowing}`)
- 			.end((err, user) => {
- 				if (err) {
- 					console.log(err)
- 				}
 
- 				store.dispatch(addFollow(newFollowing));
-				console.log(user.body);
-
- 				return store.dispatch(followUser({_id: user.body._id, firstName: user.body.firstName, lastName: user.body.lastName, profilePicture: user.body.profilePicture}));
- 			});
  }
 
  export function removeFromFollowing(userId, unfollowId) {
@@ -140,8 +133,6 @@ export function getFollowing(followId, reject) {
  			if (err) {
  				return console.log(err)
  			}
- 			store.dispatch(removeFollow(unfollowId));
-			console.log(unfollowId);
- 			return store.dispatch(removeFollow(unfollowId));
+ 			return store.dispatch(removeUserFollow(unfollowId));
  		})
 	}
