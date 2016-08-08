@@ -10,7 +10,7 @@ class SearchResult extends React.Component {
     super(props);
 
     this.state = {
-      isFollowing: false
+      isFollowing: false,
     }
   }
 
