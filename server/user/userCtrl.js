@@ -109,6 +109,40 @@ module.exports = {
       }
       return res.status(200).json(user.wallPosts[user.wallPosts.length - 1]);
     })
-  }
+  },
+
+  addToFollowing(req, res) {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      user.following.push(req.body);
+      user.save((err, updatedUser) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        return res.status(200).json(updatedUser);
+      });
+    });
+  },
+
+  removeFollow(req, res) {
+     User.findById(req.params.id, (err, user) => {
+       if (err) {
+         return res.status(500).json(err);
+       }
+       for (let i = 0; i < user.following.length; i++) {
+         if ((user.following[i]).toString() === req.body._id) {
+           user.following.splice(i, 1);
+           user.save((err, updatedUser) => {
+             if (err) {
+               return res.status(500).json(err);
+             }
+             return res.status(200).json(updatedUser);
+           })
+         }
+       }
+     });
+   }
 
 };

@@ -4,7 +4,8 @@ const WALL_POST = "user/WALL_POST";
 const PUT_PHOTO  = "user/PUT_PHOTO";
 const DELETE_PHOTO  = "user/DELETE_PHOTO";
 const DELETE_POST = "user/DELETE_POST";
-const PUT_FRIEND = "user/PUT_FRIEND";
+const ADD_FOLLOW = "user/ADD_FOLLOW";
+const REMOVE_FOLLOW = "user/REMOVE_FOLLOW";
 const PUT_USER = "user/PUT_USER";
 
 const initialState = {
@@ -76,12 +77,12 @@ export default function reducer(state = initialState, action) {
             firstName: state.firstName
       };
 
-      case PUT_FRIEND:
+      case ADD_FOLLOW:
         return {
               _id: state._id,
               facebookId: state.facebookId,
               updated: state.updated,
-              following: action.post,
+              following: [...state.following, action.follow],
               wallPosts: state.wallPosts,
               pictures: state.pictures,
               profilePicture: state.profilePicture,
@@ -96,6 +97,27 @@ export default function reducer(state = initialState, action) {
               lastName: state.lastName,
               firstName: state.firstName
         };
+
+        case REMOVE_FOLLOW:
+          return {
+            _id: state._id,
+            facebookId: state.facebookId,
+            updated: state.updated,
+            following: state.following.filter(follow => follow._id !== action.follow),
+            wallPosts: state.wallPosts,
+            pictures: state.pictures,
+            profilePicture: state.profilePicture,
+            goalWeight: state.goalWeight,
+            startWeight: state.startWeight,
+            heightInches: state.heightInches,
+            heightFeet: state.heightFeet,
+            bodyType: state.bodyType,
+            gender: state.gender,
+            birthDate: state.birthDate,
+            location: state.location,
+            lastName: state.lastName,
+            firstName: state.firstName
+          }
 
         case PUT_USER:
           return {
@@ -173,25 +195,29 @@ export function signout() {
 }
 
 export function postMessage(post) {
-  return {type: WALL_POST, post}
+  return {type: WALL_POST, post};
 }
 
 export function putphoto(post) {
-  return {type: PUT_PHOTO, post}
+  return {type: PUT_PHOTO, post};
 }
 
 export function deletephoto(post) {
-  return {type: DELETE_PHOTO, post}
+  return {type: DELETE_PHOTO, post};
 }
 
 export function deleteWallPost(post) {
-  return {type: DELETE_POST, post}
+  return {type: DELETE_POST, post};
 }
 
-export function putfriend(post) {
-  return {type: PUT_FRIEND, post}
+export function addFollow(follow) {
+  return {type: ADD_FOLLOW, follow};
+}
+
+export function removeUserFollow(follow) {
+  return {type: REMOVE_FOLLOW, follow};
 }
 
 export function putuser(post) {
-  return {type: PUT_USER, post}
+  return {type: PUT_USER, post};
 }
