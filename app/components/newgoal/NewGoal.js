@@ -52,7 +52,6 @@ class NewGoal extends React.Component {
     }
 
   render() {
-    console.log(this.props.updateGoal);
 
     return (
     <article>

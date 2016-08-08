@@ -27,7 +27,7 @@ export function removeUserGoal(goalId) {
   request.delete(`/api/goal/${goalId}`)
     .end((err, goal) => {
       if (err) {
-        return console.log(err);
+        return
       }
       return store.dispatch(removeThisGoal(goal.body));
     });
@@ -54,7 +54,6 @@ export function deleteGoal(goalId, resolve, reject) {
 }
 
 export function updateGoal(goalInfo, goalId, resolve, reject) {
-  console.log(goalInfo)
   request.put(`/api/goal/${goalId}`)
     .send(goalInfo)
     .end((err, goal) => {

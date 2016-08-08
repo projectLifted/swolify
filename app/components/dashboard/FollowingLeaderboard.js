@@ -13,11 +13,6 @@ class FollowingLeaderboard extends React.Component {
     }
   }
 
-  componentDidUpdate(){
-    console.log("hello from following widget", this.props.user.following)
-  }
-
-
   render() {
 
     let isFollowing = false;

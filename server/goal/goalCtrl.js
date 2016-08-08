@@ -20,7 +20,6 @@ module.exports = {
   },
 
   updateGoal(req, res) {
-    console.log(req.body)
     Goal.findByIdAndUpdate(req.params.id, req.body, (err, updatedGoal) => {
       if (err) {
         return res.status(500).json(err);

@@ -18,8 +18,6 @@ class SearchResult extends React.Component {
 
 
   componentWillMount() {
-    console.log(this.props.users);
-
     var followingArray = this.props.following.following;
     for (var i = 0; i < followingArray.length; i++) {
       if ( followingArray[i]._id === this.props.users._id )  {
@@ -30,7 +28,6 @@ class SearchResult extends React.Component {
   }
 
   handleFollow(followId) {
-    console.log(this.props.users);
       addUserToFollowing(this.props.user._id, followId);
       this.setState({
         isFollowing: true

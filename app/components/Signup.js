@@ -50,7 +50,6 @@ export default class Signup extends React.Component {
   }
 
   handleFile(field, event) {
-    console.log(event.url);
     this.setState({
        profilePicture: event.url
     });
@@ -68,7 +67,6 @@ export default class Signup extends React.Component {
       }
       else {
         this.setState({user: res.body})
-        console.log(this.state.user);
       }
     })
   }
@@ -97,7 +95,7 @@ export default class Signup extends React.Component {
       }, this.state.user._id, resolve, reject);
     }).then((res, err) => {
       if (err) {
-        return console.error(err);
+        return
       }
 
     })

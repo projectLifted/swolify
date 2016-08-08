@@ -79,7 +79,6 @@ class Dashboard extends React.Component {
             this.setState({
               noGoals: true
             })
-            return console.log("no goals");
           }
           else {
             if (this.props.goals.goals.length === 0) {
@@ -97,10 +96,6 @@ class Dashboard extends React.Component {
               })
 
             }
-
-            console.log(this.props.goals.goals)
-
-            // Seperate goals by goal type
             res.body.map(goal => {
               if (goal.goalType === "WeightLifting") {
                 this.setState({weightGoalsPresent: true})
@@ -148,9 +143,9 @@ class Dashboard extends React.Component {
              getFollowing(this.props.user.following[i], reject);
            }).then((res, err) => {
              if (err) {
-               return console.log(err);
+               return
              }
-             return console.log(res);
+             return
            });
          }
        }
@@ -162,8 +157,6 @@ class Dashboard extends React.Component {
 
 
   render() {
-
-    console.log(this.props.following.following);
 
     let allFollowing = this.props.following.following.map((follow) => (
        <FollowingLeaderboard

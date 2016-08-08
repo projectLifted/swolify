@@ -97,7 +97,6 @@ class Signup extends React.Component {
   }
 
   handleFile(field, event) {
-    console.log(event.url);
     this.setState({
        profilePicture: event.url
     });

@@ -35,7 +35,6 @@ class Search extends React.Component {
         users: res.body,
        } )
 
-       console.log(this.state.users)
 		} );
   }
 

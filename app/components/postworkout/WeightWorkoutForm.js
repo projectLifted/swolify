@@ -19,7 +19,6 @@ export default class WeightWorkoutForm extends React.Component {
   }
 
   handleChange(field, event) {
-    // console.log(event.target.value);
     this.setState({[field]: event.target.value});
   }
 
@@ -37,8 +36,6 @@ export default class WeightWorkoutForm extends React.Component {
       runningTotal += (parseFloat(this.state.sets[i].weight * this.state.sets[i].reps * .0333) + parseInt(this.state.sets[i].weight));
     }
     let weightedOneRepMax = Math.floor((runningTotal / this.state.sets.length) / 5.0) * 5;
-    console.log(weightedOneRepMax);
-    console.log(this.state.workoutDate.format("YYYY, MM, DD"));
     createWorkout({
       workoutDate: this.state.workoutDate.format("YYYY, MM, DD"),
       workoutMax: weightedOneRepMax,

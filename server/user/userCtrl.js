@@ -47,9 +47,6 @@ module.exports = {
           let user = req.body;
 
           req.login(user, function(error) {
-              if (!error) {
-                  console.log('succcessfully updated user', req.user);
-            }
 
           return res.status(200).json(user)
           });
@@ -62,8 +59,6 @@ module.exports = {
       if (err) {
         return res.status(500).json(err);
       }
-
-      console.log(req.body);
       user.wallPosts.push(req.body);
       user.save((err, updatedUser) => {
         if (err) {
@@ -71,14 +66,6 @@ module.exports = {
         }
         return res.status(200).json(updatedUser);
       })
-      // console.log(user);
-      // User.findByIdAndUpdate(req.params.id, user, (err, updatedUser) => {
-      //   if (err) {
-      //     return res.status(500).json(err);
-      //   }
-      //   console.log(updatedUser.wallPosts, "RETURNED UPDATED USER");
-      //   return res.status(200).json(updatedUser);
-      // });
     });
   },
 
@@ -94,7 +81,6 @@ module.exports = {
             if (err) {
               return res.status(500).json(err);
             }
-            console.log(updatedUser);
             return res.status(200).json(updatedUser);
           })
         }
@@ -123,9 +109,7 @@ module.exports = {
         }
 
         req.login(updatedUser, function(error) {
-            if (!error) {
-                console.log('succcessfully updated user', updatedUser);
-              }
+
           })
 
         return res.status(200).json(updatedUser);
@@ -147,9 +131,7 @@ module.exports = {
              }
 
              req.login(updatedUser, function(error) {
-                 if (!error) {
-                     console.log('succcessfully updated user', updatedUser);
-                   }
+
                })
 
              return res.status(200).json(updatedUser);

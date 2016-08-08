@@ -14,16 +14,13 @@ export function getAllUsers( resolve, reject ) {
 }
 
 export function putUser(userInfo, userId, resolve, reject) {
-	console.log(userInfo)
 	request.put(`/api/users/${userId}`)
 		.send(userInfo)
 		.end((err, user) => {
 			if (err) {
-				console.log(err);
 				return reject(err);
 			}
 
-			console.log(userInfo)
 			return store.dispatch(putuser(userInfo));
 		});
 }
@@ -33,7 +30,6 @@ export function putPhoto(photosObject, photosArray, userId, resolve, reject) {
 		.send(photosObject)
 		.end((err, user) => {
 			if (err) {
-				console.log(err);
 				return reject(err);
 			}
 			return store.dispatch(putphoto(photosArray));
@@ -45,7 +41,6 @@ export function putFriend(friendsObject, friendsArray, userId, resolve, reject) 
 		.send(friendsObject)
 		.end((err, user) => {
 			if (err) {
-				console.log(err);
 				return reject(err);
 			}
 			return store.dispatch(putfriend(friendsArray));
@@ -57,7 +52,6 @@ export function deletePhoto(photosObject, photosArray, userId, resolve, reject) 
 		.send(photosObject)
 		.end((err, user) => {
 			if (err) {
-				console.log(err);
 				return reject(err);
 			}
 			return store.dispatch(deletephoto(photosArray));
@@ -65,17 +59,14 @@ export function deletePhoto(photosObject, photosArray, userId, resolve, reject) 
 }
 
 export function postToWall(wallPost, userId, reject) {
-	console.log(wallPost, userId);
 	request.post(`/api/user/${userId}`)
 		.send(wallPost)
 		.end((err, post) => {
 			if (err) {
-				return console.log(err);
 			}
 			request.get(`/api/user/${userId}`)
 				.end((err, finalPost) => {
 					if (err) {
-						return console.log(err);
 					}
 					return store.dispatch(postMessage(finalPost.body))
 				})
@@ -83,11 +74,10 @@ export function postToWall(wallPost, userId, reject) {
 }
 
 export function deleteFromWall(userId, postId, reject) {
-	console.log(userId, postId)
 	request.delete(`/api/user/${userId}/wallpost/${postId}`)
 		.end((err, newPost) => {
 			if (err) {
-				return console.log(err);
+				return
 			}
 			return store.dispatch(deleteWallPost(postId));
 		});
@@ -97,7 +87,6 @@ export function getUser(userId, resolve, reject) {
 	request.get(`/api/users/${userId}`)
 		.end((err, user) => {
 			if (err) {
-				console.log(err);
 				return reject(err);
 			}
 			return resolve( user );
@@ -108,7 +97,7 @@ export function getFollowing(followId, reject) {
  	request.get(`/api/users/${followId}`)
  		.end((err, user) => {
  			if (err) {
- 				return console.log(err);
+ 				return
  			}
  			return store.dispatch(followUser({_id: user.body._id, firstName: user.body.firstName, lastName: user.body.lastName, profilePicture: user.body.profilePicture}));
  		});
@@ -119,7 +108,7 @@ export function getFollowing(followId, reject) {
  		.send({_id: newFollowing})
  		.end((err, user) => {
 			if (err) {
-					return console.log(err);
+					return
 			}
 			return store.dispatch(addFollow(newFollowing));
  		});
@@ -131,7 +120,7 @@ export function getFollowing(followId, reject) {
  		.send({_id: unfollowId})
  		.end((err, updatedUser) => {
  			if (err) {
- 				return console.log(err)
+ 				return
  			}
  			return store.dispatch(removeUserFollow(unfollowId));
  		})

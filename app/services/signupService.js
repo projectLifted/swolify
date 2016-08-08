@@ -5,7 +5,6 @@ export function signupUser(userInfo, userId, resolve, reject) {
     .send(userInfo)
     .end((err, user) => {
       if (err) {
-        console.log(err);
         return reject(err);
       }
 

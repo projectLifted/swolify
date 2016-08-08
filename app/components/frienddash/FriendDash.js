@@ -39,7 +39,6 @@ class FriendDash extends React.Component {
     });
   }
   handleFile(field, event) {
-    console.log(event.url);
     this.setState({
        profilePicture: event.url
     });
@@ -67,16 +66,6 @@ class FriendDash extends React.Component {
   }
 
   componentDidMount() {
-    // new Promise( ( resolve, reject ) => {
-    //   getAllUsers( resolve, reject );
-    // } ).then( ( res, err ) => {
-    //   if ( err ) {
-    //     return console.error( err );
-    //   }
-    //   this.setState( {
-    //     users: res.body
-    //    } )
-    // } );
     if (!this.props.user.loggedIn) {
       browserHistory.push("/");
     }
@@ -84,7 +73,6 @@ class FriendDash extends React.Component {
 
 
   handleFollow(followId) {
-    console.log(this.props.friend);
       addUserToFollowing(this.props.user._id, followId);
       this.setState({
         isFollowing: true
