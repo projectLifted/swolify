@@ -24,8 +24,7 @@ class Search extends React.Component {
 
   }
 
-  componentWillMount(){
-
+  componentDidMount() {
     new Promise( ( resolve, reject ) => {
 			getAllUsers( resolve, reject );
 		} ).then( ( res, err ) => {
@@ -38,7 +37,6 @@ class Search extends React.Component {
 
        console.log(this.state.users)
 		} );
-
   }
 
 

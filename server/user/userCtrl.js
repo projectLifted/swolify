@@ -121,6 +121,13 @@ module.exports = {
         if (err) {
           return res.status(500).json(err);
         }
+
+        req.login(updatedUser, function(error) {
+            if (!error) {
+                console.log('succcessfully updated user', updatedUser);
+              }
+          })
+
         return res.status(200).json(updatedUser);
       });
     });
@@ -138,6 +145,13 @@ module.exports = {
              if (err) {
                return res.status(500).json(err);
              }
+
+             req.login(updatedUser, function(error) {
+                 if (!error) {
+                     console.log('succcessfully updated user', updatedUser);
+                   }
+               })
+
              return res.status(200).json(updatedUser);
            })
          }

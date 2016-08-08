@@ -141,9 +141,11 @@ class Dashboard extends React.Component {
           }
         })
       }
-
+      console.log(this.props.user.following, "User following")
+      console.log(this.props.following.following.length);
       if (this.props.following.following.length === 0) {
          for (let i = 0; i < this.props.user.following.length; i++) {
+           console.log(this.props.user.following[i]);
            new Promise((reject) => {
              getFollowing(this.props.user.following[i], reject);
            }).then((res, err) => {
@@ -163,7 +165,7 @@ class Dashboard extends React.Component {
 
   render() {
 
-    console.log(this.props.following.following);
+  //  console.log(this.props.following.following, "FOLLOWING DUCK");
 
     let allFollowing = this.props.following.following.map((follow) => (
        <FollowingLeaderboard
@@ -174,6 +176,8 @@ class Dashboard extends React.Component {
            profilePicture={follow.profilePicture}
        />
      ))
+
+//     console.log(allFollowing, "allFollowing");
 
     return (
               <article>
