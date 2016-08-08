@@ -54,7 +54,7 @@ export default class CardioGoalsPanel extends React.Component {
               <p>Avg Distance: {this.props.avgDistance}</p>
               <p className="extra-bottom">Avg Mile Time: {this.props.mileMinutes} Minutes</p>
               <Link to={`/edit-goal/${this.props.goalId}`} className="btn btn-info"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</Link>
-              <Link to={`/post-workout/cardio/${this.props.goalId}/${this.props.title}`} className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Workout</Link>
+              <Link to={`/post-workout/cardio/${this.props.goalId}/${this.props.title}/${this.props.goalType}`} className="btn btn-primary"><i className="fa fa-plus-circle" aria-hidden="true"></i> Post Workout</Link>
           </Panel>
       </Accordion>
     );

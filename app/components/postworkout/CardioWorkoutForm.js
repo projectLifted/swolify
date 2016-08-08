@@ -33,13 +33,12 @@ export default class CardioWorkoutForm extends React.Component {
     event.preventDefault();
     let timeDecimalVal = (this.state.workoutSeconds / 60);
     let workoutMileTime = ((parseFloat(this.state.workoutMinutes) + parseFloat(timeDecimalVal)).toFixed(2) / this.state.workoutDistance);
-    console.log(workoutMileTime);
     createWorkout({
       workoutDate: moment(this.state.workoutDate).format("YYYY, MM, DD"),
       workoutDistance: this.state.workoutDistance,
       workoutMileTime: workoutMileTime,
       currentWeight: this.state.currentWeight
-    }, this.props.goalId);
+    }, this.props.goalId, this.props.goalName, this.props.goalType);
       browserHistory.push("/dashboard");
   }
 

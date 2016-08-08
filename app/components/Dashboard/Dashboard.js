@@ -6,6 +6,7 @@ import { Link, browserHistory } from "react-router";
 import store from '../../store';
 import { signin } from '../../ducks/userDuck';
 import { postGoal } from '../../ducks/goalDuck';
+import { postWorkout } from '../../ducks/workoutDuck';
 
 import { getAuth } from '../../services/loginService.js';
 import { getUserGoals } from '../../services/goalService';
@@ -84,7 +85,17 @@ class Dashboard extends React.Component {
             if (this.props.goals.goals.length === 0) {
               res.body.map(goal => {
                 store.dispatch(postGoal(goal));
+
+                goal.workouts.forEach((workout)=>{
+                  workout.goalName = goal.goalName;
+                  workout.goalId = goal._id;
+                  workout.goalType = goal.goalType;
+                  workout.workoutDate = moment(workout.workoutDate).format('L');
+                  store.dispatch(postWorkout(workout));
+                })
+
               })
+
             }
 
             console.log(this.props.goals.goals)
@@ -108,6 +119,7 @@ class Dashboard extends React.Component {
                   title={goal.goalName}
                   progress={goal.goalMaxProgress}
                   maxRepGoal={goal.goalMax}
+                  goalType={goal.goalType}
               />
           ))})
             this.setState({cardioPanels:
@@ -122,6 +134,7 @@ class Dashboard extends React.Component {
                   mileMinutes={goal.avgMileTime}
                   distanceGoal={goal.goalDistance}
                   mileTimeGoal={goal.goalMileTime}
+                  goalType={goal.goalType}
               />
           ))})
 
@@ -326,4 +339,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user, goals: state.goals}))(Dashboard);
+export default connect(state => ({user: state.user, goals: state.goals, workouts: state.workouts}))(Dashboard);

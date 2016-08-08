@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <Route path="/" component={Home} />
           <Route path="/new-goal" component={NewGoal}/>
           <Route path="/sign-up" component={Signup}/>
-          <Route path="/post-workout/:workoutType/:goalId/:goalName" component={PostWorkout}/>
+          <Route path="/post-workout/:workoutType/:goalId/:goalName/:goalType" component={PostWorkout}/>
           <Route path="/dashboard" component={Dashboard}/>
           <Route path="/search" component={Search}/>
           <Route path="/workouts" component={MyWorkouts}/>

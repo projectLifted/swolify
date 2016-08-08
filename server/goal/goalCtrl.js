@@ -48,6 +48,8 @@ module.exports = {
       if (err) {
         return res.status(500).json(err);
       }
+      req.body.goalName = goal.goalName;
+      req.body.goalId = goal._id;
       goal.workouts.push(req.body);
       goal.save((err, goal) => {
         if (err) {
