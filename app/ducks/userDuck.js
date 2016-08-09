@@ -54,7 +54,8 @@ export default function reducer(state = initialState, action) {
         birthDate: state.birthDate,
         location: state.location,
         lastName: state.lastName,
-        firstName: state.firstName
+        firstName: state.firstName,
+        loggedIn: state.loggedIn
     };
     case PUT_PHOTO:
       return {
@@ -74,7 +75,9 @@ export default function reducer(state = initialState, action) {
             birthDate: state.birthDate,
             location: state.location,
             lastName: state.lastName,
-            firstName: state.firstName
+            firstName: state.firstName,
+            loggedIn: state.loggedIn
+
       };
 
       case ADD_FOLLOW:
@@ -95,7 +98,9 @@ export default function reducer(state = initialState, action) {
               birthDate: state.birthDate,
               location: state.location,
               lastName: state.lastName,
-              firstName: state.firstName
+              firstName: state.firstName,
+              loggedIn: state.loggedIn
+
         };
 
         case REMOVE_FOLLOW:
@@ -116,7 +121,8 @@ export default function reducer(state = initialState, action) {
             birthDate: state.birthDate,
             location: state.location,
             lastName: state.lastName,
-            firstName: state.firstName
+            firstName: state.firstName,
+            loggedIn: state.loggedIn
           }
 
         case PUT_USER:
@@ -138,7 +144,8 @@ export default function reducer(state = initialState, action) {
                 location: action.post.location,
                 lastName: action.post.lastName,
                 firstName: action.post.firstName,
-                following: action.post.following
+                following: action.post.following,
+                loggedIn: state.loggedIn
           };
 
       case DELETE_PHOTO:
@@ -159,7 +166,8 @@ export default function reducer(state = initialState, action) {
             birthDate: state.birthDate,
             location: state.location,
             lastName: state.lastName,
-            firstName: state.firstName
+            firstName: state.firstName,
+            loggedIn: state.loggedIn
       };
 
     case DELETE_POST:
@@ -180,7 +188,8 @@ export default function reducer(state = initialState, action) {
         birthDate: state.birthDate,
         location: state.location,
         lastName: state.lastName,
-        firstName: state.firstName
+        firstName: state.firstName,
+        loggedIn: state.loggedIn
   }
 }
   return state;

@@ -280,6 +280,12 @@ button.btn.btn-success.btn-filepicker:before {
   height: auto;
 }
 
+.chart-widget a:after{
+  content:"";
+  font-family: FontAwesome;
+  float: right;
+}
+
 .list-footer {
   padding: 10px !important;
   background-color: #dacde5;

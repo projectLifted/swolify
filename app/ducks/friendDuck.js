@@ -78,9 +78,9 @@ export function friendDash(friend) {
 }
 
 export function postFriendMessage(post) {
-  return {type: WALL_POST, post}
+  return {type: FRIEND_WALL_POST, post}
 }
 
 export function deleteFriendWallPost(post) {
-  return {type: DELETE_POST, post}
+  return {type: FRIEND_DELETE_POST, post}
 }
