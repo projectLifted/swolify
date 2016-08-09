@@ -17,9 +17,9 @@ class FollowingLeaderboard extends React.Component {
 
     let isFollowing = false;
 
-    var followingArray = this.props.user.following;
+    var followingArray = this.props.following.following;
     for (var i = 0; i < followingArray.length; i++) {
-    if ( followingArray[i] === this.props.followId )  {
+    if ( followingArray[i]._id === this.props.followId )  {
         isFollowing = true;
       }
     }
@@ -50,4 +50,4 @@ class FollowingLeaderboard extends React.Component {
   }
 }
 
-export default connect(state => ({user: state.user, goals: state.goals}))(FollowingLeaderboard);
+export default connect(state => ({user: state.user, goals: state.goals, following: state.following}))(FollowingLeaderboard);
