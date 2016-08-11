@@ -33,7 +33,6 @@ class FriendUserWidget extends React.Component {
           <p>Age: {birthAge}</p>
           <p>Weight: {this.props.friend.startWeight} lbs</p>
           <p>Height: {this.props.friend.heightFeet} ft {this.props.friend.heightInches} in</p>
-          <p>Body Type: {this.props.friend.bodyType}</p>
           <p>Location: {this.props.friend.location}</p>
           <p>Last Login: {lastSignedIn}</p>
 

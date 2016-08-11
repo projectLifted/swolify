@@ -157,6 +157,8 @@ class Dashboard extends React.Component {
 
   render() {
 
+    console.log(this.props.user)
+
     let allFollowing = this.props.following.following.map((follow) => (
        <FollowingLeaderboard
            key={follow._id}

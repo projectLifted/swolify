@@ -16,16 +16,14 @@ const initialState = {
   wallPosts: [],
   pictures: [],
   profilePicture: "",
-  goalWeight: 0,
   startWeight: 0,
   heightInches: 0,
   heightFeet: 0,
-  bodyType: "",
-  gender: "",
   birthDate: new Date,
   location: "",
   lastName: "",
-  firstName: ""
+  firstName: "",
+  loggedIn: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -45,17 +43,14 @@ export default function reducer(state = initialState, action) {
         wallPosts: [...state.wallPosts, action.post],
         pictures: state.pictures,
         profilePicture: state.profilePicture,
-        goalWeight: state.goalWeight,
         startWeight: state.startWeight,
         heightInches: state.heightInches,
         heightFeet: state.heightFeet,
-        bodyType: state.bodyType,
-        gender: state.gender,
         birthDate: state.birthDate,
         location: state.location,
         lastName: state.lastName,
         firstName: state.firstName,
-        loggedIn: state.loggedIn
+        loggedIn: true
     };
     case PUT_PHOTO:
       return {
@@ -66,17 +61,14 @@ export default function reducer(state = initialState, action) {
             wallPosts: state.wallPosts,
             pictures: action.post,
             profilePicture: state.profilePicture,
-            goalWeight: state.goalWeight,
             startWeight: state.startWeight,
             heightInches: state.heightInches,
             heightFeet: state.heightFeet,
-            bodyType: state.bodyType,
-            gender: state.gender,
             birthDate: state.birthDate,
             location: state.location,
             lastName: state.lastName,
             firstName: state.firstName,
-            loggedIn: state.loggedIn
+            loggedIn: true
 
       };
 
@@ -89,17 +81,14 @@ export default function reducer(state = initialState, action) {
               wallPosts: state.wallPosts,
               pictures: state.pictures,
               profilePicture: state.profilePicture,
-              goalWeight: state.goalWeight,
               startWeight: state.startWeight,
               heightInches: state.heightInches,
               heightFeet: state.heightFeet,
-              bodyType: state.bodyType,
-              gender: state.gender,
               birthDate: state.birthDate,
               location: state.location,
               lastName: state.lastName,
               firstName: state.firstName,
-              loggedIn: state.loggedIn
+              loggedIn: true
 
         };
 
@@ -112,40 +101,33 @@ export default function reducer(state = initialState, action) {
             wallPosts: state.wallPosts,
             pictures: state.pictures,
             profilePicture: state.profilePicture,
-            goalWeight: state.goalWeight,
             startWeight: state.startWeight,
             heightInches: state.heightInches,
             heightFeet: state.heightFeet,
-            bodyType: state.bodyType,
-            gender: state.gender,
             birthDate: state.birthDate,
             location: state.location,
             lastName: state.lastName,
             firstName: state.firstName,
-            loggedIn: state.loggedIn
+            loggedIn: true
           }
 
         case PUT_USER:
           return {
-                _id: action.post._id,
-                facebookId: action.post.facebookId,
-                updated: action.post.updated,
-                following: action.post.following,
-                wallPosts: action.post.wallPosts,
-                pictures: action.post.pictures,
-                profilePicture: action.post.profilePicture,
-                goalWeight: action.post.goalWeight,
+                _id: state._id,
+                facebookId: state.facebookId,
+                updated: state.updated,
+                wallPosts: state.wallPosts,
+                pictures: state.pictures,
+                profilePicture: state.profilePicture,
                 startWeight: action.post.startWeight,
                 heightInches: action.post.heightInches,
                 heightFeet: action.post.heightFeet,
-                bodyType: action.post.bodyType,
-                gender: action.post.gender,
                 birthDate: action.post.birthDate,
                 location: action.post.location,
                 lastName: action.post.lastName,
                 firstName: action.post.firstName,
-                following: action.post.following,
-                loggedIn: state.loggedIn
+                following: state.following,
+                loggedIn: true
           };
 
       case DELETE_PHOTO:
@@ -157,17 +139,14 @@ export default function reducer(state = initialState, action) {
             wallPosts: state.wallPosts,
             pictures: action.post,
             profilePicture: state.profilePicture,
-            goalWeight: state.goalWeight,
             startWeight: state.startWeight,
             heightInches: state.heightInches,
             heightFeet: state.heightFeet,
-            bodyType: state.bodyType,
-            gender: state.gender,
             birthDate: state.birthDate,
             location: state.location,
             lastName: state.lastName,
             firstName: state.firstName,
-            loggedIn: state.loggedIn
+            loggedIn: true
       };
 
     case DELETE_POST:
@@ -179,17 +158,14 @@ export default function reducer(state = initialState, action) {
         following: state.following,
         pictures: state.pictures,
         profilePicture: state.profilePicture,
-        goalWeight: state.goalWeight,
         startWeight: state.startWeight,
         heightInches: state.heightInches,
-        heightFeet: state.heightFeet,
-        bodyType: state.bodyType,
-        gender: state.gender,
+        heightFeet: state.heightFe,
         birthDate: state.birthDate,
         location: state.location,
         lastName: state.lastName,
         firstName: state.firstName,
-        loggedIn: state.loggedIn
+        loggedIn: true
   }
 }
   return state;
@@ -228,5 +204,6 @@ export function removeUserFollow(follow) {
 }
 
 export function putuser(post) {
+  console.log(post);
   return {type: PUT_USER, post};
 }

@@ -39,16 +39,13 @@ module.exports = {
   },
 
   updateUser(req, res, next) {
-      User.findByIdAndUpdate(req.params.id, req.body, (err, response)=> {
+      User.findByIdAndUpdate(req.params.id, req.body, (err, user)=> {
         if(err) {
           return res.status(500).json(err)
           }
 
-          let user = req.body;
-
           req.login(user, function(error) {
-
-          return res.status(200).json(user)
+            return res.status(200).json(req.body)
           });
 
         });
@@ -64,7 +61,11 @@ module.exports = {
         if (err) {
           return res.status(500).json(err);
         }
-        return res.status(200).json(updatedUser);
+        req.login(updatedUser, function(error) {
+
+          return res.status(200).json(updatedUser);
+
+          })
       })
     });
   },
@@ -81,8 +82,12 @@ module.exports = {
             if (err) {
               return res.status(500).json(err);
             }
-            return res.status(200).json(updatedUser);
-          })
+            req.login(updatedUser, function(error) {
+
+              return res.status(200).json(updatedUser);
+
+              })
+           })
         }
       }
     });
@@ -110,9 +115,9 @@ module.exports = {
 
         req.login(updatedUser, function(error) {
 
-          })
+          return res.status(200).json(updatedUser);
 
-        return res.status(200).json(updatedUser);
+          })
       });
     });
   },
@@ -132,9 +137,10 @@ module.exports = {
 
              req.login(updatedUser, function(error) {
 
+               return res.status(200).json(updatedUser);
+
                })
 
-             return res.status(200).json(updatedUser);
            })
          }
        }

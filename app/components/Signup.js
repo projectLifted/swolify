@@ -15,8 +15,6 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import ReactFilepicker from 'react-filepicker';
 
-import bodyTypes from '../images/bodytypes.jpg';
-
 import '../scss/primary.scss';
 
 export default class Signup extends React.Component {
@@ -28,8 +26,6 @@ export default class Signup extends React.Component {
         lastName: "",
         location: {city: "", state: ""},
         birthDate: moment(),
-        gender: "",
-        bodyType: "",
         heightFeet: "",
         heightInches: "",
         startWeight: "",
@@ -82,13 +78,10 @@ export default class Signup extends React.Component {
         lastName: this.state.lastName,
         location: `${this.state.city}, ${this.state.state}`,
         birthDate: this.state.birthDate,
-        gender: this.state.gender,
-        bodyType: this.state.bodyType,
         heightFeet: this.state.heightFeet,
         heightInches: this.state.heightInches,
         startWeight: this.state.startWeight,
-        goalWeight: this.state.goalWeight,
-        profilePicture: this.state.profilePicture,
+        profilePicture: this.state.user.profilePicture,
         wallPosts: [],
         following: [],
         pictures: []
@@ -147,6 +140,8 @@ export default class Signup extends React.Component {
                           </div>
                           </div>
 
+
+
                       </div>
 
                       <div className="row">
@@ -171,6 +166,8 @@ export default class Signup extends React.Component {
                           </div>
 
                           <div className="col-md-4">
+
+
                               <div className="form-group">
                                   <label for="birth-date">Birth Date</label>
                                     <DatePicker className="form-control date-picker"
@@ -178,63 +175,19 @@ export default class Signup extends React.Component {
                                          onChange={this.handleDate.bind(this, "birthDate")}
                                          />
                                   </div>
+
+
                           </div>
 
 
                         </div>
 
+
+
+
                       <div className="row">
+
                         <div className="col-md-4">
-
-                        <label className="block-label">Select your gender:</label>
-
-                        <label className="radio">
-                          <input type="radio" name="gender" id="man"
-                            value="man"
-                            onChange={this.handleChange.bind(this, "gender")}
-                            /> Man
-
-                        </label>
-                        <label className="radio">
-                          <input type="radio" name="gender" id="woman"
-                            value="woman"
-                            onChange={this.handleChange.bind(this, "gender")}
-                             /> Woman
-                        </label>
-
-                    </div>
-
-                      <div className="col-md-8">
-
-                      <label className="block-label">Select your body type:</label>
-
-                      <label className="radio">
-                        <input type="radio" name="bodyType" id="ectomorph"
-                            value="ectomorph"
-                            onChange={this.handleChange.bind(this, "bodyType")} /> Ectomorph
-
-                      </label>
-                      <label className="radio">
-                        <input type="radio" name="bodyType" id="mesomorph"
-                            value="mesomorph"
-                            onChange={this.handleChange.bind(this, "bodyType")} /> Mesomorph
-                      </label>
-                      <label className="radio">
-                        <input type="radio" name="bodyType" id="endomorph"
-                            value="endomorph"
-                            onChange={this.handleChange.bind(this, "bodyType")} /> Endomorph
-                      </label>
-
-                    </div>
-
-                    <center><img src={bodyTypes} /></center>
-
-                  </div>
-
-
-                      <div className="row">
-
-                        <div className="col-md-3">
                             <div className="form-group">
                                 <label for="height-feet">Height (Feet)</label>
                                 <div className="input-group">
@@ -247,7 +200,7 @@ export default class Signup extends React.Component {
 
                         </div>
 
-                        <div className="col-md-3">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label for="height-inches">Height (Inches)</label>
                                 <div className="input-group">
@@ -260,51 +213,23 @@ export default class Signup extends React.Component {
 
                         </div>
 
-                          <div className="col-md-3">
-                              <div className="form-group">
-                                  <label for="start-weight">Start Weight</label>
-                                  <div className="input-group">
-                                      <input required type="number" className="form-control" id="start-weight" placeholder=""
-                                        value={this.state.startWeight}
-                                        onChange={this.handleChange.bind(this, "startWeight")} />
-                                      <div className="input-group-addon">Lbs</div>
-                                  </div>
+                          <div className="col-md-4">
+
+                            <div className="form-group">
+                       <label for="start-weight">Weight</label>
+                       <div className="input-group">
+                           <input required type="number" className="form-control" id="start-weight" placeholder=""
+                             value={this.state.startWeight}
+                             onChange={this.handleChange.bind(this, "startWeight")} />
+                           <div className="input-group-addon">Lbs</div>
+                       </div>
+
+
                               </div>
 
-                          </div>
-
-                          <div className="col-md-3">
-                              <div className="form-group">
-                                  <label for="goal-weight">Goal Weight</label>
-                                  <div className="input-group">
-                                        <input type="number" className="form-control" id="goal-weight" placeholder=""                                           value={this.state.goalWeight}
-                                        onChange={this.handleChange.bind(this, "goalWeight")} />
-                                      <div className="input-group-addon">Lbs</div>
-                                  </div>
-                              </div>
-
-                          </div>
-
+                        </div>
 
                       </div>
-
-                      <div className="row">
-                        <div className="col-md-12">
-                          <center><label class="extra-height" for="birth-date">Upload Profile Photo</label></center>
-                          <center><ReactFilepicker buttonClass="btn btn-success btn-filepicker" apikey={'Agks1hdLoTWKr1uAnYtC3z'} defaultWidget={false}  onSuccess={this.handleFile.bind(this, "file")} /></center>
-                        </div>
-                     </div>
-
-                     {this.state.profilePicture
-
-                        ?
-                        <div className="col-md-12">
-                          <center><img className="filepickerPhoto" src={this.state.profilePicture} /></center>
-                        </div>
-                        :
-                        <div className="col-md-12">
-                        </div>
-                      }
 
                         <center><button type="submit" className="btn btn-primary form-submit"><i className="fa fa-user-plus" aria-hidden="true" onClick={this.handleSignup.bind(this)}></i>  Sign-Up</button></center>
 

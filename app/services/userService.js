@@ -20,7 +20,6 @@ export function putUser(userInfo, userId, resolve, reject) {
 			if (err) {
 				return reject(err);
 			}
-
 			return store.dispatch(putuser(userInfo));
 		});
 }

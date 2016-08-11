@@ -44,18 +44,10 @@ class FriendDash extends React.Component {
     });
   }
   mountStuff(){
-    if (this.props.user.loggedIn)
+    if (this.props.user.loggedIn) {
         getFriend(this.props.params.userId);
-        let isFollowing = false;
-        var followingArray = this.props.following.following;
-        for (var i = 0; i < followingArray.length; i++) {
-          if ( followingArray[i]._id === this.props.params.userId )  {
-            this.setState({isFollowing: true});
-          }
-        }
       }
-  //   })
-  // }
+  }
 
   componentWillMount(){
     this.mountStuff();
@@ -74,22 +66,24 @@ class FriendDash extends React.Component {
 
   handleFollow(followId) {
       addUserToFollowing(this.props.user._id, followId);
-      this.setState({
-        isFollowing: true
-      });
       store.dispatch(followUser({_id: this.props.friend._id, firstName: this.props.friend.firstName, lastName: this.props.friend.lastName, profilePicture: this.props.friend.profilePicture}));
   }
 
   handleUnfollow(unfollowId) {
-
-    this.setState({
-      isFollowing: false
-    });
     removeFromFollowing(this.props.user._id, unfollowId);
     store.dispatch(removeFollow(this.props.friend._id));
   }
 
   render() {
+
+    let isFollowing = false;
+    var followingArray = this.props.following.following;
+    for (var i = 0; i < followingArray.length; i++) {
+      if ( followingArray[i]._id === this.props.params.userId )  {
+        isFollowing = true;
+      }
+    }
+
     let weightChartUrl = `/api/weightchart/${this.props.friend._id}`
     let cardioChartUrl = `/api/cardiochart/${this.props.friend._id}`
     let bodyWeightChartUrl = `/api/bodyweightchart/${this.props.friend._id}`
@@ -119,7 +113,7 @@ class FriendDash extends React.Component {
                   <div className="row">
                     <div className="col-md-3" id="left-dash">
                       <FriendUserWidget />
-                      {this.state.isFollowing ?
+                      {isFollowing ?
                         <button onClick={this.handleUnfollow.bind(this, this.props.params.userId)} className="btn btn-success"><i className="fa fa-user-times" aria-hidden="true" ></i> Unfollow</button>
                         :
                         <button onClick={this.handleFollow.bind(this, this.props.params.userId)} className="btn btn-success"><i className="fa fa-user-plus" aria-hidden="true"></i> Follow</button>

@@ -50,9 +50,10 @@ passport.use(new FacebookStrategy({
   callbackURL: keys.fbCallbackURL,
   profileFields: ['displayName', 'photos', 'email']
 }, (accessToken, refreshToken, profile, done) => {
+    let profilePicUrl = "http://res.cloudinary.com/demo/image/facebook/" + profile.id + ".jpg";
     User.findOne({facebookId: profile.id}, (err, user) => {
       if (!user) {
-        new User({facebookId: profile.id}).save( ( err, user ) => {
+        new User({facebookId: profile.id, profilePicture: profilePicUrl}).save( ( err, user ) => {
           return done(err, user);
         });
       }

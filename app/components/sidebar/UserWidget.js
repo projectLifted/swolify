@@ -34,7 +34,6 @@ class UserSidebar extends React.Component {
           <p>Age: {birthAge}</p>
           <p>Weight: {this.props.user.startWeight} lbs</p>
           <p>Height: {this.props.user.heightFeet} ft {this.props.user.heightInches} in</p>
-          <p>Body Type: {this.props.user.bodyType}</p>
           <p>Location: {this.props.user.location}</p>
           <p>Last Login: {lastSignedIn}</p>
 
