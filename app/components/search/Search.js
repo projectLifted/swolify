@@ -55,7 +55,7 @@ class Search extends React.Component {
     );
 
     const allUsers = filteredUsers.map( ( user ) => {
-      if(user._id !== this.props.user._id){
+      if(user._id !== this.props.user._id && user.firstName){
       return (
         <SearchResult
           key={user._id}
