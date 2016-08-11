@@ -43,7 +43,7 @@ export default class FriendPicGridItem extends React.Component {
           aria-labelledby="contained-modal-title"
         >
           <Modal.Body>
-           <img class="modal-image" src={modalImg} />
+           <center><img class="modal-image" src={modalImg} /></center>
           </Modal.Body>
           <Modal.Footer>
            <Button onClick={close}>Close</Button>

@@ -62,7 +62,7 @@ class PicGridItem extends React.Component {
           aria-labelledby="contained-modal-title"
         >
           <Modal.Body>
-           <img class="modal-image" src={modalImg} />
+           <center><img class="modal-image" src={modalImg} /></center>
           </Modal.Body>
           <Modal.Footer>
            <Button onClick={this.deletePhoto.bind(this)} className="delete-goal-button">Delete</Button>

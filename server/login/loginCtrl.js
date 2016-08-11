@@ -2,8 +2,13 @@ const User = require('../user/User');
 
 module.exports = {
   loggedIn(req, res, next) {
+
       if (req.user) {
-        return res.json(req.user);
+          User.findById(req.user._id, (err, user) => {
+            user.updated = new Date();
+            return res.status(200).json(user);
+          });
+
       } else {
         return res.json(false);
       }
