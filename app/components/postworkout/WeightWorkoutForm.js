@@ -51,6 +51,10 @@ export default class WeightWorkoutForm extends React.Component {
       let setMax = (this.state.workoutWeight * this.state.workoutReps * .0333) + this.state.sets.workoutWeight;
      this.setState({sets: this.state.sets.concat([{setNumber: this.state.sets.length + 1, reps: this.state.workoutReps, weight: this.state.workoutWeight}])})
    }
+   this.setState({
+     workoutReps: "",
+     workoutWeight: ""
+   })
   }
 
   render() {
@@ -79,7 +83,7 @@ export default class WeightWorkoutForm extends React.Component {
               id="workoutReps"
               placeholder=""
               required
-              value={this.workoutReps}
+              value={this.state.workoutReps}
               onChange={this.handleChange.bind(this, "workoutReps")}
             />
           </div>
@@ -97,7 +101,7 @@ export default class WeightWorkoutForm extends React.Component {
                       id="workoutWeight"
                       placeholder=""
                       required
-                      value={this.workoutWeight}
+                      value={this.state.workoutWeight}
                       onChange={this.handleChange.bind(this, "workoutWeight")}
                   />
                       <div className="input-group-addon">Lbs</div>
