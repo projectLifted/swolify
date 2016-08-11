@@ -44,9 +44,7 @@ module.exports = {
           return res.status(500).json(err)
           }
 
-          req.login(user, function(error) {
             return res.status(200).json(req.body)
-          });
 
         });
       },
@@ -61,11 +59,7 @@ module.exports = {
         if (err) {
           return res.status(500).json(err);
         }
-        req.login(updatedUser, function(error) {
-
           return res.status(200).json(updatedUser);
-
-          })
       })
     });
   },
@@ -82,11 +76,8 @@ module.exports = {
             if (err) {
               return res.status(500).json(err);
             }
-            req.login(updatedUser, function(error) {
-
               return res.status(200).json(updatedUser);
 
-              })
            })
         }
       }
@@ -112,12 +103,8 @@ module.exports = {
         if (err) {
           return res.status(500).json(err);
         }
-
-        req.login(updatedUser, function(error) {
-
           return res.status(200).json(updatedUser);
 
-          })
       });
     });
   },
@@ -135,11 +122,7 @@ module.exports = {
                return res.status(500).json(err);
              }
 
-             req.login(updatedUser, function(error) {
-
                return res.status(200).json(updatedUser);
-
-               })
 
            })
          }
