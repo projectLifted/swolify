@@ -30,9 +30,8 @@ class WallPoster extends React.Component {
 
   submitPost(content) {
     postToWall({message: content, sender: this.props.user._id, posterPic: this.props.user.profilePicture, posterName: `${this.props.user.firstName} ${this.props.user.lastName}`}, this.props.user._id);
+    this.setState({messageContent: ""})
   }
-
-
 
   render() {
 
@@ -41,7 +40,7 @@ class WallPoster extends React.Component {
 
     <div className="panel-body">
 
-        <textarea maxLength="160" id="postContent" onChange={this.handleTextAreaChange.bind(this)} className="form-control" rows="3"></textarea>
+        <textarea maxLength="160" id="postContent" value={this.state.messageContent} onChange={this.handleTextAreaChange.bind(this)} className="form-control" rows="3"></textarea>
           <p className="pull-left chars-left">{this.state.chars_left}</p>
         <button id="post-to-wall" onClick={this.submitPost.bind(this, this.state.messageContent)} className="btn btn-info pull-right"><i className="fa fa-pencil" aria-hidden="true"></i> Post</button>
 
